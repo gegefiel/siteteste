@@ -52,6 +52,12 @@ h2 {
     margin-bottom: 15px;
     font-family: Georgia, serif;
 }
+h3 {
+    font-size: 20px;
+    color: #222;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
 p {
     font-size: 18px;
     margin-bottom: 20px;
@@ -79,6 +85,9 @@ li {
 }
 .author-details {
     font-size: 15px;
+}
+.author-details strong {
+    color: #111;
 }
 .author-date {
     color: #777;
@@ -129,8 +138,12 @@ li {
 .cta-shake {
   animation: cta-shake-anim 3s ease-in-out infinite;
 }
+.cta-button:active {
+    box-shadow: none;
+    transform: translateY(4px);
+}
 
-/* --- FOOTER --- */
+/* --- DISCLAIMER & FOOTER --- */
 .medical-disclaimer {
     font-size: 12px;
     color: #777;
@@ -140,16 +153,28 @@ li {
     padding-top: 20px;
     border-top: 1px solid #eaeaea;
 }
+.medical-disclaimer p {
+    font-size: 12px;
+    margin-bottom: 12px;
+}
 .footer {
     text-align: center;
     font-size: 13px;
     color: #555;
     margin: 20px 0 40px 0;
+    padding-bottom: 30px;
 }
 .footer a {
     color: #0D3328;
     text-decoration: underline;
     margin: 0 8px;
+}
+
+@media (max-width: 600px) {
+    .container { padding: 20px; margin: 15px; }
+    h1 { font-size: 26px; }
+    h2 { font-size: 22px; }
+    p, ul { font-size: 17px; }
 }
 </style>
 </head>
@@ -182,24 +207,46 @@ li {
 
     <p>Understanding why your breathing feels heavier starts with looking inside the airways. According to recent observations, certain <strong>airway proteins</strong> can build up over time. These proteins create microscopic networks that may restrict optimal airflow, trap mucus, and contribute to the feeling of a tight chest.</p>
 
+    <p>When your lungs have to work twice as hard to pull in oxygen through these restricted passages, your body diverts energy. This is why respiratory fatigue often comes paired with general physical exhaustion and even "brain fog."</p>
+
     <h2>4 Natural Ways to Support Healthy Lungs</h2>
 
+    <p>Managing respiratory fatigue requires a consistent routine to support your body's natural clearing processes. Here are some adjustments you can make:</p>
+
     <ul>
-        <li><strong>Stay Hydrated:</strong> Drinking plenty of water helps thin the mucus in your lungs.</li>
-        <li><strong>Gentle Daily Movement:</strong> Activities like light walking improve blood flow.</li>
-        <li><strong>Check Indoor Air Quality:</strong> Ensure good ventilation and consider an air purifier.</li>
-        <li><strong>Focus on Posture:</strong> Standing up straight allows your diaphragm to fully expand.</li>
+        <li><strong>Stay Hydrated:</strong> Drinking plenty of water helps thin the mucus in your lungs, making it easier for your body to clear out trapped particles naturally.</li>
+        <li><strong>Gentle Daily Movement:</strong> Activities like light walking or stretching improve blood flow and encourage deeper breathing without overstraining your lungs.</li>
+        <li><strong>Check Indoor Air Quality:</strong> Dust and allergens inside your home can force your immune system to overreact. Ensure good ventilation and consider an air purifier.</li>
+        <li><strong>Focus on Posture:</strong> Slouching compresses your lungs. Sitting and standing up straight allows your diaphragm to fully expand, which can instantly <strong>increase lung capacity</strong>.</li>
     </ul>
 
+    <h2>The "High-Altitude" Practice</h2>
+
+    <img src="https://rigorrevview.site/mongbalac.webp" alt="High altitude mountains" class="blog-image" loading="lazy">
+
+    <p>While lifestyle changes are important, researchers have been increasingly interested in populations living in high-altitude environments. Despite facing harsh conditions and wood smoke, certain mountain communities maintain remarkably clear airways well into old age.</p>
+
+    <p>Studies suggest that their respiratory resilience is linked to specific traditional practices and local botanical compounds that help their bodies naturally manage the buildup of airway proteins and support long-term lung function.</p>
+
     <div class="highlight-box">
-        <span>&#x1F50D;</span> <strong>Learn More:</strong> Discover how specific "high-altitude" respiratory practices are being used today to help clear airway proteins and support effortless breathing.
+        <span>&#x1F50D;</span> <strong>Learn More:</strong> Discover how specific "high-altitude" respiratory practices are being used today to help clear airway proteins, increase lung capacity, and support natural, effortless breathing.
     </div>
 
-    <h2><span>&#x1F9E9;</span> Final Thoughts</h2>
+    <h2><span>&#x1F9E9;</span> Final Thoughts: You Are Not Alone</h2>
     
-    <p>You don't have to accept respiratory fatigue as your "new normal." Thousands have successfully reclaimed their energy and independence by understanding the role of airway proteins.</p>
+    <p>If you've found yourself searching for things like:</p>
     
-    <p style="margin-bottom: 30px;"><strong>Click the button below to watch the free presentation</strong> and discover how you can start supporting your respiratory stamina today.</p>
+    <ul>
+        <li><em>"How to reduce respiratory fatigue"</em></li>
+        <li><em>"How to improve breathing naturally"</em></li>
+        <li><em>"What to take for lung health"</em></li>
+    </ul>
+    
+    <p>...please know that millions of people ask these exact same questions every month.</p>
+    
+    <p>And thousands have successfully reclaimed their energy, mobility, and independence &mdash; without letting heavy airways dictate their daily lives.</p>
+    
+    <p style="margin-bottom: 30px;">You don't have to accept this as your "new normal." <strong>Click the button below to watch the free presentation</strong> and discover how you can start supporting your respiratory stamina today.</p>
 
     <a href="https://hotm.io/htSpD4" 
        class="cta-button cta-shake" 
@@ -210,7 +257,9 @@ li {
     </a>
 
     <div class="medical-disclaimer">
-        <p>The information on this website is intended for informational purposes only and should not replace advice from a qualified medical professional. Consult your physician before making any lifestyle changes.</p>
+        <p>The information on this website is intended for informational purposes only and should not replace advice from a qualified medical professional. We strongly encourage you to consult your physician before making any lifestyle changes and discuss them thoroughly. If you have any medical concerns or conditions, please seek guidance from your doctor.</p>
+        <p>It is advisable to conduct your own research and confirm details with multiple sources when exploring health-related topics. Always consult with your healthcare provider to carefully evaluate any protocols or recommendations mentioned on this website or associated with the product promoted here.</p>
+        <p style="margin-bottom: 0;">This site's content is not a substitute for professional medical advice, diagnosis, or treatment. Always seek advice from a licensed healthcare provider for any health concerns.</p>
     </div>
 
 </div>
@@ -218,7 +267,9 @@ li {
 <div class="footer">
     <a href="https://rigorrevview.site/privacy">Privacy Policy</a> | 
     <a href="https://rigorrevview.site/terms">Terms of Use</a> | 
-    <a href="https://rigorrevview.site/contact">Contact</a>
+    <a href="https://rigorrevview.site/contact">Contact</a> | 
+    <a href="https://rigorrevview.site/disclaimer">Disclaimer</a> |
+    <a href="https://rigorrevview.site/disclosure">Disclosure Agreement</a>
     <p style="margin-top: 15px;">&copy; 2026 Rigor Revview.site. All Rights Reserved.</p>
 </div>
 
@@ -227,9 +278,14 @@ li {
     const btn = document.getElementById("ctaBtn");
     const currentUrl = new URL(window.location.href);
     const params = currentUrl.search;
+
     if (params) {
         let cleanParams = params.startsWith('?') ? params.substring(1) : params;
-        btn.href += (btn.href.includes('?') ? '&' : '?') + cleanParams;
+        if (btn.href.includes('?')) {
+            btn.href += '&' + cleanParams;
+        } else {
+            btn.href += '?' + cleanParams;
+        }
     }
 })();
 </script>
