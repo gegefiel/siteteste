@@ -253,6 +253,13 @@ Help loosen stubborn mucus.</p>
 
     <p style="margin-bottom: 30px;">You don't have to accept this as your "new normal." <strong>Click the button below to learn a simple home-based method</strong> that you can do from the comfort of your own house to start supporting your respiratory stamina today.</p>
 
+    <div style="text-align: center;">
+        <a href="https://hotm.io/fxTyukcR" id="imgBtn" target="_blank" rel="noopener noreferrer">
+            <img src="https://rigorrevview.site/button1.webp" alt="Watch the Free Video" style="max-width: 100%; height: auto; border-radius: 8px; cursor: pointer;" loading="lazy">
+        </a>
+        <p style="font-size: 13px; color: #777; margin-top: 8px; margin-bottom: 20px;">(Please allow up to 5 seconds for the video to load)</p>
+    </div>
+
     <a href="https://hotm.io/fxTyukcR" 
        class="cta-button cta-shake" 
        id="ctaBtn"
@@ -280,17 +287,21 @@ Help loosen stubborn mucus.</p>
 
 <script>
 (function() {
-    const btn = document.getElementById("ctaBtn");
+    const btns = [document.getElementById("ctaBtn"), document.getElementById("imgBtn")];
     const currentUrl = new URL(window.location.href);
     const params = currentUrl.search;
 
     if (params) {
         let cleanParams = params.startsWith('?') ? params.substring(1) : params;
-        if (btn.href.includes('?')) {
-            btn.href += '&' + cleanParams;
-        } else {
-            btn.href += '?' + cleanParams;
-        }
+        btns.forEach(function(btn) {
+            if (btn) {
+                if (btn.href.includes('?')) {
+                    btn.href += '&' + cleanParams;
+                } else {
+                    btn.href += '?' + cleanParams;
+                }
+            }
+        });
     }
 })();
 </script>
