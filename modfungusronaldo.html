@@ -157,17 +157,17 @@
             background-color: #d30d0b;
         }
 
-        /* --- COMENTÁRIOS FACEBOOK 100% BLINDADOS --- */
+        /* --- COMENTÁRIOS FACEBOOK --- */
         .fb-comments-wrapper {
             max-width: 650px;
             margin: 40px auto 30px auto;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             border-top: 1px solid #dadde1;
-            padding-top: 15px;
+            padding-top: 20px;
         }
         .fb-header-info {
             font-size: 15px;
-            font-weight: 600;
+            font-weight: bold;
             color: #1c1e21;
             margin-bottom: 20px;
             display: flex;
@@ -189,10 +189,10 @@
             margin-top: -10px;
         }
         .fb-avatar {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            margin-right: 8px;
+            margin-right: 10px;
             flex-shrink: 0;
             background-color: #ddd;
             object-fit: cover;
@@ -201,22 +201,23 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            max-width: calc(100% - 40px); /* Garante que não ultrapassa a tela */
+            max-width: calc(100% - 46px); /* Garante que não ultrapassa a tela */
         }
         .fb-bubble {
             background-color: #f0f2f5;
             border-radius: 18px;
             padding: 8px 12px;
-            position: relative;
+            position: relative; /* Necessário para ancorar o botão de like */
             color: #1c1e21;
             font-size: 15px;
-            word-wrap: break-word;
+            line-height: 1.4;
             max-width: 100%;
             box-sizing: border-box;
         }
+        /* Cor Azul do Facebook para os nomes */
         .fb-name {
-            font-weight: 600;
-            color: #050505;
+            font-weight: bold;
+            color: #385898; 
             text-decoration: none;
             margin-right: 5px;
         }
@@ -226,21 +227,22 @@
         .fb-text {
             display: inline;
         }
-        /* CAIXA DE LIKES IMPOSSÍVEL DE QUEBRAR */
+        
+        /* CAIXA DE LIKES BLINDADA CONTRA QUEBRA (MOBILE) */
         .fb-like-count {
             position: absolute;
-            bottom: -14px;
-            right: 0;
+            bottom: -12px;
+            right: 0px;
             background: #ffffff;
             border-radius: 10px;
             padding: 2px 4px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 4px;
             z-index: 2;
-            width: max-content; /* Força a largura exata do conteúdo */
-            white-space: nowrap; /* Proíbe quebra de linha */
+            white-space: nowrap; /* IMPEDE A QUEBRA DE LINHA DO NÚMERO */
         }
         .fb-like-count img {
             width: 14px;
@@ -249,17 +251,18 @@
             flex-shrink: 0;
         }
         .fb-like-count span {
-            font-size: 13px;
-            color: #65676b;
+            font-size: 12px;
+            color: #777;
             line-height: 1;
             display: block;
         }
+        
         .fb-actions {
             padding-left: 12px;
             padding-top: 4px;
             font-size: 12px;
             color: #65676b;
-            font-weight: 600;
+            font-weight: bold;
             display: flex;
             gap: 12px;
         }
@@ -391,7 +394,6 @@
         <img src="https://packdebridge.com.br/wp-content/uploads/2025/01/ed4c7d17-8301-11ee-bb78-06326af95a41_485e7d5a9a088dc44184c0b3723723b6f8cecd19_Screenshot-2023-12-19-at-10.17.19 AM.avif" alt="Scientific research" class="content-image" loading="lazy">
         <img src="https://packdebridge.com.br/wp-content/uploads/2025/01/imagem_2024-10-17_122200231-4.png" alt="Trust badges" class="trust-badges" loading="lazy">
 
-
         <div class="fb-comments-wrapper">
             <div class="fb-header-info">
                 21 Comments 
@@ -399,7 +401,7 @@
             </div>
 
             <div class="fb-comment">
-                <img src="https://i.pravatar.cc/100?img=12" alt="Avatar" class="fb-avatar">
+                <img src="https://i.pravatar.cc/100?img=11" alt="Avatar" class="fb-avatar">
                 <div class="fb-body">
                     <div class="fb-bubble">
                         <a href="#" class="fb-name">David Reynolds</a>
@@ -420,7 +422,7 @@
             </div>
 
             <div class="fb-comment">
-                <img src="https://i.pravatar.cc/100?img=47" alt="Avatar" class="fb-avatar">
+                <img src="https://i.pravatar.cc/100?img=5" alt="Avatar" class="fb-avatar">
                 <div class="fb-body">
                     <div class="fb-bubble">
                         <a href="#" class="fb-name">Linda Mitchell</a>
@@ -441,7 +443,7 @@
             </div>
 
             <div class="fb-comment reply">
-                <img src="https://i.pravatar.cc/100?img=60" alt="Avatar" class="fb-avatar">
+                <img src="https://i.pravatar.cc/100?img=68" alt="Avatar" class="fb-avatar">
                 <div class="fb-body">
                     <div class="fb-bubble">
                         <a href="#" class="fb-name">Joseph Patterson</a>
@@ -462,7 +464,7 @@
             </div>
             
             <div class="fb-comment">
-                <img src="https://i.pravatar.cc/100?img=32" alt="Avatar" class="fb-avatar">
+                <img src="https://i.pravatar.cc/100?img=43" alt="Avatar" class="fb-avatar">
                 <div class="fb-body">
                     <div class="fb-bubble">
                         <a href="#" class="fb-name">Sarah Jenkins</a>
@@ -483,7 +485,6 @@
             </div>
         </div>
         <a href="SEU_LINK_AQUI" class="cta-btn">Click Here To Watch The Video</a>
-
 
         <div class="disclaimer-box">
             <p>Please be aware that the information provided on this website is not meant to substitute for advice from a qualified medical professional. We encourage you to consult your physician regarding any lifestyle changes and discuss them thoroughly. If you have questions or concerns about any medical conditions, please contact your doctor directly.</p>
@@ -523,13 +524,4 @@
             if (imgBtn) {
                 if (imgBtn.href.includes('?')) {
                     imgBtn.href += '&' + cleanParams;
-                } else {
-                    imgBtn.href += '?' + cleanParams;
-                }
-            }
-        }
-    })();
-    </script>
-
-</body>
-</html>
+                } else
