@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relief for Chest Congestion & Phlegm - Health Update</title>
 
-  
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
@@ -159,7 +157,7 @@
             background-color: #d30d0b;
         }
 
-        /* --- COMENTÁRIOS FACEBOOK (ORIGINAL) --- */
+        /* --- COMENTÁRIOS FACEBOOK --- */
         .fb-comments-wrapper {
             max-width: 650px;
             margin: 40px auto 30px auto;
@@ -315,7 +313,7 @@
         <div class="content">
             <p>If you wake up every morning struggling to clear thick, sticky phlegm from your throat, or if your chest feels like it's wrapped in a tightening band, you are not alone.</p>
             
-            <p>For years, medical professionals have dismissed chronic chest congestion as "normal aging." They tell you to manage it with temporary fixes:</p>
+            <p>For years, medical professionals have dismissed chronic chest congestion as "normal aging" or "just allergies." They tell you to simply manage it with temporary fixes:</p>
             
             <ul>
                 <li>Steroid Inhalers</li>
@@ -324,23 +322,27 @@
                 <li>Nebulizers</li>
             </ul>
 
-            <p>But as you've probably noticed, <span class="highlight-bold">these are just band-aids.</span> The coughing fits always return.</p>
+            <p>But as you've probably noticed, <span class="highlight-bold">these are just band-aids.</span> The coughing fits always return, and the mucus comes back thicker than before.</p>
             
-            <p>According to research from the Midwest Institute of Pulmonary Biology, the real reason is a buildup of <strong>Airway Clogging Proteins</strong> (PBFs).</p>
+            <p>According to newly surfaced research from the Midwest Institute of Pulmonary Biology, the real reason you can't get rid of that phlegm is a dangerous buildup of <strong>Airway Clogging Proteins</strong> (known clinically as PBFs).</p>
             
-            <p>These sticky protein webs trap toxins and bind to your mucus, making it heavy and impossible to cough up. They literally strangle your air passages.</p>
+            <p>These microscopic, sticky protein webs trap daily toxins and bind to your mucus, making it heavy and impossible to cough up. They literally strangle your air passages, making every breath feel harder than the last.</p>
             
-            <p><strong>The good news?</strong> There is a 100% natural way to flush out these proteins—without harsh prescription drugs.</p>
+            <p><strong>The good news?</strong> Researchers have identified a 100% natural way to break down and flush out these airway-clogging proteins—without relying on harsh prescription drugs.</p>
 
-            <p>It centers around a traditional "lung-clearing soup" used for centuries in high-altitude mountain villages.</p>
+            <p>It all centers around a strange, traditional "lung-clearing soup" used for centuries in a high-altitude mountain village in Georgia, a region famous for its residents having incredibly strong respiratory health well into old age.</p>
             
-            <p class="highlight-bold">This targets the root cause of your chest congestion.</p>
+            <p class="highlight-bold">This isn't just a symptom reliever; it targets the root cause of your chest congestion.</p>
             
-            <p>By using the plant compounds from this specific routine, thousands are finally dissolving sticky mucus and breathing effortlessly novament.</p>
+            <p>By using the isolated plant compounds from this specific routine, thousands of Americans are finally dissolving sticky mucus, opening their airways, and breathing effortlessly again.</p>
+            
+            <p class="highlight-bold">This isn't just a news story; it could be the answer you've been searching for.</p>
+            <p class="highlight-bold">Don't miss out; the details might not be online for longer. Click the button below and watch the free video now before it's too late.</p>
         </div>
 
         <a href="https://hotm.io/fxTyukcR" class="cta-btn">Click Here To Watch The Video</a>
 
+       
         <img src="https://rigorrevview.site/img/med.webp" alt="Trust badges" class="trust-badges" width="791" height="150" loading="lazy">
 
         <div class="fb-comments-wrapper">
@@ -421,28 +423,47 @@
         <a href="https://hotm.io/fxTyukcR" class="cta-btn">Click Here To Watch The Video</a>
 
         <div class="disclaimer-box">
-            <p>Please be aware that the information provided on this website is not meant to substitute for advice from a qualified medical professional...</p>
+            <p>Please be aware that the information provided on this website is not meant to substitute for advice from a qualified medical professional. We encourage you to consult your physician regarding any lifestyle changes and discuss them thoroughly. If you have questions or concerns about any medical conditions, please contact your doctor directly.</p>
+            <p>We recommend conducting your own research and verifying information from multiple sources when seeking health-related guidance. Always review the details carefully with your healthcare provider before following any protocols mentioned on this site or associated with the product sold here.</p>
+            <p>The results presented may not be typical. Testimonials shared on this page reflect the experiences of specific individuals who have used the method described. These outcomes may not be representative of the average user and are not intended to guarantee that others will achieve the same or similar results.</p>
+            <p>The content provided on this site is for informational purposes only and should not be considered a substitute for professional medical advice, diagnosis, or treatment.</p>
         </div>
 
         <div class="footer">
             <a href="https://rigorrevview.site/privacy">Privacy Policy</a> | 
             <a href="https://rigorrevview.site/terms">Terms of Use</a> | 
-            <a href="https://rigorrevview.site/contact">Contact</a>
-            <p style="margin-top: 15px;">&copy; 2026 RigorRevview.site. All Rights Reserved.</p>
+            <a href="https://rigorrevview.site/contact">Contact</a> | 
+            <a href="https://rigorrevview.site/disclaimer">Disclaimer</a> |
+            <a href="https://rigorrevview.site/disclosure">Disclosure Agreement</a>
+            <p style="margin-top: 15px; font-weight: normal; color: #777;">&copy; 2026 RigorRevview.site. All Rights Reserved.</p>
         </div>
 
     </div>
 
     <script>
     (function() {
-        const params = window.location.search;
+        const currentUrl = new URL(window.location.href);
+        const params = currentUrl.search;
+
         if (params) {
             let cleanParams = params.startsWith('?') ? params.substring(1) : params;
-            document.querySelectorAll('a').forEach(function(btn) {
-                if (btn.href.includes('hotm.io')) {
-                    btn.href += (btn.href.includes('?') ? '&' : '?') + cleanParams;
+            
+            document.querySelectorAll('.cta-btn').forEach(function(btn) {
+                if (btn.href.includes('?')) {
+                    btn.href += '&' + cleanParams;
+                } else {
+                    btn.href += '?' + cleanParams;
                 }
             });
+            
+            const imgBtn = document.getElementById("imgBtn");
+            if (imgBtn) {
+                if (imgBtn.href.includes('?')) {
+                    imgBtn.href += '&' + cleanParams;
+                } else {
+                    imgBtn.href += '?' + cleanParams;
+                }
+            }
         }
     })();
     </script>
