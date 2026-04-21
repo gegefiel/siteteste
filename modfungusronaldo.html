@@ -157,7 +157,7 @@
             background-color: #d30d0b;
         }
 
-        /* --- COMENTÁRIOS FACEBOOK --- */
+        /* --- COMENTÁRIOS FACEBOOK SIMPLIFICADOS (SEM QUEBRAS) --- */
         .fb-comments-wrapper {
             max-width: 650px;
             margin: 40px auto 30px auto;
@@ -201,20 +201,18 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            max-width: calc(100% - 46px); /* Garante que não ultrapassa a tela */
+            max-width: calc(100% - 46px); 
         }
         .fb-bubble {
             background-color: #f0f2f5;
             border-radius: 18px;
-            padding: 8px 12px;
-            position: relative; /* Necessário para ancorar o botão de like */
+            padding: 10px 14px;
             color: #1c1e21;
             font-size: 15px;
             line-height: 1.4;
             max-width: 100%;
             box-sizing: border-box;
         }
-        /* Cor Azul do Facebook para os nomes */
         .fb-name {
             font-weight: bold;
             color: #385898; 
@@ -227,39 +225,9 @@
         .fb-text {
             display: inline;
         }
-        
-        /* CAIXA DE LIKES BLINDADA CONTRA QUEBRA (MOBILE) */
-        .fb-like-count {
-            position: absolute;
-            bottom: -12px;
-            right: 0px;
-            background: #ffffff;
-            border-radius: 10px;
-            padding: 2px 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            z-index: 2;
-            white-space: nowrap; /* IMPEDE A QUEBRA DE LINHA DO NÚMERO */
-        }
-        .fb-like-count img {
-            width: 14px;
-            height: 14px;
-            display: block;
-            flex-shrink: 0;
-        }
-        .fb-like-count span {
-            font-size: 12px;
-            color: #777;
-            line-height: 1;
-            display: block;
-        }
-        
         .fb-actions {
             padding-left: 12px;
-            padding-top: 4px;
+            padding-top: 6px;
             font-size: 12px;
             color: #65676b;
             font-weight: bold;
@@ -404,14 +372,10 @@
                 <img src="https://i.pravatar.cc/100?img=11" alt="Avatar" class="fb-avatar">
                 <div class="fb-body">
                     <div class="fb-bubble">
-                        <a href="#" class="fb-name">David Reynolds</a>
+                        <a href="#" class="fb-name">David R.</a>
                         <span class="fb-text">
-                            For the first time in years, I can take a full breath without coughing. The amount of mucus I cleared out in the first 5 days was unbelievable. Everyone needs to watch this video!
+                            For the first time in years, I can take a full breath without coughing. My doctor couldn't believe how much my lung function improved. He asked what I was taking. When I told him, he just shook his head and said, whatever it is, keep it up.
                         </span>
-                        <div class="fb-like-count">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like">
-                            <span>42</span>
-                        </div>
                     </div>
                     <div class="fb-actions">
                         <a href="#">Like</a>
@@ -425,14 +389,10 @@
                 <img src="https://i.pravatar.cc/100?img=5" alt="Avatar" class="fb-avatar">
                 <div class="fb-body">
                     <div class="fb-bubble">
-                        <a href="#" class="fb-name">Linda Mitchell</a>
+                        <a href="#" class="fb-name">Linda M.</a>
                         <span class="fb-text">
-                            I was so skeptical at first, but I woke up after the first week and my chest just felt... open. Not tight, not heavy. I finally slept through the night. 🙏
+                            I woke up after the first week and my chest felt open. Not tight, not heavy, just open. I'm breathing easier, hiking again, and feeling more like myself every single day.
                         </span>
-                        <div class="fb-like-count">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like">
-                            <span>28</span>
-                        </div>
                     </div>
                     <div class="fb-actions">
                         <a href="#">Like</a>
@@ -446,14 +406,10 @@
                 <img src="https://i.pravatar.cc/100?img=68" alt="Avatar" class="fb-avatar">
                 <div class="fb-body">
                     <div class="fb-bubble">
-                        <a href="#" class="fb-name">Joseph Patterson</a>
+                        <a href="#" class="fb-name">Joseph P.</a>
                         <span class="fb-text">
-                            Same here Linda! I used to avoid the stairs completely. Now I climb them without stopping to catch my breath. I feel alive again.
+                            Same here Linda! I used to avoid stairs completely. Now I climb them without stopping. I was planning my life around my breathing... That's gone now. I feel like I got my life back.
                         </span>
-                        <div class="fb-like-count">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like">
-                            <span>15</span>
-                        </div>
                     </div>
                     <div class="fb-actions">
                         <a href="#">Like</a>
@@ -464,17 +420,13 @@
             </div>
             
             <div class="fb-comment">
-                <img src="https://i.pravatar.cc/100?img=43" alt="Avatar" class="fb-avatar">
+                <img src="https://i.pravatar.cc/100?img=60" alt="Avatar" class="fb-avatar">
                 <div class="fb-body">
                     <div class="fb-bubble">
-                        <a href="#" class="fb-name">Sarah Jenkins</a>
+                        <a href="#" class="fb-name">William T.</a>
                         <span class="fb-text">
-                            My husband has been struggling with violent coughing fits for 3 years. We've spent a fortune on inhalers that don't fix the root cause. Making him watch this right now!
+                            For 12 years, I went to bed wheezing every night. I told patients it was under control. It wasn't. Two weeks after I started doing this... It stopped. Just stopped.
                         </span>
-                        <div class="fb-like-count">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like">
-                            <span>9</span>
-                        </div>
                     </div>
                     <div class="fb-actions">
                         <a href="#">Like</a>
