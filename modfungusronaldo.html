@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relief for Chest Congestion & Phlegm - Health Update</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
+
     <style>
         /* --- ESTILOS BASE --- */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f0f2f5;
-            color: #333;
+            font-family: 'Manrope', sans-serif;
+            background-color: #f9f9f9;
+            color: #111;
             margin: 0;
             padding: 0;
             line-height: 1.6;
@@ -21,68 +25,69 @@
             max-width: 800px;
             margin: 40px auto;
             background-color: #ffffff;
-            padding: 40px;
+            padding: 40px 50px;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
 
-        /* --- CABEÇALHO / AUTOR --- */
-        .author-box {
+        /* --- CABEÇALHO / AUTOR COM RELEVO --- */
+        .author-card {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            margin: 0 auto 30px auto;
-            padding: 20px;
             background-color: #ffffff;
-            border: 1px solid #eaeaea;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Efeito de relevo/sombra */
-            max-width: 350px;
+            padding: 15px 30px;
+            border-radius: 12px;
+            box-shadow: 0px 6px 20px rgba(0,0,0,0.08); /* Relevo Elegante */
+            width: max-content;
+            margin: 0 auto 30px auto;
+            border: 1px solid #f0f0f0;
         }
-        .author-box img {
-            width: 80px;
-            height: 80px;
+        .author-card img {
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            margin: 0 0 15px 0;
+            margin-right: 15px;
             object-fit: cover;
-            border: 2px solid #eaeaea;
         }
-        .author-info h3 {
-            margin: 0 0 5px 0;
-            font-size: 19px;
+        .author-text {
+            text-align: left;
+        }
+        .author-text h3 {
+            margin: 0 0 2px 0;
+            font-size: 18px;
+            font-weight: 800;
             color: #111;
         }
-        .author-info p {
+        .author-text p {
             margin: 0;
             font-size: 14px;
-            color: #666;
+            color: #555;
             line-height: 1.4;
         }
 
         /* --- TÍTULOS --- */
         h1 {
-            font-size: 34px;
+            font-size: 38px;
+            font-weight: 800;
             text-align: center;
-            line-height: 1.3;
+            line-height: 1.25;
             margin-top: 0;
             margin-bottom: 30px;
             color: #111;
+            letter-spacing: -0.5px;
         }
         h1 span {
-            color: #2e7d32;
+            color: red; /* O vermelho vivo original */
         }
         
         .alert-text {
-            font-size: 18px;
+            font-size: 22px;
+            font-weight: 800;
             text-align: center;
-            font-weight: bold;
             margin: 25px 0;
-            color: #d32f2f;
-            background-color: #ffebee;
-            padding: 15px;
-            border-radius: 6px;
+            color: #111;
+            line-height: 1.3;
         }
 
         /* --- IMAGENS --- */
@@ -93,7 +98,6 @@
             margin: 0 auto 20px auto;
             border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         .content-image {
             width: 100%;
@@ -107,54 +111,47 @@
             max-width: 791px;
             display: block;
             margin: 40px auto 20px auto;
-            border-radius: 8px;
         }
 
         /* --- TEXTO DO BLOG --- */
         .content p {
-            font-size: 18px;
-            margin-bottom: 20px;
+            font-size: 19px;
+            margin-bottom: 22px;
+            font-weight: 400;
+            color: #333;
         }
         .content ul {
-            font-size: 18px;
+            font-size: 19px;
             margin-bottom: 25px;
             padding-left: 30px;
+            color: #333;
         }
         .content li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .highlight-bold {
-            font-weight: bold;
+            font-weight: 800;
             color: #111;
-        }
-        .highlight-box {
-            background-color: #f8f9fa;
-            border-left: 4px solid #2e7d32;
-            padding: 15px 20px;
-            margin: 25px 0;
-            font-style: italic;
         }
 
         /* --- BOTÕES CTA --- */
         .cta-btn {
             display: block;
             width: 100%;
-            max-width: 480px;
+            max-width: 400px;
             margin: 30px auto;
-            background-color: #d32f2f;
+            background-color: #f40f0d; /* Vermelho forte para combinar com o detalhe */
             color: #ffffff;
             text-align: center;
-            padding: 20px;
-            font-size: 22px;
-            font-weight: bold;
+            padding: 18px 20px;
+            font-size: 20px;
+            font-weight: 800;
             text-decoration: none;
-            border-radius: 6px;
-            box-shadow: 0 4px 0 #b71c1c;
+            border-radius: 5px;
             transition: all 0.2s ease;
         }
-        .cta-btn:active {
-            transform: translateY(4px);
-            box-shadow: none;
+        .cta-btn:hover {
+            background-color: #d30d0b;
         }
 
         /* --- RODAPÉ E DISCLAIMER --- */
@@ -174,6 +171,7 @@
             font-size: 14px;
             color: #555;
             margin-top: 30px;
+            font-weight: 700;
         }
         .footer a {
             color: #555;
@@ -185,18 +183,19 @@
         }
         .copyright {
             margin-top: 20px;
-            font-weight: bold;
+            font-weight: 400;
         }
 
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 768px) {
-            .container { margin: 15px; padding: 25px 20px; }
-            h1 { font-size: 26px; }
-            .alert-text { font-size: 16px; }
-            .content p, .content ul { font-size: 16px; }
-            .cta-btn { font-size: 18px; padding: 16px; }
-            .footer a { display: block; margin: 10px 0; }
-            .author-box { max-width: 100%; }
+            .container { margin: 0; padding: 25px 20px; border-radius: 0; box-shadow: none; }
+            h1 { font-size: 28px; }
+            .alert-text { font-size: 18px; }
+            .content p, .content ul { font-size: 17px; }
+            .cta-btn { font-size: 18px; max-width: 90%; }
+            .author-card { max-width: 100%; flex-direction: column; text-align: center; padding: 20px; }
+            .author-card img { margin: 0 0 10px 0; }
+            .author-text { text-align: center; }
         }
     </style>
 </head>
@@ -204,17 +203,17 @@
 
     <div class="container">
         
-        <div class="author-box">
+        <div class="author-card">
             <img src="https://packdebridge.com.br/wp-content/uploads/2025/01/imagem_2024-12-26_222150653.png" alt="Dr. Paul Whitmore">
-            <div class="author-info">
+            <div class="author-text">
                 <h3>Dr. Paul Whitmore</h3>
                 <p><b>Founder, Pulmonary Research Institute</b><br>Posted: 2 days ago | Reads: 14,285</p>
             </div>
         </div>
 
-        <h1>How a Strange "Mountain Soup" Dissolves <span>Deep Chest Congestion</span> and Stubborn Phlegm in Days</h1>
+        <h1>How a Strange "Mountain Soup" Dissolves <span style="color: red;">Deep Chest Congestion</span> and Stubborn Phlegm in Days</h1>
 
-        <a href="#" id="imgBtn1">
+        <a href="#">
             <img src="https://packdebridge.com.br/wp-content/uploads/2025/01/imagem_2024-12-26_221207095.png" alt="Video presentation on chest congestion" class="main-image">
         </a>
 
@@ -222,7 +221,7 @@
             🔊 Please wait up to 10 seconds for the video to load. Make sure your sound is turned on.
         </div>
 
-        <a href="#" class="cta-btn" id="ctaBtn1">WATCH THE FREE VIDEO NOW</a>
+        <a href="#" class="cta-btn">Click Here To Watch The Video</a>
 
         <div class="content">
             <p>If you wake up every morning struggling to clear thick, sticky phlegm from your throat, or if your chest feels like it's wrapped in a tightening band, you are not alone.</p>
@@ -238,10 +237,6 @@
 
             <p>But as you've probably noticed, <span class="highlight-bold">these are just band-aids.</span> The coughing fits always return, and the mucus comes back thicker than before.</p>
             
-            <div class="highlight-box">
-                "We now know that age and allergies are not the true culprits behind your breathing struggles. There is a hidden biological mechanism suffocating your lungs from the inside out."
-            </div>
-
             <p>According to newly surfaced research from the Midwest Institute of Pulmonary Biology, the real reason you can't get rid of that phlegm is a dangerous buildup of <strong>Airway Clogging Proteins</strong> (known clinically as PBFs).</p>
             
             <p>These microscopic, sticky protein webs trap daily toxins and bind to your mucus, making it heavy and impossible to cough up. They literally strangle your air passages, making every breath feel harder than the last.</p>
@@ -254,10 +249,11 @@
             
             <p>By using the isolated plant compounds from this specific routine, thousands of Americans are finally dissolving sticky mucus, opening their airways, and breathing effortlessly again.</p>
             
-            <p class="highlight-bold">Don't wait until your lung capacity declines further. Click the button below to watch a short, free video presentation on how you can use this simple method at home today.</p>
+            <p class="highlight-bold">This isn't just a news story; it could be the answer you've been searching for.</p>
+            <p class="highlight-bold">Don't miss out; the details might not be online for longer. Click the button below and watch the free video now before it's too late.</p>
         </div>
 
-        <a href="#" class="cta-btn" id="ctaBtn2">CLICK HERE TO WATCH THE VIDEO</a>
+        <a href="#" class="cta-btn">Click Here To Watch The Video</a>
 
         <img src="https://packdebridge.com.br/wp-content/uploads/2025/01/ed4c7d17-8301-11ee-bb78-06326af95a41_485e7d5a9a088dc44184c0b3723723b6f8cecd19_Screenshot-2023-12-19-at-10.17.19 AM.avif" alt="Scientific research" class="content-image" loading="lazy">
 
