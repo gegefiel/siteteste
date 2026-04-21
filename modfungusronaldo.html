@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relief for Chest Congestion & Phlegm - Health Update</title>
 
-    <script defer src="https://cdn.raldoeira.com/code/82-c0939cfc-61cb-4d15-bb3a-9b34e821da8b"></script>
+  
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* --- ESTILOS BASE --- */
         body {
-            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Manrope', sans-serif;
             background-color: #f9f9f9;
             color: #111;
             margin: 0;
@@ -81,9 +81,12 @@
             color: #111;
             letter-spacing: -0.5px;
         }
+        h1 span {
+            color: red; 
+        }
         
         .alert-text {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 800;
             text-align: center;
             margin: 25px 0;
@@ -95,16 +98,21 @@
         .main-image {
             width: 100%;
             max-width: 600px;
-            height: auto;
             display: block;
             margin: 0 auto 20px auto;
             border-radius: 8px;
             cursor: pointer;
         }
+        .content-image {
+            width: 100%;
+            max-width: 584px;
+            display: block;
+            margin: 30px auto;
+            border-radius: 8px;
+        }
         .trust-badges {
             width: 100%;
             max-width: 791px;
-            height: auto;
             display: block;
             margin: 40px auto 20px auto;
         }
@@ -146,17 +154,16 @@
             border-radius: 5px;
             transition: all 0.2s ease;
             box-sizing: border-box;
-            box-shadow: 0 4px 0 #b30c0b;
         }
-        .cta-btn:active {
-            transform: translateY(4px);
-            box-shadow: none;
+        .cta-btn:hover {
+            background-color: #d30d0b;
         }
 
-        /* --- COMENTÁRIOS FACEBOOK --- */
+        /* --- COMENTÁRIOS FACEBOOK (ORIGINAL) --- */
         .fb-comments-wrapper {
             max-width: 650px;
             margin: 40px auto 30px auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             border-top: 1px solid #dadde1;
             padding-top: 20px;
         }
@@ -168,10 +175,20 @@
             display: flex;
             justify-content: space-between;
         }
+        .fb-header-info span.sort {
+            font-weight: normal;
+            color: #65676b;
+            cursor: pointer;
+        }
         .fb-comment {
             display: flex;
             margin-bottom: 20px;
             align-items: flex-start;
+            width: 100%;
+        }
+        .fb-comment.reply {
+            margin-left: 45px;
+            margin-top: -10px;
         }
         .fb-avatar {
             width: 36px;
@@ -179,6 +196,14 @@
             border-radius: 50%;
             margin-right: 10px;
             flex-shrink: 0;
+            background-color: #ddd;
+            object-fit: cover;
+        }
+        .fb-body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: calc(100% - 46px); 
         }
         .fb-bubble {
             background-color: #f0f2f5;
@@ -186,11 +211,21 @@
             padding: 10px 14px;
             color: #1c1e21;
             font-size: 15px;
+            line-height: 1.4;
+            max-width: 100%;
+            box-sizing: border-box;
         }
         .fb-name {
             font-weight: bold;
             color: #385898; 
             text-decoration: none;
+            margin-right: 5px;
+        }
+        .fb-name:hover {
+            text-decoration: underline;
+        }
+        .fb-text {
+            display: inline;
         }
         .fb-actions {
             padding-left: 12px;
@@ -201,29 +236,55 @@
             display: flex;
             gap: 12px;
         }
+        .fb-actions a {
+            color: #65676b;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .fb-actions a:hover {
+            text-decoration: underline;
+        }
+        .fb-time {
+            font-weight: normal;
+        }
 
+        /* --- RODAPÉ E DISCLAIMER --- */
         .disclaimer-box {
-            font-size: 12px;
+            font-size: 13px;
             color: #777;
             text-align: justify;
             margin-top: 50px;
             padding-top: 30px;
             border-top: 1px solid #eaeaea;
         }
+        .disclaimer-box p {
+            margin-bottom: 15px;
+        }
         .footer {
             text-align: center;
             font-size: 13px;
             color: #555;
             margin: 20px 0 40px 0;
+            padding-bottom: 30px;
+        }
+        .footer a {
+            color: #111;
+            text-decoration: underline;
+            margin: 0 8px;
+            font-weight: bold;
         }
 
+        /* --- RESPONSIVIDADE --- */
         @media (max-width: 768px) {
-            .container { margin: 0; padding: 25px 20px; border-radius: 0; }
+            .container { margin: 0; padding: 25px 20px; border-radius: 0; box-shadow: none; }
             h1 { font-size: 28px; }
-            .cta-btn { font-size: 18px; max-width: 100%; }
-            .author-card { flex-direction: column; text-align: center; }
-            .author-card img { margin: 0 0 10px 0; }
+            .alert-text { font-size: 18px; }
+            .content p, .content ul { font-size: 17px; }
+            .cta-btn { font-size: 18px; max-width: 90%; margin: 30px auto; }
+            .author-card { flex-direction: column; text-align: center; padding: 20px; max-width: 320px; }
+            .author-card img { margin: 0 0 12px 0; }
             .author-text { text-align: center; }
+            .fb-comment.reply { margin-left: 35px; }
         }
     </style>
 </head>
@@ -258,7 +319,7 @@
             
             <ul>
                 <li>Steroid Inhalers</li>
-                <li>Over-the-counter mucus thinners</li>
+                <li>Over-the-counter mucolytics (mucus thinners)</li>
                 <li>Antihistamines</li>
                 <li>Nebulizers</li>
             </ul>
@@ -269,13 +330,13 @@
             
             <p>These sticky protein webs trap toxins and bind to your mucus, making it heavy and impossible to cough up. They literally strangle your air passages.</p>
             
-            <p><strong>The good news?</strong> There is a 100% natural way to flush out these proteins—without harsh drugs.</p>
+            <p><strong>The good news?</strong> There is a 100% natural way to flush out these proteins—without harsh prescription drugs.</p>
 
-            <p>It centers around a traditional "lung-clearing soup" used for centuries in high-altitude mountain villages, famous for incredible respiratory health.</p>
+            <p>It centers around a traditional "lung-clearing soup" used for centuries in high-altitude mountain villages.</p>
             
             <p class="highlight-bold">This targets the root cause of your chest congestion.</p>
             
-            <p>By using these plant compounds, thousands are finally dissolving sticky mucus and breathing effortlessly again.</p>
+            <p>By using the plant compounds from this specific routine, thousands are finally dissolving sticky mucus and breathing effortlessly novament.</p>
         </div>
 
         <a href="https://hotm.io/fxTyukcR" class="cta-btn">Click Here To Watch The Video</a>
@@ -283,16 +344,25 @@
         <img src="https://rigorrevview.site/img/med.webp" alt="Trust badges" class="trust-badges" width="791" height="150" loading="lazy">
 
         <div class="fb-comments-wrapper">
-            <div class="fb-header-info">21 Comments <span class="sort">Sort by Top ▾</span></div>
+            <div class="fb-header-info">
+                21 Comments 
+                <span class="sort">Sort by Top ▾</span>
+            </div>
 
             <div class="fb-comment">
                 <img src="https://rigorrevview.site/img/user10.webp" alt="Avatar" class="fb-avatar" width="36" height="36" loading="lazy">
                 <div class="fb-body">
                     <div class="fb-bubble">
                         <a href="#" class="fb-name">Susan D.</a>
-                        <span class="fb-text">For the first time in years, I can take a full breath without coughing. My doctor couldn't believe it!</span>
+                        <span class="fb-text">
+                            For the first time in years, I can take a full breath without coughing. My doctor couldn't believe how much my lung function improved. He asked what I was taking. When I told him, he just shook his head and said, whatever it is, keep it up.
+                        </span>
                     </div>
-                    <div class="fb-actions"><a href="#">Like</a> <a href="#">Reply</a> <span class="fb-time">3 hrs</span></div>
+                    <div class="fb-actions">
+                        <a href="#">Like</a>
+                        <a href="#">Reply</a>
+                        <span class="fb-time">3 hrs</span>
+                    </div>
                 </div>
             </div>
 
@@ -301,9 +371,49 @@
                 <div class="fb-body">
                     <div class="fb-bubble">
                         <a href="#" class="fb-name">Joseph P.</a>
-                        <span class="fb-text">I woke up after the first week and my chest felt open. Not tight, not heavy, just open.</span>
+                        <span class="fb-text">
+                            I woke up after the first week and my chest felt open. Not tight, not heavy, just open. I'm breathing easier, hiking again, and feeling more like myself every single day.
+                        </span>
                     </div>
-                    <div class="fb-actions"><a href="#">Like</a> <a href="#">Reply</a> <span class="fb-time">5 hrs</span></div>
+                    <div class="fb-actions">
+                        <a href="#">Like</a>
+                        <a href="#">Reply</a>
+                        <span class="fb-time">5 hrs</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fb-comment reply">
+                <img src="https://rigorrevview.site/img/user3.webp" alt="Avatar" class="fb-avatar" width="36" height="36" loading="lazy">
+                <div class="fb-body">
+                    <div class="fb-bubble">
+                        <a href="#" class="fb-name">Linda M.</a>
+                        <span class="fb-text">
+                            Same here Joseph! I used to avoid stairs completely. Now I climb them without stopping. I was planning my life around my breathing... That's gone now. I feel like I got my life back.
+                        </span>
+                    </div>
+                    <div class="fb-actions">
+                        <a href="#">Like</a>
+                        <a href="#">Reply</a>
+                        <span class="fb-time">2 hrs</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fb-comment">
+                <img src="https://rigorrevview.site/img/user8.webp" alt="Avatar" class="fb-avatar" width="36" height="36" loading="lazy">
+                <div class="fb-body">
+                    <div class="fb-bubble">
+                        <a href="#" class="fb-name">Nancy G.</a>
+                        <span class="fb-text">
+                            Same, I hesitated at first but now my breathing is so much more stable after a few weeks. My seasonal fits used to be constant and now they barely happen. Worst case, you try it and see some improvement, best case you feel like a completely new person haha 😄 I actually have energy to play with my grandkids again!
+                        </span>
+                    </div>
+                    <div class="fb-actions">
+                        <a href="#">Like</a>
+                        <a href="#">Reply</a>
+                        <span class="fb-time">8 hrs</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -311,7 +421,7 @@
         <a href="https://hotm.io/fxTyukcR" class="cta-btn">Click Here To Watch The Video</a>
 
         <div class="disclaimer-box">
-            <p>The information on this website is not meant to substitute for advice from a qualified medical professional. Results may not be typical.</p>
+            <p>Please be aware that the information provided on this website is not meant to substitute for advice from a qualified medical professional...</p>
         </div>
 
         <div class="footer">
@@ -320,6 +430,7 @@
             <a href="https://rigorrevview.site/contact">Contact</a>
             <p style="margin-top: 15px;">&copy; 2026 RigorRevview.site. All Rights Reserved.</p>
         </div>
+
     </div>
 
     <script>
@@ -335,5 +446,6 @@
         }
     })();
     </script>
+
 </body>
 </html>
