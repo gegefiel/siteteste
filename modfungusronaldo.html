@@ -30,7 +30,7 @@
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
 
-        /* --- CABEÇALHO / AUTOR COM BORDA E NOME AZUL --- */
+        /* --- CABEÇALHO / AUTOR --- */
         .author-card {
             display: flex;
             align-items: center;
@@ -157,6 +157,98 @@
             background-color: #d30d0b;
         }
 
+        /* --- ESTILOS DE COMENTÁRIOS FACEBOOK --- */
+        .fb-comments-section {
+            margin: 50px auto 30px auto;
+            border-top: 1px solid #e9ebee;
+            padding-top: 20px;
+            font-family: Helvetica, Arial, sans-serif; /* Fonte padrão do FB */
+        }
+        .fb-header {
+            font-size: 15px;
+            font-weight: bold;
+            color: #1d2129;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .fb-header span.sort {
+            font-weight: normal;
+            color: #4b4f56;
+            cursor: pointer;
+        }
+        .fb-comment-wrap {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        .fb-comment-wrap.reply {
+            margin-left: 50px; /* Indentação da resposta */
+            margin-top: -5px;
+        }
+        .fb-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-right: 8px;
+            background-color: #ddd;
+            object-fit: cover;
+        }
+        .fb-comment-content {
+            flex: 1;
+        }
+        .fb-bubble {
+            background-color: #f2f3f5;
+            padding: 8px 12px;
+            border-radius: 18px;
+            display: inline-block;
+            position: relative;
+            font-size: 15px;
+            color: #1c1e21;
+            line-height: 1.4;
+        }
+        .fb-name {
+            font-weight: bold;
+            color: #385898;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+        .fb-name:hover {
+            text-decoration: underline;
+        }
+        .fb-like-box {
+            position: absolute;
+            bottom: -12px;
+            right: 0px;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 2px 4px 2px 4px;
+            font-size: 12px;
+            color: #777;
+            display: flex;
+            align-items: center;
+        }
+        .fb-like-box img {
+            width: 14px;
+            height: 14px;
+            margin-right: 4px;
+        }
+        .fb-actions {
+            font-size: 12px;
+            color: #90949c;
+            margin-top: 2px;
+            margin-left: 12px;
+        }
+        .fb-actions span {
+            font-weight: bold;
+            color: #385898;
+            cursor: pointer;
+        }
+        .fb-actions span:hover {
+            text-decoration: underline;
+        }
+
         /* --- RODAPÉ E DISCLAIMER --- */
         .disclaimer-box {
             font-size: 13px;
@@ -208,6 +300,9 @@
             .author-text { 
                 text-align: center; 
             }
+            .fb-comment-wrap.reply {
+                margin-left: 30px; /* Reduz recuo no mobile */
+            }
         }
     </style>
 </head>
@@ -225,7 +320,7 @@
 
         <h1>How a Strange "Mountain Soup" Dissolves <span style="color: red;">Deep Chest Congestion</span> and Stubborn Phlegm in Days</h1>
 
-        <a href="https://hotm.io/fxTyukcR" id="imgBtn">
+        <a href="SEU_LINK_AQUI" id="imgBtn">
             <img src="https://rigorrevview.site/buttonclick.webp" alt="Video presentation on chest congestion" class="main-image">
         </a>
 
@@ -233,7 +328,7 @@
             🔊 Please wait up to 10 seconds for the video to load. Make sure your sound is turned on.
         </div>
 
-        <a href="https://hotm.io/fxTyukcR" class="cta-btn">Click Here To Watch The Video</a>
+        <a href="SEU_LINK_AQUI" class="cta-btn">Click Here To Watch The Video</a>
 
         <div class="content">
             <p>If you wake up every morning struggling to clear thick, sticky phlegm from your throat, or if your chest feels like it's wrapped in a tightening band, you are not alone.</p>
@@ -265,12 +360,78 @@
             <p class="highlight-bold">Don't miss out; the details might not be online for longer. Click the button below and watch the free video now before it's too late.</p>
         </div>
 
-        <a href="https://hotm.io/fxTyukcR" class="cta-btn">Click Here To Watch The Video</a>
+        <a href="SEU_LINK_AQUI" class="cta-btn">Click Here To Watch The Video</a>
 
-        <img src="https://rigorrevview.site/img/face1.webp" alt="Scientific research" class="content-image" loading="lazy">
+        <img src="https://packdebridge.com.br/wp-content/uploads/2025/01/ed4c7d17-8301-11ee-bb78-06326af95a41_485e7d5a9a088dc44184c0b3723723b6f8cecd19_Screenshot-2023-12-19-at-10.17.19 AM.avif" alt="Scientific research" class="content-image" loading="lazy">
+        <img src="https://packdebridge.com.br/wp-content/uploads/2025/01/imagem_2024-10-17_122200231-4.png" alt="Trust badges" class="trust-badges" loading="lazy">
 
-        <img src="https://rigorrevview.site/img/face2.webp" alt="Trust badges" class="trust-badges" loading="lazy">
+        <div class="fb-comments-section">
+            <div class="fb-header">
+                12 Comments 
+                <span class="sort">Sort by Top ▾</span>
+            </div>
 
+            <div class="fb-comment-wrap">
+                <img src="https://i.pravatar.cc/100?img=47" alt="Sarah" class="fb-avatar">
+                <div class="fb-comment-content">
+                    <div class="fb-bubble">
+                        <a href="#" class="fb-name">Sarah Jenkins</a>
+                        I was so skeptical at first, but listening to Dr. Whitmore explain the PBFs made total sense. Has anyone here actually tried the mountain soup method yet?
+                        <div class="fb-like-box">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like"> 14
+                        </div>
+                    </div>
+                    <div class="fb-actions">
+                        <span>Like</span> · <span>Reply</span> · 2 hrs
+                    </div>
+                </div>
+            </div>
+
+            <div class="fb-comment-wrap reply">
+                <img src="https://i.pravatar.cc/100?img=11" alt="Mark" class="fb-avatar">
+                <div class="fb-comment-content">
+                    <div class="fb-bubble">
+                        <a href="#" class="fb-name">Mark Davis</a>
+                        Yes! I watched the video and started doing it 5 days ago. The heavy phlegm I usually wake up with is almost completely gone. It’s wild. 🤯
+                        <div class="fb-like-box">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like"> 7
+                        </div>
+                    </div>
+                    <div class="fb-actions">
+                        <span>Like</span> · <span>Reply</span> · 1 hr
+                    </div>
+                </div>
+            </div>
+
+            <div class="fb-comment-wrap">
+                <img src="https://i.pravatar.cc/100?img=32" alt="Linda" class="fb-avatar">
+                <div class="fb-comment-content">
+                    <div class="fb-bubble">
+                        <a href="#" class="fb-name">Linda Thompson</a>
+                        My husband has been struggling with chest tightness and violent coughing fits for the past 3 years. We've spent a fortune on inhalers that don't fix the root cause. Making him watch this video tonight. 🙏
+                        <div class="fb-like-box">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like"> 22
+                        </div>
+                    </div>
+                    <div class="fb-actions">
+                        <span>Like</span> · <span>Reply</span> · 4 hrs
+                    </div>
+                </div>
+            </div>
+
+            <div class="fb-comment-wrap">
+                <img src="https://i.pravatar.cc/100?img=60" alt="Robert" class="fb-avatar">
+                <div class="fb-comment-content">
+                    <div class="fb-bubble">
+                        <a href="#" class="fb-name">Robert Clark</a>
+                        I thought this was just going to be another breathing exercise video, but the science behind breaking down the protein webs inside the airways is fascinating. Glad I watched till the end.
+                    </div>
+                    <div class="fb-actions">
+                        <span>Like</span> · <span>Reply</span> · 6 hrs
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="disclaimer-box">
             <p>Please be aware that the information provided on this website is not meant to substitute for advice from a qualified medical professional. We encourage you to consult your physician regarding any lifestyle changes and discuss them thoroughly. If you have questions or concerns about any medical conditions, please contact your doctor directly.</p>
             <p>We recommend conducting your own research and verifying information from multiple sources when seeking health-related guidance. Always review the details carefully with your healthcare provider before following any protocols mentioned on this site or associated with the product sold here.</p>
@@ -297,7 +458,6 @@
         if (params) {
             let cleanParams = params.startsWith('?') ? params.substring(1) : params;
             
-            // Ajuste para pegar todos os botões da classe cta-button
             document.querySelectorAll('.cta-button').forEach(function(btn) {
                 if (btn.href.includes('?')) {
                     btn.href += '&' + cleanParams;
