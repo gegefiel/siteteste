@@ -30,17 +30,19 @@
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
 
-        /* --- CABEÇALHO / AUTOR COM BORDA E NOME AZUL --- */
+        /* --- CABEÇALHO / AUTOR COM BORDA E NOME AZUL (CORRIGIDO PARA MOBILE) --- */
         .author-card {
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: #ffffff;
-            padding: 15px 30px;
+            padding: 15px 25px;
             border-radius: 8px;
-            border: 2px solid #e5e5e5; /* O detalhe em volta (Borda sólida) */
+            border: 2px solid #e5e5e5; /* O detalhe em volta */
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-            width: max-content;
+            width: 100%;
+            max-width: 450px; /* Largura controlada para não quebrar */
+            box-sizing: border-box; /* Impede que a borda ultrapasse o limite */
             margin: 0 auto 30px auto;
         }
         .author-card img {
@@ -57,7 +59,7 @@
             margin: 0 0 2px 0;
             font-size: 19px;
             font-weight: 800;
-            color: #0056b3; /* Azul que chama atenção e gera autoridade */
+            color: #0056b3; /* Azul que chama atenção */
         }
         .author-text p {
             margin: 0;
@@ -192,10 +194,21 @@
             h1 { font-size: 28px; }
             .alert-text { font-size: 18px; }
             .content p, .content ul { font-size: 17px; }
-            .cta-btn { font-size: 18px; max-width: 90%; }
-            .author-card { max-width: 100%; flex-direction: column; text-align: center; padding: 20px; }
-            .author-card img { margin: 0 0 10px 0; }
-            .author-text { text-align: center; }
+            .cta-btn { font-size: 18px; max-width: 100%; }
+            
+            /* Ajuste específico do cartão do autor para mobile */
+            .author-card { 
+                flex-direction: column; 
+                text-align: center; 
+                padding: 20px; 
+                max-width: 320px; /* Mantém o cartão compacto e com bordas visíveis */
+            }
+            .author-card img { 
+                margin: 0 0 12px 0; 
+            }
+            .author-text { 
+                text-align: center; 
+            }
         }
     </style>
 </head>
