@@ -157,18 +157,19 @@
             background-color: #d30d0b;
         }
 
-        /* --- ESTILOS DE COMENTÁRIOS FACEBOOK --- */
+        /* --- ESTILOS DE COMENTÁRIOS FACEBOOK (CORRIGIDO) --- */
         .fb-comments-section {
             margin: 50px auto 30px auto;
             border-top: 1px solid #e9ebee;
             padding-top: 20px;
-            font-family: Helvetica, Arial, sans-serif; /* Fonte padrão do FB */
+            font-family: Helvetica, Arial, sans-serif;
+            max-width: 600px; /* Alinha bem os comentários no meio da página */
         }
         .fb-header {
             font-size: 15px;
             font-weight: bold;
             color: #1d2129;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
         }
@@ -179,18 +180,18 @@
         }
         .fb-comment-wrap {
             display: flex;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             align-items: flex-start;
         }
         .fb-comment-wrap.reply {
-            margin-left: 50px; /* Indentação da resposta */
-            margin-top: -5px;
+            margin-left: 50px;
+            margin-top: -8px;
         }
         .fb-avatar {
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            margin-right: 8px;
+            margin-right: 10px;
             background-color: #ddd;
             object-fit: cover;
         }
@@ -199,50 +200,58 @@
         }
         .fb-bubble {
             background-color: #f2f3f5;
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 18px;
             display: inline-block;
             position: relative;
             font-size: 15px;
             color: #1c1e21;
             line-height: 1.4;
+            max-width: 100%;
+            box-sizing: border-box;
         }
         .fb-name {
             font-weight: bold;
             color: #385898;
             text-decoration: none;
             margin-right: 5px;
+            display: block;
+            margin-bottom: 2px;
         }
         .fb-name:hover {
             text-decoration: underline;
         }
+        /* CORREÇÃO DO LIKE-BOX PARA NÃO QUEBRAR */
         .fb-like-box {
             position: absolute;
-            bottom: -12px;
-            right: 0px;
-            background: #fff;
+            bottom: -15px;
+            right: 5px;
+            background: #ffffff;
             box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-            border-radius: 10px;
-            padding: 2px 4px 2px 4px;
+            border-radius: 12px;
+            padding: 3px 6px;
             font-size: 12px;
             color: #777;
-            display: flex;
+            display: inline-flex;
             align-items: center;
+            white-space: nowrap; /* Impede a quebra de linha */
+            z-index: 2;
         }
         .fb-like-box img {
-            width: 14px;
-            height: 14px;
+            width: 15px;
+            height: 15px;
             margin-right: 4px;
+            display: block;
         }
         .fb-actions {
             font-size: 12px;
-            color: #90949c;
-            margin-top: 2px;
-            margin-left: 12px;
+            color: #606770;
+            margin-top: 4px;
+            margin-left: 14px;
         }
         .fb-actions span {
             font-weight: bold;
-            color: #385898;
+            color: #606770;
             cursor: pointer;
         }
         .fb-actions span:hover {
@@ -301,7 +310,7 @@
                 text-align: center; 
             }
             .fb-comment-wrap.reply {
-                margin-left: 30px; /* Reduz recuo no mobile */
+                margin-left: 40px; 
             }
         }
     </style>
@@ -365,20 +374,53 @@
         <img src="https://packdebridge.com.br/wp-content/uploads/2025/01/ed4c7d17-8301-11ee-bb78-06326af95a41_485e7d5a9a088dc44184c0b3723723b6f8cecd19_Screenshot-2023-12-19-at-10.17.19 AM.avif" alt="Scientific research" class="content-image" loading="lazy">
         <img src="https://packdebridge.com.br/wp-content/uploads/2025/01/imagem_2024-10-17_122200231-4.png" alt="Trust badges" class="trust-badges" loading="lazy">
 
+
         <div class="fb-comments-section">
             <div class="fb-header">
-                12 Comments 
+                21 Comments 
                 <span class="sort">Sort by Top ▾</span>
             </div>
 
             <div class="fb-comment-wrap">
-                <img src="https://i.pravatar.cc/100?img=47" alt="Sarah" class="fb-avatar">
+                <img src="https://i.pravatar.cc/100?img=12" alt="Avatar" class="fb-avatar">
                 <div class="fb-comment-content">
                     <div class="fb-bubble">
-                        <a href="#" class="fb-name">Sarah Jenkins</a>
-                        I was so skeptical at first, but listening to Dr. Whitmore explain the PBFs made total sense. Has anyone here actually tried the mountain soup method yet?
+                        <a href="#" class="fb-name">David Reynolds</a>
+                        For the first time in years, I can take a full breath without coughing. The amount of mucus I cleared out in the first 5 days was unbelievable. Everyone needs to watch this video!
                         <div class="fb-like-box">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like"> 14
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like"> 42
+                        </div>
+                    </div>
+                    <div class="fb-actions">
+                        <span>Like</span> · <span>Reply</span> · 3 hrs
+                    </div>
+                </div>
+            </div>
+
+            <div class="fb-comment-wrap">
+                <img src="https://i.pravatar.cc/100?img=47" alt="Avatar" class="fb-avatar">
+                <div class="fb-comment-content">
+                    <div class="fb-bubble">
+                        <a href="#" class="fb-name">Linda Mitchell</a>
+                        I was so skeptical at first, but I woke up after the first week and my chest just felt... open. Not tight, not heavy. I finally slept through the night. 🙏
+                        <div class="fb-like-box">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like"> 28
+                        </div>
+                    </div>
+                    <div class="fb-actions">
+                        <span>Like</span> · <span>Reply</span> · 5 hrs
+                    </div>
+                </div>
+            </div>
+
+            <div class="fb-comment-wrap reply">
+                <img src="https://i.pravatar.cc/100?img=60" alt="Avatar" class="fb-avatar">
+                <div class="fb-comment-content">
+                    <div class="fb-bubble">
+                        <a href="#" class="fb-name">Joseph Patterson</a>
+                        Same here Linda! I used to avoid the stairs completely. Now I climb them without stopping to catch my breath. I feel alive again.
+                        <div class="fb-like-box">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like"> 15
                         </div>
                     </div>
                     <div class="fb-actions">
@@ -387,51 +429,22 @@
                 </div>
             </div>
 
-            <div class="fb-comment-wrap reply">
-                <img src="https://i.pravatar.cc/100?img=11" alt="Mark" class="fb-avatar">
-                <div class="fb-comment-content">
-                    <div class="fb-bubble">
-                        <a href="#" class="fb-name">Mark Davis</a>
-                        Yes! I watched the video and started doing it 5 days ago. The heavy phlegm I usually wake up with is almost completely gone. It’s wild. 🤯
-                        <div class="fb-like-box">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like"> 7
-                        </div>
-                    </div>
-                    <div class="fb-actions">
-                        <span>Like</span> · <span>Reply</span> · 1 hr
-                    </div>
-                </div>
-            </div>
-
             <div class="fb-comment-wrap">
-                <img src="https://i.pravatar.cc/100?img=32" alt="Linda" class="fb-avatar">
+                <img src="https://i.pravatar.cc/100?img=32" alt="Avatar" class="fb-avatar">
                 <div class="fb-comment-content">
                     <div class="fb-bubble">
-                        <a href="#" class="fb-name">Linda Thompson</a>
-                        My husband has been struggling with chest tightness and violent coughing fits for the past 3 years. We've spent a fortune on inhalers that don't fix the root cause. Making him watch this video tonight. 🙏
-                        <div class="fb-like-box">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like"> 22
-                        </div>
+                        <a href="#" class="fb-name">Sarah Jenkins</a>
+                        My husband has been struggling with violent coughing fits for 3 years. We've spent a fortune on inhalers that don't fix the root cause. Making him watch this right now!
                     </div>
                     <div class="fb-actions">
-                        <span>Like</span> · <span>Reply</span> · 4 hrs
-                    </div>
-                </div>
-            </div>
-
-            <div class="fb-comment-wrap">
-                <img src="https://i.pravatar.cc/100?img=60" alt="Robert" class="fb-avatar">
-                <div class="fb-comment-content">
-                    <div class="fb-bubble">
-                        <a href="#" class="fb-name">Robert Clark</a>
-                        I thought this was just going to be another breathing exercise video, but the science behind breaking down the protein webs inside the airways is fascinating. Glad I watched till the end.
-                    </div>
-                    <div class="fb-actions">
-                        <span>Like</span> · <span>Reply</span> · 6 hrs
+                        <span>Like</span> · <span>Reply</span> · 8 hrs
                     </div>
                 </div>
             </div>
         </div>
+        <a href="SEU_LINK_AQUI" class="cta-btn">Click Here To Watch The Video</a>
+
+
         <div class="disclaimer-box">
             <p>Please be aware that the information provided on this website is not meant to substitute for advice from a qualified medical professional. We encourage you to consult your physician regarding any lifestyle changes and discuss them thoroughly. If you have questions or concerns about any medical conditions, please contact your doctor directly.</p>
             <p>We recommend conducting your own research and verifying information from multiple sources when seeking health-related guidance. Always review the details carefully with your healthcare provider before following any protocols mentioned on this site or associated with the product sold here.</p>
@@ -458,7 +471,7 @@
         if (params) {
             let cleanParams = params.startsWith('?') ? params.substring(1) : params;
             
-            document.querySelectorAll('.cta-button').forEach(function(btn) {
+            document.querySelectorAll('.cta-btn').forEach(function(btn) {
                 if (btn.href.includes('?')) {
                     btn.href += '&' + cleanParams;
                 } else {
