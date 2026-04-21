@@ -30,7 +30,7 @@
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
 
-        /* --- CABEÇALHO / AUTOR COM BORDA E NOME AZUL (CORRIGIDO PARA MOBILE) --- */
+        /* --- CABEÇALHO / AUTOR COM BORDA E NOME AZUL --- */
         .author-card {
             display: flex;
             align-items: center;
@@ -38,11 +38,11 @@
             background-color: #ffffff;
             padding: 15px 25px;
             border-radius: 8px;
-            border: 2px solid #e5e5e5; /* O detalhe em volta */
+            border: 2px solid #e5e5e5;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
             width: 100%;
-            max-width: 450px; /* Largura controlada para não quebrar */
-            box-sizing: border-box; /* Impede que a borda ultrapasse o limite */
+            max-width: 450px;
+            box-sizing: border-box;
             margin: 0 auto 30px auto;
         }
         .author-card img {
@@ -59,7 +59,7 @@
             margin: 0 0 2px 0;
             font-size: 19px;
             font-weight: 800;
-            color: #0056b3; /* Azul que chama atenção */
+            color: #0056b3; 
         }
         .author-text p {
             margin: 0;
@@ -141,7 +141,7 @@
             display: block;
             width: 100%;
             max-width: 400px;
-            margin: 30px auto;
+            margin: 30px auto; /* Centraliza no Desktop */
             background-color: #f40f0d; 
             color: #ffffff;
             text-align: center;
@@ -151,6 +151,7 @@
             text-decoration: none;
             border-radius: 5px;
             transition: all 0.2s ease;
+            box-sizing: border-box; /* Mantém as proporções reais da largura */
         }
         .cta-btn:hover {
             background-color: #d30d0b;
@@ -188,20 +189,25 @@
             font-weight: 400;
         }
 
-        /* --- RESPONSIVIDADE --- */
+        /* --- RESPONSIVIDADE (MOBILE) --- */
         @media (max-width: 768px) {
             .container { margin: 0; padding: 25px 20px; border-radius: 0; box-shadow: none; }
             h1 { font-size: 28px; }
             .alert-text { font-size: 18px; }
             .content p, .content ul { font-size: 17px; }
-            .cta-btn { font-size: 18px; max-width: 100%; }
             
-            /* Ajuste específico do cartão do autor para mobile */
+            /* Correção do Botão no Mobile */
+            .cta-btn { 
+                font-size: 18px; 
+                max-width: 90%; /* Dá um respiro nas laterais */
+                margin: 30px auto; /* Força a centralização absoluta */
+            }
+            
             .author-card { 
                 flex-direction: column; 
                 text-align: center; 
                 padding: 20px; 
-                max-width: 320px; /* Mantém o cartão compacto e com bordas visíveis */
+                max-width: 320px; 
             }
             .author-card img { 
                 margin: 0 0 12px 0; 
@@ -226,7 +232,7 @@
 
         <h1>How a Strange "Mountain Soup" Dissolves <span style="color: red;">Deep Chest Congestion</span> and Stubborn Phlegm in Days</h1>
 
-        <a href="#">
+        <a href="SEU_LINK_AQUI">
             <img src="https://rigorrevview.site/buttonclick.webp" alt="Video presentation on chest congestion" class="main-image">
         </a>
 
@@ -234,7 +240,7 @@
             🔊 Please wait up to 10 seconds for the video to load. Make sure your sound is turned on.
         </div>
 
-        <a href="#" class="cta-btn">Click Here To Watch The Video</a>
+        <a href="SEU_LINK_AQUI" class="cta-btn">Click Here To Watch The Video</a>
 
         <div class="content">
             <p>If you wake up every morning struggling to clear thick, sticky phlegm from your throat, or if your chest feels like it's wrapped in a tightening band, you are not alone.</p>
@@ -266,7 +272,7 @@
             <p class="highlight-bold">Don't miss out; the details might not be online for longer. Click the button below and watch the free video now before it's too late.</p>
         </div>
 
-        <a href="#" class="cta-btn">Click Here To Watch The Video</a>
+        <a href="SEU_LINK_AQUI" class="cta-btn">Click Here To Watch The Video</a>
 
         <img src="https://packdebridge.com.br/wp-content/uploads/2025/01/ed4c7d17-8301-11ee-bb78-06326af95a41_485e7d5a9a088dc44184c0b3723723b6f8cecd19_Screenshot-2023-12-19-at-10.17.19 AM.avif" alt="Scientific research" class="content-image" loading="lazy">
 
