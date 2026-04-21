@@ -157,105 +157,122 @@
             background-color: #d30d0b;
         }
 
-        /* --- ESTILOS DE COMENTÁRIOS FACEBOOK (CORRIGIDO) --- */
-        .fb-comments-section {
-            margin: 50px auto 30px auto;
-            border-top: 1px solid #e9ebee;
-            padding-top: 20px;
-            font-family: Helvetica, Arial, sans-serif;
-            max-width: 600px; /* Alinha bem os comentários no meio da página */
+        /* --- COMENTÁRIOS FACEBOOK 100% BLINDADOS --- */
+        .fb-comments-wrapper {
+            max-width: 650px;
+            margin: 40px auto 30px auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            border-top: 1px solid #dadde1;
+            padding-top: 15px;
         }
-        .fb-header {
+        .fb-header-info {
             font-size: 15px;
-            font-weight: bold;
-            color: #1d2129;
+            font-weight: 600;
+            color: #1c1e21;
             margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
         }
-        .fb-header span.sort {
+        .fb-header-info span.sort {
             font-weight: normal;
-            color: #4b4f56;
+            color: #65676b;
             cursor: pointer;
         }
-        .fb-comment-wrap {
+        .fb-comment {
             display: flex;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             align-items: flex-start;
+            width: 100%;
         }
-        .fb-comment-wrap.reply {
-            margin-left: 50px;
-            margin-top: -8px;
+        .fb-comment.reply {
+            margin-left: 45px;
+            margin-top: -10px;
         }
         .fb-avatar {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            margin-right: 10px;
+            margin-right: 8px;
+            flex-shrink: 0;
             background-color: #ddd;
             object-fit: cover;
         }
-        .fb-comment-content {
-            flex: 1;
+        .fb-body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: calc(100% - 40px); /* Garante que não ultrapassa a tela */
         }
         .fb-bubble {
-            background-color: #f2f3f5;
-            padding: 10px 14px;
+            background-color: #f0f2f5;
             border-radius: 18px;
-            display: inline-block;
+            padding: 8px 12px;
             position: relative;
-            font-size: 15px;
             color: #1c1e21;
-            line-height: 1.4;
+            font-size: 15px;
+            word-wrap: break-word;
             max-width: 100%;
             box-sizing: border-box;
         }
         .fb-name {
-            font-weight: bold;
-            color: #385898;
+            font-weight: 600;
+            color: #050505;
             text-decoration: none;
             margin-right: 5px;
-            display: block;
-            margin-bottom: 2px;
         }
         .fb-name:hover {
             text-decoration: underline;
         }
-        /* CORREÇÃO DO LIKE-BOX PARA NÃO QUEBRAR */
-        .fb-like-box {
-            position: absolute;
-            bottom: -15px;
-            right: 5px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-            border-radius: 12px;
-            padding: 3px 6px;
-            font-size: 12px;
-            color: #777;
-            display: inline-flex;
-            align-items: center;
-            white-space: nowrap; /* Impede a quebra de linha */
-            z-index: 2;
+        .fb-text {
+            display: inline;
         }
-        .fb-like-box img {
-            width: 15px;
-            height: 15px;
-            margin-right: 4px;
+        /* CAIXA DE LIKES IMPOSSÍVEL DE QUEBRAR */
+        .fb-like-count {
+            position: absolute;
+            bottom: -14px;
+            right: 0;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 2px 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            z-index: 2;
+            width: max-content; /* Força a largura exata do conteúdo */
+            white-space: nowrap; /* Proíbe quebra de linha */
+        }
+        .fb-like-count img {
+            width: 14px;
+            height: 14px;
+            display: block;
+            flex-shrink: 0;
+        }
+        .fb-like-count span {
+            font-size: 13px;
+            color: #65676b;
+            line-height: 1;
             display: block;
         }
         .fb-actions {
+            padding-left: 12px;
+            padding-top: 4px;
             font-size: 12px;
-            color: #606770;
-            margin-top: 4px;
-            margin-left: 14px;
+            color: #65676b;
+            font-weight: 600;
+            display: flex;
+            gap: 12px;
         }
-        .fb-actions span {
-            font-weight: bold;
-            color: #606770;
+        .fb-actions a {
+            color: #65676b;
+            text-decoration: none;
             cursor: pointer;
         }
-        .fb-actions span:hover {
+        .fb-actions a:hover {
             text-decoration: underline;
+        }
+        .fb-time {
+            font-weight: normal;
         }
 
         /* --- RODAPÉ E DISCLAIMER --- */
@@ -309,8 +326,8 @@
             .author-text { 
                 text-align: center; 
             }
-            .fb-comment-wrap.reply {
-                margin-left: 40px; 
+            .fb-comment.reply {
+                margin-left: 35px; 
             }
         }
     </style>
@@ -375,69 +392,92 @@
         <img src="https://packdebridge.com.br/wp-content/uploads/2025/01/imagem_2024-10-17_122200231-4.png" alt="Trust badges" class="trust-badges" loading="lazy">
 
 
-        <div class="fb-comments-section">
-            <div class="fb-header">
+        <div class="fb-comments-wrapper">
+            <div class="fb-header-info">
                 21 Comments 
                 <span class="sort">Sort by Top ▾</span>
             </div>
 
-            <div class="fb-comment-wrap">
+            <div class="fb-comment">
                 <img src="https://i.pravatar.cc/100?img=12" alt="Avatar" class="fb-avatar">
-                <div class="fb-comment-content">
+                <div class="fb-body">
                     <div class="fb-bubble">
                         <a href="#" class="fb-name">David Reynolds</a>
-                        For the first time in years, I can take a full breath without coughing. The amount of mucus I cleared out in the first 5 days was unbelievable. Everyone needs to watch this video!
-                        <div class="fb-like-box">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like"> 42
+                        <span class="fb-text">
+                            For the first time in years, I can take a full breath without coughing. The amount of mucus I cleared out in the first 5 days was unbelievable. Everyone needs to watch this video!
+                        </span>
+                        <div class="fb-like-count">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like">
+                            <span>42</span>
                         </div>
                     </div>
                     <div class="fb-actions">
-                        <span>Like</span> · <span>Reply</span> · 3 hrs
+                        <a href="#">Like</a>
+                        <a href="#">Reply</a>
+                        <span class="fb-time">3 hrs</span>
                     </div>
                 </div>
             </div>
 
-            <div class="fb-comment-wrap">
+            <div class="fb-comment">
                 <img src="https://i.pravatar.cc/100?img=47" alt="Avatar" class="fb-avatar">
-                <div class="fb-comment-content">
+                <div class="fb-body">
                     <div class="fb-bubble">
                         <a href="#" class="fb-name">Linda Mitchell</a>
-                        I was so skeptical at first, but I woke up after the first week and my chest just felt... open. Not tight, not heavy. I finally slept through the night. 🙏
-                        <div class="fb-like-box">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like"> 28
+                        <span class="fb-text">
+                            I was so skeptical at first, but I woke up after the first week and my chest just felt... open. Not tight, not heavy. I finally slept through the night. 🙏
+                        </span>
+                        <div class="fb-like-count">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like">
+                            <span>28</span>
                         </div>
                     </div>
                     <div class="fb-actions">
-                        <span>Like</span> · <span>Reply</span> · 5 hrs
+                        <a href="#">Like</a>
+                        <a href="#">Reply</a>
+                        <span class="fb-time">5 hrs</span>
                     </div>
                 </div>
             </div>
 
-            <div class="fb-comment-wrap reply">
+            <div class="fb-comment reply">
                 <img src="https://i.pravatar.cc/100?img=60" alt="Avatar" class="fb-avatar">
-                <div class="fb-comment-content">
+                <div class="fb-body">
                     <div class="fb-bubble">
                         <a href="#" class="fb-name">Joseph Patterson</a>
-                        Same here Linda! I used to avoid the stairs completely. Now I climb them without stopping to catch my breath. I feel alive again.
-                        <div class="fb-like-box">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like"> 15
+                        <span class="fb-text">
+                            Same here Linda! I used to avoid the stairs completely. Now I climb them without stopping to catch my breath. I feel alive again.
+                        </span>
+                        <div class="fb-like-count">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like">
+                            <span>15</span>
                         </div>
                     </div>
                     <div class="fb-actions">
-                        <span>Like</span> · <span>Reply</span> · 2 hrs
+                        <a href="#">Like</a>
+                        <a href="#">Reply</a>
+                        <span class="fb-time">2 hrs</span>
                     </div>
                 </div>
             </div>
-
-            <div class="fb-comment-wrap">
+            
+            <div class="fb-comment">
                 <img src="https://i.pravatar.cc/100?img=32" alt="Avatar" class="fb-avatar">
-                <div class="fb-comment-content">
+                <div class="fb-body">
                     <div class="fb-bubble">
                         <a href="#" class="fb-name">Sarah Jenkins</a>
-                        My husband has been struggling with violent coughing fits for 3 years. We've spent a fortune on inhalers that don't fix the root cause. Making him watch this right now!
+                        <span class="fb-text">
+                            My husband has been struggling with violent coughing fits for 3 years. We've spent a fortune on inhalers that don't fix the root cause. Making him watch this right now!
+                        </span>
+                        <div class="fb-like-count">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Like">
+                            <span>9</span>
+                        </div>
                     </div>
                     <div class="fb-actions">
-                        <span>Like</span> · <span>Reply</span> · 8 hrs
+                        <a href="#">Like</a>
+                        <a href="#">Reply</a>
+                        <span class="fb-time">8 hrs</span>
                     </div>
                 </div>
             </div>
