@@ -74,8 +74,6 @@ li {
     border-bottom: 1px solid #eee;
 }
 .author-meta img {
-    width: 50px;
-    height: 50px;
     border-radius: 50%;
     margin-right: 15px;
 }
@@ -170,6 +168,7 @@ li {
     h1 { font-size: 26px; }
     h2 { font-size: 22px; }
     p, ul { font-size: 17px; }
+    .cta-button { font-size: 18px; padding: 18px; }
 }
 </style>
 </head>
@@ -180,7 +179,7 @@ li {
 
 <div class="container">
 
-    <h1>How to Reduce Respiratory Fatigue: An In-Depth Guide to Clearing Phlegm and Chest Congestion</h1>
+    <h1>The 90-Second Morning Sequence To Dissolve Trapped Lung Mucus Naturally</h1>
 
     <div class="author-meta">
         <img src="https://rigorrevview.site/drbalac1.webp" alt="Author" width="88" height="88">
@@ -193,6 +192,10 @@ li {
     <img src="https://rigorrevview.site/pulmbalac1.webp" alt="Healthy breathing illustration" class="blog-image" width="599" height="389" fetchpriority="high">
 
     <p>If you've noticed that daily tasks like walking up a single flight of stairs or keeping up with your grandkids are feeling more exhausting than they used to, you are not alone. Millions of people struggle with persistent <strong>chest congestion and stubborn phlegm</strong>.</p>
+
+    <a href="https://hotm.io/fxTyukcR" class="cta-button" style="margin-bottom: 35px; background: #28a745; box-shadow: 0 4px 0 #1e7e34;">
+        WATCH THE LUNG CLEARING VIDEO
+    </a>
 
     <p>While most assume it's just "getting older," researchers are pointing to a different underlying factor: <strong>microscopic protein webs</strong> inside your airways that trap thick, sticky mucus, turning every breath into a struggle.</p>
 
@@ -210,14 +213,12 @@ li {
     
     <p>A close friend of mine ignored a nagging cough and heavy chest congestion for weeks. Then one night, her breathing became so strained <strong>she had to be rushed to the hospital</strong>. She felt like a boa constrictor was squeezing the life out of her lungs, gasping for air while seeing white flashes.</p>
 
-    <p>Imaging showed her airways were <strong>severely packed with thick, sticky mucus</strong> that her body couldn’t clear on its own. It was a frightening reminder of how quickly these signs can escalate quando o root cause—those biological obstructions—is ignored.</p>
-
     <div class="highlight-box" style="border-left: 4px solid #f40f0d; background-color: #fff5f5;">
         <span>&#x26A0;&#xFE0F;</span> <strong>Top Respiratory Therapist Discovery:</strong> 
-        A leading expert has revealed how people are clearing up to <strong>2.6 lbs of excess lung mucus fast</strong>. This simple practice works without the need for an expensive Rx and carries no side effects, flushing out the "trapped sludge" from your airways.
+        A leading expert has revealed how people are clearing up to <strong>2.6 lbs of excess lung mucus fast</strong>. This simple practice works without the need for an expensive Rx, flushing out the "trapped sludge" from your airways.
     </div>
 
-    <p style="margin-bottom: 30px;">You don't have to accept this as your "new normal." <strong>Click the button below to watch a special video</strong> and learn exactly how to clear this excess buildup and start breathing freely again from the comfort of your own home.</p>
+    <p style="margin-bottom: 30px;">You don't have to accept this as your "new normal." <strong>Click the button below to watch a special video</strong> and learn exactly how to clear this excess buildup and start breathing freely again.</p>
 
     <div style="text-align: center;">
         <a href="https://hotm.io/fxTyukcR" id="imgBtn" target="_blank" rel="noopener noreferrer">
@@ -236,7 +237,6 @@ li {
 
     <div class="medical-disclaimer">
         <p>The information on this website is intended for informational purposes only and should not replace advice from a qualified medical professional. We strongly encourage you to consult your physician before making any lifestyle changes and discuss them thoroughly. If you have any medical concerns or conditions, please seek guidance from your doctor.</p>
-        <p>It is advisable to conduct your own research and confirm details with multiple sources when exploring health-related topics. Always consult with your healthcare provider to carefully evaluate any protocols or recommendations mentioned on this website or associated with the product promoted here.</p>
         <p style="margin-bottom: 0;">This site's content is not a substitute for professional medical advice, diagnosis, or treatment. Always seek advice from a licensed healthcare provider for any health concerns.</p>
     </div>
 
@@ -253,21 +253,30 @@ li {
 
 <script>
 (function() {
-    const btns = [document.getElementById("ctaBtn"), document.getElementById("imgBtn")];
+    const btns = [document.querySelectorAll('.cta-button'), document.getElementById("imgBtn")];
     const currentUrl = new URL(window.location.href);
     const params = currentUrl.search;
 
     if (params) {
         let cleanParams = params.startsWith('?') ? params.substring(1) : params;
-        btns.forEach(function(btn) {
-            if (btn) {
-                if (btn.href.includes('?')) {
-                    btn.href += '&' + cleanParams;
-                } else {
-                    btn.href += '?' + cleanParams;
-                }
+        
+        // Ajuste para pegar todos os botões da classe cta-button
+        document.querySelectorAll('.cta-button').forEach(function(btn) {
+            if (btn.href.includes('?')) {
+                btn.href += '&' + cleanParams;
+            } else {
+                btn.href += '?' + cleanParams;
             }
         });
+        
+        const imgBtn = document.getElementById("imgBtn");
+        if (imgBtn) {
+            if (imgBtn.href.includes('?')) {
+                imgBtn.href += '&' + cleanParams;
+            } else {
+                imgBtn.href += '?' + cleanParams;
+            }
+        }
     }
 })();
 </script>
