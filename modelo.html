@@ -58,6 +58,8 @@
 
         .video-placeholder {
             width: 100%;
+            height: auto;
+            aspect-ratio: 1024 / 577; /* Reserva o espaço para evitar layout shift */
             cursor: pointer;
             border-radius: 4px;
             display: block;
@@ -76,7 +78,7 @@
 
         .cta-button {
             display: block;
-            background-color: #FFCF1F;
+            background-color: #FFCF1F; /* AMARELO SOLICITADO */
             color: #000;
             text-align: center;
             padding: 22px;
@@ -86,7 +88,7 @@
             border-radius: 8px;
             margin: 20px 0;
             text-transform: uppercase;
-            box-shadow: 0 4px 0 #C99A00;
+            box-shadow: 0 4px 0 #C99A00; /* Sombra condizente com o amarelo */
         }
 
         .cta-button:active {
@@ -102,6 +104,7 @@
         .visual-aid {
             width: 100%;
             max-width: 450px;
+            height: auto;
             display: block;
             margin: 20px auto;
         }
@@ -115,6 +118,7 @@
             margin-bottom: 25px;
         }
 
+        /* Footer Estilo Original */
         .disclaimer-box {
             font-size: 12px;
             color: #777;
@@ -153,7 +157,7 @@
         <p class="lead-text">"Remember when breathing was effortless? Before that 'tightening band' around your chest made every stair climb a struggle? New research reveals a hidden biological mechanism silently affecting 170 million Americans."</p>
 
         <a href="https://hotm.io/fxTyukcR" id="imgBtn">
-            <img src="https://rigorrevview.site/img/buttt1.webp" alt="Watch Presentation" class="video-placeholder">
+            <img src="https://rigorrevview.site/img/buttt1.webp" alt="Watch Presentation" class="video-placeholder" width="600" height="338" fetchpriority="high">
         </a>
 
         <div class="alert-box">
@@ -166,6 +170,9 @@
             <p>New research reveals the shocking truth behind the respiratory decline of icons like <strong>John Candy, Leonard Nimoy, and Aretha Franklin</strong>—and how the same "suffocating proteins" are likely hiding in your lungs right now.</p>
             
             <p>If you are looking for a <strong>natural remedy for phlegm</strong>, you must understand that the problem isn't your age. It's a buildup of "Biological Glue."</p>
+
+            <img src="https://rigorrevview.site/img/med.webp" alt="PBF Mechanism Visual" class="visual-aid" width="450" height="300" loading="lazy"> 
+            <p class="caption">"This microscopic 'spider web' is literally strangling your air passages from the inside out."</p>
 
             <p>This "glue" makes it impossible to clear your airways, no matter how many syrups you try. It's the primary reason why finding a <strong>home remedy for mucus in throat</strong> feels like a losing battle.</p>
 
