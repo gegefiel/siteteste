@@ -48,10 +48,10 @@
         .alert-box {
             background-color: #fffde7;
             border: 1px solid #ffe58f;
-            padding: 10px; /* Reduzido */
+            padding: 10px;
             text-align: center;
             font-weight: bold;
-            font-size: 15px; /* Texto menor solicitado */
+            font-size: 15px;
             margin-bottom: 20px;
         }
         .cta-button {
@@ -101,7 +101,6 @@
             .alert-box { font-size: 14px; }
         }
     </style>
-    <script data-cfasync="false" nonce="a47e06c5-6f80-482c-bb34-d035edc6b8ff">/* Zaraz Code */</script>
 </head>
 <body>
     <div class="container">
@@ -129,17 +128,21 @@
 
         <a href="https://SUA-URL-AQUI" class="cta-button">WATCH THE EDUCATIONAL VIDEO BY CLICKING HERE</a>
 
-        <div class="disclaimer-box">
-            <p>Please be aware that the information provided on this website is not meant to substitute for advice from a qualified medical professional. We encourage you to consult your physician regarding any lifestyle changes and discuss them thoroughly.</p>
-            <p>Results shown may not be typical. Testimonials shared reflect the experiences of specific individuals. These outcomes may not be representative of the average user.</p>
+        <div class="disclaimer-box">            
+            <p>Please be aware that the information provided on this website is not meant to substitute for advice from a qualified medical professional. We encourage you to consult your physician regarding any lifestyle changes and discuss them thoroughly. For questions or concerns about any medical conditions you may have, please contact your doctor.</p>            
+            <p>You should do your own research and confirm the information with other sources when searching for information regarding health issues and always review the information carefully with your professional health care provider before using any of the protocols presented on this website and/or in the product sold here.</p>            
+            <p>Results shown may not be typical. Testimonials shared on this page reflect the experiences of specific individuals who have used the method described. These outcomes may not be representative of the average user and are not intended to guarantee that anyone will achieve the same or similar results.</p>            
+            <p>The content provided on this site is for informational purposes only and should not be considered a substitute for professional medical advice, diagnosis, or treatment.</p>        
         </div>
-        <div class="footer-links">
-            <a href="https://rigorrevview.site/privacy">Privacy Policy</a> | 
-            <a href="https://rigorrevview.site/terms">Terms of Use</a> | 
-            <a href="https://rigorrevview.site/contact">Contact</a> | 
-            <a href="https://rigorrevview.site/disclaimer">Disclaimer</a>
-            <p style="margin-top: 15px; color: #999;">&copy; 2026 YourDomain.com. All Rights Reserved.</p>
-        </div>
+        <div class="footer-links">            
+            <a href="https://rigorrevview.site/privacy">Privacy Policy</a> |             
+            <a href="https://rigorrevview.site/terms">Terms of Use</a> |             
+            <a href="https://rigorrevview.site/contact">Contact</a> |             
+            <a href="https://rigorrevview.site/disclaimer">Disclaimer</a> |            
+            <a href="https://rigorrevview.site/disclosure">Disclosure Agreement</a> |            
+            <a href="https://rigorrevview.site/formula">Respiratory Formula</a>            
+            <p style="margin-top: 15px; color: #999;">&copy; 2026 RigorRevview.site. All Rights Reserved.</p>        
+        </div>    
     </div>
 
     <script>
@@ -149,7 +152,7 @@
         if (params) {
             let cleanParams = params.startsWith('?') ? params.substring(1) : params;
             document.querySelectorAll('a').forEach(function(link) {
-                if(link.href.indexOf('rigorrevview.site') === -1) { // Evita links do rodapé se desejar
+                if(link.href.indexOf('rigorrevview.site') === -1) { 
                     link.href += (link.href.includes('?') ? '&' : '?') + cleanParams;
                 }
             });
