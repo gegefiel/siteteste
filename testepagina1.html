@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prostate Support - Update</title>
+    <title>prostate-support – prostateflowsupport.site</title>
     <style>
-        /* Reset e Fontes */
-        body { font-family: 'Manrope', sans-serif; background-color: #ffffff; color: #111111; margin: 0; padding: 0; line-height: 1.4; }
+        /* Estilos Base para espelhar o Elementor */
+        body { font-family: 'Manrope', sans-serif; background-color: #ffffff; color: #111111; margin: 0; padding: 0; line-height: 1.4; font-weight: 300; }
         
-        /* Faixa Superior Vermelha - Full Width */
-        .top-bar {
+        /* Faixa Superior Vermelha Full Width no PC */
+        .top-bar-full {
             background-color: #cc0000;
             width: 100%;
             padding: 15px 0;
@@ -19,237 +19,194 @@
             font-size: 16px;
         }
 
-        /* Container Central - Espelho do Elementor (645px) */
-        .main-container {
+        .main-content {
             max-width: 645px;
             margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
+            padding: 0 20px;
         }
 
-        /* Redline - Título Principal */
-        .redline {
-            font-size: 28px;
-            font-weight: 800;
-            text-align: center;
-            line-height: 1.2;
-            margin: 20px 0;
-            color: #111111;
-        }
+        .section-padding { padding: 40px 0; }
+        .bg-gray { background-color: #f9f9f9; width: 100%; }
+        .bg-cream { background-color: #FBFAF3; width: 100%; }
 
-        /* Sub-redline */
-        .sub-redline {
-            font-size: 18px;
-            text-align: center;
-            color: #444444;
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
-        .gum-highlight {
-            display: block;
-            margin-top: 15px;
-            font-weight: 800;
-            color: #000000;
-        }
+        h1, h2 { font-weight: 400; text-align: center; margin-bottom: 20px; line-height: 1.2; }
+        h1.redline { font-size: 32px; font-weight: 800; margin-top: 30px; }
+        h2.section-title { font-size: 26px; font-weight: 700; }
+        
+        .sub-redline { font-size: 19px; color: #444; text-align: center; margin-bottom: 30px; }
+        .product-hook { display: block; margin-top: 15px; font-weight: 800; color: #000; }
 
-        /* Imagem do Vídeo (Espelho do Modelo) */
-        .video-box {
-            width: 100%;
-            margin-bottom: 25px;
-        }
-        .video-box img {
-            width: 100%;
-            height: auto;
-            display: block;
-            cursor: pointer;
-            border-radius: 0;
-        }
+        /* Estilo do Bloco de Vídeo do Modelo */
+        .video-container { position: relative; display: inline-block; cursor: pointer; border-radius: 8px; overflow: hidden; width: 100%; margin: 20px 0; }
+        .video-container img { display: block; width: 100%; height: auto; }
+        .live-indicator { position: absolute; top: 10px; left: 10px; background-color: #ff0000; color: white; padding: 6px 12px; font-weight: bold; font-size: 12px; border-radius: 4px; text-transform: uppercase; }
+        .watch-count { position: absolute; bottom: 10px; left: 10px; background-color: rgba(0,0,0,0.8); color: white; padding: 6px 12px; border-radius: 4px; font-size: 14px; }
+        .play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 88px; height: 88px; background: rgba(255,255,255,0.9); border-radius: 50%; display:flex; align-items:center; justify-content:center; }
 
-        /* Botão CTA Amarelo */
-        .cta-button {
-            display: block;
-            background-color: #fcb900;
-            color: #000000;
-            text-align: center;
-            padding: 22px;
-            font-size: 22px;
-            font-weight: 900;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 30px 0;
-            text-transform: uppercase;
-        }
+        /* Botão Amarelo */
+        .cta-button { display: block; background-color: #fcb900; color: #000; text-align: center; padding: 20px; font-size: 22px; font-weight: 900; text-decoration: none; border-radius: 5px; margin: 30px 0; text-transform: uppercase; }
 
-        /* Seção "Do Any of These Feel Familiar?" */
-        .dor-section {
-            margin-top: 50px;
-            text-align: left;
-        }
-        .dor-title {
-            font-size: 24px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        .check-list {
-            list-style: none;
-            padding: 0;
-        }
-        .check-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-            font-size: 17px;
-            font-weight: 500;
-        }
-        .check-item::before {
-            content: '❌';
-            margin-right: 15px;
-            font-size: 14px;
-        }
+        /* Listas de Ícones */
+        .icon-list { list-style: none; padding: 0; margin: 20px 0; }
+        .icon-list li { display: flex; align-items: flex-start; margin-bottom: 15px; font-size: 17px; }
+        .icon-list.x-mark li::before { content: '❌'; margin-right: 15px; font-size: 14px; }
+        .icon-list.check-mark li::before { content: '✔️'; margin-right: 15px; font-size: 14px; }
 
-        /* Prova Social / Depoimentos */
-        .social-proof-title {
-            text-align: center;
-            font-size: 26px;
-            font-weight: 800;
-            margin-top: 60px;
-        }
-        .social-proof-subtitle {
-            text-align: center;
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 30px;
-        }
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .testimonial-box {
-            background-color: #fbfaf3;
-            padding: 15px;
-            border: 1px solid #e5e5e5;
-            border-radius: 8px;
-        }
-        .testimonial-box img {
-            width: 100%;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-        .testimonial-text {
-            font-size: 14px;
-            line-height: 1.5;
-            font-style: italic;
-        }
+        /* Grid de Testemunhos */
+        .testimonial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+        .testimonial-box { background: #fff; border: 1px solid #eee; padding: 15px; border-radius: 8px; text-align: left; }
+        .testimonial-box img { width: 100%; border-radius: 5px; margin-bottom: 10px; }
+        .testimonial-box p { font-size: 14px; line-height: 1.5; font-style: italic; margin: 0; }
+        .testimonial-box strong { display: block; margin-top: 10px; font-style: normal; }
 
-        /* Referências Científicas */
-        .scientific-area {
-            font-size: 11px;
-            color: #888888;
-            margin-top: 60px;
-            padding-top: 25px;
-            border-top: 1px solid #eeeeee;
-        }
-        .scientific-area a {
-            color: #888888;
-            display: block;
-            margin-bottom: 8px;
-            text-decoration: underline;
-        }
+        /* FAQ */
+        .faq-item { border-bottom: 1px solid #eee; padding: 15px 0; }
+        .faq-question { font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; }
 
-        /* Rodapé e Disclaimer */
-        .footer-content {
-            font-size: 12px;
-            color: #777777;
-            text-align: center;
-            margin-top: 40px;
-            line-height: 1.6;
-        }
-        .footer-links {
-            text-align: center;
-            margin: 30px 0;
-        }
-        .footer-links a {
-            color: #777777;
-            text-decoration: underline;
-            margin: 0 10px;
-        }
+        /* Científicos e Rodapé */
+        .scientific-refs { font-size: 11px; color: #888; border-top: 1px solid #eee; padding-top: 20px; margin-top: 40px; }
+        .scientific-refs a { display: block; color: #888; margin-bottom: 5px; }
+        .footer-disclaimer { font-size: 12px; color: #777; text-align: center; margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; }
+        .footer-links { text-align: center; margin: 20px 0; font-size: 12px; }
+        .footer-links a { color: #777; margin: 0 10px; }
 
-        /* Mobile Responsividade */
         @media (max-width: 600px) {
             .testimonial-grid { grid-template-columns: 1fr; }
-            .redline { font-size: 22px; }
-            .sub-redline { font-size: 16px; }
+            h1.redline { font-size: 24px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
+    <div class="top-bar-full">
         For men 45+: Built for those already dealing with nighttime urination and weak flow.
     </div>
 
-    <div class="main-container">
+    <div class="main-content">
         
         <h1 class="redline">Como reduzir o tamanho da próstata — Uma alternativa de tratamento para próstata inchada para homens com mais de 45 anos que desejam recuperar o controle.</h1>
 
         <div class="sub-redline">
             Se você já acorda de 3 a 6 vezes por noite, planeja sua vida em função das idas ao banheiro ou se preocupa com escapes de urina, confira a rotina de 2 cápsulas + breve aplicação de mentol, inspirada por médicos e desenvolvida para proporcionar conforto urinário, para que você acorde menos vezes e sinta um fluxo mais constante. Os resultados podem variar; não se trata de um tratamento médico.
-            <span class="gum-highlight">Basta mastigar uma bala macia por dia. Impossível ser mais fácil.</span>
+            <span class="product-hook">Basta mastigar uma bala macia por dia. Impossível ser mais fácil.</span>
         </div>
 
-        <a href="#" class="video-box">
-            <img src="https://prostateflowsupport.site/wp-content/uploads/2025/10/vaporub_bakingsoda_play_thumb.jpg" alt="Watch Presentation">
-        </a>
+        <div class="video-container">
+            <img src="https://newsprostatehealth.com/wp-content/uploads/2025/02/imagem_2024-10-05_211511025-1024x576-1.webp" alt="Video Thumbnail">
+            <div class="play-overlay">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="#8b7355"><path d="M8 5v14l11-7z"></path></svg>
+            </div>
+            <div class="live-indicator">LIVE</div>
+            <div class="watch-count">12,847 watching</div>
+        </div>
 
         <a href="#" class="cta-button">Watch the Step-by-Step</a>
 
-        <div class="dor-section">
-            <div class="dor-title">Do Any of These Feel Familiar?</div>
-            <ul class="check-list">
-                <li class="check-item">You wake 3–6× at night just to pee.</li>
-                <li class="check-item">Your stream is weak or stop-and-start.</li>
-                <li class="check-item">The urgency/pressure comes back minutes after going.</li>
-                <li class="check-item">You notice dribbling/leakage even after finishing.</li>
-                <li class="check-item">It feels like your bladder never fully empties.</li>
-                <li class="check-item">You plan life around bathrooms (flights, meetings, games).</li>
-                <li class="check-item">Broken sleep is wrecking your energy, mood, and intimacy.</li>
+        <div class="section-padding">
+            <h2 class="section-title">Do Any of These Feel Familiar?</h2>
+            <p style="text-align:center;">For men 45+ dealing with this now — not for the curious.</p>
+            <ul class="icon-list x-mark">
+                <li>You wake 3–6× at night just to pee.</li>
+                <li>Your stream is weak or stop-and-start.</li>
+                <li>The urgency/pressure comes back minutes after going.</li>
+                <li>You notice dribbling/leakage even after finishing.</li>
+                <li>It feels like your bladder never fully empties.</li>
+                <li>You plan life around bathrooms (flights, meetings, games, church).</li>
+                <li>Broken sleep is wrecking your energy, mood, and intimacy.</li>
+                <li>You’ve tried pills/teas/exercises — they helped for a while, then stopped.</li>
+                <li>You worry about leaks/accidents if a bathroom isn’t near.</li>
             </ul>
+            <p style="text-align:center; font-weight:bold;">If 2 or more are true, keep reading. If not, please close this page.</p>
         </div>
+    </div>
 
-        <h2 class="social-proof-title">Men Are Leaving Nighttime Pads Behind</h2>
-        <p class="social-proof-subtitle">They thought it was “just age.” They were wrong.</p>
-        
-        <div class="testimonial-grid">
-            <div class="testimonial-box">
-                <img src="https://prostateflowsupport.site/wp-content/uploads/2025/10/3-1.webp" alt="Robert">
-                <p class="testimonial-text">"I was waking 6–7 times a night. I started this routine and weeks later I’m sleeping longer stretches. I haven’t needed a pad in months."<br><strong>— Robert D., 71</strong></p>
+    <div class="bg-gray section-padding">
+        <div class="main-content">
+            <h2 class="section-title">What Happens When Nights Stay Broken</h2>
+            <p style="text-align:center; font-weight:bold;">Ignoring the wake-ups doesn’t fix itself — it chips away at your days.</p>
+            <ul class="icon-list check-mark">
+                <li>Less deep sleep → less energy the next day.</li>
+                <li>You start planning life around bathrooms (trips, meetings, games).</li>
+                <li>Confidence & intimacy can take a hit.</li>
+                <li>You lean on coping habits (more coffee, afternoon naps).</li>
+                <li>Stress about leaks/accidents makes you avoid things you enjoy.</li>
+            </ul>
+            <a href="#" class="cta-button">See the Routine</a>
+        </div>
+    </div>
+
+    <div class="section-padding">
+        <div class="main-content">
+            <h2 class="section-title">What to Track Over the Next Weeks</h2>
+            <p style="text-align:center;">Simple, real-world signals most men 45+ notice first.</p>
+            
+            <div style="margin-top:30px;">
+                <div style="background:#f9f9f9; padding:20px; border-radius:8px; margin-bottom:15px;">
+                    <strong>Night Interruptions:</strong> Write down how many times you wake up to pee. The goal is the number trends down.
+                </div>
+                <div style="background:#f9f9f9; padding:20px; border-radius:8px; margin-bottom:15px;">
+                    <strong>Stream & Finish:</strong> Rate your flow from 1 to 5. Look for a steadier stream and more complete finish.
+                </div>
+                <div style="background:#f9f9f9; padding:20px; border-radius:8px; margin-bottom:15px;">
+                    <strong>Daytime Urgency:</strong> Note how long you can comfortably wait. Look for longer gaps.
+                </div>
             </div>
-            <div class="testimonial-box">
-                <img src="https://prostateflowsupport.site/wp-content/uploads/2025/10/2-1.webp" alt="Marcus">
-                <p class="testimonial-text">"My doctor mentioned surgery. I tried this first. Within a few weeks I felt steadier flow and better nights — enough to hold off the knife."<br><strong>— Marcus W., 65</strong></p>
+            <a href="#" class="cta-button">Start Tonight</a>
+        </div>
+    </div>
+
+    <div class="bg-cream section-padding">
+        <div class="main-content">
+            <h2 class="section-title">Men Are Leaving Nighttime Pads Behind</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-box">
+                    <img src="https://prostateflowsupport.site/wp-content/uploads/2025/10/3-1.webp">
+                    <p>"I was waking 6–7 times a night. I started this routine and weeks later I’m sleeping longer stretches."<br><strong>— Robert D., 71 – Texas</strong></p>
+                </div>
+                <div class="testimonial-box">
+                    <img src="https://prostateflowsupport.site/wp-content/uploads/2025/10/2-1.webp">
+                    <p>"My doctor mentioned surgery. I tried this first. Within a few weeks I felt steadier flow and better nights."<br><strong>— Marcus W., 65 – Georgia</strong></p>
+                </div>
+                <div class="testimonial-box">
+                    <img src="https://prostateflowsupport.site/wp-content/uploads/2025/10/4-1.webp">
+                    <p>"Leaks were crushing my confidence. After sticking with the routine, I noticed fewer ‘bathroom maps’."<br><strong>— Brian H., 58 – California</strong></p>
+                </div>
+                <div class="testimonial-box">
+                    <img src="https://prostateflowsupport.site/wp-content/uploads/2025/10/1.webp">
+                    <p>"Starting used to be the hardest part — constant pressure. Now my stream feels smoother."<br><strong>— Samuel K., 63 – New York</strong></p>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class="scientific-area">
-            <strong>Scientific References:</strong><br><br>
-            <a href="https://www.sciencedaily.com/releases/2022/12/221201101918.htm" target="_blank">University of Reading. Fungi in sink drains act as 'reservoirs for mold'. Science Daily, 2022.</a>
-            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6077167/" target="_blank">Demirci A. Chronic prostatitis developing due to candida infection. Urology Case Reports, 2018.</a>
-            <a href="https://doi.org/10.1186/s12894-017-0223-5" target="_blank">Cai T, et al. The role of flower pollen extract in managing chronic prostatitis. BMC Urology, 2017.</a>
+    <div class="section-padding main-content">
+        <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+        <div class="faq-item">
+            <div class="faq-question">What exactly is this routine? <span>+</span></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How fast can I notice changes? <span>+</span></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Is this safe for older men? <span>+</span></div>
+        </div>
+        <a href="#" class="cta-button">See the Step-by-Step</a>
+
+        <div class="scientific-refs">
+            <strong>Scientific References:</strong>
+            <a href="#">University of Reading. Fungi in sink drains act as 'reservoirs for mold'. Science Daily, 2022.</a>
+            <a href="#">Demirci A. Chronic prostatitis developing due to candida infection. Urology Case Reports, 2018.</a>
+            <a href="#">Cai T, et al. The role of flower pollen extract in managing chronic prostatitis. BMC Urology, 2017.</a>
         </div>
 
-        <div class="footer-content">
-            <p>Please be aware that the information provided on this website is not meant to substitute for advice from a qualified medical professional. We encourage you to consult your physician regarding any lifestyle changes and discuss them thoroughly. For questions or concerns about any medical conditions you may have, please contact your doctor.</p>
-            <p>Results shown may not be typical. Testimonials shared reflect the experiences of specific individuals. These outcomes may not be representative of the average user and are not intended to guarantee similar results.</p>
+        <div class="footer-disclaimer">
+            <p>Please be aware that the information provided on this website is not meant to substitute for advice from a qualified medical professional. We encourage you to consult your physician regarding any lifestyle changes and discuss them thoroughly.</p>
+            <p>Results shown may not be typical. Testimonials shared reflect the experiences of specific individuals. These outcomes may not be representative of the average user.</p>
             <p>The content provided on this site is for informational purposes only and should not be considered a substitute for professional medical advice, diagnosis, or treatment.</p>
         </div>
 
         <div class="footer-links">
-            <a href="#">Privacy Policy</a> | 
-            <a href="#">Terms of Use</a> | 
-            <a href="#">Contact</a> | 
-            <a href="#">Disclaimer</a>
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Contact</a> | <a href="#">Disclaimer</a>
             <p style="margin-top: 15px; color: #999;">&copy; 2026 RigorRevview.site. All Rights Reserved.</p>
         </div>
     </div>
