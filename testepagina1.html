@@ -5,115 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>prostate-support – rigorrevview.site</title>
     <style>
-        /* Tipografia e Base - Espelhando Elementor (Manrope) */
-        body { font-family: 'Manrope', sans-serif; background-color: #ffffff; color: #111111; margin: 0; padding: 0; line-height: 1.5; font-weight: 300; }
+        /* Tipografia Manrope para espelhar o Elementor */
+        body { font-family: 'Manrope', sans-serif; background-color: #ffffff; color: #111111; margin: 0; padding: 0; line-height: 1.4; font-weight: 300; }
         
-        /* Faixa Superior - Full Width */
-        .top-bar { background-color: #cc0000; width: 100%; padding: 15px 0; color: #ffffff; text-align: center; font-weight: 700; font-size: 16px; }
+        /* Faixa Superior AZUL - Conforme imagem modelo */
+        .top-bar-blue {
+            background-color: #1a237e;
+            width: 100%;
+            padding: 15px 0;
+            color: #ffffff;
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
 
-        /* Estrutura de Seções (Para as cores de fundo ocuparem a tela toda como no pc1) */
+        /* Estrutura de Seções Full Width */
         .section-white { width: 100%; background-color: #ffffff; }
-        .section-gray { width: 100%; background-color: #f2f2f2; }
-        .section-cream { width: 100%; background-color: #FBFAF3; }
-        .section-dark { width: 100%; background-color: #001a33; color: #ffffff; }
+        .section-gray { width: 100%; background-color: #f2f2f2; padding: 40px 0; }
+        .section-cream { width: 100%; background-color: #FBFAF3; padding: 40px 0; }
 
-        /* Container que centraliza o conteúdo em 645px */
-        .container { max-width: 645px; margin: 0 auto; padding: 40px 20px; box-sizing: border-box; }
+        /* Container de Conteúdo Centralizado */
+        .container { 
+            max-width: 645px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            box-sizing: border-box; 
+        }
 
-        /* Headlines - Estilo 1mod */
-        h1.main-title { font-size: 30px; font-weight: 800; text-align: center; color: #111; line-height: 1.2; margin-bottom: 20px; }
-        
-        /* Box do VSL Hook (Borda vermelha como no 1mod) */
-        .vsl-border-box { 
-            border: 3px solid #cc0000; 
+        /* Headlines */
+        h1.main-headline { font-size: 30px; font-weight: 800; text-align: center; margin-top: 20px; line-height: 1.2; color: #111; }
+        .sub-headline { font-size: 18px; text-align: center; color: #444; margin-bottom: 25px; line-height: 1.5; }
+        .gum-highlight { display: block; margin-top: 15px; font-weight: 800; color: #000; font-size: 19px; }
+
+        /* Hook Box (Movido para depois do primeiro botão) */
+        .vsl-hook-box { 
+            border: 2px solid #cc0000; 
             padding: 15px; 
             text-align: center; 
-            font-size: 22px; 
+            font-size: 18px; 
             font-weight: 800; 
             color: #cc0000; 
             text-transform: uppercase; 
-            margin: 25px 0;
-            line-height: 1.2;
+            margin: 30px 0;
         }
 
-        .sub-headline { font-size: 18px; text-align: center; color: #444; margin-bottom: 30px; }
-        .candy-ritual { display: block; margin-top: 15px; font-weight: 800; color: #000; font-size: 19px; }
+        /* Vídeo Thumbnail (Link da imagem modelo com Play) */
+        .video-box { display: block; width: 100%; margin: 20px 0; text-decoration: none; }
+        .video-box img { width: 100%; height: auto; display: block; }
 
-        /* Thumbnail do Vídeo */
-        .video-wrapper { display: block; width: 100%; margin: 20px 0; text-decoration: none; }
-        .video-wrapper img { width: 100%; height: auto; display: block; }
-
-        /* Botões - Cores exatas do modelo */
+        /* Botões */
         .btn-blue { display: block; background-color: #1b4bef; color: #fff; text-align: center; padding: 20px; font-size: 20px; font-weight: 800; text-decoration: none; border-radius: 5px; margin: 25px 0; }
         .btn-yellow { display: block; background-color: #fcb900; color: #000; text-align: center; padding: 20px; font-size: 20px; font-weight: 800; text-decoration: none; border-radius: 5px; margin: 25px 0; }
 
-        /* Listas de Ícones */
-        .icon-list { list-style: none; padding: 0; margin: 25px 0; }
+        /* Listas e Ícones */
+        .icon-list { list-style: none; padding: 0; margin: 20px 0; }
         .icon-list li { display: flex; align-items: flex-start; margin-bottom: 12px; font-size: 17px; }
         .icon-list li::before { content: '❌'; margin-right: 15px; }
         .icon-list.checks li::before { content: '✔️'; }
 
-        /* Blocos Why You Wake Up - Foto 5 */
+        /* Blocos Why You Wake Up */
         .info-card { background: #ededed; padding: 25px; border-radius: 10px; margin-bottom: 15px; text-align: center; }
         .info-card h3 { color: #8b1a1a; margin-top: 0; font-size: 20px; font-weight: 800; }
 
-        /* Cartões de Tracking - Foto 6 */
+        /* Cartões Tracking */
         .track-card { background: #fff; padding: 25px; border-radius: 10px; margin-bottom: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .track-card h4 { font-size: 20px; color: #1a237e; margin-top: 0; font-weight: 800; }
+        .track-card h4 { font-size: 20px; color: #1a237e; font-weight: 800; }
 
-        /* Testemunhos - Grid */
+        /* Testemunhos */
         .test-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
         .test-box { background: #fff; border: 1px solid #eee; padding: 15px; border-radius: 8px; }
         .test-box img { width: 100%; border-radius: 5px; margin-bottom: 10px; }
-        .test-box p { font-size: 14px; line-height: 1.5; font-style: italic; font-weight: 400; color: #333; }
+        .test-box p { font-size: 14px; line-height: 1.5; font-style: italic; color: #333; }
 
-        /* FAQ Estilo Acordeão */
+        /* FAQ Accordion */
         details { border-bottom: 1px solid #eee; padding: 15px 0; cursor: pointer; }
         summary { font-weight: 800; font-size: 18px; list-style: none; display: flex; justify-content: space-between; outline: none; }
         summary::after { content: '+'; color: #1b4bef; font-size: 22px; }
         details[open] summary::after { content: '-'; }
-        .faq-ans { padding-top: 15px; font-size: 15px; color: #555; font-weight: 400; }
+        .faq-ans { padding-top: 15px; font-size: 15px; color: #555; }
 
-        /* Scientific References */
+        /* Scientific References (TRADUZIDOS E CLICÁVEIS) */
         .sci-links { font-size: 11px; color: #888; margin-top: 40px; text-align: left; }
         .sci-links a { color: #1b4bef; text-decoration: underline; display: block; margin-bottom: 10px; }
 
         /* Rodapé Dark */
-        .footer-dark p { font-size: 12px; margin-bottom: 15px; color: #bbbbbb; }
+        .footer-dark { background-color: #001a33; color: #fff; padding: 50px 20px; text-align: center; font-size: 12px; }
         .footer-links { margin: 30px 0; }
-        .footer-links a { color: #fff; text-decoration: underline; margin: 0 10px; font-weight: 600; font-size: 12px; }
+        .footer-links a { color: #fff; text-decoration: underline; margin: 0 10px; }
 
         @media (max-width: 600px) {
             .test-grid { grid-template-columns: 1fr; }
-            h1.main-title { font-size: 24px; }
-            .vsl-border-box { font-size: 18px; }
+            h1.main-headline { font-size: 24px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
+    <div class="top-bar-blue">
         For men 45+: Built for those already dealing with nighttime urination and weak flow.
     </div>
 
     <div class="section-white">
-        <div class="container" style="padding-top: 20px;">
-            <h1 class="main-title">How to Reduce Prostate Size — A Swollen Prostate Treatment Alternative for Men 45+ Who Want Control Back</h1>
-            
-            <div class="vsl-border-box">
-                “Bathroom Sink” Test Reveals What’s Triggering Your Prostate
-            </div>
+        <div class="container">
+            <h1 class="main-headline">How to Shrink Prostate — A Swollen Prostate Treatment Alternative for Men 45+ Who Want Control Back</h1>
 
             <div class="sub-headline">
                 If you already wake 3–6× nightly, plan life around bathrooms, or worry about leaks, see the doctor-inspired routine built to support urinary comfort so you can wake up less and feel a steadier flow.
-                <span class="candy-ritual">Just chew one soft candy per day. It couldn't be easier. Results vary; not a medical treatment.</span>
+                <span class="gum-highlight">Just chew one soft candy per day. It couldn't be easier. Results vary; not a medical treatment.</span>
             </div>
 
-            <a href="#" class="video-wrapper">
-                <img src="https://prostateflowsupport.site/wp-content/uploads/2025/10/vaporub_bakingsoda_play_thumb.jpg" alt="Video">
+            <a href="#" class="video-box">
+                <img src="https://prostateflowsupport.site/wp-content/uploads/2025/10/vaporub_bakingsoda_play_thumb.jpg" alt="Presentation">
             </a>
 
-            <a href="#" class="btn-blue">► Watch the Step-by-Step</a>
+            <a href="#" class="btn-blue">Watch the Step-by-Step</a>
+
+            <div class="vsl-hook-box">
+                “Bathroom Sink” Test Reveals What’s Triggering Your Prostate
+            </div>
         </div>
     </div>
 
@@ -133,7 +142,7 @@
                 <li>You worry about leaks/accidents if a bathroom isn’t near.</li>
             </ul>
             <p style="text-align:center; font-weight:800;">If 2 or more are true, keep reading.</p>
-            <a href="#" class="btn-blue">► Show Me the Routine</a>
+            <a href="#" class="btn-blue">Show Me the Routine</a>
         </div>
     </div>
 
@@ -148,7 +157,7 @@
                 <li>You lean on coping habits (more coffee, afternoon naps).</li>
                 <li>Stress about leaks/accidents makes you avoid things you enjoy.</li>
             </ul>
-            <a href="#" class="btn-blue">► See the Routine</a>
+            <a href="#" class="btn-blue">See the Routine</a>
         </div>
     </div>
 
@@ -167,7 +176,7 @@
                 <h3>The 30-Second Habit</h3>
                 <p>A simple daily ritual that promotes pelvic relaxation sensations and long-term consistency.</p>
             </div>
-            <a href="#" class="btn-yellow">► Start Tonight</a>
+            <a href="#" class="btn-yellow">Start Tonight</a>
         </div>
     </div>
 
@@ -176,17 +185,17 @@
             <h2 style="text-align:center; font-weight:800; font-size: 26px;">What to Track Over the Next Weeks</h2>
             <div class="track-card">
                 <h4>Night Interruptions</h4>
-                <p>Write down nightly wake-ups. The goal is the number trends down.</p>
+                <p>Write down nightly wake-ups. The goal is the number trends down over time.</p>
             </div>
             <div class="track-card">
                 <h4>Stream & Finish</h4>
-                <p>Rate your flow from 1 to 5. Look for a steadier stream and more complete finish.</p>
+                <p>Rate your flow from 1 to 5 once a day. Look for a steadier stream.</p>
             </div>
             <div class="track-card">
                 <h4>Daytime Urgency</h4>
-                <p>Note how long you can comfortably wait and whether you still plan life around bathrooms.</p>
+                <p>Note how long you can comfortably wait without planning life around bathrooms.</p>
             </div>
-            <a href="#" class="btn-blue">► See the Ritual</a>
+            <a href="#" class="btn-blue">See the Ritual</a>
         </div>
     </div>
 
@@ -204,14 +213,14 @@
                 </div>
                 <div class="test-box">
                     <img src="https://prostateflowsupport.site/wp-content/uploads/2025/10/4-1.webp">
-                    <p>"Fewer ‘bathroom maps’ in my day and muito more control."<br><strong>— Brian H., 58</strong></p>
+                    <p>"Fewer ‘bathroom maps’ in my day and much more control."<br><strong>— Brian H., 58</strong></p>
                 </div>
                 <div class="test-box">
                     <img src="https://prostateflowsupport.site/wp-content/uploads/2025/10/1.webp">
                     <p>"Starting used to be the hardest part. Now it feels smooth."<br><strong>— Samuel K., 63</strong></p>
                 </div>
             </div>
-            <a href="#" class="btn-yellow">► See What This Ritual Can Do</a>
+            <a href="#" class="btn-yellow">See What This Ritual Can Do</a>
         </div>
     </div>
 
@@ -224,21 +233,21 @@
             </details>
             <details>
                 <summary>How fast can I notice results?</summary>
-                <div class="faq-ans">Most men report noticeable changes in sleep and flow within the first 2 to 4 weeks of consistent use.</div>
+                <div class="faq-ans">Most men report noticeable changes in sleep stretches and flow within the first 14 to 30 days of consistent use.</div>
             </details>
             <details>
                 <summary>Is this safe for older men?</summary>
-                <div class="faq-ans">Yes, the formula is designed for men 45+, but we always recommend consulting your doctor before starting any new habit.</div>
+                <div class="faq-ans">Yes, the formula is designed for men 45+, but we always recommend consulting your doctor before starting any new daily habit.</div>
             </details>
 
             <div class="sci-links">
                 <strong>Scientific References:</strong><br><br>
                 <a href="https://www.sciencedaily.com/releases/2022/12/221201101918.htm" target="_blank">University of Reading. Fungi in sink drains act as 'reservoirs for mold' [Internet]. Science Daily, December 2022.</a>
                 <a href="https://www.sciencedaily.com/releases/2019/02/190208115201.htm" target="_blank">University of Würzburg. Fluconazole makes fungi sexually active [Internet]. Science Daily, February 2019.</a>
-                <a href="https://pubmed.ncbi.nlm.nih.gov/12530138/" target="_blank">Chambliss WG. A critical review of Graminex flower pollen extract for relief of LUTS in men. 2003.</a>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/12530138/" target="_blank">Chambliss WG. A critical review of Graminex flower pollen extract for symptomatic relief of LUTS in men. 2003.</a>
                 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6077167/" target="_blank">Demirci A, et al. Chronic prostatitis developing due to candida infection: Urology Case Reports. 2018.</a>
                 <a href="https://doi.org/10.3389/fmicb.2021.715156" target="_blank">Fu Y, et al. Antibiofilm Efficacy of Luteolin Against Candida albicans and Enterococcus faecalis. 2021.</a>
-                <a href="https://doi.org/10.1111/j.1745-4565.1982.tb00429.x" target="_blank">Hierholzer JC, Kabara JJ. In vitro effects of monolaurin on enveloped RNA and DNA viruses. 1982.</a>
+                <a href="https://doi.org/10.1111/j.1745-4565.1982.tb00429.x" target="_blank">Hierholzer JC, Kabara JJ. In vitro effects of monolaurin compounds on enveloped RNA and DNA viruses. 1982.</a>
                 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3921834/" target="_blank">Kotb AF, et al. Chronic prostatitis/chronic pelvic pain syndrome: the role of an antifungal regimen. 2013.</a>
                 <a href="https://pubmed.ncbi.nlm.nih.gov/24912297/" target="_blank">Mayayo E, Fernández-Silva F. Fungal prostatitis: an update. Analytical and Quantitative Cytopathology. 2014.</a>
                 <a href="https://doi.org/10.1111/jam.13155" target="_blank">Reis MP, et al. Fisetin as a promising antifungal agent against Cryptococcus neoformans. 2016.</a>
@@ -250,11 +259,11 @@
         </div>
     </div>
 
-    <div class="section-dark footer-dark">
+    <div class="footer-dark">
         <div class="container">
             <p>Please be aware that the information provided on this website is not meant to substitute for advice from a qualified medical professional. We encourage you to consult your physician regarding any lifestyle changes.</p>
-            <p>You should do your own research and confirm the information with other sources when searching for health issues and review the information with your professional health care provider.</p>
-            <p>Results shown may not be typical. Testimonials reflect specific experiences. These outcomes may not represent the average user and do not guarantee similar results.</p>
+            <p>Results shown may not be typical. Testimonials shared reflect the experiences of specific individuals and do not guarantee similar results.</p>
+            <p>The content provided on this site is for informational purposes only and should not be considered a substitute for professional medical advice, diagnosis, or treatment.</p>
             
             <div class="footer-links">
                 <a href="https://rigorrevview.site/privacy" target="_blank">Privacy Policy</a> | 
