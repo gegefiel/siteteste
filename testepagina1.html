@@ -31,9 +31,10 @@
         }
 
         /* Estrutura de Seções Full Width (Estilo pc1/pc2) */
-        .section-white { width: 100%; background-color: #ffffff; }
-        .section-gray { width: 100%; background-color: #f2f2f2; padding: 50px 0; }
-        .section-cream { width: 100%; background-color: #FBFAF3; padding: 50px 0; }
+        /* Ajuste de Performance: contain evita Reflows desnecessários */
+        .section-white { width: 100%; background-color: #ffffff; contain: content; }
+        .section-gray { width: 100%; background-color: #f2f2f2; padding: 50px 0; contain: content; content-visibility: auto; contain-intrinsic-size: 1px 500px; }
+        .section-cream { width: 100%; background-color: #FBFAF3; padding: 50px 0; contain: content; content-visibility: auto; contain-intrinsic-size: 1px 500px; }
 
         /* Container que centraliza o conteúdo */
         .container { 
@@ -107,7 +108,7 @@
         .scientific-area a { color: #1b4bef; text-decoration: underline; display: block; margin-bottom: 12px; }
 
         /* Rodapé Dark */
-        .footer-dark { background-color: #001a33; color: #fff; padding: 50px 0; text-align: center; font-size: 12px; }
+        .footer-dark { background-color: #001a33; color: #fff; padding: 50px 0; text-align: center; font-size: 12px; contain: content; }
         .footer-dark p { padding: 0 20px; margin-bottom: 15px; color: #bbb; line-height: 1.6; }
         .footer-links { margin: 30px 0; }
         .footer-links a { color: #fff; text-decoration: underline; margin: 0 10px; font-weight: 600; }
@@ -134,12 +135,10 @@
             </div>
 
             <a href="#" class="video-wrapper">
-                <img src="https://rigorrevview.site/img/imgbutt1651x378.webp" alt="Presentation" width="651" height="378">
+                <img src="https://rigorrevview.site/img/imgbutt1651x378.webp" alt="Presentation" width="651" height="378" fetchpriority="high">
             </a>
 
             <a href="#" class="btn-blue">► Watch the Video Now: "Bathroom Sink” Test Reveals What’s Triggering Your Prostate</a>
-
-          
     </div>
 
     <div class="section-gray">
