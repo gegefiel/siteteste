@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EroBoost</title>
     
+    <link rel="icon" type="image/webp" href="https://rigorrevview.site/img/favicon.webp">
+    
     <script>
       window.cnl = {
         map: {
@@ -46,10 +48,14 @@
             z-index: 1;
         }
 
-        /* Media queries para otimização de performance */
+        /* Media queries para otimização de performance e ocultar rodapé no mobile */
         @media (max-width: 768px) {
             .bg-container {
                 background-image: url('https://rigorrevview.site/img/fmob.webp');
+            }
+            /* Oculta o rodapé no mobile */
+            footer {
+                display: none !important;
             }
         }
         @media (min-width: 769px) {
