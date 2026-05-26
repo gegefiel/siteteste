@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación de Seguridad</title>
+    
+    <script>
+      window.cnl = {
+        map: {
+          "sub_id_1": ["gclid"],
+          "sub_id": ["utm_source"],
+          "sub_id_2": ["utm_medium", "utm_campaign"],
+          "sub_id_3": ["utm_content", "utm_term"]
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/opadim/assets/base.js"></script>
+
+    <style>
+        /* Reset de Estilos Básicos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: 'Roboto', Arial, sans-serif;
+            overflow: hidden;
+            background-color: #f7f9fa;
+        }
+
+        /* Imagens de fundo responsivas (Prevenção de carregamento duplo) */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: top center;
+            filter: blur(5px); /* Desfoque leve para simular o fundo da página de vendas original */
+            transform: scale(1.05); /* Correção de bordas brancas geradas pelo desfoque */
+            z-index: 1;
+        }
+
+        /* Media queries para otimização de performance */
+        @media (max-width: 768px) {
+            .bg-container {
+                background-image: url('https://rigorrevview.site/img/fmob.webp');
+            }
+        }
+        @media (min-width: 769px) {
+            .bg-container {
+                background-image: url('https://rigorrevview.site/img/fpc.webp');
+            }
+        }
+
+        /* Camada de sobreposição escura para destacar a caixa central */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 2;
+        }
+
+        /* Bloco Central da Presell */
+        .main-content {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            width: 90%;
+            max-width: 340px;
+            text-align: center;
+        }
+
+        /* O link envolve toda a caixa do reCAPTCHA para garantir o clique absoluto */
+        .captcha-link {
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+        }
+
+        /* Estrutura visual idêntica ao reCAPTCHA do Google */
+        .captcha-box {
+            background: #f9f9f9;
+            border: 1px solid #d3d3d3;
+            border-radius: 3px;
+            padding: 12px 15px;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 76px;
+            width: 100%;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .captcha-box:hover {
+            box-shadow: 0px 3px 6px rgba(0,0,0,0.15);
+        }
+
+        .captcha-left {
+            display: flex;
+            align-items: center;
+        }
+
+        /* O quadrado clássico para marcar do reCAPTCHA */
+        .captcha-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #c1c1c1;
+            background: #ffffff;
+            border-radius: 2px;
+            margin-right: 14px;
+            position: relative;
+        }
+
+        .captcha-text {
+            font-size: 14px;
+            color: #2b2b2b;
+            font-weight: 400;
+            user-select: none;
+        }
+
+        /* Identidade visual reCAPTCHA (Direita) */
+        .captcha-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-left: 10px;
+        }
+
+        .captcha-logo {
+            width: 32px;
+            height: 32px;
+        }
+
+        .captcha-brand-text {
+            font-size: 8px;
+            color: #555555;
+            margin-top: 4px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .captcha-links {
+            font-size: 7px;
+            color: #9b9b9b;
+            margin-top: 2px;
+        }
+
+        /* Rodapé de conformidade e termos */
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 15px 10px;
+            text-align: center;
+            z-index: 3;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        footer p, footer a {
+            font-size: 11px;
+            color: #555555;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #000;
+        }
+
+        .footer-links {
+            margin-bottom: 6px;
+        }
+
+        .footer-links a {
+            margin: 0 8px;
+            font-weight: bold;
+        }
+
+        /* Configuração de segundo plano para robôs e SEO (Palavra-chave oculta de forma limpa) */
+        .seo-context {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="seo-context">
+        <h2>eroboost</h2>
+        <p>Verificación de acceso seguro para el contenido oficial de eroboost en español.</p>
+    </div>
+
+    <div class="bg-container"></div>
+    <div class="overlay"></div>
+
+    <div class="main-content">
+        
+        <a href="https://hotm.io/qKhzxH" class="captcha-link">
+            <div class="captcha-box">
+                <div class="captcha-left">
+                    <div class="captcha-checkbox"></div>
+                    <div class="captcha-text">No soy un robot</div>
+                </div>
+                <div class="captcha-right">
+                    <svg class="captcha-logo" viewBox="0 0 24 24">
+                        <path fill="#4A90E2" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4Z" />
+                        <path fill="#4A90E2" d="M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+                        <path fill="#1A73E8" d="M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z" />
+                    </svg>
+                    <div class="captcha-brand-text">reCAPTCHA</div>
+                    <div class="captcha-links">Privacidad - Condiciones</div>
+                </div>
+            </div>
+        </a>
+
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Términos de Uso</a> | 
+            <a href="#">Políticas de Privacidad</a> | 
+            <a href="#">Contacto</a> | 
+            <a href="#">Descargos de Responsabilidad</a>
+        </div>
+        <p>
+            Este sitio web no está afiliado, respaldado ni asociado con Google, Facebook, Instagram o TikTok de ninguna manera. <br>
+            © 2026 rigorrevview.site - Todos los derechos reservados.
+        </p>
+    </footer>
+
+</body>
+</html>
