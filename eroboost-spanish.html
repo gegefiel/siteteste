@@ -203,7 +203,7 @@
             font-weight: bold;
         }
 
-        /* Configuração de segundo plano para robôs e SEO (Palavra-chave oculta de forma limpa) */
+        /* Configuração de segundo plano para robôs e SEO */
         .seo-context {
             position: absolute;
             left: -9999px;
@@ -211,6 +211,66 @@
             width: 1px;
             height: 1px;
             overflow: hidden;
+        }
+
+        /* --- ESTILOS DO PAINEL SECRETO (CTRL + B) --- */
+        #admin-panel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 600px;
+            background: #fff;
+            z-index: 9999;
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            border: 2px solid #e74c3c;
+        }
+        #admin-panel h3 {
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #admin-panel .close-btn {
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #admin-table-container {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        #admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        #admin-table th, #admin-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        #admin-table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        .copy-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -230,7 +290,6 @@
     <div class="overlay"></div>
 
     <div class="main-content">
-        
         <a href="https://hotm.io/qKhzxH" class="captcha-link">
             <div class="captcha-box">
                 <div class="captcha-left">
@@ -248,7 +307,29 @@
                 </div>
             </div>
         </a>
+    </div>
 
+    <div id="admin-panel">
+        <h3>
+            🚨 IPs Fraudulentos Capturados
+            <button class="close-btn" onclick="fecharPainel()">X Fechar</button>
+        </h3>
+        <div id="admin-table-container">
+            <table id="admin-table">
+                <thead>
+                    <tr>
+                        <th>Data / Hora</th>
+                        <th>IP</th>
+                        <th>Cliques</th>
+                        <th>Motivo</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-tbody">
+                    </tbody>
+            </table>
+        </div>
+        <p style="font-size: 11px; color: #777; margin-top: 10px;">* Copie os IPs acima e cole nas exclusões do Google Ads.</p>
     </div>
 
     <footer>
@@ -264,5 +345,124 @@
         </p>
     </footer>
 
+    <script>
+        // Função para formatar a data/hora atual
+        function obterDataHora() {
+            const data = new Date();
+            return data.toLocaleString('pt-BR');
+        }
+
+        async function analisarTrafego() {
+            try {
+                // Coleta dados do visitante
+                const response = await fetch('https://ipapi.co/json/');
+                if (!response.ok) return;
+                
+                const data = await response.json();
+                const ip = data.ip;
+                const pais = data.country_code; 
+                const provedor = data.org ? data.org.toLowerCase() : ''; 
+
+                let eFraude = false;
+                let motivo = '';
+
+                // Regra 1: Fora da Espanha (Campanha ES)
+                if (pais !== 'ES') {
+                    eFraude = true;
+                    motivo = `Fora do Alvo (${pais})`;
+                }
+
+                // Regra 2: Data Centers (Bots)
+                const dcBlocks = ['amazon', 'google', 'digitalocean', 'linode', 'ovh', 'hetzner', 'microsoft', 'leaseweb', 'm247', 'alibaba'];
+                for (const dc of dcBlocks) {
+                    if (provedor.includes(dc)) {
+                        eFraude = true;
+                        motivo = `Data Center (${dc})`;
+                        break;
+                    }
+                }
+
+                if (eFraude) {
+                    registrarFraude(ip, motivo);
+                }
+
+            } catch (error) {
+                // Falha silenciosa para não quebrar a página
+            }
+        }
+
+        // Função que salva o IP no navegador
+        function registrarFraude(ip, motivo) {
+            let logs = JSON.parse(localStorage.getItem('logs_fraude_eroboost') || '[]');
+            
+            // Verifica se o IP já está registrado
+            let registroExistente = logs.find(log => log.ip === ip);
+            
+            if (registroExistente) {
+                registroExistente.cliques += 1;
+                registroExistente.ultimaData = obterDataHora();
+            } else {
+                logs.push({
+                    ip: ip,
+                    motivo: motivo,
+                    cliques: 1,
+                    ultimaData: obterDataHora()
+                });
+            }
+            
+            localStorage.setItem('logs_fraude_eroboost', JSON.stringify(logs));
+        }
+
+        // --- LÓGICA DO ATALHO SECRETO (CTRL + B) ---
+        document.addEventListener('keydown', function(event) {
+            // Verifica se as teclas Ctrl e B foram pressionadas
+            if (event.ctrlKey && (event.key === 'b' || event.key === 'B')) {
+                event.preventDefault(); // Evita abrir os favoritos do navegador
+                abrirPainel();
+            }
+        });
+
+        function abrirPainel() {
+            document.getElementById('admin-panel').style.display = 'block';
+            carregarTabela();
+        }
+
+        function fecharPainel() {
+            document.getElementById('admin-panel').style.display = 'none';
+        }
+
+        function carregarTabela() {
+            const tbody = document.getElementById('admin-tbody');
+            tbody.innerHTML = ''; // Limpa a tabela
+            
+            const logs = JSON.parse(localStorage.getItem('logs_fraude_eroboost') || '[]');
+            
+            if (logs.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Nenhum tráfego suspeito detectado ainda.</td></tr>';
+                return;
+            }
+            
+            logs.forEach(log => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${log.ultimaData}</td>
+                    <td style="font-weight:bold;">${log.ip}</td>
+                    <td style="text-align:center;">${log.cliques}</td>
+                    <td>${log.motivo}</td>
+                    <td><button class="copy-btn" onclick="copiarIP('${log.ip}')">Copiar IP</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function copiarIP(ip) {
+            navigator.clipboard.writeText(ip).then(() => {
+                alert('IP copiado: ' + ip);
+            });
+        }
+
+        // Executa a varredura assim que a página é carregada
+        document.addEventListener('DOMContentLoaded', analisarTrafego);
+    </script>
 </body>
 </html>
