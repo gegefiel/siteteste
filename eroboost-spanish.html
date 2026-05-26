@@ -203,7 +203,7 @@
             font-weight: bold;
         }
 
-        /* Configuração de segundo plano para robôs e SEO */
+        /* Configuração de segundo plano para robôs e SEO (Palavra-chave oculta de forma limpa) */
         .seo-context {
             position: absolute;
             left: -9999px;
@@ -213,65 +213,84 @@
             overflow: hidden;
         }
 
-        /* --- ESTILOS DO PAINEL SECRETO (CTRL + B) --- */
-        #admin-panel {
+        /* --- ESTILOS DO PAINEL SECRETO DE CAPTURA TOTAL (CTRL + B) --- */
+        #safety-panel {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 600px;
-            background: #fff;
-            z-index: 9999;
+            width: 95%;
+            max-width: 750px;
+            background: #ffffff;
+            z-index: 99999;
             border-radius: 8px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
             padding: 20px;
             font-family: Arial, sans-serif;
-            border: 2px solid #e74c3c;
+            border: 2px solid #2c3e50;
         }
-        #admin-panel h3 {
+        #safety-panel h3 {
             margin-bottom: 15px;
-            color: #333;
+            color: #2c3e50;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 16px;
         }
-        #admin-panel .close-btn {
+        #safety-panel .close-btn {
             background: #e74c3c;
-            color: #fff;
+            color: #ffffff;
             border: none;
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
-        }
-        #admin-table-container {
-            max-height: 300px;
-            overflow-y: auto;
-        }
-        #admin-table {
-            width: 100%;
-            border-collapse: collapse;
             font-size: 12px;
         }
-        #admin-table th, #admin-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
+        #safety-table-container {
+            max-height: 350px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+        }
+        #safety-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+        #safety-table th, #safety-table td {
+            border: 1px solid #eee;
+            padding: 10px;
             text-align: left;
         }
-        #admin-table th {
-            background-color: #f2f2f2;
+        #safety-table th {
+            background-color: #f8f9fa;
             color: #333;
+            position: sticky;
+            top: 0;
         }
-        .copy-btn {
-            background: #3498db;
+        .status-badge {
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 10px;
+            display: inline-block;
+        }
+        .status-real { background: #2ecc71; color: #fff; }
+        .status-vpn { background: #f1c40f; color: #000; }
+        .status-bot { background: #e74c3c; color: #fff; }
+        .status-fora { background: #95a5a6; color: #fff; }
+        
+        .copy-ip-btn {
+            background: #34495e;
             color: white;
             border: none;
             padding: 4px 8px;
             cursor: pointer;
             border-radius: 3px;
+            font-size: 10px;
         }
+        .copy-ip-btn:hover { background: #2c3e50; }
     </style>
 </head>
 <body>
@@ -309,27 +328,31 @@
         </a>
     </div>
 
-    <div id="admin-panel">
+    <div id="safety-panel">
         <h3>
-            🚨 IPs Fraudulentos Capturados
-            <button class="close-btn" onclick="fecharPainel()">X Fechar</button>
+            🔍 Monitor de Tráfego Otimizado - Lista de Exclusão Google Ads
+            <button class="close-btn" onclick="fecharPainelSeguro()">X Fechar</button>
         </h3>
-        <div id="admin-table-container">
-            <table id="admin-table">
+        <div id="safety-table-container">
+            <table id="safety-table">
                 <thead>
                     <tr>
-                        <th>Data / Hora</th>
+                        <th>Último Acesso</th>
                         <th>IP</th>
-                        <th>Cliques</th>
-                        <th>Motivo</th>
+                        <th style="text-align:center;">Cliques</th>
+                        <th>Provedor (ISP) / País</th>
+                        <th>Classificação / Status</th>
                         <th>Ação</th>
                     </tr>
                 </thead>
-                <tbody id="admin-tbody">
+                <tbody id="safety-tbody">
                     </tbody>
             </table>
         </div>
-        <p style="font-size: 11px; color: #777; margin-top: 10px;">* Copie os IPs acima e cole nas exclusões do Google Ads.</p>
+        <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="font-size: 11px; color: #555;">* Aperte o botão para copiar o IP e cole diretamente na lista de negação do Google Ads.</p>
+            <button class="close-btn" style="background:#34495e;" onclick="limparRegistros()">Limpar Histórico</button>
+        </div>
     </div>
 
     <footer>
@@ -346,123 +369,147 @@
     </footer>
 
     <script>
-        // Função para formatar a data/hora atual
-        function obterDataHora() {
-            const data = new Date();
-            return data.toLocaleString('pt-BR');
+        function obterDataHoraAtual() {
+            const d = new Date();
+            return d.toLocaleString('pt-BR');
         }
 
-        async function analisarTrafego() {
+        async function monitorarVisitante() {
             try {
-                // Coleta dados do visitante
-                const response = await fetch('https://ipapi.co/json/');
-                if (!response.ok) return;
+                // Utilização de API alternativa de alta disponibilidade e sem restrição rígida de VPNs para teste
+                const res = await fetch('https://ipapi.co/json/');
+                if (!res.ok) return;
                 
-                const data = await response.json();
-                const ip = data.ip;
-                const pais = data.country_code; 
-                const provedor = data.org ? data.org.toLowerCase() : ''; 
+                const info = await res.ok ? await res.json() : null;
+                if (!info || !info.ip) return;
 
-                let eFraude = false;
-                let motivo = '';
+                const ip = info.ip;
+                const pais = info.country_code ? info.country_code.toUpperCase() : 'UN';
+                const provedor = info.org ? info.org.toLowerCase() : '';
 
-                // Regra 1: Fora da Espanha (Campanha ES)
-                if (pais !== 'ES') {
-                    eFraude = true;
-                    motivo = `Fora do Alvo (${pais})`;
-                }
+                let statusClass = '✅ REAL (ES)';
+                let badgeStyle = 'status-real';
 
-                // Regra 2: Data Centers (Bots)
-                const dcBlocks = ['amazon', 'google', 'digitalocean', 'linode', 'ovh', 'hetzner', 'microsoft', 'leaseweb', 'm247', 'alibaba'];
-                for (const dc of dcBlocks) {
-                    if (provedor.includes(dc)) {
-                        eFraude = true;
-                        motivo = `Data Center (${dc})`;
+                // 1. Identificação de BOTS / DATA CENTERS
+                const termosBots = ['amazon', 'google', 'digitalocean', 'linode', 'ovh', 'hetzner', 'microsoft', 'leaseweb', 'alibaba', 'oracle', 'cloudflare', 'fastly', 'akamai', 'hosting', 'server', 'datacenter'];
+                let mapeouBot = false;
+                for (const bot of termosBots) {
+                    if (provedor.includes(bot)) {
+                        statusClass = '🤖 BOT / DATA CENTER';
+                        badgeStyle = 'status-bot';
+                        mapeouBot = true;
                         break;
                     }
                 }
 
-                if (eFraude) {
-                    registrarFraude(ip, motivo);
+                // 2. Identificação de VPN / PROXY (Se não for robô estrutural)
+                if (!mapeouBot) {
+                    const termosVpn = ['m247', 'datacamp', 'packethub', 'nordvpn', 'expressvpn', 'surfshark', 'vpn', 'proxy', 'tor', 'hide', 'private', 'tunnel', 'proton', 'ipvolume'];
+                    for (const vpn of termosVpn) {
+                        if (provedor.includes(vpn)) {
+                            statusClass = '🔒 VPN / PROXY';
+                            badgeStyle = 'status-vpn';
+                            break;
+                        }
+                    }
                 }
 
-            } catch (error) {
-                // Falha silenciosa para não quebrar a página
+                // 3. Filtro de Geolocalização (Se for tráfego limpo mas fora do país alvo)
+                if (statusClass === '✅ REAL (ES)' && pais !== 'ES') {
+                    statusClass = `⚠️ FORA DO ALVO (${pais})`;
+                    badgeStyle = 'status-fora';
+                }
+
+                salvarLogTráfego(ip, `${info.org || 'Desconhecido'} (${pais})`, statusClass, badgeStyle);
+
+            } catch (err) {
+                // Execução segura e silenciosa para manter nota máxima no PageSpeed
             }
         }
 
-        // Função que salva o IP no navegador
-        function registrarFraude(ip, motivo) {
-            let logs = JSON.parse(localStorage.getItem('logs_fraude_eroboost') || '[]');
-            
-            // Verifica se o IP já está registrado
-            let registroExistente = logs.find(log => log.ip === ip);
-            
-            if (registroExistente) {
-                registroExistente.cliques += 1;
-                registroExistente.ultimaData = obterDataHora();
+        function salvarLogTráfego(ip, provedorPais, status, classeEstilo) {
+            let bancoLogs = JSON.parse(localStorage.getItem('seguranca_eroboost_v2') || '[]');
+            let registro = bancoLogs.find(item => item.ip === ip);
+
+            if (registro) {
+                registro.cliques += 1;
+                registro.data = obterDataHoraAtual();
+                // Mantém a classificação atualizada caso mude o mapeamento
+                registro.status = status;
+                registro.classe = classeEstilo;
+                registro.provedor = provedorPais;
             } else {
-                logs.push({
+                bancoLogs.push({
+                    data: obterDataHoraAtual(),
                     ip: ip,
-                    motivo: motivo,
                     cliques: 1,
-                    ultimaData: obterDataHora()
+                    provedor: provedorPais,
+                    status: status,
+                    classe: classeEstilo
                 });
             }
-            
-            localStorage.setItem('logs_fraude_eroboost', JSON.stringify(logs));
+
+            localStorage.setItem('seguranca_eroboost_v2', JSON.stringify(bancoLogs));
         }
 
-        // --- LÓGICA DO ATALHO SECRETO (CTRL + B) ---
-        document.addEventListener('keydown', function(event) {
-            // Verifica se as teclas Ctrl e B foram pressionadas
-            if (event.ctrlKey && (event.key === 'b' || event.key === 'B')) {
-                event.preventDefault(); // Evita abrir os favoritos do navegador
-                abrirPainel();
+        // Interceptador do comando secreto (Ctrl + B)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 'b' || e.key === 'B')) {
+                e.preventDefault();
+                document.getElementById('safety-panel').style.display = 'block';
+                renderizarTabelaSegura();
             }
         });
 
-        function abrirPainel() {
-            document.getElementById('admin-panel').style.display = 'block';
-            carregarTabela();
+        function fecharPainelSeguro() {
+            document.getElementById('safety-panel').style.display = 'none';
         }
 
-        function fecharPainel() {
-            document.getElementById('admin-panel').style.display = 'none';
+        function limparRegistros() {
+            if(confirm('Deseja realmente limpar todos os IPs capturados?')) {
+                localStorage.removeItem('seguranca_eroboost_v2');
+                renderizarTabelaSegura();
+            }
         }
 
-        function carregarTabela() {
-            const tbody = document.getElementById('admin-tbody');
-            tbody.innerHTML = ''; // Limpa a tabela
-            
-            const logs = JSON.parse(localStorage.getItem('logs_fraude_eroboost') || '[]');
-            
+        function renderizarTabelaSegura() {
+            const tbody = document.getElementById('safety-tbody');
+            tbody.innerHTML = '';
+
+            const logs = JSON.parse(localStorage.getItem('seguranca_eroboost_v2') || '[]');
+
             if (logs.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Nenhum tráfego suspeito detectado ainda.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#999; padding:20px;">Nenhum acesso registrado na página até o momento.</td></tr>';
                 return;
             }
-            
-            logs.forEach(log => {
+
+            // Ordena os logs colocando os IPs com mais cliques ou mais recentes no topo
+            logs.sort((a, b) => b.cliques - a.cliques);
+
+            logs.forEach(item => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${log.ultimaData}</td>
-                    <td style="font-weight:bold;">${log.ip}</td>
-                    <td style="text-align:center;">${log.cliques}</td>
-                    <td>${log.motivo}</td>
-                    <td><button class="copy-btn" onclick="copiarIP('${log.ip}')">Copiar IP</button></td>
+                    <td>${item.data}</td>
+                    <td style="font-weight:bold; color:#2c3e50; font-size:12px;">${item.ip}</td>
+                    <td style="text-align:center; font-weight:bold;">${item.cliques}</td>
+                    <td>${item.provedor}</td>
+                    <td><span class="status-badge ${item.classe}">${item.status}</span></td>
+                    <td><button class="copy-ip-btn" onclick="copiarIpArea('${item.ip}')">Copiar IP</button></td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
-        function copiarIP(ip) {
-            navigator.clipboard.writeText(ip).then(() => {
-                alert('IP copiado: ' + ip);
+        function copiarIpArea(ipAlvo) {
+            navigator.clipboard.writeText(ipAlvo).then(() => {
+                alert('IP copiado para a área de transferência: ' + ipAlvo);
+            }).catch(() => {
+                alert('Falha ao copiar automaticamente. Selecione o texto manualmente.');
             });
         }
 
-        // Executa a varredura assim que a página é carregada
-        document.addEventListener('DOMContentLoaded', analisarTrafego);
+        // Disparo imediato em background de forma assíncrona
+        document.addEventListener('DOMContentLoaded', monitorarVisitante);
     </script>
 </body>
 </html>
