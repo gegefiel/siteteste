@@ -376,61 +376,83 @@
 
         async function monitorarVisitante() {
             try {
-                // Modificado para ipwho.is - API robusta com limite individual estável por IP público
-                const res = await fetch('https://ipwho.is/');
-                const info = await res.json();
+                // PASSO 1: Captura cega e direta na infraestrutura interna da Cloudflare do seu site
+                const resCF = await fetch('/cdn-cgi/trace');
+                const textoCF = await resCF.text();
                 
-                if (!info || !info.success) {
-                    salvarLogTráfego('Desconhecido', 'Falha na resposta da API', '⚠️ ERRO DE RESPOSTA', 'status-fora');
-                    return;
-                }
+                // Conversão do formato chave=valor do trace da Cloudflare para objeto JS
+                const linhas = textoCF.split('\n');
+                const dataCF = {};
+                linhas.forEach(linha => {
+                    const partes = linha.split('=');
+                    if (partes[0]) dataCF[partes[0].trim()] = partes[1].trim();
+                });
 
-                const ip = info.ip;
-                const pais = info.country_code ? info.country_code.toUpperCase() : 'UN';
+                const ip = dataCF.ip || 'Desconhecido';
+                const pais = dataCF.loc ? dataCF.loc.toUpperCase() : 'UN';
                 
-                // Agrupa as strings para validação cruzada contra AdSpy, VPNs e DataCenters
-                const orgNome = info.connection && info.connection.org ? info.connection.org.toLowerCase() : '';
-                const ispNome = info.connection && info.connection.isp ? info.connection.isp.toLowerCase() : '';
-                const provedorExibicao = info.connection && info.connection.org ? info.connection.org : (info.connection && info.connection.isp ? info.connection.isp : 'Desconhecido');
+                // Configuração base (Garantia de salvamento mesmo com AdBlock ativo)
+                let provedorExibicao = 'Provedor Local (Protegido por AdBlock)';
+                let statusClass = pais === 'ES' ? '✅ REAL (ES)' : `⚠️ FORA DO ALVO (${pais})`;
+                let badgeStyle = pais === 'ES' ? 'status-real' : 'status-fora';
 
-                let statusClass = '✅ REAL (ES)';
-                let badgeStyle = 'status-real';
-
-                // 1. Identificação de BOTS / DATA CENTERS
-                const termosBots = ['amazon', 'google', 'digitalocean', 'linode', 'ovh', 'hetzner', 'microsoft', 'leaseweb', 'alibaba', 'oracle', 'cloudflare', 'fastly', 'akamai', 'hosting', 'server', 'datacenter', 'softlayer'];
-                let mapeouBot = false;
-                for (const bot of termosBots) {
-                    if (orgNome.includes(bot) || ispNome.includes(bot)) {
-                        statusClass = '🤖 BOT / DATA CENTER';
-                        badgeStyle = 'status-bot';
-                        mapeouBot = true;
-                        break;
-                    }
+                if (dataCF.warp && dataCF.warp === 'on') {
+                    statusClass = '🔒 VPN / PROXY (WARP)';
+                    badgeStyle = 'status-vpn';
                 }
 
-                // 2. Identificação de VPN / PROXY
-                if (!mapeouBot) {
-                    const termosVpn = ['m247', 'datacamp', 'packethub', 'nordvpn', 'expressvpn', 'surfshark', 'vpn', 'proxy', 'tor', 'hide', 'private', 'tunnel', 'proton', 'ipvolume', 'servers', 'fintel'];
-                    for (const vpn of termosVpn) {
-                        if (orgNome.includes(vpn) || ispNome.includes(vpn)) {
-                            statusClass = '🔒 VPN / PROXY';
-                            badgeStyle = 'status-vpn';
-                            break;
-                        }
-                    }
-                }
-
-                // 3. Filtro de Geolocalização (Tráfego limpo mas fora da Espanha)
-                if (statusClass === '✅ REAL (ES)' && pais !== 'ES') {
-                    statusClass = `⚠️ FORA DO ALVO (${pais})`;
-                    badgeStyle = 'status-fora';
-                }
-
+                // Salva imediatamente o IP e País para blindar a tabela contra erros
                 salvarLogTráfego(ip, `${provedorExibicao} (${pais})`, statusClass, badgeStyle);
 
+                // PASSO 2: Tentativa assíncrona de checar o nome da ISP (Se o Adblock barrar, o IP e País já estão salvos acima)
+                try {
+                    const resWhois = await fetch(`https://ipwho.is/${ip}`);
+                    const infoWhois = await resWhois.json();
+                    
+                    if (infoWhois && infoWhois.success) {
+                        const orgNome = infoWhois.connection && infoWhois.connection.org ? infoWhois.connection.org.toLowerCase() : '';
+                        const ispNome = infoWhois.connection && infoWhois.connection.isp ? infoWhois.connection.isp.toLowerCase() : '';
+                        provedorExibicao = infoWhois.connection && infoWhois.connection.org ? infoWhois.connection.org : (infoWhois.connection && infoWhois.connection.isp ? infoWhois.connection.isp : 'Provedor Local');
+
+                        // Validação de BOTS / DATA CENTERS
+                        const termosBots = ['amazon', 'google', 'digitalocean', 'linode', 'ovh', 'hetzner', 'microsoft', 'leaseweb', 'alibaba', 'oracle', 'cloudflare', 'fastly', 'akamai', 'hosting', 'server', 'datacenter', 'softlayer'];
+                        let mapeouBot = false;
+                        for (const bot of termosBots) {
+                            if (orgNome.includes(bot) || ispNome.includes(bot)) {
+                                statusClass = '🤖 BOT / DATA CENTER';
+                                badgeStyle = 'status-bot';
+                                mapeouBot = true;
+                                break;
+                            }
+                        }
+
+                        // Validação de VPN / PROXY
+                        if (!mapeouBot) {
+                            const termosVpn = ['m247', 'datacamp', 'packethub', 'nordvpn', 'expressvpn', 'surfshark', 'vpn', 'proxy', 'tor', 'hide', 'private', 'tunnel', 'proton', 'ipvolume', 'servers', 'fintel'];
+                            for (const vpn of termosVpn) {
+                                if (orgNome.includes(vpn) || ispNome.includes(vpn)) {
+                                    statusClass = '🔒 VPN / PROXY';
+                                    badgeStyle = 'status-vpn';
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (statusClass === '✅ REAL (ES)' && pais !== 'ES') {
+                            statusClass = `⚠️ FORA DO ALVO (${pais})`;
+                            badgeStyle = 'status-fora';
+                        }
+
+                        // Atualiza o log com o nome da operadora descoberto
+                        salvarLogTráfego(ip, `${provedorExibicao} (${pais})`, statusClass, badgeStyle);
+                    }
+                } catch (e) {
+                    // AdBlock barrou a descoberta da operadora, mantém o IP estável capturado no passo 1
+                }
+
             } catch (err) {
-                // FALLBACK DE SEGURANÇA: Se houver bloqueio de rede ou AdBlock agressivo impedindo a requisição externa
-                salvarLogTráfego('Bloqueado/AdBlock', 'Browser barrou conexão de rastreio', '🔒 PROTEÇÃO LOCAL', 'status-fora');
+                // Fallback de segurança absoluto
+                salvarLogTráfego('Erro Local', 'Sem resposta Cloudflare', '⚠️ ERRO CRÍTICO', 'status-fora');
             }
         }
 
@@ -506,7 +528,7 @@
         }
 
         function copiarIpArea(ipAlvo) {
-            if (ipAlvo === 'Bloqueado/AdBlock' || ipAlvo === 'Desconhecido') {
+            if (ipAlvo === 'Erro Local' || ipAlvo === 'Desconhecido') {
                 alert('Este registro não possui um IP válido para exportação.');
                 return;
             }
