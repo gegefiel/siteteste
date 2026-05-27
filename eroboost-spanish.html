@@ -48,8 +48,8 @@
             height: 100%;
             background-size: cover;
             background-position: top center;
-            filter: blur(4px); /* Desfoque leve para simular o fundo da página de vendas original */
-            transform: scale(1.05); /* Correção de bordas brancas geradas pelo desfoque */
+            filter: blur(4px);
+            transform: scale(1.05);
             z-index: 1;
         }
 
@@ -203,7 +203,7 @@
             font-weight: bold;
         }
 
-        /* Configuração de segundo plano para robôs e SEO (Palavra-chave oculta de forma limpa) */
+        /* Configuração de segundo plano para robôs e SEO */
         .seo-context {
             position: absolute;
             left: -9999px;
@@ -364,7 +364,7 @@
         </div>
         <p>
             Este sitio web no está afiliado, respaldado ni asociado con Google, Facebook, Instagram o TikTok de ninguna manera. <br>
-            © 2026 rigorrevview.site - Todos los derechos reservados.
+            © 2026 rigorrevview.site - Todos os derechos reservados.
         </p>
     </footer>
 
@@ -376,25 +376,31 @@
 
         async function monitorarVisitante() {
             try {
-                // Utilização de API alternativa de alta disponibilidade e sem restrição rígida de VPNs para teste
-                const res = await fetch('https://ipapi.co/json/');
-                if (!res.ok) return;
+                // Modificado para ipwho.is - API robusta com limite individual estável por IP público
+                const res = await fetch('https://ipwho.is/');
+                const info = await res.json();
                 
-                const info = await res.ok ? await res.json() : null;
-                if (!info || !info.ip) return;
+                if (!info || !info.success) {
+                    salvarLogTráfego('Desconhecido', 'Falha na resposta da API', '⚠️ ERRO DE RESPOSTA', 'status-fora');
+                    return;
+                }
 
                 const ip = info.ip;
                 const pais = info.country_code ? info.country_code.toUpperCase() : 'UN';
-                const provedor = info.org ? info.org.toLowerCase() : '';
+                
+                // Agrupa as strings para validação cruzada contra AdSpy, VPNs e DataCenters
+                const orgNome = info.connection && info.connection.org ? info.connection.org.toLowerCase() : '';
+                const ispNome = info.connection && info.connection.isp ? info.connection.isp.toLowerCase() : '';
+                const provedorExibicao = info.connection && info.connection.org ? info.connection.org : (info.connection && info.connection.isp ? info.connection.isp : 'Desconhecido');
 
                 let statusClass = '✅ REAL (ES)';
                 let badgeStyle = 'status-real';
 
                 // 1. Identificação de BOTS / DATA CENTERS
-                const termosBots = ['amazon', 'google', 'digitalocean', 'linode', 'ovh', 'hetzner', 'microsoft', 'leaseweb', 'alibaba', 'oracle', 'cloudflare', 'fastly', 'akamai', 'hosting', 'server', 'datacenter'];
+                const termosBots = ['amazon', 'google', 'digitalocean', 'linode', 'ovh', 'hetzner', 'microsoft', 'leaseweb', 'alibaba', 'oracle', 'cloudflare', 'fastly', 'akamai', 'hosting', 'server', 'datacenter', 'softlayer'];
                 let mapeouBot = false;
                 for (const bot of termosBots) {
-                    if (provedor.includes(bot)) {
+                    if (orgNome.includes(bot) || ispNome.includes(bot)) {
                         statusClass = '🤖 BOT / DATA CENTER';
                         badgeStyle = 'status-bot';
                         mapeouBot = true;
@@ -402,11 +408,11 @@
                     }
                 }
 
-                // 2. Identificação de VPN / PROXY (Se não for robô estrutural)
+                // 2. Identificação de VPN / PROXY
                 if (!mapeouBot) {
-                    const termosVpn = ['m247', 'datacamp', 'packethub', 'nordvpn', 'expressvpn', 'surfshark', 'vpn', 'proxy', 'tor', 'hide', 'private', 'tunnel', 'proton', 'ipvolume'];
+                    const termosVpn = ['m247', 'datacamp', 'packethub', 'nordvpn', 'expressvpn', 'surfshark', 'vpn', 'proxy', 'tor', 'hide', 'private', 'tunnel', 'proton', 'ipvolume', 'servers', 'fintel'];
                     for (const vpn of termosVpn) {
-                        if (provedor.includes(vpn)) {
+                        if (orgNome.includes(vpn) || ispNome.includes(vpn)) {
                             statusClass = '🔒 VPN / PROXY';
                             badgeStyle = 'status-vpn';
                             break;
@@ -414,16 +420,17 @@
                     }
                 }
 
-                // 3. Filtro de Geolocalização (Se for tráfego limpo mas fora do país alvo)
+                // 3. Filtro de Geolocalização (Tráfego limpo mas fora da Espanha)
                 if (statusClass === '✅ REAL (ES)' && pais !== 'ES') {
                     statusClass = `⚠️ FORA DO ALVO (${pais})`;
                     badgeStyle = 'status-fora';
                 }
 
-                salvarLogTráfego(ip, `${info.org || 'Desconhecido'} (${pais})`, statusClass, badgeStyle);
+                salvarLogTráfego(ip, `${provedorExibicao} (${pais})`, statusClass, badgeStyle);
 
             } catch (err) {
-                // Execução segura e silenciosa para manter nota máxima no PageSpeed
+                // FALLBACK DE SEGURANÇA: Se houver bloqueio de rede ou AdBlock agressivo impedindo a requisição externa
+                salvarLogTráfego('Bloqueado/AdBlock', 'Browser barrou conexão de rastreio', '🔒 PROTEÇÃO LOCAL', 'status-fora');
             }
         }
 
@@ -434,7 +441,6 @@
             if (registro) {
                 registro.cliques += 1;
                 registro.data = obterDataHoraAtual();
-                // Mantém a classificação atualizada caso mude o mapeamento
                 registro.status = status;
                 registro.classe = classeEstilo;
                 registro.provedor = provedorPais;
@@ -452,7 +458,7 @@
             localStorage.setItem('seguranca_eroboost_v2', JSON.stringify(bancoLogs));
         }
 
-        // Interceptador do comando secreto (Ctrl + B)
+        // Atalho secreto (Ctrl + B)
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && (e.key === 'b' || e.key === 'B')) {
                 e.preventDefault();
@@ -483,7 +489,6 @@
                 return;
             }
 
-            // Ordena os logs colocando os IPs com mais cliques ou mais recentes no topo
             logs.sort((a, b) => b.cliques - a.cliques);
 
             logs.forEach(item => {
@@ -501,14 +506,17 @@
         }
 
         function copiarIpArea(ipAlvo) {
+            if (ipAlvo === 'Bloqueado/AdBlock' || ipAlvo === 'Desconhecido') {
+                alert('Este registro não possui um IP válido para exportação.');
+                return;
+            }
             navigator.clipboard.writeText(ipAlvo).then(() => {
                 alert('IP copiado para a área de transferência: ' + ipAlvo);
             }).catch(() => {
-                alert('Falha ao copiar automaticamente. Selecione o texto manualmente.');
+                alert('Falha ao copiar. Selecione o texto manualmente.');
             });
         }
 
-        // Disparo imediato em background de forma assíncrona
         document.addEventListener('DOMContentLoaded', monitorarVisitante);
     </script>
 </body>
