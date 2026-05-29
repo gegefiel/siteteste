@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jetterix | High Pressure Water Nozzle</title>
+    
+    <meta name="description" content="Improve water flow and cleaning efficiency with the Jetterix high pressure nozzle. Promoção exclusiva para Alemanha e França.">
+    
+    <link rel="icon" type="image/webp" href="https://rigorrevview.site/img/favicon.webp">
+    
+    <link rel="preload" as="image" href="https://rigorrevview.site/img/mobilejet.webp" media="(max-width: 768px)" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="https://rigorrevview.site/img/pcjet.webp" media="(min-width: 769px)" type="image/webp" fetchpriority="high">
+    
+    <script>
+      window.cnl = {
+        map: {
+          "sub_id_1": ["gclid"],
+          "sub_id": ["utm_source"],
+          "sub_id_2": ["utm_medium", "utm_campaign"],
+          "sub_id_3": ["utm_content", "utm_term"]
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/opadim/assets/base.js"></script>
+
+    <style>
+        /* Reset de Estilos Básicos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: 'Roboto', Arial, sans-serif;
+            overflow: hidden;
+            background-color: #f7f9fa;
+        }
+
+        /* Imagens de fundo responsivas */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center center;
+            filter: blur(4px);
+            transform: scale(1.05);
+            z-index: 1;
+        }
+
+        /* Media queries para mobile/desktop */
+        @media (max-width: 768px) {
+            .bg-container {
+                background-image: url('https://rigorrevview.site/img/mobilejet.webp');
+            }
+            footer {
+                display: none !important;
+            }
+        }
+        @media (min-width: 769px) {
+            .bg-container {
+                background-image: url('https://rigorrevview.site/img/pcjet.webp');
+            }
+        }
+
+        /* Camada de sobreposição */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.60);
+            z-index: 2;
+        }
+
+        /* Bloco Central da Presell */
+        .main-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        /* Estilos do Pop-up Promocional */
+        .popup-box {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            text-align: center;
+            border-top: 5px solid #000000;
+        }
+
+        .popup-box h2 {
+            color: #d32f2f;
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .popup-box p {
+            color: #333333;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .country-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-country {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-country:hover {
+            background: #eef2f5;
+            border-color: #c0c0c0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .flag {
+            font-size: 28px;
+        }
+
+        /* Rodapé Branco */
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #ffffff;
+            padding: 15px 10px;
+            text-align: center;
+            z-index: 3;
+            border-top: 1px solid #e0e0e0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        footer p, footer a {
+            font-size: 11px;
+            color: #333333;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #000000;
+        }
+
+        .footer-links {
+            margin-bottom: 6px;
+        }
+
+        .footer-links a {
+            margin: 0 8px;
+            font-weight: bold;
+        }
+
+        /* Configuração SEO Oculta para IQ do Google */
+        .seo-context {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        /* --- ESTILOS DO PAINEL SECRETO (CTRL + B) --- */
+        #safety-panel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 95%;
+            max-width: 750px;
+            background: #ffffff;
+            z-index: 99999;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            border: 2px solid #2c3e50;
+        }
+        #safety-panel h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+        }
+        #safety-panel .close-btn {
+            background: #e74c3c;
+            color: #ffffff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        #safety-table-container {
+            max-height: 350px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+        }
+        #safety-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+        #safety-table th, #safety-table td {
+            border: 1px solid #eee;
+            padding: 10px;
+            text-align: left;
+        }
+        #safety-table th {
+            background-color: #f8f9fa;
+            color: #333;
+            position: sticky;
+            top: 0;
+        }
+        .status-badge {
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 10px;
+            display: inline-block;
+        }
+        .status-real { background: #2ecc71; color: #fff; }
+        .status-vpn { background: #f1c40f; color: #000; }
+        .status-bot { background: #e74c3c; color: #fff; }
+        .status-fora { background: #95a5a6; color: #fff; }
+        
+        .copy-ip-btn {
+            background: #34495e;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 10px;
+        }
+        .copy-ip-btn:hover { background: #2c3e50; }
+    </style>
+</head>
+<body>
+
+    <div class="seo-context">
+        <h1>Jetterix High Pressure Water Nozzle</h1>
+        <p>A Smarter Way to Clean Outdoors. Turn Any Hose Into a Powerful Cleaning Stream.</p>
+        <p>Improve water flow and cleaning efficiency with the Jetterix high pressure nozzle for everyday use. Save Time, Save Money, and Still Get a Spotless Clean.</p>
+        <p>Extreme power using powerful nozzle design. Instantly eliminates dirt, grime and stains. Easily connects to any standard hose.</p>
+        <p>Perfect for driveways, patios, decks, fences, siding, cars & more. Cost-Effective DIY Solution. Professional-Grade Results.</p>
+        <p>Jetterix Alemanha, Jetterix França. Oferta especial de 75% de desconto para clientes selecionados.</p>
+    </div>
+
+    <div class="bg-container"></div>
+    <div class="overlay"></div>
+
+    <div class="main-content">
+        <div class="popup-box">
+            <h2>Atenção!</h2>
+            <p>Essa promoção de <strong>75% de desconto</strong> no momento é apenas para Alemanha ou França. Selecione sua nacionalidade:</p>
+            
+            <div class="country-buttons">
+                <a href="https://www.tracxpert.com/2C91LJ2L/22W6585K/" class="btn-country">
+                    <span class="flag">🇩🇪</span> Alemanha
+                </a>
+                <a href="https://www.tracxpert.com/2C91LJ2L/22W6585K/" class="btn-country">
+                    <span class="flag">🇫🇷</span> França
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="safety-panel">
+        <h3>
+            🔍 Monitor de Tráfego Otimizado - Lista de Exclusão Google Ads
+            <button class="close-btn" onclick="fecharPainelSeguro()">X Fechar</button>
+        </h3>
+        <div id="safety-table-container">
+            <table id="safety-table">
+                <thead>
+                    <tr>
+                        <th>Último Acesso</th>
+                        <th>IP</th>
+                        <th style="text-align:center;">Cliques</th>
+                        <th>Provedor (ISP) / País</th>
+                        <th>Classificação / Status</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="safety-tbody">
+                    </tbody>
+            </table>
+        </div>
+        <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="font-size: 11px; color: #555;">* Aperte o botão para copiar o IP e cole diretamente na lista de negação do Google Ads.</p>
+            <button class="close-btn" style="background:#34495e;" onclick="limparRegistros()">Limpar Histórico</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://rigorrevview.site/terms">Términos de Uso</a> | 
+            <a href="https://rigorrevview.site/privacy">Políticas de Privacidad</a> | 
+            <a href="https://rigorrevview.site/contact">Contacto</a> | 
+            <a href="https://rigorrevview.site/disclaimer">Descargos de Responsabilidad</a>
+        </div>
+        <p>
+            Este sitio web no está afiliado, respaldado ni asociado con Google, Facebook, Instagram o TikTok de ninguna manera. <br>
+            © 2026 rigorrevview.site - Todos los derechos reservados.
+        </p>
+    </footer>
+
+    <script>
+        function obterDataHoraAtual() {
+            const d = new Date();
+            return d.toLocaleString('pt-BR');
+        }
+
+        async function monitorarVisitante() {
+            try {
+                // Captura na Cloudflare
+                const resCF = await fetch('/cdn-cgi/trace');
+                const textoCF = await resCF.text();
+                
+                const linhas = textoCF.split('\n');
+                const dataCF = {};
+                linhas.forEach(linha => {
+                    const partes = linha.split('=');
+                    if (partes[0]) dataCF[partes[0].trim()] = partes[1].trim();
+                });
+
+                const ip = dataCF.ip || 'Desconhecido';
+                const pais = dataCF.loc ? dataCF.loc.toUpperCase() : 'UN';
+                
+                let provedorExibicao = 'Provedor Local (Protegido)';
+                
+                // Atualizado para o alvo atual: Alemanha (DE) e França (FR)
+                let alvoReal = (pais === 'DE' || pais === 'FR');
+                let statusClass = alvoReal ? `✅ REAL (${pais})` : `⚠️ FORA DO ALVO (${pais})`;
+                let badgeStyle = alvoReal ? 'status-real' : 'status-fora';
+
+                if (dataCF.warp && dataCF.warp === 'on') {
+                    statusClass = '🔒 VPN / PROXY (WARP)';
+                    badgeStyle = 'status-vpn';
+                }
+
+                salvarLogTráfego(ip, `${provedorExibicao} (${pais})`, statusClass, badgeStyle);
+
+                try {
+                    const resWhois = await fetch(`https://ipwho.is/${ip}`);
+                    const infoWhois = await resWhois.json();
+                    
+                    if (infoWhois && infoWhois.success) {
+                        const orgNome = infoWhois.connection && infoWhois.connection.org ? infoWhois.connection.org.toLowerCase() : '';
+                        const ispNome = infoWhois.connection && infoWhois.connection.isp ? infoWhois.connection.isp.toLowerCase() : '';
+                        provedorExibicao = infoWhois.connection && infoWhois.connection.org ? infoWhois.connection.org : (infoWhois.connection && infoWhois.connection.isp ? infoWhois.connection.isp : 'Provedor Local');
+
+                        const termosBots = ['amazon', 'google', 'digitalocean', 'linode', 'ovh', 'hetzner', 'microsoft', 'leaseweb', 'alibaba', 'oracle', 'cloudflare', 'fastly', 'akamai', 'hosting', 'server', 'datacenter', 'softlayer'];
+                        let mapeouBot = false;
+                        for (const bot of termosBots) {
+                            if (orgNome.includes(bot) || ispNome.includes(bot)) {
+                                statusClass = '🤖 BOT / DATA CENTER';
+                                badgeStyle = 'status-bot';
+                                mapeouBot = true;
+                                break;
+                            }
+                        }
+
+                        if (!mapeouBot) {
+                            const termosVpn = ['m247', 'datacamp', 'packethub', 'nordvpn', 'expressvpn', 'surfshark', 'vpn', 'proxy', 'tor', 'hide', 'private', 'tunnel', 'proton', 'ipvolume', 'servers', 'fintel'];
+                            for (const vpn of termosVpn) {
+                                if (orgNome.includes(vpn) || ispNome.includes(vpn)) {
+                                    statusClass = '🔒 VPN / PROXY';
+                                    badgeStyle = 'status-vpn';
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (alvoReal && !mapeouBot && statusClass !== '🔒 VPN / PROXY') {
+                            statusClass = `✅ REAL (${pais})`;
+                            badgeStyle = 'status-real';
+                        } else if (!alvoReal && !mapeouBot && statusClass !== '🔒 VPN / PROXY') {
+                            statusClass = `⚠️ FORA DO ALVO (${pais})`;
+                            badgeStyle = 'status-fora';
+                        }
+
+                        salvarLogTráfego(ip, `${provedorExibicao} (${pais})`, statusClass, badgeStyle);
+                    }
+                } catch (e) {
+                }
+
+            } catch (err) {
+                salvarLogTráfego('Erro Local', 'Sem resposta Cloudflare', '⚠️ ERRO CRÍTICO', 'status-fora');
+            }
+        }
+
+        function salvarLogTráfego(ip, provedorPais, status, classeEstilo) {
+            let bancoLogs = JSON.parse(localStorage.getItem('seguranca_jetterix') || '[]');
+            let registro = bancoLogs.find(item => item.ip === ip);
+
+            if (registro) {
+                registro.cliques += 1;
+                registro.data = obterDataHoraAtual();
+                registro.status = status;
+                registro.classe = classeEstilo;
+                registro.provedor = provedorPais;
+            } else {
+                bancoLogs.push({
+                    data: obterDataHoraAtual(),
+                    ip: ip,
+                    cliques: 1,
+                    provedor: provedorPais,
+                    status: status,
+                    classe: classeEstilo
+                });
+            }
+
+            localStorage.setItem('seguranca_jetterix', JSON.stringify(bancoLogs));
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 'b' || e.key === 'B')) {
+                e.preventDefault();
+                document.getElementById('safety-panel').style.display = 'block';
+                renderizarTabelaSegura();
+            }
+        });
+
+        function fecharPainelSeguro() {
+            document.getElementById('safety-panel').style.display = 'none';
+        }
+
+        function limparRegistros() {
+            if(confirm('Deseja realmente limpar todos os IPs capturados?')) {
+                localStorage.removeItem('seguranca_jetterix');
+                renderizarTabelaSegura();
+            }
+        }
+
+        function renderizarTabelaSegura() {
+            const tbody = document.getElementById('safety-tbody');
+            tbody.innerHTML = '';
+            const logs = JSON.parse(localStorage.getItem('seguranca_jetterix') || '[]');
+
+            if (logs.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#999; padding:20px;">Nenhum acesso registrado na página até o momento.</td></tr>';
+                return;
+            }
+
+            logs.sort((a, b) => b.cliques - a.cliques);
+
+            logs.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.data}</td>
+                    <td style="font-weight:bold; color:#2c3e50; font-size:12px;">${item.ip}</td>
+                    <td style="text-align:center; font-weight:bold;">${item.cliques}</td>
+                    <td>${item.provedor}</td>
+                    <td><span class="status-badge ${item.classe}">${item.status}</span></td>
+                    <td><button class="copy-ip-btn" onclick="copiarIpArea('${item.ip}')">Copiar IP</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function copiarIpArea(ipAlvo) {
+            if (ipAlvo === 'Erro Local' || ipAlvo === 'Desconhecido') {
+                alert('Este registro não possui um IP válido para exportação.');
+                return;
+            }
+            navigator.clipboard.writeText(ipAlvo).then(() => {
+                alert('IP copiado para a área de transferência: ' + ipAlvo);
+            }).catch(() => {
+                alert('Falha ao copiar. Selecione o texto manualmente.');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', monitorarVisitante);
+    </script>
+</body>
+</html>
