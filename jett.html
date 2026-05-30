@@ -418,7 +418,7 @@
             </table>
         </div>
         <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
-            <p style="font-size: 11px; color: #555;">* Aperte o botão para copiar o IP e cole diretamente na lista de negação do Google Ads.</p>
+            <p style="font-size: 11px; color: #555;">* Painel local inativo. Os logs agora são enviados diretamente para o Telegram.</p>
             <button class="close-btn" style="background:#34495e;" onclick="limparRegistros()">Limpar Histórico</button>
         </div>
     </div>
@@ -521,85 +521,32 @@
             }
         }
 
+        // NOVA FUNÇÃO: Envia para o Telegram
         function salvarLogTráfego(ip, provedorPais, status, classeEstilo) {
-            let bancoLogs = JSON.parse(localStorage.getItem('seguranca_jetterix') || '[]');
-            let registro = bancoLogs.find(item => item.ip === ip);
+            const token = '8787455421:AAEDOMJm08Ltuzo709aTSkFSbjOFfJQIctw'; 
+            const chatId = '1538428508'; 
 
-            if (registro) {
-                registro.cliques += 1;
-                registro.data = obterDataHoraAtual();
-                registro.status = status;
-                registro.classe = classeEstilo;
-                registro.provedor = provedorPais;
-            } else {
-                bancoLogs.push({
-                    data: obterDataHoraAtual(),
-                    ip: ip,
-                    cliques: 1,
-                    provedor: provedorPais,
-                    status: status,
-                    classe: classeEstilo
-                });
-            }
+            const mensagem = `🚨 *Novo Acesso Jetterix*\n\n` +
+                             `*IP:* \`${ip}\`\n` +
+                             `*Origem:* ${provedorPais}\n` +
+                             `*Status:* ${status}\n` +
+                             `*Data:* ${obterDataHoraAtual()}`;
 
-            localStorage.setItem('seguranca_jetterix', JSON.stringify(bancoLogs));
+            const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(mensagem)}&parse_mode=Markdown`;
+
+            fetch(url).catch(err => console.log("Erro ao enviar notificação."));
         }
 
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && (e.key === 'b' || e.key === 'B')) {
                 e.preventDefault();
                 document.getElementById('safety-panel').style.display = 'block';
-                renderizarTabelaSegura();
+                // A tabela local não vai mais renderizar novos itens, mas o painel continua abrindo.
             }
         });
 
         function fecharPainelSeguro() {
             document.getElementById('safety-panel').style.display = 'none';
-        }
-
-        function limparRegistros() {
-            if(confirm('Deseja realmente limpar todos os IPs capturados?')) {
-                localStorage.removeItem('seguranca_jetterix');
-                renderizarTabelaSegura();
-            }
-        }
-
-        function renderizarTabelaSegura() {
-            const tbody = document.getElementById('safety-tbody');
-            tbody.innerHTML = '';
-            const logs = JSON.parse(localStorage.getItem('seguranca_jetterix') || '[]');
-
-            if (logs.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#999; padding:20px;">Nenhum acesso registrado na página até o momento.</td></tr>';
-                return;
-            }
-
-            logs.sort((a, b) => b.cliques - a.cliques);
-
-            logs.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${item.data}</td>
-                    <td style="font-weight:bold; color:#2c3e50; font-size:12px;">${item.ip}</td>
-                    <td style="text-align:center; font-weight:bold;">${item.cliques}</td>
-                    <td>${item.provedor}</td>
-                    <td><span class="status-badge ${item.classe}">${item.status}</span></td>
-                    <td><button class="copy-ip-btn" onclick="copiarIpArea('${item.ip}')">Copiar IP</button></td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function copiarIpArea(ipAlvo) {
-            if (ipAlvo === 'Erro Local' || ipAlvo === 'Desconhecido') {
-                alert('Este registro não possui um IP válido para exportação.');
-                return;
-            }
-            navigator.clipboard.writeText(ipAlvo).then(() => {
-                alert('IP copiado para a área de transferência: ' + ipAlvo);
-            }).catch(() => {
-                alert('Falha ao copiar. Selecione o texto manualmente.');
-            });
         }
 
         document.addEventListener('DOMContentLoaded', monitorarVisitante);
