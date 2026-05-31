@@ -439,7 +439,7 @@
     <script>
         function obterDataHoraAtual() {
             const d = new Date();
-            return d.toLocaleString('pt-BR');
+            return d.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
         }
 
         async function monitorarVisitante() {
