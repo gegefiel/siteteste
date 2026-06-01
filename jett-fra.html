@@ -499,10 +499,21 @@
                         const ispNome = infoWhois.connection && infoWhois.connection.isp ? infoWhois.connection.isp.toLowerCase() : '';
                         provedorExibicao = infoWhois.connection && infoWhois.connection.org ? infoWhois.connection.org : (infoWhois.connection && infoWhois.connection.isp ? infoWhois.connection.isp : 'Provedor Local');
 
+                        // --- NOVA DETECÇÃO: CRUZAMENTO DE FUSO HORÁRIO ---
+                        // Pega o fuso do navegador da máquina (não pode ser facilmente falsificado pela VPN em extensões)
+                        const fusoNavegador = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                        // Pega o fuso que a base de dados associa ao IP
+                        const fusoIP = infoWhois.timezone && infoWhois.timezone.id ? infoWhois.timezone.id : null;
+                        
+                        let mismatchFuso = false;
+                        if (fusoIP && fusoNavegador && fusoIP !== fusoNavegador) {
+                            mismatchFuso = true;
+                        }
+
                         let mapeouBot = isHeadlessBot;
                         let mapeouVPN = false;
 
-                        // 1. CHECAGEM AVANÇADA DE SEGURANÇA DA API IPWHO.IS (Substitui a necessidade de apenas ler strings)
+                        // 1. CHECAGEM AVANÇADA DE SEGURANÇA DA API IPWHO.IS
                         if (infoWhois.security) {
                             if (infoWhois.security.hosting || infoWhois.security.is_bogon) {
                                 mapeouBot = true;
@@ -533,10 +544,15 @@
                             }
                         }
 
-                        // APLICAÇÃO DOS STATUS FINAIS
+                        // APLICAÇÃO DOS STATUS FINAIS COM O MISMATCH
                         if (mapeouBot) {
                             statusClass = '🤖 BOT / DATA CENTER';
                             badgeStyle = 'status-bot';
+                        } else if (mismatchFuso) {
+                            statusClass = '🥷 VPN MASCARADA';
+                            badgeStyle = 'status-vpn';
+                            // Injeta no provedor a evidência dos fusos para o bot do Telegram mostrar
+                            provedorExibicao = `${provedorExibicao} [IP: ${fusoIP} | Real: ${fusoNavegador}]`;
                         } else if (mapeouVPN) {
                             statusClass = '🔒 VPN / PROXY / TOR';
                             badgeStyle = 'status-vpn';
@@ -550,7 +566,6 @@
 
                         salvarLogTráfego(ip, `${provedorExibicao} (${pais})`, statusClass, badgeStyle, fonteTrafego);
                     } else {
-                         // Se falhar o ipwho.is, envia ao menos o dado básico do cloudflare
                          salvarLogTráfego(ip, `Falha Whois (${pais})`, statusClass, badgeStyle, fonteTrafego);
                     }
                 } catch (e) {
