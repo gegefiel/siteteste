@@ -444,7 +444,17 @@
 
         async function monitorarVisitante() {
             try {
-                // Captura na Cloudflare
+                // 1. Identificar Fonte e Parâmetros (GCLID / UTM)
+                const params = new URLSearchParams(window.location.search);
+                const isGoogleAds = params.has('gclid');
+                const origemCampanha = isGoogleAds ? '✅ Google Ads (GCLID)' : '⚠️ Tráfego Direto/Orgânico';
+                const termoBusca = params.get('utm_term') || 'N/A';
+
+                // 2. Farejador Rápido de User-Agent (Pega Bots Nativos antes do IP)
+                const ua = navigator.userAgent.toLowerCase();
+                const isUaBot = /bot|crawler|spider|crawling|google|adsbot|bing|yahoo|duckduck|yandex/i.test(ua);
+
+                // 3. Captura inicial na Cloudflare
                 const resCF = await fetch('/cdn-cgi/trace');
                 const textoCF = await resCF.text();
                 
@@ -459,77 +469,95 @@
                 const pais = dataCF.loc ? dataCF.loc.toUpperCase() : 'UN';
                 
                 let provedorExibicao = 'Provedor Local (Protegido)';
-                
-                // Atualizado para o alvo atual: Alemanha (DE) e França (FR)
                 let alvoReal = (pais === 'DE' || pais === 'FR');
+                
                 let statusClass = alvoReal ? `✅ REAL (${pais})` : `⚠️ FORA DO ALVO (${pais})`;
                 let badgeStyle = alvoReal ? 'status-real' : 'status-fora';
 
+                // Classificações imediatas (WARP ou UA Bot)
                 if (dataCF.warp && dataCF.warp === 'on') {
                     statusClass = '🔒 VPN / PROXY (WARP)';
                     badgeStyle = 'status-vpn';
+                } else if (isUaBot) {
+                    statusClass = '🤖 BOT (Identificado via Navegador)';
+                    badgeStyle = 'status-bot';
                 }
 
-                salvarLogTráfego(ip, `${provedorExibicao} (${pais})`, statusClass, badgeStyle);
+                // 4. Verificação Profunda via IPWHO (Ignora se já for Bot de Navegador ou WARP para poupar processamento)
+                if (statusClass !== '🤖 BOT (Identificado via Navegador)' && statusClass !== '🔒 VPN / PROXY (WARP)') {
+                    try {
+                        const resWhois = await fetch(`https://ipwho.is/${ip}`);
+                        const infoWhois = await resWhois.json();
+                        
+                        if (infoWhois && infoWhois.success) {
+                            const orgNome = infoWhois.connection && infoWhois.connection.org ? infoWhois.connection.org.toLowerCase() : '';
+                            const ispNome = infoWhois.connection && infoWhois.connection.isp ? infoWhois.connection.isp.toLowerCase() : '';
+                            provedorExibicao = infoWhois.connection && infoWhois.connection.org ? infoWhois.connection.org : (infoWhois.connection && infoWhois.connection.isp ? infoWhois.connection.isp : 'Provedor Local');
 
-                try {
-                    const resWhois = await fetch(`https://ipwho.is/${ip}`);
-                    const infoWhois = await resWhois.json();
-                    
-                    if (infoWhois && infoWhois.success) {
-                        const orgNome = infoWhois.connection && infoWhois.connection.org ? infoWhois.connection.org.toLowerCase() : '';
-                        const ispNome = infoWhois.connection && infoWhois.connection.isp ? infoWhois.connection.isp.toLowerCase() : '';
-                        provedorExibicao = infoWhois.connection && infoWhois.connection.org ? infoWhois.connection.org : (infoWhois.connection && infoWhois.connection.isp ? infoWhois.connection.isp : 'Provedor Local');
+                            // Bancos de dados de exclusão ampliados
+                            const termosBots = ['amazon', 'google', 'digitalocean', 'linode', 'ovh', 'hetzner', 'microsoft', 'leaseweb', 'alibaba', 'oracle', 'cloudflare', 'fastly', 'akamai', 'hosting', 'server', 'datacenter', 'softlayer', 'contabo', 'vultr', 'hostgator', 'bluehost', 'asn', 'cloud', 'dedicado'];
+                            const termosVpn = ['m247', 'datacamp', 'packethub', 'nordvpn', 'expressvpn', 'surfshark', 'vpn', 'proxy', 'tor', 'hide', 'private', 'tunnel', 'proton', 'ipvolume', 'servers', 'fintel', 'cyberghost', 'mullvad', 'ipvanish', 'pia'];
 
-                        const termosBots = ['amazon', 'google', 'digitalocean', 'linode', 'ovh', 'hetzner', 'microsoft', 'leaseweb', 'alibaba', 'oracle', 'cloudflare', 'fastly', 'akamai', 'hosting', 'server', 'datacenter', 'softlayer'];
-                        let mapeouBot = false;
-                        for (const bot of termosBots) {
-                            if (orgNome.includes(bot) || ispNome.includes(bot)) {
-                                statusClass = '🤖 BOT / DATA CENTER';
-                                badgeStyle = 'status-bot';
-                                mapeouBot = true;
-                                break;
-                            }
-                        }
-
-                        if (!mapeouBot) {
-                            const termosVpn = ['m247', 'datacamp', 'packethub', 'nordvpn', 'expressvpn', 'surfshark', 'vpn', 'proxy', 'tor', 'hide', 'private', 'tunnel', 'proton', 'ipvolume', 'servers', 'fintel'];
-                            for (const vpn of termosVpn) {
-                                if (orgNome.includes(vpn) || ispNome.includes(vpn)) {
-                                    statusClass = '🔒 VPN / PROXY';
-                                    badgeStyle = 'status-vpn';
+                            let mapeouBot = false;
+                            
+                            // Verifica Datacenter
+                            for (const bot of termosBots) {
+                                if (orgNome.includes(bot) || ispNome.includes(bot)) {
+                                    statusClass = '🏢 DATA CENTER / BOT';
+                                    badgeStyle = 'status-bot';
+                                    mapeouBot = true;
                                     break;
                                 }
                             }
-                        }
 
-                        if (alvoReal && !mapeouBot && statusClass !== '🔒 VPN / PROXY') {
-                            statusClass = `✅ REAL (${pais})`;
-                            badgeStyle = 'status-real';
-                        } else if (!alvoReal && !mapeouBot && statusClass !== '🔒 VPN / PROXY') {
-                            statusClass = `⚠️ FORA DO ALVO (${pais})`;
-                            badgeStyle = 'status-fora';
-                        }
+                            // Verifica VPN caso não seja Data Center
+                            if (!mapeouBot) {
+                                for (const vpn of termosVpn) {
+                                    if (orgNome.includes(vpn) || ispNome.includes(vpn)) {
+                                        statusClass = '🔒 VPN / PROXY COMERCIAL';
+                                        badgeStyle = 'status-vpn';
+                                        break;
+                                    }
+                                }
+                            }
 
-                        salvarLogTráfego(ip, `${provedorExibicao} (${pais})`, statusClass, badgeStyle);
+                            // Reavalia o status baseando-se no Alvo caso passou limpo nos testes de Bot/VPN
+                            if (alvoReal && !mapeouBot && !statusClass.includes('VPN')) {
+                                statusClass = `✅ REAL (${pais})`;
+                                badgeStyle = 'status-real';
+                            } else if (!alvoReal && !mapeouBot && !statusClass.includes('VPN')) {
+                                statusClass = `⚠️ FORA DO ALVO (${pais})`;
+                                badgeStyle = 'status-fora';
+                            }
+                        }
+                    } catch (e) {
+                        // Se a API externa falhar, mantém os dados básicos recolhidos pela Cloudflare
                     }
-                } catch (e) {
                 }
 
+                // Dispara payload completo
+                salvarLogTráfego(ip, `${provedorExibicao} (${pais})`, statusClass, origemCampanha, termoBusca, navigator.userAgent);
+
             } catch (err) {
-                salvarLogTráfego('Erro Local', 'Sem resposta Cloudflare', '⚠️ ERRO CRÍTICO', 'status-fora');
+                salvarLogTráfego('Erro Local', 'Sem resposta Cloudflare', '⚠️ ERRO CRÍTICO', 'Desconhecida', 'N/A', 'N/A');
             }
         }
 
-        // NOVA FUNÇÃO: Envia para o Telegram
-        function salvarLogTráfego(ip, provedorPais, status, classeEstilo) {
+        // FUNÇÃO ATUALIZADA: Envia relatório completo para o Telegram
+        function salvarLogTráfego(ip, provedorPais, status, origem, keyword, userAgent) {
             const token = '8787455421:AAEDOMJm08Ltuzo709aTSkFSbjOFfJQIctw'; 
             const chatId = '1538428508'; 
+
+            // Formata o User-Agent para não poluir o chat, mostrando apenas os primeiros 45 caracteres
+            const uaResumido = (userAgent && userAgent.length > 45) ? userAgent.substring(0, 45) + '...' : userAgent;
 
             const mensagem = `🚨 *Novo Acesso Jetterix*\n\n` +
                              `*IP:* \`${ip}\`\n` +
                              `*Origem:* ${provedorPais}\n` +
-                             `*Status:* ${status}\n` +
+                             `*Classificação:* ${status}\n` +
+                             `*Fonte de Tráfego:* ${origem}\n` +
+                             `*Palavra-chave (UTM):* ${keyword}\n` +
+                             `*Dispositivo:* ${uaResumido}\n` +
                              `*Data:* ${obterDataHoraAtual()}`;
 
             const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(mensagem)}&parse_mode=Markdown`;
@@ -541,7 +569,6 @@
             if (e.ctrlKey && (e.key === 'b' || e.key === 'B')) {
                 e.preventDefault();
                 document.getElementById('safety-panel').style.display = 'block';
-                // A tabela local não vai mais renderizar novos itens, mas o painel continua abrindo.
             }
         });
 
