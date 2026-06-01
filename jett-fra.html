@@ -444,8 +444,24 @@
             return d.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
         }
 
+        // VERIFICAÇÃO GOOGLE ADS COMPLETA
+        function verificarOrigemGoogle() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const referrer = document.referrer.toLowerCase();
+            
+            // wbraid e gbraid são fundamentais hoje devido às políticas do iOS.
+            const temParametroAds = urlParams.has('gclid') || urlParams.has('wbraid') || urlParams.has('gbraid') || urlParams.has('gad_source');
+            const veioDoReferrerAds = referrer.includes('googleadservices.com');
+            
+            return temParametroAds || veioDoReferrerAds;
+        }
+
         async function monitorarVisitante() {
             try {
+                // Captura a origem (Google Ads vs Direto/Orgânico)
+                const isGoogleAds = verificarOrigemGoogle();
+                const fonteTrafego = isGoogleAds ? '🟢 Google Ads' : '⚪ Tráfego Externo/Direto';
+
                 // Captura na Cloudflare
                 const resCF = await fetch('/cdn-cgi/trace');
                 const textoCF = await resCF.text();
@@ -461,18 +477,18 @@
                 const pais = dataCF.loc ? dataCF.loc.toUpperCase() : 'UN';
                 
                 let provedorExibicao = 'Provedor Local (Protegido)';
-                
-                // Atualizado para o alvo atual: Alemanha (DE) e França (FR)
                 let alvoReal = (pais === 'DE' || pais === 'FR');
                 let statusClass = alvoReal ? `✅ REAL (${pais})` : `⚠️ FORA DO ALVO (${pais})`;
                 let badgeStyle = alvoReal ? 'status-real' : 'status-fora';
 
+                // Detecção rápida de VPN via Cloudflare WARP
                 if (dataCF.warp && dataCF.warp === 'on') {
                     statusClass = '🔒 VPN / PROXY (WARP)';
                     badgeStyle = 'status-vpn';
                 }
 
-                salvarLogTráfego(ip, `${provedorExibicao} (${pais})`, statusClass, badgeStyle);
+                // Detecção de Navegador Headless (Bots de raspagem)
+                const isHeadlessBot = navigator.webdriver || window.document.documentElement.getAttribute("webdriver") === "true";
 
                 try {
                     const resWhois = await fetch(`https://ipwho.is/${ip}`);
@@ -483,54 +499,78 @@
                         const ispNome = infoWhois.connection && infoWhois.connection.isp ? infoWhois.connection.isp.toLowerCase() : '';
                         provedorExibicao = infoWhois.connection && infoWhois.connection.org ? infoWhois.connection.org : (infoWhois.connection && infoWhois.connection.isp ? infoWhois.connection.isp : 'Provedor Local');
 
-                        const termosBots = ['amazon', 'google', 'digitalocean', 'linode', 'ovh', 'hetzner', 'microsoft', 'leaseweb', 'alibaba', 'oracle', 'cloudflare', 'fastly', 'akamai', 'hosting', 'server', 'datacenter', 'softlayer'];
-                        let mapeouBot = false;
-                        for (const bot of termosBots) {
-                            if (orgNome.includes(bot) || ispNome.includes(bot)) {
-                                statusClass = '🤖 BOT / DATA CENTER';
-                                badgeStyle = 'status-bot';
+                        let mapeouBot = isHeadlessBot;
+                        let mapeouVPN = false;
+
+                        // 1. CHECAGEM AVANÇADA DE SEGURANÇA DA API IPWHO.IS (Substitui a necessidade de apenas ler strings)
+                        if (infoWhois.security) {
+                            if (infoWhois.security.hosting || infoWhois.security.is_bogon) {
                                 mapeouBot = true;
-                                break;
+                            }
+                            if (infoWhois.security.vpn || infoWhois.security.proxy || infoWhois.security.tor) {
+                                mapeouVPN = true;
                             }
                         }
 
+                        // 2. CHECAGEM DE BACKUP (Sua lista original por garantia)
+                        const termosBots = ['amazon', 'google', 'digitalocean', 'linode', 'ovh', 'hetzner', 'microsoft', 'leaseweb', 'alibaba', 'oracle', 'cloudflare', 'fastly', 'akamai', 'hosting', 'server', 'datacenter', 'softlayer'];
                         if (!mapeouBot) {
-                            const termosVpn = ['m247', 'datacamp', 'packethub', 'nordvpn', 'expressvpn', 'surfshark', 'vpn', 'proxy', 'tor', 'hide', 'private', 'tunnel', 'proton', 'ipvolume', 'servers', 'fintel'];
-                            for (const vpn of termosVpn) {
-                                if (orgNome.includes(vpn) || ispNome.includes(vpn)) {
-                                    statusClass = '🔒 VPN / PROXY';
-                                    badgeStyle = 'status-vpn';
+                            for (const bot of termosBots) {
+                                if (orgNome.includes(bot) || ispNome.includes(bot)) {
+                                    mapeouBot = true;
                                     break;
                                 }
                             }
                         }
 
-                        if (alvoReal && !mapeouBot && statusClass !== '🔒 VPN / PROXY') {
+                        const termosVpn = ['m247', 'datacamp', 'packethub', 'nordvpn', 'expressvpn', 'surfshark', 'vpn', 'proxy', 'tor', 'hide', 'private', 'tunnel', 'proton', 'ipvolume', 'servers', 'fintel'];
+                        if (!mapeouBot && !mapeouVPN) {
+                            for (const vpn of termosVpn) {
+                                if (orgNome.includes(vpn) || ispNome.includes(vpn)) {
+                                    mapeouVPN = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        // APLICAÇÃO DOS STATUS FINAIS
+                        if (mapeouBot) {
+                            statusClass = '🤖 BOT / DATA CENTER';
+                            badgeStyle = 'status-bot';
+                        } else if (mapeouVPN) {
+                            statusClass = '🔒 VPN / PROXY / TOR';
+                            badgeStyle = 'status-vpn';
+                        } else if (alvoReal) {
                             statusClass = `✅ REAL (${pais})`;
                             badgeStyle = 'status-real';
-                        } else if (!alvoReal && !mapeouBot && statusClass !== '🔒 VPN / PROXY') {
+                        } else {
                             statusClass = `⚠️ FORA DO ALVO (${pais})`;
                             badgeStyle = 'status-fora';
                         }
 
-                        salvarLogTráfego(ip, `${provedorExibicao} (${pais})`, statusClass, badgeStyle);
+                        salvarLogTráfego(ip, `${provedorExibicao} (${pais})`, statusClass, badgeStyle, fonteTrafego);
+                    } else {
+                         // Se falhar o ipwho.is, envia ao menos o dado básico do cloudflare
+                         salvarLogTráfego(ip, `Falha Whois (${pais})`, statusClass, badgeStyle, fonteTrafego);
                     }
                 } catch (e) {
+                    salvarLogTráfego(ip, `Erro API Whois (${pais})`, statusClass, badgeStyle, fonteTrafego);
                 }
 
             } catch (err) {
-                salvarLogTráfego('Erro Local', 'Sem resposta Cloudflare', '⚠️ ERRO CRÍTICO', 'status-fora');
+                salvarLogTráfego('Erro Local', 'Sem resposta Cloudflare', '⚠️ ERRO CRÍTICO', 'status-fora', '⚪ Desconhecido');
             }
         }
 
-        // NOVA FUNÇÃO: Envia para o Telegram
-        function salvarLogTráfego(ip, provedorPais, status, classeEstilo) {
+        // Função Atualizada para o Telegram com Origem Google Ads
+        function salvarLogTráfego(ip, provedorPais, status, classeEstilo, fonteTrafego) {
             const token = '8787455421:AAEDOMJm08Ltuzo709aTSkFSbjOFfJQIctw'; 
             const chatId = '1538428508'; 
 
             const mensagem = `🚨 *Novo Acesso Jetterix*\n\n` +
+                             `*Origem:* ${fonteTrafego}\n` +
                              `*IP:* \`${ip}\`\n` +
-                             `*Origem:* ${provedorPais}\n` +
+                             `*ISP/Local:* ${provedorPais}\n` +
                              `*Status:* ${status}\n` +
                              `*Data:* ${obterDataHoraAtual()}`;
 
@@ -543,7 +583,6 @@
             if (e.ctrlKey && (e.key === 'b' || e.key === 'B')) {
                 e.preventDefault();
                 document.getElementById('safety-panel').style.display = 'block';
-                // A tabela local não vai mais renderizar novos itens, mas o painel continua abrindo.
             }
         });
 
