@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
 <html lang="es">
+
 <head>
 
 <title>Bururan Colombia | Opiniones, Precio y Oferta Oficial</title>
@@ -25,6 +25,7 @@
     }
   };
 </script>
+
 <script src="https://cdn.jsdelivr.net/gh/opadim/assets/base.js"></script>
 
 <script type="application/ld+json">
@@ -73,20 +74,6 @@
 ]
 }
 </script>
-
-  .bg-container{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100vw; /* Utiliza a largura total da janela ajustada */
-  height:100vh; /* Utiliza a altura total da janela ajustada */
-  background-image:url('https://rigorrevview.site/img/burupc.webp');
-  background-size:contain;
-  background-repeat:no-repeat;
-  background-position:center center;
-  filter:blur(4px);
-  z-index:1;
-}
 
 <style>
 
@@ -168,9 +155,38 @@ height:1px;
 overflow:hidden;
 }
 
+/* FOOTER (apenas desktop) */
+footer{
+position:relative;
+z-index:4;
+background:#fff;
+text-align:center;
+padding:20px;
+font-size:14px;
+color:#333;
+}
+
+footer .footer-links{
+margin-bottom:10px;
+}
+
+footer .footer-links a{
+color:#333;
+text-decoration:none;
+margin:0 5px;
+}
+
+/* ocultar no mobile */
+@media(max-width:768px){
+footer{
+display:none;
+}
+}
+
 </style>
 
 </head>
+
 <body>
 
 <div class="seo-context">
@@ -206,8 +222,6 @@ class="popup-image">
 </a>
 
 </div>
-
- 
 
 <script>
 
@@ -282,6 +296,20 @@ monitorarVisitante
 );
 
 </script>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-links">
+        <a href="https://rigorrevview.site/terms">Terms of Use</a> | 
+        <a href="https://rigorrevview.site/privacy">Privacy Policy</a> | 
+        <a href="https://rigorrevview.site/contact">Contact</a> | 
+        <a href="https://rigorrevview.site/disclaimer">Disclaimer</a>
+    </div>
+    <p>
+        This website is not affiliated, endorsed or associated with Google, Facebook, Instagram or TikTok in any way. <br>
+        © 2026 rigorrevview.site - All rights reserved.
+    </p>
+</footer>
 
 </body>
 </html>
