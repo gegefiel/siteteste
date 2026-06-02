@@ -155,28 +155,42 @@ height:1px;
 overflow:hidden;
 }
 
-/* FOOTER (apenas desktop) */
+/* FOOTER COMPLIANCE STYLE (GOOGLE ADS FRIENDLY) */
 footer{
-position:relative;
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
 z-index:4;
-background:#fff;
+
+background:rgba(255,255,255,0.92);
+backdrop-filter:blur(6px);
+
 text-align:center;
-padding:20px;
-font-size:14px;
-color:#333;
+padding:10px 12px;
+
+font-size:11px;
+line-height:1.4;
+color:#666;
+
+border-top:1px solid rgba(0,0,0,0.08);
 }
 
 footer .footer-links{
-margin-bottom:10px;
+margin-bottom:6px;
 }
 
 footer .footer-links a{
-color:#333;
+color:#666;
 text-decoration:none;
-margin:0 5px;
+margin:0 4px;
+font-weight:400;
 }
 
-/* ocultar no mobile */
+footer .footer-links a:hover{
+text-decoration:underline;
+}
+
 @media(max-width:768px){
 footer{
 display:none;
@@ -300,14 +314,14 @@ monitorarVisitante
 <!-- FOOTER -->
 <footer>
     <div class="footer-links">
-        <a href="https://rigorrevview.site/terms">Terms of Use</a> | 
-        <a href="https://rigorrevview.site/privacy">Privacy Policy</a> | 
+        <a href="https://rigorrevview.site/terms">Terms</a> | 
+        <a href="https://rigorrevview.site/privacy">Privacy</a> | 
         <a href="https://rigorrevview.site/contact">Contact</a> | 
         <a href="https://rigorrevview.site/disclaimer">Disclaimer</a>
     </div>
     <p>
-        This website is not affiliated, endorsed or associated with Google, Facebook, Instagram or TikTok in any way. <br>
-        © 2026 rigorrevview.site - All rights reserved.
+        This site is not affiliated with Google, Facebook, Instagram or TikTok.<br>
+        © 2026 rigorrevview.site. All rights reserved.
     </p>
 </footer>
 
