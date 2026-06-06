@@ -556,7 +556,6 @@
 
         const names = ["Juan Carlos", "Carlos Alberto", "Luis Fernando", "Juan Fernando", "Jorge Eliécer", "Jaime Alberto", "Camilo Andrés"];
         const cities = ["Bogotá", "Medellín", "Cartagena das Índias", "Cáli", "Barranquilla", "Santa Marta", "Pereira"];
-        const supplies = ["", "", ""];
         const el = document.getElementById("notification");
 
         function getRandom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
@@ -567,9 +566,9 @@
             const name = getRandom(names);
             const city = getRandom(cities);
             const mins = Math.floor(Math.random() * 12) + 1;
-            const supply = getRandom(supplies);
+            
             el.innerHTML = `
-                <img src="https://mensdailyvitality.com/mens-health-report/images/Prosta%20-%202.webp" alt="Prostafense">
+                <img src="https://rigorrevview.site/img/bururanbottle.webp.webp" alt="Prostafense">
                 <div>
                     <strong>${name} de ${city}</strong>
                     <span>Acabo de pedir BURURAN (${supply})</span>
