@@ -566,8 +566,8 @@
             const name = getRandom(names);
             const city = getRandom(cities);
             const mins = Math.floor(Math.random() * 12) + 1;
-            
-            el.innerHTML = `
+            const supply = getRandom(supplies);
+            el.innerHTML =  `
                 <img src="https://rigorrevview.site/img/bururanbottle.webp.webp">
                 <div>
                     <strong>${name} de ${city}</strong>
