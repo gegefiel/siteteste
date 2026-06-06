@@ -554,9 +554,9 @@
             });
         });
 
-        const names = ["James Miller", "Robert Johnson", "Michael Anderson", "Paul Wilson", "Mark Peterson", "Joseph Carter", "Anthony Roberts"];
-        const cities = ["Tampa, FL", "Phoenix, AZ", "Columbus, OH", "Charlotte, NC", "Dallas, TX", "Orlando, FL", "Nashville, TN"];
-        const supplies = ["6-month supply", "3-month supply", "1-month supply"];
+        const names = ["Juan Carlos", "Carlos Alberto", "Luis Fernando", "Juan Fernando", "Jorge Eliécer", "Jaime Alberto", "Camilo Andrés"];
+        const cities = ["Bogotá", "Medellín", "Cartagena das Índias", "Cáli", "Barranquilla", "Santa Marta", "Pereira"];
+        const supplies = ["", "", ""];
         const el = document.getElementById("notification");
 
         function getRandom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
@@ -571,8 +571,8 @@
             el.innerHTML = `
                 <img src="https://mensdailyvitality.com/mens-health-report/images/Prosta%20-%202.webp" alt="Prostafense">
                 <div>
-                    <strong>${name} from ${city}</strong>
-                    <span>Just ordered PROSTAFENSE (${supply})</span>
+                    <strong>${name} de ${city}</strong>
+                    <span>Acabo de pedir BURURAN (${supply})</span>
                     <div class="time">${timeAgo(mins)} <span style="color:#16a34a;">✔ Verified</span></div>
                 </div>
             `;
