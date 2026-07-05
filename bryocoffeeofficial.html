@@ -14,7 +14,8 @@ window.cnl = {
 <script src="https://cdn.jsdelivr.net/gh/opadim/assets/base.js"></script>
 
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16536086710"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16536086710"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -23,6 +24,7 @@ window.cnl = {
   gtag('config', 'AW-16536086710');
 </script>
 
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16536078339"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -865,73 +867,27 @@ window.cnl = {
         }, { threshold: 0 });
         btns.forEach(function(b) { io.observe(b); });
     })();
-</script>
 
-<div id="exit-overlay" style="display:none; position:fixed; inset:0; z-index:10000; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
-  <div style="background:#fff; border-radius:12px; max-width:600px; width:92%; position:relative; box-shadow:0 20px 60px rgba(0,0,0,0.3); overflow:hidden;">
-    <button onclick="document.getElementById('exit-overlay').style.display='none'" style="position:absolute; top:8px; right:12px; background:none; border:none; font-size:28px; cursor:pointer; color:#666; z-index:1;">&times;</button>
-    <div class="ei-inner">
-      <div class="ei-image ei-desktop-only">
-          <a href="https://www.clickrtrckr.com/FR6NFMX/8RCDPG8/?uid=15155" target="_blank" rel="sponsored nofollow noopener noreferrer" style="display:block;width:100%;height:100%;">
-              <img src="https://get-bryocoffee.com/img/111d93a1-c445-4bef-96fb-c87d381f31c6.avif" alt="" loading="lazy">
-          </a>
-      </div>
-      <div class="ei-content" style="text-align:left;">
-        <div class="ei-mobile-only" style="text-align:center;margin-bottom:12px;">
-            <a href="https://www.clickrtrckr.com/FR6NFMX/8RCDPG8/?uid=15155" target="_blank" rel="sponsored nofollow noopener noreferrer" style="display:block;">
-                <img src="https://get-bryocoffee.com/img/b5fdd79d-86ed-4849-bd98-cec78cdd0333.avif" alt="" loading="lazy" style="width:100%;max-width:355px;aspect-ratio:355/200;object-fit:cover;border-radius:8px;margin:0 auto;">
-            </a>        
-        </div>
-        <h2 style="font-size:28px; font-weight:900; margin:0 0 10px; color:#1a1a1a; text-transform:uppercase;">Before You Go -</h2>
-        <p style="font-size:15px; color:#555; margin:0 0 14px; line-height:1.5;">A few readers have asked us to make this easier to find.</p>
-        <p style="font-size:20px; font-weight:700; color:#1a1a1a; margin:0 0 12px; line-height:1.3;">Take the extra 75% OFF coupon now.</p>
-        <p style="font-size:13px; color:#777; margin:0 0 18px; line-height:1.4;">Worth a look while it&#39;s still in the article.</p>
-        <a href="https://www.clickrtrckr.com/FR6NFMX/8RCDPG8/?uid=15155" target="_blank" rel="sponsored nofollow noopener noreferrer" style="display:inline-block; padding:14px 32px; font-size:16px; font-weight:700; border-radius:6px; text-decoration:none; background:var(--green); color:#fff; border:2px solid #222; text-transform:none;">Yes, Give Me 75% Off</a>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-(function(){
-  if (sessionStorage.getItem('_ei_shown')) return;
-  var overlay = document.getElementById('exit-overlay');
-  if (!overlay) return;
-  function show() {
-    if (sessionStorage.getItem('_ei_shown')) return;
-    sessionStorage.setItem('_ei_shown', '1');
-    overlay.style.display = 'flex';
-  }
-  var isTouch = 'ontouchstart' in window || (navigator.maxTouchPoints || 0) > 0;
-  if (isTouch) {
-    var fired = false;
-    window.addEventListener('scroll', function(){
-      if (fired) return;
-      var doc = document.documentElement;
-      if ((window.scrollY + window.innerHeight) / (doc.scrollHeight || 1) > 0.6) {
-        fired = true; show();
-      }
-    }, {passive: true});
-    setTimeout(function(){ if (!fired) { fired = true; show(); } }, 30000);
-  } else {
-    document.addEventListener('mouseout', function(e){
-      if (e.clientY < 0) show();
-    });
-  }
-})();
+    /* Script para activar el funcionamiento del FAQ Accordion */
+    (function() {
+        var faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(function(question) {
+            question.addEventListener('click', function() {
+                var item = this.closest('.faq-item');
+                
+                document.querySelectorAll('.faq-item').forEach(function(otherItem) {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('open');
+                    }
+                });
+
+                item.classList.toggle('open');
+            });
+        });
+    })();
 </script>
 
 <style id="deferred-css">
-        .ei-inner { display: flex; align-items: stretch; }
-        .ei-image { flex: 0 0 200px; overflow: hidden; }
-        .ei-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .ei-content { flex: 1; padding: 32px 28px; }
-        .ei-mobile-only { display: none; }
-        @media (max-width: 520px) {
-            .ei-inner { flex-direction: column; }
-            .ei-desktop-only { display: none; }
-            .ei-mobile-only { display: block; }
-            .ei-content { text-align: center !important; padding: 24px 20px; }
-        }
         .hero-image {
             width: 100%;
             border-radius: var(--radius-md);
