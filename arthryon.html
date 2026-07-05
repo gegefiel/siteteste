@@ -1,7 +1,7 @@
-
-<!DOCTYPE html>
-<html lang="en-AU">
+<!doctype html>
+<html lang="en-AU" class="scroll-smooth">
 <head>
+
 <script>
 window.cnl = {
   map: {
@@ -36,1182 +36,692 @@ window.cnl = {
 
 
   
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arthryon Heat Relief Cream in Australia - Official Website</title>
-<meta name="description" content="Arthryon Heat Relief Cream – the official website for Australia. Fast-acting joint and muscle heat relief cream. Free shipping to Sydney, Melbourne, Brisbane, Perth, Adelaide. Order now.">
-<meta name="keywords" content="Arthryon Heat Relief Cream, joint pain relief Australia, muscle cream Australia, arthritis cream, heat relief cream, joint support cream, buy Arthryon Australia, official Arthryon website">
-<meta name="robots" content="index, follow">
-<meta name="geo.region" content="AU">
-<meta name="geo.country" content="Australia">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Arthryon Heat Relief Cream — Fast, Natural Joint & Muscle Relief | Official AU</title>
+<meta name="description" content="Australia's go-to warming cream for joint stiffness, muscle fatigue and everyday aches. Natural arnica, hyaluronic acid & tea tree oil. Free AU shipping. 30-day money-back guarantee." />
+<meta name="theme-color" content="#faf4ea" />
+<meta property="og:title" content="Arthryon Heat Relief Cream — Official Australian Website" />
+<meta property="og:description" content="Fast, deep, natural relief for stiff joints and tired muscles. Free AU shipping & 30-day guarantee." />
+<meta property="og:type" content="product" />
+<meta property="og:image" content="https://arthryon-heatreliefcream.com/img/Arthryon.webp" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#faf4ea',
+          'cream-2': '#f4ead9',
+          ink: '#1c130b',
+          'ink-2': '#2a1d12',
+          brand: {
+            DEFAULT: '#ee5522',
+            600: '#e0481a',
+            700: '#c23c14',
+          },
+          leaf: '#3f9d6b',
+        },
+        fontFamily: {
+          display: ['Sora', 'system-ui', 'sans-serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+        },
+        boxShadow: {
+          soft: '0 20px 60px -20px rgba(28,19,11,.18)',
+          card: '0 10px 40px -12px rgba(28,19,11,.12)',
+        },
+        keyframes: {
+          'fade-up': { '0%': { opacity: 0, transform: 'translateY(24px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          pulseGlow: { '0%,100%': { opacity: .5 }, '50%': { opacity: .9 } },
+        },
+      },
+    },
+  }
+</script>
 <style>
-:root {
-  --fire: #E84C1E;
-  --fire-light: #FF6B3D;
-  --gold: #C9A84C;
-  --cream: #FDF8F2;
-  --dark: #1A1208;
-  --mid: #3D2C10;
-  --muted: #7A6A55;
-  --white: #FFFFFF;
-  --border: rgba(201,168,76,0.2);
-  --shadow-warm: 0 20px 60px rgba(232,76,30,0.15);
-  --radius: 16px;
-  --radius-lg: 28px;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--cream);
-  color: var(--dark);
-  overflow-x: hidden;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: "kern" 1, "liga" 1;
-}
-
-/* ─── TYPOGRAPHY ─── */
-h1,h2,h3,h4 { font-family: 'Barlow', sans-serif; line-height: 1.2; overflow: visible; }
-
-/* ─── HEADER / NAV ─── */
-.site-header {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 5vw;
-  height: 70px;
-  background: rgba(253,248,242,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-}
-.logo {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 800; font-size: 1.3rem;
-  color: var(--dark);
-  letter-spacing: 0;
-}
-.logo span { color: var(--fire); }
-.official-badge {
-  font-size: 0.7rem; font-weight: 500;
-  background: var(--fire); color: #fff;
-  padding: 2px 9px; border-radius: 20px;
-  margin-left: 10px; vertical-align: middle;
-  letter-spacing: 0.05em; text-transform: uppercase;
-}
-.header-cta {
-  background: var(--fire); color: #fff;
-  border: none; padding: 11px 26px; border-radius: 50px;
-  font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.85rem;
-  cursor: pointer; letter-spacing: 0.02em;
-  text-decoration: none; display: inline-block;
-  transition: background 0.2s, transform 0.15s;
-}
-.header-cta:hover { background: #c93e0f; transform: translateY(-1px); }
-
-/* ─── HERO ─── */
-.hero {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  padding: 100px 5vw 60px;
-  gap: 40px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 80% at 70% 50%, rgba(232,76,30,0.07) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-text { position: relative; z-index: 2; }
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--fire);
-  margin-bottom: 20px;
-}
-.hero-eyebrow::before {
-  content: ''; width: 28px; height: 2px; background: var(--fire);
-}
-.hero h1 {
-  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-  font-weight: 900; color: var(--dark);
-  letter-spacing: 0; margin-bottom: 24px;
-  line-height: 1.18;
-  overflow: visible;
-  padding-bottom: 4px;
-}
-.hero h1 em { color: var(--fire); font-style: normal; }
-.hero-desc {
-  font-size: 1.05rem; color: var(--muted);
-  max-width: 480px; margin-bottom: 38px;
-  line-height: 1.75;
-}
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-.btn-primary {
-  background: var(--fire); color: #fff;
-  border: none; padding: 16px 36px; border-radius: 50px;
-  font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 1rem;
-  cursor: pointer; text-decoration: none; display: inline-block;
-  box-shadow: 0 8px 30px rgba(232,76,30,0.35);
-  transition: all 0.25s;
-  letter-spacing: 0.01em;
-}
-.btn-primary:hover { background: #c93e0f; transform: translateY(-2px); box-shadow: 0 14px 40px rgba(232,76,30,0.45); }
-.btn-secondary {
-  background: transparent; color: var(--dark);
-  border: 2px solid var(--border);
-  padding: 14px 30px; border-radius: 50px;
-  font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 0.95rem;
-  cursor: pointer; text-decoration: none; display: inline-block;
-  transition: all 0.2s;
-}
-.btn-secondary:hover { border-color: var(--fire); color: var(--fire); }
-.hero-trust {
-  display: flex; gap: 22px; margin-top: 32px; flex-wrap: wrap;
-}
-.trust-item {
-  display: flex; align-items: center; gap: 7px;
-  font-size: 0.82rem; color: var(--muted); font-weight: 500;
-}
-.trust-icon { font-size: 1rem; }
-
-.hero-visual {
-  display: flex; flex-direction: column; align-items: center;
-  position: relative; z-index: 2;
-}
-.product-glow {
-  position: relative;
-  display: flex; align-items: center; justify-content: center;
-}
-.product-glow::before {
-  content: '';
-  position: absolute;
-  width: 380px; height: 380px;
-  background: radial-gradient(circle, rgba(232,76,30,0.18) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-@keyframes pulse-glow {
-  0%,100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.08); opacity: 0.7; }
-}
-.product-img {
-  width: 340px; max-width: min(90vw, 340px);
-  height: auto;
-  display: block;
-  position: relative; z-index: 2;
-  filter: drop-shadow(0 30px 50px rgba(232,76,30,0.25));
-  animation: float 4s ease-in-out infinite;
-}
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
-}
-.product-badges {
-  display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; justify-content: center;
-}
-.badge {
-  background: #fff; border: 1px solid var(--border);
-  padding: 8px 16px; border-radius: 50px;
-  font-size: 0.78rem; font-weight: 600; color: var(--mid);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-}
-
-/* ─── SECTION COMMON ─── */
-section { padding: 90px 5vw; }
-.section-tag {
-  display: inline-block; font-size: 0.75rem; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--fire); margin-bottom: 14px;
-}
-.section-title {
-  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-  font-weight: 800; color: var(--dark);
-  letter-spacing: 0; max-width: 620px;
-  margin-bottom: 20px;
-  line-height: 1.22;
-  overflow: visible;
-  word-break: normal;
-  padding-bottom: 2px;
-}
-.section-sub {
-  font-size: 1rem; color: var(--muted);
-  max-width: 560px; line-height: 1.75; margin-bottom: 50px;
-}
-.center { text-align: center; }
-.center .section-title, .center .section-sub { margin-left: auto; margin-right: auto; }
-
-/* ─── PROBLEMS ─── */
-.problems-bg {
-  background: var(--dark);
-  color: var(--white);
-}
-.problems-bg .section-title { color: var(--white); }
-.problems-bg .section-sub { color: rgba(255,255,255,0.6); }
-.problems-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 22px; margin-top: 10px;
-}
-.problem-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.09);
-  border-radius: var(--radius);
-  padding: 28px 24px;
-  transition: background 0.2s;
-}
-.problem-card:hover { background: rgba(232,76,30,0.12); }
-.problem-icon { font-size: 2rem; margin-bottom: 14px; }
-.problem-card h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
-.problem-card p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.65; }
-
-/* ─── HOW IT WORKS ─── */
-.steps-wrapper {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 30px; margin-top: 20px;
-}
-.step-card {
-  background: #fff;
-  border-radius: var(--radius-lg);
-  padding: 36px 28px;
-  border: 1px solid var(--border);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
-  position: relative;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.step-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(232,76,30,0.1); }
-.step-number {
-  font-family: 'Barlow', sans-serif;
-  font-size: 3.5rem; font-weight: 800;
-  color: rgba(232,76,30,0.08);
-  position: absolute; top: 16px; right: 20px;
-  line-height: 1;
-}
-.step-icon { font-size: 2.2rem; margin-bottom: 16px; }
-.step-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--dark); }
-.step-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
-
-/* ─── RESULTS ─── */
-.results-bg { background: linear-gradient(135deg, #FFF5EE 0%, #FDF8F2 100%); }
-.results-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 22px; margin-bottom: 50px;
-}
-.result-stat {
-  text-align: center;
-  background: #fff; border-radius: var(--radius);
-  padding: 32px 20px;
-  border: 1px solid var(--border);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-}
-.stat-num {
-  font-family: 'Barlow', sans-serif;
-  font-size: 2.8rem; font-weight: 800; color: var(--fire);
-  line-height: 1;
-}
-.stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
-
-/* ─── ADVANTAGES ─── */
-.advantages-layout {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 60px; align-items: center;
-}
-.advantages-list { display: flex; flex-direction: column; gap: 20px; }
-.adv-item {
-  display: flex; gap: 18px; align-items: flex-start;
-  background: #fff; border-radius: var(--radius);
-  padding: 22px 24px; border: 1px solid var(--border);
-  transition: box-shadow 0.2s;
-}
-.adv-item:hover { box-shadow: var(--shadow-warm); }
-.adv-icon {
-  width: 48px; height: 48px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--fire-light), var(--fire));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem; flex-shrink: 0;
-}
-.adv-text h3 { font-size: 1rem; font-weight: 700; margin-bottom: 5px; color: var(--dark); }
-.adv-text p { font-size: 0.87rem; color: var(--muted); line-height: 1.6; }
-.advantages-visual {
-  background: linear-gradient(145deg, #fff5ee, #fff);
-  border-radius: var(--radius-lg);
-  padding: 40px;
-  border: 1px solid var(--border);
-  text-align: center;
-}
-.advantages-visual img { width: 260px; max-width: 100%; height: auto; display: block; margin: 0 auto; }
-.cert-strip {
-  display: flex; gap: 14px; justify-content: center;
-  flex-wrap: wrap; margin-top: 24px;
-}
-.cert-badge {
-  background: var(--cream); border: 1px solid var(--border);
-  border-radius: 8px; padding: 10px 14px;
-  font-size: 0.75rem; font-weight: 600; color: var(--mid);
-  text-align: center;
-}
-.cert-badge span { display: block; font-size: 1.1rem; margin-bottom: 3px; }
-
-/* ─── INGREDIENTS ─── */
-.ingredients-bg { background: var(--dark); }
-.ingredients-bg .section-title { color: #fff; }
-.ingredients-bg .section-sub { color: rgba(255,255,255,0.55); }
-.ing-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-.ing-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.09);
-  border-radius: var(--radius-lg);
-  padding: 34px 28px;
-  transition: background 0.25s;
-}
-.ing-card:hover { background: rgba(232,76,30,0.1); border-color: rgba(232,76,30,0.3); }
-.ing-icon { font-size: 2.4rem; margin-bottom: 16px; }
-.ing-card h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
-.ing-card p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
-.ing-tag {
-  display: inline-block; margin-top: 14px;
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--fire);
-  background: rgba(232,76,30,0.12); border-radius: 20px; padding: 4px 12px;
-}
-
-/* ─── TESTIMONIALS ─── */
-.testimonials-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-.testimonial-card {
-  background: #fff; border-radius: var(--radius-lg);
-  padding: 30px 28px; border: 1px solid var(--border);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-}
-.stars { color: #F5A623; font-size: 1rem; margin-bottom: 14px; }
-.testimonial-text { font-size: 0.92rem; color: var(--mid); line-height: 1.75; font-style: italic; margin-bottom: 20px; }
-.reviewer { display: flex; align-items: center; gap: 12px; }
-.reviewer-avatar {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: linear-height(135deg, var(--fire-light), var(--fire));
-  background: linear-gradient(135deg, #FF6B3D, #E84C1E);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Barlow', sans-serif; font-weight: 700; color: #fff; font-size: 1rem;
-}
-.reviewer-name { font-weight: 600; font-size: 0.9rem; color: var(--dark); }
-.reviewer-loc { font-size: 0.78rem; color: var(--muted); }
-.verified-tag { font-size: 0.72rem; color: var(--fire); font-weight: 600; margin-left: auto; }
-
-/* ─── HOW TO USE ─── */
-.usage-bg { background: linear-gradient(135deg, #FFF5EE, #FDF8F2); }
-.usage-steps {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px; counter-reset: usage-counter;
-}
-.usage-step {
-  background: #fff; border-radius: var(--radius);
-  padding: 30px 24px; border: 1px solid var(--border);
-  position: relative; overflow: hidden;
-  counter-increment: usage-counter;
-}
-.usage-step::before {
-  content: counter(usage-counter);
-  position: absolute; top: 16px; right: 20px;
-  font-family: 'Barlow', sans-serif; font-size: 4rem; font-weight: 800;
-  color: rgba(232,76,30,0.06); line-height: 1;
-}
-.usage-step h3 { font-size: 1rem; font-weight: 700; color: var(--fire); margin-bottom: 8px; }
-.usage-step p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
-
-/* ─── FAQ ─── */
-.faq-list { max-width: 760px; margin: 0 auto; }
-.faq-item {
-  border-bottom: 1px solid var(--border);
-  padding: 24px 0;
-}
-.faq-q {
-  font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 700;
-  color: var(--dark); cursor: pointer;
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-}
-.faq-q::after {
-  content: '+'; font-size: 1.5rem; color: var(--fire);
-  flex-shrink: 0; transition: transform 0.2s;
-}
-.faq-item.open .faq-q::after { transform: rotate(45deg); }
-.faq-a {
-  font-size: 0.92rem; color: var(--muted); line-height: 1.75;
-  max-height: 0; overflow: hidden; transition: max-height 0.35s, padding 0.3s;
-}
-.faq-item.open .faq-a { max-height: 400px; padding-top: 14px; }
-
-/* ─── GUARANTEE ─── */
-.guarantee-bg { background: var(--dark); }
-.guarantee-inner {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
-}
-.guarantee-icon {
-  width: 90px; height: 90px; border-radius: 50%;
-  background: rgba(232,76,30,0.15); border: 2px solid rgba(232,76,30,0.35);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2.6rem; margin-bottom: 24px;
-}
-.guarantee-bg .section-title { color: #fff; }
-.guarantee-bg p { color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 14px; font-size: 0.95rem; }
-.guarantee-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
-.g-pill {
-  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 50px; padding: 8px 18px;
-  font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.75);
-}
-.guarantee-payment { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 36px; }
-.guarantee-payment h3 { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 1.1rem; color: #fff; margin-bottom: 20px; }
-.payment-icons {
-  display: flex; flex-wrap: wrap; gap: 12px;
-}
-.pay-icon {
-  background: rgba(255,255,255,0.1); border-radius: 8px;
-  padding: 10px 16px; font-size: 0.82rem; font-weight: 600;
-  color: rgba(255,255,255,0.75);
-}
-.delivery-info { margin-top: 24px; }
-.delivery-info h4 { color: #fff; font-size: 0.92rem; margin-bottom: 12px; }
-.del-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.85rem; color: rgba(255,255,255,0.6); }
-.del-item::before { content: '✓'; color: var(--fire); font-weight: 700; }
-
-/* ─── PRICING ─── */
-.pricing-bg { background: var(--cream); }
-.pricing-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px; align-items: stretch;
-}
-.price-card {
-  background: #fff; border-radius: var(--radius-lg);
-  padding: 34px 28px; border: 2px solid var(--border);
-  display: flex; flex-direction: column;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.price-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(232,76,30,0.12); }
-.price-card.featured {
-  border-color: var(--fire);
-  background: linear-gradient(155deg, #fff8f5, #fff);
-  position: relative; overflow: hidden;
-}
-.price-card.featured::before {
-  content: '🔥 BEST VALUE';
-  position: absolute; top: 18px; right: -28px;
-  background: var(--fire); color: #fff;
-  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
-  padding: 5px 40px; transform: rotate(35deg);
-}
-.price-tag-label {
-  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--fire); margin-bottom: 12px;
-}
-.price-title { font-family: 'Barlow', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--dark); margin-bottom: 6px; }
-.price-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
-.price-amount {
-  font-family: 'Barlow', sans-serif;
-  font-size: 2.6rem; font-weight: 800; color: var(--dark);
-  line-height: 1; margin-bottom: 4px;
-}
-.price-amount small { font-size: 1.1rem; vertical-align: super; }
-.price-per { font-size: 0.82rem; color: var(--muted); margin-bottom: 24px; }
-.price-features { list-style: none; margin-bottom: 30px; flex: 1; }
-.price-features li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.87rem; color: var(--mid); margin-bottom: 11px; }
-.price-features li::before { content: '✓'; color: var(--fire); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-.btn-buy {
-  display: block; text-align: center; text-decoration: none;
-  background: var(--fire); color: #fff;
-  padding: 15px; border-radius: 50px;
-  font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.95rem;
-  box-shadow: 0 6px 22px rgba(232,76,30,0.3);
-  transition: all 0.2s;
-}
-.btn-buy:hover { background: #c93e0f; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(232,76,30,0.45); }
-.btn-buy.outline {
-  background: transparent; color: var(--fire);
-  border: 2px solid var(--fire); box-shadow: none;
-}
-.btn-buy.outline:hover { background: var(--fire); color: #fff; }
-.stock-warning {
-  text-align: center; margin-top: 32px;
-  background: rgba(232,76,30,0.07); border: 1px solid rgba(232,76,30,0.18);
-  border-radius: var(--radius); padding: 14px 20px;
-  font-size: 0.87rem; color: var(--fire); font-weight: 600;
-}
-
-/* ─── CTA SECTION ─── */
-.cta-section {
-  background: var(--fire);
-  padding: 80px 5vw;
-  text-align: center;
-}
-.cta-section h2 {
-  font-family: 'Barlow', sans-serif;
-  font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800;
-  color: #fff; margin-bottom: 16px; letter-spacing: 0;
-  line-height: 1.28; overflow: visible;
-}
-.cta-section p { color: rgba(255,255,255,0.8); font-size: 1.05rem; max-width: 500px; margin: 0 auto 34px; line-height: 1.7; }
-.btn-white {
-  background: #fff; color: var(--fire);
-  border: none; padding: 18px 44px; border-radius: 50px;
-  font-family: 'Barlow', sans-serif; font-weight: 800; font-size: 1.05rem;
-  cursor: pointer; text-decoration: none; display: inline-block;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-  transition: all 0.2s;
-}
-.btn-white:hover { transform: translateY(-2px); box-shadow: 0 16px 50px rgba(0,0,0,0.3); }
-.cta-sub { margin-top: 18px; font-size: 0.82rem; color: rgba(255,255,255,0.65); }
-
-/* ─── FOOTER ─── */
-footer {
-  background: var(--dark);
-  padding: 50px 5vw 30px;
-  color: rgba(255,255,255,0.5);
-  font-size: 0.82rem; line-height: 1.7;
-}
-.footer-top {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  gap: 30px; flex-wrap: wrap; margin-bottom: 36px;
-  padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.footer-logo {
-  font-family: 'Barlow', sans-serif; font-weight: 800; font-size: 1.2rem; color: #fff;
-}
-.footer-logo span { color: var(--fire); }
-.footer-info { max-width: 420px; color: rgba(255,255,255,0.4); }
-.footer-disclaimer {
-  font-size: 0.78rem; color: rgba(255,255,255,0.3);
-  line-height: 1.7;
-}
-.footer-bottom {
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 12px;
-  font-size: 0.78rem;
-}
-.footer-links { display: flex; gap: 20px; }
-.footer-links a { color: rgba(255,255,255,0.35); text-decoration: none; }
-.footer-links a:hover { color: var(--fire); }
-
-/* ─── STICKY BAR ─── */
-.sticky-bar {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
-  background: rgba(26,18,8,0.96); backdrop-filter: blur(10px);
-  padding: 12px 5vw;
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  transform: translateY(100%); transition: transform 0.3s;
-}
-.sticky-bar.visible { transform: translateY(0); }
-.sticky-text { color: rgba(255,255,255,0.8); font-size: 0.88rem; }
-.sticky-text strong { color: #fff; font-weight: 700; }
-.sticky-btn {
-  background: var(--fire); color: #fff;
-  border: none; padding: 12px 28px; border-radius: 50px;
-  font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.88rem;
-  cursor: pointer; text-decoration: none; display: inline-block;
-  white-space: nowrap; flex-shrink: 0;
-  transition: background 0.2s;
-}
-.sticky-btn:hover { background: #c93e0f; }
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; padding: 100px 5vw 60px; text-align: center; }
-  .hero-text { order: 2; }
-  .hero-visual { order: 1; margin-bottom: 10px; }
-  .hero-actions { justify-content: center; }
-  .hero-trust { justify-content: center; }
-  .hero-desc { margin: 0 auto 38px; }
-  .advantages-layout { grid-template-columns: 1fr; }
-  .advantages-visual { order: -1; }
-  .guarantee-inner { grid-template-columns: 1fr; }
-}
-@media (max-width: 600px) {
-  .site-header { padding: 0 4vw; }
-  .logo .official-badge { display: none; }
-  section { padding: 70px 4vw; }
-  .product-img { width: 240px; }
-  .sticky-text { display: none; }
-}
+  html { -webkit-font-smoothing: antialiased; }
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  .font-display { font-family: 'Sora', system-ui, sans-serif; }
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  /* FAQ marker */
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .faq-plus { transform: rotate(45deg); }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
 </head>
-<body>
 
-<!-- STICKY NAV -->
-<header class="site-header">
-  <div class="logo">
-    Arthryon<span>.</span>
-    <span class="official-badge">Official AU</span>
-  </div>
-  <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="header-cta" rel="nofollow">Order Now →</a>
-</header>
+<body class="bg-cream text-ink antialiased">
 
-<!-- STICKY BOTTOM BAR -->
-<div class="sticky-bar" id="stickyBar">
-  <div class="sticky-text"><strong>Arthryon Heat Relief Cream</strong> – Fast relief for joints & muscles</div>
-  <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="sticky-btn" rel="nofollow">Buy Now – From $49 AUD</a>
+<!-- Scroll progress -->
+<div id="progress" class="fixed top-0 left-0 z-[60] h-1 w-0 bg-brand"></div>
+
+<!-- Announcement bar -->
+<div class="bg-ink text-cream text-center text-xs sm:text-sm font-medium py-2 px-4">
+  <span class="inline-flex items-center gap-2">
+    <span class="inline-block h-1.5 w-1.5 rounded-full bg-brand animate-[pulseGlow_1.6s_ease-in-out_infinite]"></span>
+    Free express shipping Australia-wide today · 30-day money-back guarantee
+  </span>
 </div>
 
-<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-eyebrow">Official Australian Website</div>
-    <h1>Arthryon Heat Relief Cream &nbsp;</h1>
-    <p class="hero-desc">
-      Australia's go-to warming cream for joint stiffness, muscle fatigue, and everyday aches. Formulated with natural ingredients — arnica oil, hyaluronic acid, and tea tree essential oil — to deliver fast, deep relief right where you need it.
-    </p>
-    <div class="hero-actions">
-      <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="btn-primary" rel="nofollow">🔥 Order Now</a>
-      <a href="#pricing" class="btn-secondary">View Packages</a>
-    </div>
-    <div class="hero-trust">
-      <div class="trust-item"><span class="trust-icon">🚚</span> Free AU Shipping</div>
-      <div class="trust-item"><span class="trust-icon">🔬</span> Natural Ingredients</div>
-      <div class="trust-item"><span class="trust-icon">✅</span> Satisfaction Guaranteed</div>
-      <div class="trust-item"><span class="trust-icon">🏥</span> No Prescription Needed</div>
-    </div>
+<!-- Header -->
+<header id="header" class="sticky top-0 z-50 border-b border-black/5 bg-cream/85 backdrop-blur-md transition-shadow">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+    <a href="#top" class="flex items-center gap-1 font-display text-xl font-extrabold tracking-tight">
+      Arthryon<span class="text-brand">.</span>
+    </a>
+    <nav class="hidden items-center gap-7 text-sm font-medium text-ink/70 md:flex">
+      <a href="#benefits" class="hover:text-ink">Benefits</a>
+      <a href="#ingredients" class="hover:text-ink">Ingredients</a>
+      <a href="#reviews" class="hover:text-ink">Reviews</a>
+      <a href="#faq" class="hover:text-ink">FAQ</a>
+    </nav>
+    <a href="#pricing" class="group inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition hover:bg-brand-600">
+      Order Now
+      <span class="transition group-hover:translate-x-0.5">&rarr;</span>
+    </a>
   </div>
-  <div class="hero-visual">
-    <div class="product-glow">
-      <picture>
-        <source media="(max-width: 600px)" srcset="https://rigorrevview.site/img/Arthryon.webp" type="image/webp">
-        <source srcset="https://rigorrevview.site/img/Arthryon.webp" type="image/webp">
-        <img src="https://rigorrevview.site/img/Arthryon.webp" alt="Arthryon Heat Relief Cream – Official Product" class="product-img" loading="eager" decoding="async">
-      </picture>
-    </div>
-    <div class="product-badges">
-      <span class="badge">🌿 Arnica Oil</span>
-      <span class="badge">💧 Hyaluronic Acid</span>
-      <span class="badge">🌲 Tea Tree Oil</span>
-    </div>
-  </div>
-</section>
+</header>
 
-<!-- ═══════════════════════════ PROBLEMS ═══════════════════════════ -->
-<section class="problems-bg" id="problems">
-  <div class="center" style="margin-bottom:50px">
-    <div class="section-tag">Who It's Designed For</div>
-    <h2 class="section-title">Does Any of This Sound Familiar?</h2>
-    <p class="section-sub">
-      Millions of Australians — from active athletes in Brisbane to retirees in Melbourne — deal with these conditions every single day.
-    </p>
-  </div>
-  <div class="problems-grid">
-    <div class="problem-card">
-      <div class="problem-icon">🦵</div>
-      <h3>Joint Stiffness</h3>
-      <p>Morning stiffness, clicking joints, or that locked-up feeling that makes getting out of bed a challenge.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-icon">💪</div>
-      <h3>Muscle Soreness</h3>
-      <p>Post-workout aches or general muscle fatigue from physical work, sport, or long days on your feet.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-icon">🦴</div>
-      <h3>Arthritis Discomfort</h3>
-      <p>Chronic pain in hands, knees, or hips that flares up with weather changes or prolonged activity.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-icon">🔙</div>
-      <h3>Back & Neck Tension</h3>
-      <p>Tightness from sitting at a desk, physical labour, or long drives across Queensland and NSW.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-icon">🏃</div>
-      <h3>Sports Strain</h3>
-      <p>Overexertion from footy, tennis, cycling, or weekend runs that leaves muscles screaming for recovery.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-icon">🧓</div>
-      <h3>Age-Related Stiffness</h3>
-      <p>Natural wear on joints and reduced flexibility that comes with an active Australian lifestyle over decades.</p>
-    </div>
-  </div>
-</section>
+<main id="top">
 
-<!-- ═══════════════════════════ HOW IT WORKS ═══════════════════════════ -->
-<section id="how-it-works">
-  <div class="center" style="margin-bottom:50px">
-    <div class="section-tag">Mechanism of Action</div>
-    <h2 class="section-title">How Arthryon Heat Relief Cream Works</h2>
-    <p class="section-sub">A scientifically inspired dual-action approach that targets discomfort on multiple levels — surface and deep tissue alike.</p>
-  </div>
-  <div class="steps-wrapper">
-    <div class="step-card">
-      <div class="step-number">1</div>
-      <div class="step-icon">🔥</div>
-      <h3>Warming Heat Activation</h3>
-      <p>Immediately upon application, the cream creates a gentle, targeted warming sensation that stimulates local blood circulation, relaxes tight muscles, and eases surface stiffness within minutes.</p>
-    </div>
-    <div class="step-card">
-      <div class="step-number">2</div>
-      <div class="step-icon">🔬</div>
-      <h3>Deep-Penetrating Relief</h3>
-      <p>Active natural compounds absorb through the skin to reach deeper tissue layers — calming inflammation, soothing irritated joints, and supporting the body's natural repair processes.</p>
-    </div>
-    <div class="step-card">
-      <div class="step-number">3</div>
-      <div class="step-icon">💧</div>
-      <h3>Hydration & Lubrication</h3>
-      <p>The formula simultaneously supports tissue hydration and joint lubrication, contributing to improved flexibility, smoother movement, and sustained comfort throughout the day.</p>
-    </div>
-    <div class="step-card">
-      <div class="step-number">4</div>
-      <div class="step-icon">🔄</div>
-      <h3>Long-Term Recovery Support</h3>
-      <p>With consistent daily use, Arthryon helps break the cycle of recurring pain and stiffness — building resilience so joints and muscles function better over time.</p>
-    </div>
-  </div>
-</section>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="pointer-events-none absolute -top-24 right-0 h-[520px] w-[520px] rounded-full bg-brand/15 blur-3xl"></div>
+    <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 md:py-20">
+      <div class="reveal">
+        <p class="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-brand">
+          <span class="h-px w-8 bg-brand"></span> Official Australian Website
+        </p>
+        <h1 class="font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl text-balance">
+          Melt away stiff joints &amp; sore muscles in minutes
+        </h1>
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink/70">
+          Arthryon is Australia's go-to warming cream for joint stiffness, muscle fatigue and everyday aches — powered by natural
+          <strong class="text-ink">arnica oil, hyaluronic acid &amp; tea tree essential oil</strong> for fast, deep relief right where you need it. Arthryon Heat Relief Cream
+        </p>
 
-<!-- ═══════════════════════════ RESULTS ═══════════════════════════ -->
-<section class="results-bg" id="results">
-  <div class="center" style="margin-bottom:50px">
-    <div class="section-tag">Expected Results</div>
-    <h2 class="section-title">What You Can Expect</h2>
-    <p class="section-sub">From the first application through to long-term use, Arthryon delivers measurable improvements in comfort, mobility, and quality of life.</p>
-  </div>
-  <div class="results-grid">
-    <div class="result-stat">
-      <div class="stat-num">3 min</div>
-      <div class="stat-label">Average time to feel warming relief after application</div>
-    </div>
-    <div class="result-stat">
-      <div class="stat-num">2–3×</div>
-      <div class="stat-label">Recommended daily applications for best results</div>
-    </div>
-    <div class="result-stat">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Topical — no systemic side effects like oral medications</div>
-    </div>
-    <div class="result-stat">
-      <div class="stat-num">3</div>
-      <div class="stat-label">Key active natural ingredients working in synergy</div>
-    </div>
-  </div>
+        <!-- Rating -->
+        <div class="mt-6 flex flex-wrap items-center gap-4">
+          <div class="flex items-center gap-1 text-brand">
+            <span class="text-lg">★★★★★</span>
+          </div>
+          <p class="text-sm font-medium text-ink/70"><strong class="text-ink">4.8/5</strong> from 2,400+ verified Aussie customers</p>
+        </div>
 
-  <div style="max-width:700px;margin:0 auto;text-align:center">
-    <p style="color:var(--muted);font-size:0.95rem;line-height:1.8">
-      Users consistently report improved mobility and reduced stiffness after regular use. Activities that once caused discomfort — walking, climbing stairs, exercising — become easier and more enjoyable. Long-term use may support joint resilience and fewer flare-ups, helping you stay active across Sydney, Perth, Adelaide, and beyond.
-    </p>
-    <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="btn-primary" style="margin-top:30px;display:inline-block" rel="nofollow">Start Your Relief Journey →</a>
-  </div>
-</section>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="#pricing" class="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-600">
+            🔥 Order Now — From $49 per bottle
+          </a>
+          <a href="#how" class="inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 bg-white px-8 py-4 text-base font-semibold text-ink transition hover:border-ink/30">
+            How it works
+          </a>
+        </div>
 
-<!-- ═══════════════════════════ ADVANTAGES ═══════════════════════════ -->
-<section id="advantages">
-  <div class="advantages-layout">
-    <div>
-      <div class="section-tag">Why Arthryon</div>
-      <h2 class="section-title">Key Advantages Over Alternatives</h2>
-      <p class="section-sub">Arthryon combines speed, effectiveness, and natural formulation — a combination most competing products simply don't offer.</p>
-      <div class="advantages-list">
-        <div class="adv-item">
-          <div class="adv-icon">⚡</div>
-          <div class="adv-text">
-            <h3>Fast-Acting Warmth</h3>
-            <p>Feel the soothing heat within minutes — no waiting hours for relief to kick in like with oral options.</p>
+        <!-- Trust chips -->
+        <ul class="mt-8 grid grid-cols-2 gap-y-3 text-sm text-ink/70 sm:flex sm:flex-wrap sm:gap-x-6">
+          <li class="flex items-center gap-2"><span class="text-leaf">✓</span> Free AU shipping</li>
+          <li class="flex items-center gap-2"><span class="text-leaf">✓</span> 100% natural formula</li>
+          <li class="flex items-center gap-2"><span class="text-leaf">✓</span> 30-day guarantee</li>
+          <li class="flex items-center gap-2"><span class="text-leaf">✓</span> No prescription needed</li>
+        </ul>
+      </div>
+
+      <div class="reveal relative">
+        <div class="relative mx-auto max-w-md rounded-[2rem] bg-gradient-to-b from-white to-cream-2 p-6 shadow-soft">
+          <img src="https://arthryon-heatreliefcream.com/img/Arthryon.webp" alt="Arthryon Heat Relief Cream jar" class="mx-auto w-full max-w-sm drop-shadow-xl" width="640" height="640" loading="eager" />
+        </div>
+        <div class="mt-4 flex flex-wrap justify-center gap-2">
+          <span class="rounded-full bg-white px-4 py-2 text-sm font-medium shadow-card">🌿 Arnica Oil</span>
+          <span class="rounded-full bg-white px-4 py-2 text-sm font-medium shadow-card">💧 Hyaluronic Acid</span>
+          <span class="rounded-full bg-white px-4 py-2 text-sm font-medium shadow-card">🌲 Tea Tree Oil</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logos / trust strip -->
+  <section class="border-y border-black/5 bg-white/50">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-4 px-4 py-6 text-center text-sm font-semibold uppercase tracking-wider text-ink/45 sm:px-6">
+      <span>As trusted by Aussies in</span>
+      <span class="text-ink/70">Sydney</span>
+      <span class="text-ink/70">Melbourne</span>
+      <span class="text-ink/70">Brisbane</span>
+      <span class="text-ink/70">Perth</span>
+      <span class="text-ink/70">Adelaide</span>
+    </div>
+  </section>
+
+  <!-- Problem (dark) -->
+  <section class="bg-ink text-cream">
+    <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-brand">Who it's designed for</p>
+        <h2 class="font-display text-3xl font-extrabold sm:text-4xl text-balance">Does any of this sound familiar?</h2>
+        <p class="mt-4 text-cream/60">Millions of Australians — from active athletes in Brisbane to retirees in Melbourne — deal with these every single day.</p>
+      </div>
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="reveal rounded-2xl bg-ink-2 p-6 ring-1 ring-white/5">
+          <div class="text-2xl">🌅</div>
+          <h3 class="mt-3 font-display font-semibold">Morning stiffness</h3>
+          <p class="mt-2 text-sm text-cream/60">Waking up to aching knees, hips and hands that take an hour to loosen.</p>
+        </div>
+        <div class="reveal rounded-2xl bg-ink-2 p-6 ring-1 ring-white/5">
+          <div class="text-2xl">🏃</div>
+          <h3 class="mt-3 font-display font-semibold">Post-activity soreness</h3>
+          <p class="mt-2 text-sm text-cream/60">Sore muscles and tight joints after exercise, gardening or a long day.</p>
+        </div>
+        <div class="reveal rounded-2xl bg-ink-2 p-6 ring-1 ring-white/5">
+          <div class="text-2xl">💊</div>
+          <h3 class="mt-3 font-display font-semibold">Pill fatigue</h3>
+          <p class="mt-2 text-sm text-cream/60">Tired of reaching for tablets that upset your stomach for everyday aches.</p>
+        </div>
+        <div class="reveal rounded-2xl bg-ink-2 p-6 ring-1 ring-white/5">
+          <div class="text-2xl">🚫</div>
+          <h3 class="mt-3 font-display font-semibold">Missing out</h3>
+          <p class="mt-2 text-sm text-cream/60">Skipping walks, sport and time with grandkids because of nagging discomfort.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="bg-cream">
+    <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="reveal rounded-2xl bg-white p-8 text-center shadow-card">
+          <div class="font-display text-4xl font-extrabold text-brand">3 min</div>
+          <p class="mt-2 text-sm text-ink/60">Average time to feel warming relief after applying</p>
+        </div>
+        <div class="reveal rounded-2xl bg-white p-8 text-center shadow-card">
+          <div class="font-display text-4xl font-extrabold text-brand">12 hrs</div>
+          <p class="mt-2 text-sm text-ink/60">Up to 12 hours of lasting comfort per application</p>
+        </div>
+        <div class="reveal rounded-2xl bg-white p-8 text-center shadow-card">
+          <div class="font-display text-4xl font-extrabold text-brand">100%</div>
+          <p class="mt-2 text-sm text-ink/60">Topical — no systemic side effects like oral meds</p>
+        </div>
+        <div class="reveal rounded-2xl bg-white p-8 text-center shadow-card">
+          <div class="font-display text-4xl font-extrabold text-brand">2,400+</div>
+          <p class="mt-2 text-sm text-ink/60">Verified 5-star reviews from Aussie customers</p>
+        </div>
+      </div>
+      <div class="reveal mx-auto mt-10 max-w-3xl text-center text-ink/60">
+        Users consistently report improved mobility and reduced stiffness after regular use. Activities that once caused discomfort — walking, climbing stairs, exercising — become easier and more enjoyable across Sydney, Perth, Adelaide and beyond.
+      </div>
+      <div class="reveal mt-8 text-center">
+        <a href="#pricing" class="inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-600">Start your relief journey &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits / Why -->
+  <section id="benefits" class="bg-white">
+    <div class="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center">
+      <div class="reveal">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-brand">Why Arthryon</p>
+        <h2 class="font-display text-3xl font-extrabold sm:text-4xl text-balance">Key advantages over the alternatives</h2>
+        <p class="mt-4 text-ink/60">A smarter way to handle everyday aches — without the downsides of pills, patches or messy gels.</p>
+        <div class="mt-8 space-y-4">
+          <div class="flex gap-4 rounded-2xl border border-black/5 bg-cream p-5">
+            <div class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand text-white">⚡</div>
+            <div>
+              <h3 class="font-display font-semibold">Fast, targeted relief</h3>
+              <p class="mt-1 text-sm text-ink/60">Warming action goes to work in minutes, right where it hurts.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 rounded-2xl border border-black/5 bg-cream p-5">
+            <div class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand text-white">🌿</div>
+            <div>
+              <h3 class="font-display font-semibold">Natural ingredients</h3>
+              <p class="mt-1 text-sm text-ink/60">Arnica, hyaluronic acid and tea tree oil — no harsh chemicals.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 rounded-2xl border border-black/5 bg-cream p-5">
+            <div class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand text-white">✨</div>
+            <div>
+              <h3 class="font-display font-semibold">Non-greasy, fast absorption</h3>
+              <p class="mt-1 text-sm text-ink/60">No residue, no staining. Apply and get on with your day.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 rounded-2xl border border-black/5 bg-cream p-5">
+            <div class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand text-white">🔁</div>
+            <div>
+              <h3 class="font-display font-semibold">Versatile use</h3>
+              <p class="mt-1 text-sm text-ink/60">Joints, muscles, back tension and post-exercise recovery in one.</p>
+            </div>
           </div>
         </div>
-        <div class="adv-item">
-          <div class="adv-icon">🌿</div>
-          <div class="adv-text">
-            <h3>Natural Formulation</h3>
-            <p>No harsh chemicals. Crafted with arnica, hyaluronic acid, and tea tree oil — gentle enough for daily, long-term use.</p>
+      </div>
+      <div class="reveal">
+        <img src="https://arthryon-heatreliefcream.com/img/artho.webp" alt="Active Australian applying Arthryon cream to knee" class="w-full rounded-[2rem] object-cover shadow-soft" width="800" height="800" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="bg-cream">
+    <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-brand">Instructions</p>
+        <h2 class="font-display text-3xl font-extrabold sm:text-4xl text-balance">How to use Arthryon for best results</h2>
+      </div>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <div class="reveal rounded-2xl bg-white p-8 shadow-card">
+          <div class="font-display text-5xl font-extrabold text-brand/25">01</div>
+          <h3 class="mt-3 font-display text-lg font-semibold">Apply</h3>
+          <p class="mt-2 text-sm text-ink/60">Massage a small amount into the affected joint or muscle until absorbed.</p>
+        </div>
+        <div class="reveal rounded-2xl bg-white p-8 shadow-card">
+          <div class="font-display text-5xl font-extrabold text-brand/25">02</div>
+          <h3 class="mt-3 font-display text-lg font-semibold">Feel the warmth</h3>
+          <p class="mt-2 text-sm text-ink/60">A gentle warming sensation begins within minutes, easing stiffness.</p>
+        </div>
+        <div class="reveal rounded-2xl bg-white p-8 shadow-card">
+          <div class="font-display text-5xl font-extrabold text-brand/25">03</div>
+          <h3 class="mt-3 font-display text-lg font-semibold">Repeat 2–3×/day</h3>
+          <p class="mt-2 text-sm text-ink/60">Use 2–3 times daily for lasting comfort and improved mobility.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ingredients (dark) -->
+  <section id="ingredients" class="bg-ink text-cream">
+    <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-brand">Active ingredients</p>
+        <h2 class="font-display text-3xl font-extrabold sm:text-4xl text-balance">What's inside the formula</h2>
+        <p class="mt-4 text-cream/60">Three powerful natural compounds working in synergy for comprehensive joint and muscle support.</p>
+      </div>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <div class="reveal rounded-2xl bg-ink-2 p-8 ring-1 ring-white/5">
+          <div class="text-3xl">🌼</div>
+          <h3 class="mt-4 font-display text-lg font-semibold">Arnica Oil</h3>
+          <p class="mt-2 text-sm text-cream/60">A traditional botanical prized for soothing sore muscles and easing the discomfort of overworked joints.</p>
+        </div>
+        <div class="reveal rounded-2xl bg-ink-2 p-8 ring-1 ring-white/5">
+          <div class="text-3xl">💧</div>
+          <h3 class="mt-4 font-display text-lg font-semibold">Hyaluronic Acid</h3>
+          <p class="mt-2 text-sm text-cream/60">Helps keep skin and tissue hydrated and supple, supporting comfortable movement.</p>
+        </div>
+        <div class="reveal rounded-2xl bg-ink-2 p-8 ring-1 ring-white/5">
+          <div class="text-3xl">🌲</div>
+          <h3 class="mt-4 font-display text-lg font-semibold">Tea Tree Essential Oil</h3>
+          <p class="mt-2 text-sm text-cream/60">A refreshing Australian native oil that complements the warming, soothing action of the cream.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-4xl px-4 py-20 sm:px-6">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-brand">The difference</p>
+        <h2 class="font-display text-3xl font-extrabold sm:text-4xl text-balance">Arthryon vs. the usual options</h2>
+      </div>
+      <div class="reveal mt-10 overflow-hidden rounded-2xl border border-black/5 shadow-card">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="bg-cream text-ink">
+              <th class="p-4 font-display font-semibold">&nbsp;</th>
+              <th class="p-4 text-center font-display font-semibold text-brand">Arthryon</th>
+              <th class="p-4 text-center font-display font-semibold text-ink/60">Painkillers</th>
+              <th class="p-4 text-center font-display font-semibold text-ink/60">Ordinary gels</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-black/5">
+            <tr><td class="p-4 text-ink/70">Natural ingredients</td><td class="p-4 text-center text-leaf">✓</td><td class="p-4 text-center text-ink/30">✕</td><td class="p-4 text-center text-ink/30">✕</td></tr>
+            <tr class="bg-cream/40"><td class="p-4 text-ink/70">Targeted, local relief</td><td class="p-4 text-center text-leaf">✓</td><td class="p-4 text-center text-ink/30">✕</td><td class="p-4 text-center text-leaf">✓</td></tr>
+            <tr><td class="p-4 text-ink/70">No systemic side effects</td><td class="p-4 text-center text-leaf">✓</td><td class="p-4 text-center text-ink/30">✕</td><td class="p-4 text-center text-leaf">✓</td></tr>
+            <tr class="bg-cream/40"><td class="p-4 text-ink/70">Non-greasy, no staining</td><td class="p-4 text-center text-leaf">✓</td><td class="p-4 text-center text-ink/30">—</td><td class="p-4 text-center text-ink/30">✕</td></tr>
+            <tr><td class="p-4 text-ink/70">No prescription needed</td><td class="p-4 text-center text-leaf">✓</td><td class="p-4 text-center text-ink/30">✕</td><td class="p-4 text-center text-leaf">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="bg-cream">
+    <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-brand">Loved across Australia</p>
+        <h2 class="font-display text-3xl font-extrabold sm:text-4xl text-balance">2,400+ Aussies can't be wrong</h2>
+        <div class="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-card">
+          <span class="text-brand">★★★★★</span>
+          <span class="text-sm font-semibold">4.8 / 5 average rating</span>
+        </div>
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- card -->
+        <figure class="reveal rounded-2xl bg-white p-6 shadow-card">
+          <div class="text-brand">★★★★★</div>
+          <blockquote class="mt-3 text-sm leading-relaxed text-ink/80">"As a runner in Adelaide I deal with tight calves and sore knees constantly. Arthryon helps me manage the soreness without popping painkillers — and it smells great too."</blockquote>
+          <figcaption class="mt-5 flex items-center gap-3">
+            <span class="grid h-10 w-10 place-items-center rounded-full bg-brand font-semibold text-white">NK</span>
+            <span><span class="block text-sm font-semibold">Nina K.</span><span class="block text-xs text-ink/50">Adelaide, SA</span></span>
+            <span class="ml-auto text-xs font-medium text-leaf">✓ Verified</span>
+          </figcaption>
+        </figure>
+
+        <figure class="reveal rounded-2xl bg-white p-6 shadow-card">
+          <div class="text-brand">★★★★★</div>
+          <blockquote class="mt-3 text-sm leading-relaxed text-ink/80">"Ordered for my husband in Canberra who has chronic lower back pain. He won't go a day without it now — the warmth is incredible, gentle but deep at the same time."</blockquote>
+          <figcaption class="mt-5 flex items-center gap-3">
+            <span class="grid h-10 w-10 place-items-center rounded-full bg-brand font-semibold text-white">LC</span>
+            <span><span class="block text-sm font-semibold">Linda C.</span><span class="block text-xs text-ink/50">Canberra, ACT</span></span>
+            <span class="ml-auto text-xs font-medium text-leaf">✓ Verified</span>
+          </figcaption>
+        </figure>
+
+        <figure class="reveal rounded-2xl bg-white p-6 shadow-card">
+          <div class="text-brand">★★★★★</div>
+          <blockquote class="mt-3 text-sm leading-relaxed text-ink/80">"My hands would ache every morning. Two weeks of Arthryon and I can open jars again without wincing. Wish I'd found it years ago."</blockquote>
+          <figcaption class="mt-5 flex items-center gap-3">
+            <span class="grid h-10 w-10 place-items-center rounded-full bg-brand font-semibold text-white">MM</span>
+            <span><span class="block text-sm font-semibold">Margaret M.</span><span class="block text-xs text-ink/50">Melbourne, VIC</span></span>
+            <span class="ml-auto text-xs font-medium text-leaf">✓ Verified</span>
+          </figcaption>
+        </figure>
+
+        <figure class="reveal rounded-2xl bg-white p-6 shadow-card">
+          <div class="text-brand">★★★★★</div>
+          <blockquote class="mt-3 text-sm leading-relaxed text-ink/80">"After long shifts on my feet my knees were shot. This is the first thing that's actually made a difference. Absorbs fast, no greasy mess."</blockquote>
+          <figcaption class="mt-5 flex items-center gap-3">
+            <span class="grid h-10 w-10 place-items-center rounded-full bg-brand font-semibold text-white">DH</span>
+            <span><span class="block text-sm font-semibold">David H.</span><span class="block text-xs text-ink/50">Sydney, NSW</span></span>
+            <span class="ml-auto text-xs font-medium text-leaf">✓ Verified</span>
+          </figcaption>
+        </figure>
+
+        <figure class="reveal rounded-2xl bg-white p-6 shadow-card">
+          <div class="text-brand">★★★★★</div>
+          <blockquote class="mt-3 text-sm leading-relaxed text-ink/80">"I train five days a week in Brisbane and recovery matters. Arthryon has become part of my post-session routine — the warmth is so relieving."</blockquote>
+          <figcaption class="mt-5 flex items-center gap-3">
+            <span class="grid h-10 w-10 place-items-center rounded-full bg-brand font-semibold text-white">SR</span>
+            <span><span class="block text-sm font-semibold">Sarah R.</span><span class="block text-xs text-ink/50">Brisbane, QLD</span></span>
+            <span class="ml-auto text-xs font-medium text-leaf">✓ Verified</span>
+          </figcaption>
+        </figure>
+
+        <figure class="reveal rounded-2xl bg-white p-6 shadow-card">
+          <div class="text-brand">★★★★★</div>
+          <blockquote class="mt-3 text-sm leading-relaxed text-ink/80">"Bought the 3-pack and split it with my wife. Best decision — we both use it for different aches. Great value and fast delivery to Perth."</blockquote>
+          <figcaption class="mt-5 flex items-center gap-3">
+            <span class="grid h-10 w-10 place-items-center rounded-full bg-brand font-semibold text-white">JT</span>
+            <span><span class="block text-sm font-semibold">Jason T.</span><span class="block text-xs text-ink/50">Perth, WA</span></span>
+            <span class="ml-auto text-xs font-medium text-leaf">✓ Verified</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="bg-white">
+    <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-brand">Choose your pack</p>
+        <h2 class="font-display text-3xl font-extrabold sm:text-4xl text-balance">Special bundle pricing — today only</h2>
+        <p class="mt-4 text-ink/60">All prices in AUD incl. GST. Free tracked shipping Australia-wide. 30-day money-back guarantee.</p>
+
+        <!-- Countdown -->
+        <div class="mt-6 inline-flex items-center gap-3 rounded-full bg-cream px-5 py-2.5 text-sm font-medium shadow-card">
+          <span class="text-brand">⏳ Offer ends in</span>
+          <span id="countdown" class="font-display font-bold tabular-nums text-ink">--:--:--</span>
+        </div>
+      </div>
+
+      <div class="mt-12 grid items-stretch gap-6 lg:grid-cols-3">
+        <!-- Starter -->
+        <div class="reveal flex flex-col rounded-3xl border border-black/10 bg-cream p-8">
+          <h3 class="font-display text-lg font-bold">Starter Pack</h3>
+          <p class="mt-1 text-sm text-ink/60">Try it out before committing to a larger supply.</p>
+          <div class="mt-6 flex items-end gap-1">
+            <span class="font-display text-2xl font-bold">$</span><span class="font-display text-5xl font-extrabold">86</span>
           </div>
+          <p class="text-xs text-ink/50">per bottle · AUD inc. GST</p>
+          <ul class="mt-6 space-y-3 text-sm text-ink/70">
+            <li class="flex gap-2"><span class="text-leaf">✓</span> 2× Arthryon Heat Relief Cream (30ml)</li>
+            <li class="flex gap-2"><span class="text-leaf">✓</span> Standard Australia-wide delivery</li>
+            <li class="flex gap-2"><span class="text-leaf">✓</span> 30-day satisfaction guarantee</li>
+          </ul>
+          <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="mt-auto pt-8">
+            <span class="block rounded-full border-2 border-brand py-3.5 text-center font-semibold text-brand transition hover:bg-brand hover:text-white">Order Now</span>
+          </a>
         </div>
-        <div class="adv-item">
-          <div class="adv-icon">🎯</div>
-          <div class="adv-text">
-            <h3>Targeted Localised Relief</h3>
-            <p>Unlike tablets that affect the whole body, Arthryon delivers relief exactly where it's needed — nothing more.</p>
+
+        <!-- Best deal -->
+        <div class="reveal relative flex flex-col rounded-3xl border-2 border-brand bg-white p-8 shadow-soft lg:-translate-y-3">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand px-4 py-1 text-xs font-bold uppercase tracking-wide text-white">Most popular · Save 43%</span>
+          <h3 class="font-display text-lg font-bold">Best Value Bundle</h3>
+          <p class="mt-1 text-sm text-ink/60">Cream + bonus capsules for inside &amp; outside support.</p>
+          <div class="mt-6 flex items-end gap-1">
+            <span class="font-display text-2xl font-bold">$</span><span class="font-display text-5xl font-extrabold text-brand">49</span>
+            <span class="mb-1 ml-2 text-sm text-ink/40 line-through">$86</span>
           </div>
+          <p class="text-xs text-ink/50">per bottle · AUD inc. GST</p>
+          <ul class="mt-6 space-y-3 text-sm text-ink/70">
+            <li class="flex gap-2"><span class="text-leaf">✓</span> 3× Arthryon Heat Relief Cream</li>
+            <li class="flex gap-2"><span class="text-leaf">✓</span> 2× Joint Support Capsules (bonus)</li>
+            <li class="flex gap-2"><span class="text-leaf">✓</span> Strongest combined inside &amp; out effect</li>
+            <li class="flex gap-2"><span class="text-leaf">✓</span> Free express shipping included</li>
+            <li class="flex gap-2"><span class="text-leaf">✓</span> Recommended for long-term results</li>
+          </ul>
+          <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="mt-auto pt-8">
+            <span class="block rounded-full bg-brand py-3.5 text-center font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-600">Buy Now — Best Deal</span>
+          </a>
         </div>
-        <div class="adv-item">
-          <div class="adv-icon">🧴</div>
-          <div class="adv-text">
-            <h3>Non-Greasy, Fast Absorption</h3>
-            <p>No residue, no staining. Absorbs quickly so you can apply and get on with your day without any mess.</p>
+
+        <!-- Balanced -->
+        <div class="reveal flex flex-col rounded-3xl border border-black/10 bg-cream p-8">
+          <h3 class="font-display text-lg font-bold">Value Pack</h3>
+          <p class="mt-1 text-sm text-ink/60">Ongoing use with added capsule support.</p>
+          <div class="mt-6 flex items-end gap-1">
+            <span class="font-display text-2xl font-bold">$</span><span class="font-display text-5xl font-extrabold">64</span>
           </div>
-        </div>
-        <div class="adv-item">
-          <div class="adv-icon">🔄</div>
-          <div class="adv-text">
-            <h3>Versatile Use</h3>
-            <p>One product for joints, muscles, back tension, and post-exercise recovery — no need to buy multiple creams.</p>
-          </div>
+          <p class="text-xs text-ink/50">per bottle · AUD inc. GST</p>
+          <ul class="mt-6 space-y-3 text-sm text-ink/70">
+            <li class="flex gap-2"><span class="text-leaf">✓</span> 2× Arthryon Heat Relief Cream</li>
+            <li class="flex gap-2"><span class="text-leaf">✓</span> 1× Joint Support Capsules (bonus)</li>
+            <li class="flex gap-2"><span class="text-leaf">✓</span> Balanced performance &amp; value</li>
+            <li class="flex gap-2"><span class="text-leaf">✓</span> Shipping included</li>
+          </ul>
+          <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="mt-auto pt-8">
+            <span class="block rounded-full border-2 border-brand py-3.5 text-center font-semibold text-brand transition hover:bg-brand hover:text-white">Order Now</span>
+          </a>
         </div>
       </div>
-    </div>
-    <div class="advantages-visual">
-      <picture>
-        <source media="(max-width: 600px)" srcset="https://rigorrevview.site/img/Arthryon.webp" type="image/webp">
-        <source srcset="https://rigorrevview.site/img/Arthryon.webp" type="image/webp">
-        <img src="https://rigorrevview.site/img/Arthryon.webp" alt="Arthryon Heat Relief Cream 30ml" style="width:260px;max-width:100%;height:auto" loading="lazy" decoding="async">
-      </picture>
-      <div class="cert-strip">
-        <div class="cert-badge"><span>🔬</span>Lab Tested</div>
-        <div class="cert-badge"><span>🌿</span>Natural Ingredients</div>
-        <div class="cert-badge"><span>✅</span>Quality Verified</div>
-        <div class="cert-badge"><span>🇦🇺</span>AU Compliant</div>
+
+      <div class="reveal mx-auto mt-8 max-w-3xl rounded-2xl bg-brand/10 p-4 text-center text-sm text-brand-700">
+        ⚠️ Due to high demand across Australia, current stock is limited. We recommend ordering early to avoid delays.
       </div>
-      <p style="margin-top:20px;font-size:0.82rem;color:var(--muted);line-height:1.65">
-        Available without a prescription. Suitable for daily use. Shipped across Australia — Sydney, Melbourne, Brisbane, Perth, Adelaide, Hobart, Darwin, and Canberra.
-      </p>
-    </div>
-  </div>
-</section>
 
-<!-- ═══════════════════════════ INGREDIENTS ═══════════════════════════ -->
-<section class="ingredients-bg" id="ingredients">
-  <div class="center" style="margin-bottom:50px">
-    <div class="section-tag">Active Ingredients</div>
-    <h2 class="section-title" style="color:#fff">What's Inside the Formula</h2>
-    <p class="section-sub">Three powerful natural compounds work in synergy to deliver comprehensive joint and muscle support.</p>
-  </div>
-  <div class="ing-grid">
-    <div class="ing-card">
-      <div class="ing-icon">🌼</div>
-      <h3>Arnica Oil</h3>
-      <p>One of nature's most recognised remedies for joint and muscle discomfort. Arnica Oil is widely known for its ability to reduce swelling, ease bruising, and soothe soreness — helping muscles recover faster after exertion or strain.</p>
-      <span class="ing-tag">Anti-Inflammatory</span>
+      <div class="reveal mt-8 text-center">
+        <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="inline-flex items-center gap-2 rounded-full bg-brand px-10 py-4 font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-600">🔥 Place your order now</a>
+        <p class="mt-4 text-xs text-ink/50">Secure checkout · All major AU payment methods · Tracked delivery</p>
+      </div>
     </div>
-    <div class="ing-card">
-      <div class="ing-icon">💧</div>
-      <h3>Hyaluronic Acid</h3>
-      <p>An essential compound for maintaining joint lubrication and hydration within connective tissues. Hyaluronic Acid supports smoother, more comfortable movement by reducing friction and stiffness in affected joints — a key player in long-term flexibility.</p>
-      <span class="ing-tag">Joint Lubrication</span>
-    </div>
-    <div class="ing-card">
-      <div class="ing-icon">🌲</div>
-      <h3>Tea Tree Essential Oil</h3>
-      <p>Renowned for its natural calming and anti-inflammatory properties, Tea Tree Essential Oil helps reduce skin irritation, supports overall skin health, and enhances the soothing effect of the full formula — making each application a genuinely relaxing experience.</p>
-      <span class="ing-tag">Soothing & Calming</span>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════ TESTIMONIALS ═══════════════════════════ -->
-<section id="reviews">
-  <div class="center" style="margin-bottom:50px">
-    <div class="section-tag">Customer Reviews</div>
-    <h2 class="section-title">What Australians Are Saying</h2>
-    <p class="section-sub">Real feedback from verified Australian customers who use Arthryon Heat Relief Cream every day.</p>
-  </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"I've had knee pain for years and tried dozens of products. Arthryon is the first one that actually gives me real warming relief within minutes. I use it every morning in Sydney before my walk and it's made a massive difference."</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">DH</div>
+  <!-- Guarantee -->
+  <section class="bg-cream">
+    <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+      <div class="reveal flex flex-col items-center gap-6 rounded-3xl bg-white p-8 text-center shadow-card sm:flex-row sm:text-left">
+        <div class="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-brand/10 text-4xl">🛡️</div>
         <div>
-          <div class="reviewer-name">David H.</div>
-          <div class="reviewer-loc">Sydney, NSW</div>
+          <h3 class="font-display text-xl font-bold">30-Day Money-Back Guarantee</h3>
+          <p class="mt-2 text-ink/60">Try Arthryon risk-free. If you're not completely satisfied within 30 days, contact our Australian support team for a full refund — no questions asked.</p>
         </div>
-        <span class="verified-tag">✓ Verified</span>
       </div>
     </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"After my Sunday footy sessions in Brisbane I used to be sore for days. Since I started using Arthryon straight after training, my recovery is so much faster. It doesn't feel greasy at all — just absorbs and works."</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">SR</div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-20 sm:px-6">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-brand">Questions</p>
+        <h2 class="font-display text-3xl font-extrabold sm:text-4xl text-balance">Frequently asked questions</h2>
+      </div>
+      <div class="reveal mt-10 divide-y divide-black/10 border-y border-black/10">
+        <details class="group py-5">
+          <summary class="flex items-center justify-between gap-4 font-display font-semibold">
+            How quickly will I feel relief?
+            <span class="faq-plus grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand/10 text-brand transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-sm leading-relaxed text-ink/60">Most people feel a gentle warming sensation within about 3 minutes of application, with comfort building over the following minutes and lasting up to 12 hours.</p>
+        </details>
+        <details class="group py-5">
+          <summary class="flex items-center justify-between gap-4 font-display font-semibold">
+            Can it be used for all types of pain and discomfort?
+            <span class="faq-plus grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand/10 text-brand transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-sm leading-relaxed text-ink/60">Arthryon is designed for joint stiffness, muscle fatigue, back tension and everyday aches. For any serious or persistent condition, please consult your GP.</p>
+        </details>
+        <details class="group py-5">
+          <summary class="flex items-center justify-between gap-4 font-display font-semibold">
+            Does the cream leave a greasy residue?
+            <span class="faq-plus grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand/10 text-brand transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-sm leading-relaxed text-ink/60">No. Arthryon is formulated for fast absorption with a non-greasy finish, so it won't stain clothing or leave a sticky feel.</p>
+        </details>
+        <details class="group py-5">
+          <summary class="flex items-center justify-between gap-4 font-display font-semibold">
+            Do I need a prescription to purchase in Australia?
+            <span class="faq-plus grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand/10 text-brand transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-sm leading-relaxed text-ink/60">No prescription is required. Arthryon is a topical cosmetic cream you can order directly from this official website.</p>
+        </details>
+        <details class="group py-5">
+          <summary class="flex items-center justify-between gap-4 font-display font-semibold">
+            How long does one jar last?
+            <span class="faq-plus grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand/10 text-brand transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-sm leading-relaxed text-ink/60">With typical use of 2–3 applications per day on one or two areas, a single 30ml jar generally lasts around 3–4 weeks.</p>
+        </details>
+        <details class="group py-5">
+          <summary class="flex items-center justify-between gap-4 font-display font-semibold">
+            Is delivery available to all parts of Australia?
+            <span class="faq-plus grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand/10 text-brand transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-sm leading-relaxed text-ink/60">Yes — we ship Australia-wide with tracked delivery, including metro and regional areas across every state and territory.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-ink text-cream">
+    <div class="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6">
+      <div class="reveal">
+        <h2 class="font-display text-3xl font-extrabold sm:text-4xl text-balance">Get back to moving freely — starting today</h2>
+        <p class="mx-auto mt-4 max-w-xl text-cream/60">Join thousands of Australians who've made stiff, aching joints a thing of the past. Free shipping and a 30-day guarantee, so there's nothing to lose.</p>
+        <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-10 py-4 font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-600">🔥 Order Arthryon now — from $49 per bottle</a>
+        <p class="mt-4 text-xs text-cream/40">Secure checkout · Tracked AU delivery · 30-day money-back guarantee</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-ink-2 text-cream/70">
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <div class="flex flex-col justify-between gap-8 md:flex-row">
+      <div class="max-w-sm">
+        <div class="font-display text-xl font-extrabold text-cream">Arthryon<span class="text-brand">.</span></div>
+        <p class="mt-3 text-sm">This is the official Australian website for Arthryon Heat Relief Cream. All orders are fulfilled directly and shipped Australia-wide. Australia's warming relief cream for stiff joints and sore muscles. Natural ingredients, fast absorption, no prescription needed.</p>
+      </div>
+      <div class="flex gap-12 text-sm">
         <div>
-          <div class="reviewer-name">Sarah R.</div>
-          <div class="reviewer-loc">Brisbane, QLD</div>
+          <p class="mb-3 font-semibold text-cream">Product</p>
+          <ul class="space-y-2">
+            <li><a href="#benefits" class="hover:text-cream">Benefits</a></li>
+            <li><a href="#ingredients" class="hover:text-cream">Ingredients</a></li>
+            <li><a href="#pricing" class="hover:text-cream">Pricing</a></li>
+          </ul>
         </div>
-        <span class="verified-tag">✓ Verified</span>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"My arthritis flares up terribly in Melbourne winters. I was sceptical but ordered the 3-pack deal and I'm so glad I did. I can bend my fingers properly in the morning now. Absolute lifesaver."</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">MM</div>
         <div>
-          <div class="reviewer-name">Margaret M.</div>
-          <div class="reviewer-loc">Melbourne, VIC</div>
+          <p class="mb-3 font-semibold text-cream">Support</p>
+          <ul class="space-y-2">
+            <li><a href="https://arthryon-heatreliefcream.com/privacy" class="hover:text-cream">Privacy Policy</a></li>
+            <li><a href="https://arthryon-heatreliefcream.com/terms" class="hover:text-cream">Terms & Conditions</a></li>
+            <li><a href="https://arthryon-heatreliefcream.com/contact" class="hover:text-cream">Shipping &amp; returns</a></li>
+          </ul>
         </div>
-        <span class="verified-tag">✓ Verified</span>
       </div>
     </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"I work in construction in Perth and my back and shoulders take a beating. Arthryon has become part of my daily routine — apply it at the end of the shift and wake up without that stiff, locked feeling. Would recommend to every tradie."</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">JT</div>
-        <div>
-          <div class="reviewer-name">Jason T.</div>
-          <div class="reviewer-loc">Perth, WA</div>
-        </div>
-        <span class="verified-tag">✓ Verified</span>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"As a runner in Adelaide I deal with tight calves and sore knees constantly. Arthryon helps me manage the soreness without having to pop painkillers. Love that it's all natural and smells great too."</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">NK</div>
-        <div>
-          <div class="reviewer-name">Nina K.</div>
-          <div class="reviewer-loc">Adelaide, SA</div>
-        </div>
-        <span class="verified-tag">✓ Verified</span>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Ordered for my husband in Canberra who has chronic lower back pain. He was reluctant to try it but now he won't go a day without it. The warmth it produces is incredible — gentle but deep at the same time."</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">LC</div>
-        <div>
-          <div class="reviewer-name">Linda C.</div>
-          <div class="reviewer-loc">Canberra, ACT</div>
-        </div>
-        <span class="verified-tag">✓ Verified</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════ HOW TO USE ═══════════════════════════ -->
-<section class="usage-bg" id="how-to-use">
-  <div class="center" style="margin-bottom:50px">
-    <div class="section-tag">Instructions</div>
-    <h2 class="section-title">How to Use Arthryon for Best Results</h2>
-    <p class="section-sub">Simple, effective, and designed to fit seamlessly into your daily routine.</p>
-  </div>
-  <div class="usage-steps">
-    <div class="usage-step">
-      <h3>Clean Skin</h3>
-      <p>Apply to clean, dry skin on the affected area. Avoid broken or irritated skin. No special preparation needed.</p>
-    </div>
-    <div class="usage-step">
-      <h3>Small Amount</h3>
-      <p>Use a small amount of cream — the concentrated formula spreads easily and a little goes a long way.</p>
-    </div>
-    <div class="usage-step">
-      <h3>Massage In</h3>
-      <p>Gently massage using circular motions until fully absorbed. This enhances penetration and boosts local circulation.</p>
-    </div>
-    <div class="usage-step">
-      <h3>Repeat Daily</h3>
-      <p>Use 2–3 times daily for best results. Consistent use allows the active ingredients to build their full effect over time.</p>
-    </div>
-  </div>
-  <p style="text-align:center;margin-top:30px;font-size:0.83rem;color:var(--muted)">Always wash hands after use. Keep out of reach of children. For external use only.</p>
-</section>
-
-<!-- ═══════════════════════════ FAQ ═══════════════════════════ -->
-<section id="faq">
-  <div class="center" style="margin-bottom:50px">
-    <div class="section-tag">Frequently Asked Questions</div>
-    <h2 class="section-title">Questions from Our Australian Customers</h2>
-  </div>
-  <div class="faq-list">
-    <div class="faq-item">
-      <div class="faq-q">Is Arthryon Heat Relief Cream safe for daily use?</div>
-      <div class="faq-a">Yes. The formula is specifically designed for regular daily use. All active ingredients are natural and gentle on the skin, making it suitable for long-term application without concerns about dependency or unwanted systemic effects.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">How quickly does it start working?</div>
-      <div class="faq-a">Many users in Australia report feeling a warming sensation within minutes of application, with noticeable reduction in stiffness and discomfort shortly after. Results continue to improve with consistent daily use over time.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Can it be used for all types of pain and discomfort?</div>
-      <div class="faq-a">Arthryon is ideal for joint stiffness, muscle soreness, back and neck tension, post-exercise fatigue, and general aches related to arthritis or aging. It is a versatile solution that eliminates the need for multiple products.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Does the cream leave a greasy residue?</div>
-      <div class="faq-a">No. The cream is formulated with a non-greasy texture that absorbs quickly into the skin, leaving it feeling smooth and comfortable. You can apply it and continue your day without any mess or residue on clothing.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Do I need a prescription to purchase in Australia?</div>
-      <div class="faq-a">No. Arthryon Heat Relief Cream is available without a prescription anywhere in Australia. You can order directly from this official website with fast, reliable delivery to all major cities and regional areas.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">How long does one jar last?</div>
-      <div class="faq-a">Each 30ml jar provides generous coverage with consistent use 2–3 times per day. For ongoing joint and muscle support, we recommend the multi-pack options for best value and uninterrupted results.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Is delivery available to all parts of Australia?</div>
-      <div class="faq-a">Yes. Orders are shipped Australia-wide, including Sydney, Melbourne, Brisbane, Perth, Adelaide, Hobart, Darwin, Canberra, and regional and rural areas across all states and territories.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Can it be used alongside other treatments?</div>
-      <div class="faq-a">Arthryon is designed as a topical solution and does not interact with most other treatments. However, if you are on prescribed medication or have a specific medical condition, consult your healthcare provider before use.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════ GUARANTEE ═══════════════════════════ -->
-<section class="guarantee-bg" id="guarantee">
-  <div class="guarantee-inner">
-    <div>
-      <div class="guarantee-icon">🛡️</div>
-      <h2 class="section-title">Manufacturer's Guarantee & Quality Assurance</h2>
-      <p>As the official Australian website for Arthryon Heat Relief Cream, we stand behind every jar we send out. The manufacturer applies strict quality control and third-party testing protocols to ensure consistent purity and potency in every batch.</p>
-      <p>We offer a satisfaction guarantee that allows you to try Arthryon with confidence. Our commitment is straightforward: deliver real results, or make it right. This reflects our belief in the product and respect for our customers across Australia.</p>
-      <div class="guarantee-pills">
-        <span class="g-pill">✓ Quality Tested</span>
-        <span class="g-pill">✓ Satisfaction Guarantee</span>
-        <span class="g-pill">✓ No Prescription</span>
-        <span class="g-pill">✓ Natural Ingredients</span>
-        <span class="g-pill">✓ AU-Wide Delivery</span>
-      </div>
-    </div>
-    <div class="guarantee-payment">
-      <h3>🔒 Secure Australian Checkout</h3>
-      <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin-bottom:18px">We accept all major Australian payment methods for your convenience and security.</p>
-      <div class="payment-icons">
-        <span class="pay-icon">💳 Visa</span>
-        <span class="pay-icon">💳 Mastercard</span>
-        <span class="pay-icon">🅿️ PayPal</span>
-        <span class="pay-icon">🍎 Apple Pay</span>
-        <span class="pay-icon">🟢 Google Pay</span>
-        <span class="pay-icon">🏦 Bank Transfer</span>
-      </div>
-      <div class="delivery-info">
-        <h4>🚚 Australian Delivery Options</h4>
-        <div class="del-item">Standard shipping — 5–8 business days</div>
-        <div class="del-item">Express shipping available at checkout</div>
-        <div class="del-item">Free shipping on bundle packages</div>
-        <div class="del-item">Tracked delivery with SMS notification</div>
-        <div class="del-item">Delivered across all Australian states & territories</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════ PRICING ═══════════════════════════ -->
-<section class="pricing-bg" id="pricing">
-  <div class="center" style="margin-bottom:50px">
-    <div class="section-tag">Packages & Pricing</div>
-    <h2 class="section-title">Choose Your Arthryon Package</h2>
-    <p class="section-sub">All orders are processed through our secure official website and shipped directly to your door across Australia.</p>
-  </div>
-  <div class="pricing-grid">
-    <div class="price-card">
-      <div class="price-tag-label">💡 Starter Option</div>
-      <div class="price-title">Basic Package</div>
-      <div class="price-desc">Ideal for first-time users wanting to try Arthryon before committing to a larger supply.</div>
-      <div class="price-amount"><small>$</small>86</div>
-      <div class="price-per">per bottle · AUD inc. GST</div>
-      <ul class="price-features">
-        <li>2× Arthryon Heat Relief Cream (30ml)</li>
-        <li>Standard Australia-wide delivery</li>
-        <li>Satisfaction guarantee included</li>
-      </ul>
-      <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="btn-buy outline" rel="nofollow">Order Now</a>
-    </div>
-    <div class="price-card featured">
-      <div class="price-tag-label">🔥 Best Value</div>
-      <div class="price-title">Maximum Efficiency</div>
-      <div class="price-desc">Our strongest combined solution — cream plus capsules for inside and outside support.</div>
-      <div class="price-amount"><small>$</small>49</div>
-      <div class="price-per">per bottle · AUD inc. GST</div>
-      <ul class="price-features">
-        <li>3× Arthryon Heat Relief Cream</li>
-        <li>2× Joint Support Capsules (bonus)</li>
-        <li>Strongest combined inside & outside effect</li>
-        <li>Free express shipping included</li>
-        <li>Recommended for long-term results</li>
-      </ul>
-      <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="btn-buy" rel="nofollow">Buy Now – Best Deal</a>
-    </div>
-    <div class="price-card">
-      <div class="price-tag-label">⚡ Popular Choice</div>
-      <div class="price-title">Mid Efficiency</div>
-      <div class="price-desc">Balanced performance and value — perfect for ongoing use with added capsule support.</div>
-      <div class="price-amount"><small>$</small>64</div>
-      <div class="price-per">per bottle · AUD inc. GST</div>
-      <ul class="price-features">
-        <li>2× Arthryon Heat Relief Cream</li>
-        <li>1× Joint Support Capsules (bonus)</li>
-        <li>Balanced performance & value</li>
-        <li>Shipping included</li>
-      </ul>
-      <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="btn-buy outline" rel="nofollow">Order Now</a>
-    </div>
-  </div>
-  <div class="stock-warning">
-    ⚠️ Due to high demand across Australia, current stock is limited. We recommend ordering early to avoid delays.
-  </div>
-  <div style="text-align:center;margin-top:30px">
-    <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="btn-primary" rel="nofollow">🔥 Place Your Order Now</a>
-    <p style="margin-top:14px;font-size:0.82rem;color:var(--muted)">Secure checkout · All major AU payment methods · Tracked delivery</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════════ FINAL CTA ═══════════════════════════ -->
-<section class="cta-section">
-  <h2>Ready to Move Without Limits?</h2>
-  <p>Join thousands of Australians who have already made Arthryon part of their daily wellness routine. Fast delivery. Satisfaction guaranteed.</p>
-  <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="btn-white" rel="nofollow">🛒 Buy Arthryon Now</a>
-  <p class="cta-sub">Free shipping on bundle orders · Delivered across Australia · No prescription needed</p>
-</section>
-
-<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
-<footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-logo">Arthryon<span>.</span></div>
-      <p class="footer-info" style="margin-top:10px">This is the official Australian website for Arthryon Heat Relief Cream. All orders are fulfilled directly and shipped Australia-wide.</p>
-    </div>
-    <div>
-      <p style="color:rgba(255,255,255,0.5);font-size:0.82rem;margin-bottom:8px">Delivered across Australia</p>
-      <p style="color:rgba(255,255,255,0.35);font-size:0.8rem">Sydney · Melbourne · Brisbane · Perth<br>Adelaide · Hobart · Darwin · Canberra</p>
-    </div>
-  </div>
-  <div class="footer-disclaimer" style="margin-bottom:28px">
-    <strong style="color:rgba(255,255,255,0.45)">Disclaimer:</strong> Arthryon Heat Relief Cream is a topical cosmetic product and is not a medicine or therapeutic good. It is not intended to diagnose, treat, cure, or prevent any disease or health condition. The statements on this website have not been evaluated by the Therapeutic Goods Administration (TGA). Individual results may vary. The information provided on this website is for general informational purposes only and does not constitute medical advice. Always consult a qualified healthcare professional before commencing any new product, particularly if you have an existing medical condition or are currently taking prescription medication.
-  </div>
-  <div class="footer-bottom">
-    <span>© 2025 arthryon-cream.com — All rights reserved</span>
-    <div class="footer-links">
-      <a href="https://arthryon-heatreliefcream.com/privacy.html">Privacy Policy</a>
-      <a href="https://arthryon-heatreliefcream.com/terms.html">Terms of Use</a>
-      <a href="https://arthryon-heatreliefcream.com/disclosure.html">Refund Policy</a>
+    <div class="mt-10 border-t border-white/10 pt-6 text-xs text-cream/40">
+      <p>&copy; 2026 Arthryon. All rights reserved.</p>
+      <p class="mt-2 max-w-3xl">Disclaimer: Arthryon is a topical cosmetic cream and is not intended to diagnose, treat, cure or prevent any disease. Individual results may vary. Consult a healthcare professional for persistent or serious conditions.</p>
     </div>
   </div>
 </footer>
 
-<script>
-// FAQ accordion
-document.querySelectorAll('.faq-q').forEach(q => {
-  q.addEventListener('click', () => {
-    const item = q.parentElement;
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  });
-});
+<!-- Sticky bottom CTA -->
+<div id="stickyCta" class="fixed inset-x-0 bottom-0 z-50 translate-y-full border-t border-white/10 bg-ink text-cream transition-transform duration-300">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+    <div class="min-w-0">
+      <p class="truncate text-sm font-semibold text-cream">Arthryon Heat Relief Cream</p>
+      <p class="truncate text-xs text-cream/50">Fast relief for joints &amp; muscles · Free AU shipping</p>
+    </div>
+    <a href="https://www.clickrtrckr.com/FR6NFMX/8HBFL7W/?uid=14863" class="shrink-0 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-600">Buy Now — From $49 per bottle</a>
+  </div>
+</div>
 
-// Sticky bar on scroll
-const stickyBar = document.getElementById('stickyBar');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 600) {
-    stickyBar.classList.add('visible');
-  } else {
-    stickyBar.classList.remove('visible');
+<script>
+  // Scroll progress bar
+  const progress = document.getElementById('progress');
+  // Sticky CTA + header shadow
+  const stickyCta = document.getElementById('stickyCta');
+  const header = document.getElementById('header');
+
+  function onScroll() {
+    const st = window.scrollY;
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (h > 0 ? (st / h) * 100 : 0) + '%';
+
+    if (st > 600) stickyCta.classList.remove('translate-y-full');
+    else stickyCta.classList.add('translate-y-full');
+
+    header.classList.toggle('shadow-card', st > 10);
   }
-});
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Countdown (resets each ~2h window)
+  const cd = document.getElementById('countdown');
+  function tick() {
+    const now = new Date();
+    const end = new Date(now);
+    end.setHours(23, 59, 59, 0); // ends at midnight
+    let diff = Math.max(0, end - now);
+    const h = String(Math.floor(diff / 3.6e6)).padStart(2, '0');
+    const m = String(Math.floor((diff % 3.6e6) / 6e4)).padStart(2, '0');
+    const s = String(Math.floor((diff % 6e4) / 1e3)).padStart(2, '0');
+    cd.textContent = h + ':' + m + ':' + s;
+  }
+  tick();
+  setInterval(tick, 1000);
 </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"8d54f45818a9491bbf6b388b924e0ae5","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
