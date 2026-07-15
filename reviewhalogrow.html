@@ -106,8 +106,8 @@
         "url": "https://rigorrevview.site/author/superadmin/",
         "image": {
           "@type": "ImageObject",
-          "@id": "https://rigorrevview.site/images/author-samuel-reynolds-avatar.jpg",
-          "url": "https://rigorrevview.site/images/author-samuel-reynolds-avatar.jpg",
+          "@id": "https://rigorrevview.site/images/author-alfred-avatar.jpg",
+          "url": "https://rigorrevview.site/images/author-alfred-avatar.jpg",
           "caption": "Dr. Samuel Reynolds",
           "inLanguage": "en-US"
         },
@@ -187,20 +187,47 @@
       background: #ffffff;
       border-bottom: 3px solid var(--primary-color);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      position: relative;
     }
 
     .top-bar-flex {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
       padding: 15px 0;
     }
 
     .site-branding img {
-      max-width: 230px;
+      max-width: 210px;
       height: auto;
       display: block;
+    }
+
+    /* Modern Navigation Container */
+    .navigation-container {
+      position: relative;
+    }
+
+    .menu-toggle-checkbox {
+      display: none;
+    }
+
+    .menu-mobile-trigger {
+      display: none;
+      cursor: pointer;
+      font-size: 24px;
+      color: #222222;
+      align-items: center;
+      gap: 15px;
+      user-select: none;
+    }
+
+    .menu-mobile-trigger span {
+      transition: color 0.2s ease;
+    }
+
+    .menu-mobile-trigger span:hover {
+      color: var(--primary-color);
     }
 
     .menu-desktop ul {
@@ -209,7 +236,6 @@
       margin: 0;
       display: flex;
       gap: 22px;
-      flex-wrap: wrap;
     }
 
     .menu-desktop li a {
@@ -662,18 +688,66 @@
 
     @media (max-width: 768px) {
       .top-bar-flex {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
+        flex-wrap: nowrap;
+        padding: 10px 0;
+        justify-content: space-between;
+        flex-direction: row;
+        text-align: left;
+      }
+
+      .site-branding img {
+        max-width: 150px !important;
+      }
+
+      .menu-mobile-trigger {
+        display: flex !important;
+      }
+
+      .menu-desktop {
+        display: none;
+        width: 100vw;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #ffffff;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        border-top: 1px solid #edf2f7;
+        z-index: 999;
+      }
+
+      #menu-toggle:checked ~ .menu-desktop {
+        display: block !important;
       }
 
       .menu-desktop ul {
-        justify-content: center;
+        flex-direction: column;
+        gap: 0;
+        padding: 15px 20px;
+      }
+
+      .menu-desktop ul li {
+        border-bottom: 1px solid #f7fafc;
+      }
+
+      .menu-desktop ul li:last-child {
+        border-bottom: none;
+      }
+
+      .menu-desktop ul li a {
+        display: block;
+        padding: 12px 0;
+        font-size: 15px;
+        color: #222222;
       }
 
       .m-a-box {
         flex-direction: column;
         text-align: center;
+      }
+
+      article {
+        padding: 20px 15px !important;
       }
     }
   </style>
@@ -693,6 +767,11 @@
               </a>
             </div>
             <nav class="navigation-container">
+              <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox" />
+              <label for="menu-toggle" class="menu-mobile-trigger">
+                <span>☰</span>
+                <span style="font-size: 18px;">🔍</span>
+              </label>
               <div class="menu-desktop">
                 <ul>
                   <li><a href="https://rigorrevview.site">Home</a></li>
@@ -1034,7 +1113,9 @@
                     For guaranteed authenticity, a solid warranty, and to secure the best savings, purchase exclusively from the manufacturer's site.
                   </p>
                   <div class="wp-block-image">
-                    <img src="https://rigorrevview.site/img/Buy-Now.webp" alt="Official HaloGrow Hair Spray Pricing Packages and Warranties" />
+                    <a href="https://www.clickrtrckr.com/FR6NFMX/7BM9F7R/" target="_blank" rel="noopener">
+                      <img src="https://rigorrevview.site/img/Buy-Now.webp" alt="Official HaloGrow Hair Spray Pricing Packages and Warranties" />
+                    </a>
                   </div>
 
                   <h2 class="wp-block-heading" id="is-halogrow-hair-spray-a-scam">Is HaloGrow Hair Spray a Scam?</h2>
