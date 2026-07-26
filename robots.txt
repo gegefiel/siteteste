@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+
 Sitemap: https://rigorrevview.site/sitemap.xml
 Sitemap: https://get-bryocoffee.com/sitemap.xml
 Sitemap: https://arthryon-heatreliefcream.com/sitemap.xml
