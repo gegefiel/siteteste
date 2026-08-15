@@ -1,14 +1,39 @@
-
 <!DOCTYPE html><html lang="en-US"><head>
 
-<script id="lf-fb-autoconfig">
+<script id="lf-fb-guard">
 (function(){
-  var PIXEL='1532278530733389', tries=0;
-  function off(){
-    if(window.fbq){ try{ fbq('set','autoConfig',false,PIXEL); }catch(e){} return true; }
-    return false;
+  var PIXEL='1532278530733389';
+
+  /* 1. desliga a deteccao automatica de eventos do pixel */
+  var tries=0;
+  function autoOff(){ if(!window.fbq) return false; try{ window.fbq('set','autoConfig',false,PIXEL); }catch(e){} return true; }
+
+  /* 2. trava: nenhum InitiateCheckout passa, exceto o nosso (window.__lfAllowIC) */
+  function blocked(args){
+    try{
+      var m=String(args[0]||''), ev=String(args[1]||'');
+      if(m.indexOf('track')!==0) return false;
+      if(ev.indexOf('InitiateCheckout')===-1) return false;
+      return !window.__lfAllowIC;
+    }catch(e){ return false; }
   }
-  if(!off()){ var t=setInterval(function(){ if(off()||++tries>40) clearInterval(t); },250); }
+  function install(){
+    if(!window.fbq || window.fbq.__lfWrapped) return !!window.fbq;
+    if(typeof Proxy==='undefined') return true;
+    var real=window.fbq;
+    var p=new Proxy(real,{
+      apply:function(t,th,args){
+        if(blocked(args)){ if(window.console&&console.debug)console.debug('[pixel] InitiateCheckout automatico bloqueado'); return; }
+        return Reflect.apply(t,th,args);
+      }
+    });
+    try{ real.__lfWrapped=1; window.fbq=p; }catch(e){}
+    return true;
+  }
+  function tick(){ var a=autoOff(); install(); if((a||++tries>60)&&window.fbq&&window.fbq.__lfWrapped) clearInterval(iv); }
+  install(); autoOff();
+  var iv=setInterval(tick,150);
+  setTimeout(function(){ clearInterval(iv); },20000);
 })();
 </script>
 <!-- Google Tag Manager -->
@@ -889,6 +914,7 @@ document.getElementById('qGo').addEventListener('click',function(){goCheckout(p.
 qqStartTimer();qqStartStock();armNoHover()}
 function withParams(url){var qs=window.location.search.replace(/^\?/,'');return qs?url+(url.indexOf('?')>-1?'&':'?')+qs:url}
 function goCheckout(url){
+try{window.__lfAllowIC=1;if(window.fbq)window.fbq('track','InitiateCheckout');}catch(_){}finally{window.__lfAllowIC=0;}
 try{if(window.utmify&&window.utmify.track)window.utmify.track('InitiateCheckout');}catch(_){}
 window.location.href=withParams(url)}
 document.querySelectorAll('.glance-cta, .cta-btn').forEach(function(b){b.id='DTC_QUIZ_CTA';b.setAttribute('role','button');b.addEventListener('click',openQuiz);b.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')openQuiz(e)})});document.getElementById('qClose').addEventListener('click',closeQuiz);overlay.addEventListener('click',function(e){if(e.target===overlay)closeQuiz();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('open'))closeQuiz();})})()</script> <script>(function(){var menu=document.getElementById('mobileMenu');var btns=document.querySelectorAll('.js-menu');function setExpanded(v){btns.forEach(function(b){b.classList.toggle('open',v);b.setAttribute('aria-expanded',v?'true':'false')})}
