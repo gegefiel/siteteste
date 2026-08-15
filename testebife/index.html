@@ -1,4 +1,3 @@
-
 <!DOCTYPE html><html lang="en-US"><head>
 
 <!-- Google Tag Manager -->
@@ -872,7 +871,7 @@ body.innerHTML=html;
 document.getElementById('qGo').addEventListener('click',function(){goCheckout(p.href)});
 qqStartTimer();qqStartStock();armNoHover()}
 function withParams(url){var qs=window.location.search.replace(/^\?/,'');return qs?url+(url.indexOf('?')>-1?'&':'?')+qs:url}
-function goCheckout(url){try{if(window.fbq)fbq('track','InitiateCheckout');}catch(_){}
+function goCheckout(url){
 try{if(window.utmify&&window.utmify.track)window.utmify.track('InitiateCheckout');}catch(_){}
 window.location.href=withParams(url)}
 document.querySelectorAll('.glance-cta, .cta-btn').forEach(function(b){b.id='DTC_CTA';b.addEventListener('click',openQuiz)});document.getElementById('qClose').addEventListener('click',closeQuiz);overlay.addEventListener('click',function(e){if(e.target===overlay)closeQuiz();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('open'))closeQuiz();})})()</script> <script>(function(){var menu=document.getElementById('mobileMenu');var btns=document.querySelectorAll('.js-menu');function setExpanded(v){btns.forEach(function(b){b.classList.toggle('open',v);b.setAttribute('aria-expanded',v?'true':'false')})}
