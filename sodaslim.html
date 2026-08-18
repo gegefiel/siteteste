@@ -759,10 +759,8 @@ ol.steps li::before{content:counter(st);position:absolute;left:0;top:8px;width:3
 </div>
 <script>
 (function(){
-  /* >>> https://cc.slimsodapowder.com/v2/checkout.php?&hid=b2lkPW9mZl81MDU4NzI1JmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfMzk5MDY3Mg%3D%3D&affid=aff_4023731
- <<< */
-  var CHECKOUT_URL = 'https://cc.slimsodapowder.com/v2/checkout.php?&hid=b2lkPW9mZl81MDU4NzI1JmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfMzk5MDY3Mg%3D%3D&affid=aff_4023731
-';
+  /* >>> COLOQUE AQUI A URL DO CHECKOUT <<< */
+  var CHECKOUT_URL = 'https://cc.slimsodapowder.com/v2/checkout.php?&hid=b2lkPW9mZl81MDU4NzI1JmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfMzk5MDY3Mg%3D%3D&affid=aff_4023731';
 
   var QS=[
     {k:'Step 1 of 5 – About You',e:['👩','👩‍🦰','👩‍🦱','👩‍🦳','👵'],q:'What is your age range?',multi:false,label:'Age',
@@ -855,7 +853,7 @@ ol.steps li::before{content:counter(st);position:absolute;left:0;top:8px;width:3
       '<div class="ssq-prod"><img src="'+PRODUCT_IMG+'" alt="SlimSoda"></div>'+
       '<div class="ssq-scarce"><div class="bar"><i></i></div><span>\u26a0\ufe0f 82% of this allocation of 300 units already reserved</span></div>'+
       '<p class="ssq-ship">\ud83d\ude9a Order now and it arrives by <b>'+fmtDate()+'</b></p>'+
-      '<a class="ssq-cta" href="'+withParams(CHECKOUT_URL)+'">UNLOCK MY 3 FREE TUBS NOW \u2192</a>'+
+      '<a class="ssq-cta" href="#quiz'+withParams(CHECKOUT_URL)+'">UNLOCK MY 3 FREE TUBS NOW \u2192</a>'+
       '</div>';
   }
 
