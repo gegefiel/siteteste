@@ -2,67 +2,6 @@
 
 <html lang="en"><head><meta charset="utf-8"/>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site</title>
-    <style>
-        /* Esconde completamente o site até que o JavaScript conclua a verificação */
-        html, body {
-            visibility: hidden; /* Oculta todo o conteúdo */
-            height: 100%;
-            overflow: hidden; /* Impede que a página seja rolável */
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-
-    <script>
-        const REDIRECT_URL = "https://tips-for-women.com/tipssforwoman-soda";
-
-        function isMobile() {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            return /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
-        }
-
-        // Código executa imediatamente (como no seu original)
-        if (!isMobile()) {
-            // DESKTOP -> redireciona preservando UTMs
-            window.location.href = REDIRECT_URL + window.location.search;
-        } else {
-            // MOBILE -> verificar país
-            fetch('https://ipapi.co/json/')
-                .then(response => response.json())
-                .then(data => {
-                    const isBrazil = data && data.country === "BR";
-
-                    if (isBrazil) {
-                        // MOBILE BR -> redireciona preservando UTMs
-                        window.location.href = REDIRECT_URL + window.location.search;
-                    } else {
-                        // MOBILE fora do BR -> libera conteúdo
-                        document.documentElement.style.visibility = "visible";
-                        document.body.style.visibility = "visible";
-                        document.body.style.overflow = "auto";
-                    }
-                })
-                .catch(error => {
-                    console.error("Erro ao verificar país:", error);
-                    // Em caso de falha -> redireciona preservando UTMs
-                    window.location.href = REDIRECT_URL + window.location.search;
-                });
-        }
-    </script>
-</head>
-
-<body>
-    <h1>Bem-vindo ao Meu Site</h1>
-    <p>Este conteúdo só aparece para usuários em celulares fora do Brasil.</p>
-</body>
-</html>  
-
 <!-- Google Tag Manager (carregado sob demanda - codigo original intacto) -->
 <script id="lf-tag-loader">
 (function(){
