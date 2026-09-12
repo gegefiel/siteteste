@@ -121,9 +121,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   EV.forEach(function(e){ window.addEventListener(e,boot,{passive:true,capture:true}); });
   document.addEventListener('visibilitychange',onHide);
   /* rede de seguranca: carrega sozinho logo apos o conteudo, mesmo sem interacao */
-  if(document.readyState==='complete') setTimeout(boot,1200);
-  else window.addEventListener('load',function(){ setTimeout(boot,1200); });
-  setTimeout(boot,3500);
+  if(document.readyState==='complete') setTimeout(boot,300);
+  else window.addEventListener('load',function(){ setTimeout(boot,300); });
+  setTimeout(boot,1500);
 })();
 </script>
 <!-- End Google Tag Manager -->	
