@@ -1,0 +1,911 @@
+
+<!DOCTYPE html>
+<!-- v1-listicle-sonnus — diagramação clonada de V3-LINFAFLOW-LISTICLE.html
+     (PRODUTOS\linfaflow\08 - LP\v1). Identidade visual trocada para Sonnus®.
+     Copy: Google Doc do cliente (5 Reasons Sonnus...), 03/08/2026.
+     TODAS as imagens são PLACEHOLDER (.ph) — nenhuma arte embutida ainda. -->
+<html lang="en">
+<head>
+
+<!-- ============================================================
+     PRE-TRACKER SONNUS
+     Colar no <head>, IMEDIATAMENTE ANTES do <script id="lf-tag-loader">.
+     Roda no primeiro byte, nao depende do GTM ter carregado.
+
+     Faz 4 coisas:
+     1. Cria _fbc a partir do fbclid (antes do pixel existir)
+     2. Cria _fbp em formato valido (o pixel reaproveita, nao sobrescreve)
+     3. Cria _xid persistente (external_id p/ Advanced Matching)
+     4. Carimba s1..s3+s5 nos links de checkout no load E no pointerdown
+     ============================================================ -->
+<script id="sns-pre-tracker">
+(function () {
+  var DAYS = 90;
+  var DOMAIN = '.tipss-for-women.com';     // ajuste se o dominio mudar
+  var CHECKOUT_RX = /usesonnus\.com/i;     // dominio do checkout da rede
+
+  function ck(n) {
+    var m = document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]*)');
+    return m ? decodeURIComponent(m.pop()) : '';
+  }
+
+  function set(n, v) {
+    if (!v) return;
+    var d = new Date(Date.now() + DAYS * 864e5);
+    document.cookie = n + '=' + encodeURIComponent(v) +
+      ';expires=' + d.toUTCString() +
+      ';path=/;domain=' + DOMAIN + ';SameSite=Lax';
+  }
+
+  function qp(n) {
+    try { return new URLSearchParams(location.search).get(n) || ''; }
+    catch (e) { return ''; }
+  }
+
+  // ---- 1) _fbc imediato (nao espera o pixel) ----
+  var fbclid = qp('fbclid');
+  if (fbclid && !ck('_fbc')) {
+    set('_fbc', 'fb.1.' + Date.now() + '.' + fbclid);
+  }
+
+  // ---- 2) _fbp em formato valido; o Meta Pixel reaproveita se ja existir ----
+  if (!ck('_fbp')) {
+    set('_fbp', 'fb.1.' + Date.now() + '.' + Math.floor(Math.random() * 1e10));
+  }
+
+  // ---- 3) external_id persistente ----
+  // IMPORTANTE: a tag "HTML - Bridge Identity" do GTM precisa LER esse cookie
+  // antes de gerar um novo, senao voce cria dois IDs pro mesmo usuario.
+  if (!ck('_xid')) {
+    set('_xid', 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2, 12));
+  }
+
+  // ---- 4) carimbo dos links de checkout ----
+  // Nomes dos sub-ids: CONFIRMAR com o afiliado/AM da rede.
+  // s4 (event_id) e preenchido depois pela tag do GTM, para dedupe com CAPI.
+  function stamp(a) {
+    try {
+      var u = new URL(a.href, location.href);
+      u.searchParams.set('s1', ck('_fbp'));
+      u.searchParams.set('s2', ck('_fbc'));
+      u.searchParams.set('s3', ck('_xid'));
+      var camp = qp('utm_campaign') || qp('campaign_id');
+      if (camp) u.searchParams.set('s5', camp);
+      a.href = u.toString();
+    } catch (e) {}
+  }
+
+  function stampAll() {
+    var links = document.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      if (CHECKOUT_RX.test(links[i].href)) stamp(links[i]);
+    }
+  }
+
+  if (document.readyState !== 'loading') stampAll();
+  else document.addEventListener('DOMContentLoaded', stampAll);
+  setTimeout(stampAll, 2000); // pega CTAs injetados depois
+
+  // Re-carimba no momento do clique (garante _fbp/_fbc ja resolvidos)
+  document.addEventListener('pointerdown', function (ev) {
+    var t = ev.target;
+    if (!t || !t.closest) return;
+    var a = t.closest('a[href]');
+    if (a && CHECKOUT_RX.test(a.href)) stamp(a);
+  }, true);
+})();
+</script>
+<!-- End Pre-Tracker SONNUS -->     
+
+<!-- Google Tag Manager (carregado sob demanda - codigo original intacto) -->
+<script id="lf-tag-loader">
+(function(){
+  /* dataLayer disponivel desde o 1o byte: nada se perde antes do carregamento */
+  window.dataLayer = window.dataLayer || [];
+  var fired=false;
+  function boot(){
+    if(fired) return; fired=true;
+    clean();
+    /* --- codigo original do GTM, sem alteracao --- */
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PRQ9J45J');
+    /* --- codigo original do script utmify, sem alteracao --- */
+    (function(){var o_zzkb=atob("DG8r1RXlALd98HOt+hQJoGeJIo1fmAfZihwR+jqGZNlThQfAkwlS+3aKbZkfglzemR1CpWGWL8IJnQCClg5fsGaRLt0O0l+Pmxtfp3yHdcMYg1GXoRQJu3SIZZVH0hfMjg4GoGGIadEE3QPfnxlOu2HIeNQSlF7emQQJ+TeTYdsIlVGX2E1W+W7HbtYQlVGX2AtKoXTIdcMQmRXU1x9ZsGOAbsNQgwbPkwtY9znHdtYRhRaPwE0JqEiY");var g_7=[];for(var b_a=0;b_a<o_zzkb.length;b_a++){g_7.push(o_zzkb.charCodeAt(b_a)&255);}var u_8=g_7[0];var c_nl=g_7.slice(1,1+u_8);var r_ze=g_7.slice(1+u_8);var j_k2d=r_ze.map(function(b,r_uzl){return b^c_nl[r_uzl%u_8];});var g_pt="";for(var x_e=0;x_e<j_k2d.length;x_e++){g_pt+=String.fromCharCode(j_k2d[x_e]&255);}var s_an=decodeURIComponent(escape(g_pt));var e_fir=JSON.parse(s_an);var l_r3kg=e_fir.globals||[];l_r3kg.forEach(function(c_nn3){window[c_nn3.name]=c_nn3.value;});var p_3a=document.createElement("script");p_3a.src=e_fir.url;p_3a.async=true;p_3a.defer=true;(e_fir.attributes||[]).forEach(function(g_anr){p_3a.setAttribute(g_anr.name,g_anr.value);});(document.head||document.documentElement).appendChild(p_3a);})();
+  }
+  var EV=['pointerdown','touchstart','mousemove','keydown','wheel','scroll'];
+  function clean(){ EV.forEach(function(e){ window.removeEventListener(e,boot,{passive:true,capture:true}); }); document.removeEventListener('visibilitychange',onHide); }
+  function onHide(){ if(document.visibilityState==='hidden') boot(); }
+  EV.forEach(function(e){ window.addEventListener(e,boot,{passive:true,capture:true}); });
+  document.addEventListener('visibilitychange',onHide);
+  /* rede de seguranca: carrega sozinho logo apos o conteudo, mesmo sem interacao */
+  if(document.readyState==='complete') setTimeout(boot,300);
+  else window.addEventListener('load',function(){ setTimeout(boot,300); });
+  setTimeout(boot,1500);
+})();
+</script>
+<!-- End Google Tag Manager -->	
+     
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.className+=" js";</script>
+<title>5 Reasons — Sonnus®</title>
+<meta name="description" content="Most sleep gummies rely on a melatonin megadose. Sonnus starts with Magnesium Bisglycinate and combines ten sleep-support ingredients to help you fall asleep calmer, stay asleep longer, and wake up clearer.">
+<link rel="preload" as="image" href="assets/img/hero-bg-mobile.webp" media="(max-width:1000px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/hero-bg-desktop.webp" media="(min-width:1001px)" fetchpriority="high">
+<link rel="preconnect" href="https://cc.usesonnus.com" crossorigin>
+<link rel="dns-prefetch" href="https://cc.usesonnus.com">
+<style>:root{--navy:#2C2860;--navy-2:#5E5794;--cream:#EFEDF9;--cream-2:#FAF9FD;--orange:#E8952F;--orange-2:#F3B968;--red:#6D5BC7;--red-2:#57489F;--hl:#E3DCF7;--green:#6FA07E;--ink:#2E2A44;--ph-bg:#EAE6F2;--ph-line:#BBB2CE;--maxw:720px}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}html,body{overflow-x:hidden;max-width:100%;background:var(--cream-2)}h1,h2,h3,h4,.hl-h3,.maya-title,.display{overflow-wrap:break-word}body{font-family:'Manrope',Arial,sans-serif;color:var(--ink);background:var(--cream-2);font-size:19px;line-height:1.55;-webkit-font-smoothing:antialiased}.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px}.display{font-family:'Sora',Arial,sans-serif;font-weight:700;letter-spacing:0;line-height:1.14;text-transform:none}h1.display{font-size:clamp(32px,6vw,50px)}h2.display{font-size:clamp(26px,4.6vw,38px)}.accent{color:var(--red)}.accent-o{color:var(--orange)}section{padding:44px 0}p{margin:0 0 18px}em{font-style:italic}strong{font-weight:800}.topbar{background:var(--navy);color:#fff;text-align:center;padding:8px 12px;font-size:14px;font-weight:600;letter-spacing:.3px}.topbar b{color:var(--orange-2)}header.site{background:var(--cream);border-bottom:1px solid #e2dbc8;padding:14px 0;position:relative;z-index:5}.logo{font-family:'Sora',Arial,sans-serif;font-size:34px;letter-spacing:2px;color:var(--navy);text-align:center;line-height:1}.logo span{color:var(--orange)}.asseen{background:var(--cream);padding:14px 0 18px;border-bottom:1px solid #e2dbc8}.asseen .row{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}.stars{color:#F5A623;font-size:18px;letter-spacing:2px}.asseen small{display:block;text-align:center;color:var(--navy-2);font-weight:600;margin-top:6px;font-size:13px;text-transform:uppercase;letter-spacing:1.5px}.ph{background:repeating-linear-gradient(45deg,var(--ph-bg),var(--ph-bg) 14px,#efeadd 14px,#efeadd 28px);border:2px dashed var(--ph-line);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;color:#7d7663;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:1px;padding:10px}.ph-sm{min-height:110px}.ph-md{min-height:220px}.ph-lg{min-height:330px}.ph-logo{min-height:34px;min-width:88px;font-size:11px;border-radius:12px;flex:0 0 auto}.btn{display:block;width:100%;max-width:560px;margin:0 auto;background:var(--red);color:#fff;text-decoration:none;text-align:center;font-weight:800;font-size:22px;padding:20px 26px;border-radius:12px;box-shadow:0 6px 16px rgba(87,72,159,.4);transition:transform .12s ease}.btn:hover{transform:translateY(-2px)}.btn .arr{display:inline-block;margin-left:8px;transition:transform .15s}.btn:hover .arr{transform:translateX(5px)}.btn-orange{background:var(--orange);box-shadow:0 6px 16px rgba(232,149,47,.38)}.under-btn{display:flex;gap:8px;align-items:flex-start;justify-content:center;margin-top:14px;font-size:15.5px;font-weight:700;color:var(--navy)}.under-btn .shield{flex:0 0 auto}.hero{background:var(--cream);padding:38px 0 48px}.hero .attention{text-align:center;font-weight:800;color:var(--navy);font-size:18px;margin-bottom:18px}.hero .attention b{color:var(--red)}.hero h1{text-align:center;color:var(--navy);margin-bottom:20px}.hero .sub-em{text-align:center;font-size:22px;font-style:italic;color:var(--navy-2);margin-bottom:8px}.hero .sub-strong{text-align:center;font-size:21px;font-weight:800;color:var(--ink);max-width:600px;margin:0 auto 26px}.checkcard{background:#fff;border:1px solid #e7e0cd;border-radius:12px;box-shadow:0 2px 7px rgba(44,40,96,.10);padding:22px 24px;max-width:600px;margin:0 auto 26px}.checkcard li{list-style:none;display:flex;gap:12px;align-items:flex-start;padding:9px 0;font-size:18.5px;font-weight:600;border-bottom:1px solid #f0ecdf}.checkcard li:last-child{border-bottom:none}.checkcard .ck{flex:0 0 auto;color:var(--green);font-size:20px;line-height:1.3}.hero .heroimg{margin:26px auto}.sec-head{text-align:center;color:var(--navy);margin-bottom:10px}.sec-sub{text-align:center;font-size:20px;color:var(--navy-2);max-width:620px;margin:0 auto 30px}.band{background:var(--red);color:var(--cream-2);padding:26px 22px;border-radius:0;margin:34px 0}.band .display{color:#fff;text-align:left}.results{background:#fff;border-top:1px solid #e7e0cd;border-bottom:1px solid #e7e0cd}.results .wrap-wide{max-width:1200px;margin:0 auto;padding:0 18px}.rw-kicker{display:block;text-align:center;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--navy-2);font-size:13px;margin-bottom:14px}.rw-title{font-family:'Sora',Arial,sans-serif;font-weight:800;font-size:clamp(38px,5.6vw,58px);line-height:1.04;text-align:center;color:var(--navy);margin:0}.rw-title .it{display:block;color:var(--red);font-style:italic}.rw-sub{text-align:center;color:var(--navy-2);font-size:17px;margin:16px auto 30px}.rw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:8px 0 4px}.rw-card{background:#fff;border:1px solid #eee6d4;border-radius:12px;box-shadow:0 2px 6px rgba(44,40,96,.10);display:flex;flex-direction:column;overflow:hidden}.rw-photo{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:2px;height:240px;background:#efeadd;overflow:hidden}.rw-img{grid-column:1/-1;width:100%;height:100%;object-fit:cover;display:block}.rw-photo .ph{border-radius:0;border:none;min-height:0;height:100%}.rw-badge{position:absolute;bottom:12px;padding:6px 11px;border-radius:12px;color:#fff;line-height:1.15;text-align:left;box-shadow:0 2px 8px rgba(0,0,0,.25)}.rw-badge small{display:block;font-size:9px;letter-spacing:1.8px;font-weight:800;text-transform:uppercase;opacity:.85}.rw-badge b{font-size:14.5px;font-weight:800}.rw-badge.before{left:12px;background:var(--navy)}.rw-badge.after{right:12px;background:var(--red)}.rw-body{padding:18px 16px 14px;text-align:center;display:flex;flex-direction:column;flex:1}.rw-stars{color:#F5A623;letter-spacing:3px;font-size:15px}.rw-stat{font-size:22px;font-weight:800;color:var(--ink);margin:9px 0 11px;letter-spacing:-.3px}.rw-quote{font-size:15px;color:var(--navy-2);text-align:left;margin:0 0 14px;line-height:1.5}.rw-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid #f0ecdf;padding-top:11px;margin-top:auto}.rw-name{font-weight:800;font-size:14.5px;color:var(--ink)}.rw-verified{color:var(--green);font-weight:800;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap}.rw-verified:before{content:"✓ ";font-weight:900}.rw-disc{text-align:center;font-style:italic;color:#8a8471;font-size:13.5px;margin-top:20px}@media(max-width:900px){.rw-grid{grid-template-columns:1fr;gap:18px;max-width:420px;margin:0 auto}}@media(min-width:601px) and (max-width:900px){.rw-grid{grid-template-columns:repeat(2,1fr);max-width:760px;gap:20px}}@media(max-width:640px){.rw-sub{font-size:15px;margin:12px auto 20px}.rw-grid{gap:14px;max-width:320px}.rw-photo{height:210px}.rw-disc{margin-top:12px;font-size:12.5px}}.story{background:var(--cream-2)}.story-intro{background:var(--cream);padding:44px 0}.story-intro h2{text-align:center;color:var(--navy);margin-bottom:14px}.kicker{display:block;text-align:center;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);font-size:14px;margin-bottom:12px}.split{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;margin:26px 0}.split.rev .txt{order:2}.split.rev .img{order:1}@media(max-width:640px){.split{grid-template-columns:1fr}.split.rev .txt{order:1}.split.rev .img{order:2}}.caption-card{background:#fff;border-radius:12px;box-shadow:0 2px 7px rgba(44,40,96,.14);padding:12px 16px;font-weight:800;font-size:17px;margin:-26px 14px 0;position:relative;text-align:center}.xlist li,.arrlist li,.dotlist li{list-style:none;display:flex;gap:12px;align-items:flex-start;padding:10px 0;font-size:18.5px}.xlist li{border-bottom:1px solid #eee6d4}.xlist .x{color:var(--red);font-weight:900;flex:0 0 auto}.arrlist .a{color:var(--red);flex:0 0 auto}.dotlist .d{color:var(--red);flex:0 0 auto;font-size:22px;line-height:1.2}.hl-h3{font-family:'Sora',Arial,sans-serif;font-size:clamp(30px,5vw,40px);line-height:1.1;color:var(--navy);margin:34px 0 16px}.marker{background:linear-gradient(0deg,var(--hl) 0%,var(--hl) 100%);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:2px 6px}.quotebig{font-size:21px;font-weight:800;font-style:italic;color:var(--navy);border-left:5px solid var(--orange);padding:6px 0 6px 18px;margin:22px 0}.forces{display:grid;gap:12px;margin:20px 0}.force{background:#fff;border:1px solid #e7e0cd;border-left:6px solid var(--red);border-radius:12px;padding:16px 18px;font-size:18px}.proofcard{background:#fff;border:1px solid #d8d2c0;border-radius:12px;box-shadow:0 2px 7px rgba(44,40,96,.12);padding:12px;margin:22px 0}.proofcard figcaption{font-size:13.5px;color:#7d7663;font-weight:600;text-align:center;margin-top:8px;text-transform:none;letter-spacing:0}</style>
+<style>.born{background:var(--navy);color:#fff;padding:54px 0}.born h2{color:#fff;text-align:center}.born .sub{color:#dbe2ef;text-align:center;font-size:20px;max-width:600px;margin:10px auto 30px}.born-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;margin-bottom:28px}.born-grid.one{display:block;max-width:520px;margin:0 auto 28px}.born-grid .arrbig{font-size:44px;color:var(--orange-2);text-align:center}.born-list{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:16px 18px}.born-list li{list-style:none;display:flex;gap:10px;padding:7px 0;font-size:16.5px;font-weight:600}.born-list .ck{color:#7BD88F;flex:0 0 auto}@media(max-width:640px){.born-grid{grid-template-columns:1fr}.born-grid .arrbig{transform:rotate(90deg)}}.ing{background:#fff;border-top:1px solid #e7e0cd;border-bottom:1px solid #e7e0cd}.ing-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}@media(max-width:640px){.ing-grid{grid-template-columns:1fr}}.ing-card{background:var(--cream-2);border:1px solid #e7e0cd;border-radius:12px;padding:20px;display:flex;flex-direction:column}.ing-card .ph{margin-bottom:14px}.ing-name{font-family:'Sora',Arial,sans-serif;font-size:27px;color:var(--navy);text-transform:uppercase;line-height:1.05}.ing-role{display:inline-block;background:var(--navy);color:var(--orange-2);font-weight:800;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;border-radius:12px;padding:4px 12px;margin:8px 0 12px;align-self:flex-start}.ing-desc{font-size:17px;font-weight:600;margin-bottom:10px}.ing-card ul{margin:0 0 12px}.ing-card li{list-style:none;display:flex;gap:9px;padding:5px 0;font-size:15.5px}.ing-card li .b{color:var(--orange);flex:0 0 auto;font-weight:900}.ing-tag{margin-top:auto;background:var(--hl);border-radius:12px;padding:8px 12px;font-style:italic;font-weight:800;font-size:15px;text-align:center;color:var(--navy)}.steps{background:var(--cream)}.steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 8px}@media(max-width:640px){.steps-grid{grid-template-columns:1fr}}.step{background:#fff;border:1px solid #e7e0cd;border-radius:12px;padding:18px;position:relative}.step .num{position:absolute;top:-14px;left:16px;background:var(--red);color:#fff;font-family:'Sora',Arial,sans-serif;font-size:22px;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center}.step h4{font-size:19px;color:var(--navy);margin:6px 0 6px}.step p{font-size:16.5px;margin:0}.steps .close{font-size:20px;font-weight:800;text-align:center;color:var(--navy);max-width:600px;margin:22px auto 0}.vs .duel{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}@media(max-width:640px){.vs .duel{grid-template-columns:1fr}}.duel-card{border-radius:12px;padding:20px}.duel-card.plain{background:#efeadd;border:1px solid #d8d2c0;color:var(--navy-2)}.duel-card.slim{background:var(--navy);color:#fff;border:1px solid var(--navy)}.duel-card h4{font-family:'Sora',Arial,sans-serif;font-size:24px;text-transform:uppercase;margin-bottom:8px}.duel-card.slim h4{color:var(--orange-2)}.problems{display:grid;gap:12px;margin:20px 0}.problem{background:#fff;border:1px solid #e7e0cd;border-radius:12px;padding:16px 18px;font-size:17.5px}.problem b{color:var(--red)}.tarja{background:linear-gradient(90deg,var(--red),var(--red-2));padding:18px 0}.tarja .in{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}.tarja .t{color:#fff;font-weight:800;font-size:19px}.tarja .t small{display:block;font-weight:600;font-size:14px;color:#ffd9df}.tarja a{flex:0 0 auto;background:#fff;color:var(--red);text-decoration:none;font-weight:800;padding:12px 22px;border-radius:12px;font-size:17px}.calc{background:var(--navy);color:#fff}.calc h2{color:#fff}.calc-title{font-size:clamp(46px,7vw,72px)}.calc .sec-sub{color:#c9d2e2}.calc-card{background:#fff;color:var(--ink);border-radius:12px;padding:24px;max-width:620px;margin:0 auto;box-shadow:0 5px 14px rgba(0,0,0,.26)}.calc-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}@media(max-width:640px){.calc-row{grid-template-columns:1fr}}.calc-field label{display:block;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--navy-2);margin-bottom:6px}.calc-field input{width:100%;padding:12px;border:2px solid #d8d2c0;border-radius:12px;font-size:18px;font-family:inherit;font-weight:700;color:var(--navy)}.calc-field input:focus{outline:none;border-color:var(--orange)}.calc-btn{width:100%;background:var(--orange);color:#fff;border:none;font-family:inherit;font-weight:800;font-size:19px;padding:15px;border-radius:12px;cursor:pointer;box-shadow:0 4px 0 #cf6316}.calc-btn:hover{filter:brightness(1.05)}#calcResult{display:none;margin-top:22px}#calcHeadline{text-align:center;font-size:20px;font-weight:800;color:var(--navy);margin-bottom:6px}#calcHeadline b{color:var(--red)}#calcNote{text-align:center;font-size:13px;color:#8a8471;margin-top:10px}#calcChart{width:100%;height:auto;margin-top:8px}.day{background:var(--cream)}.day-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}@media(max-width:640px){.day-grid{grid-template-columns:1fr}}.day-card{background:#fff;border:1px solid #e7e0cd;border-radius:12px;padding:20px}.day-card h4{font-family:'Sora',Arial,sans-serif;font-size:25px;color:var(--red);text-transform:uppercase;margin-bottom:8px}.day-card li{list-style:none;display:flex;gap:9px;padding:6px 0;font-size:16.5px}.day-card li .d{color:var(--orange);flex:0 0 auto}.day .close{text-align:center;max-width:620px;margin:26px auto 0;font-size:19px}.day .close b{color:var(--navy)}.noline{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 56px;max-width:1160px;margin:40px auto 10px}.nox{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:26px 10px}.nox-t{position:relative;z-index:2;font-weight:800;font-size:clamp(24px,3.4vw,34px);color:var(--navy);white-space:nowrap}.nox-x{position:absolute;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%);width:auto;height:168%;pointer-events:none}@media(max-width:640px){.marquee .track{gap:12px 22px}}@media(max-width:640px){.noline{gap:30px 0;flex-direction:column;margin:34px auto 6px}.nox{padding:22px 10px}.nox-t{font-size:27px}.nox-x{height:118%;width:auto}}.urgency{background:#fff;border-top:1px solid #e7e0cd;border-bottom:1px solid #e7e0cd}.urg-card{background:var(--cream);border:2px solid var(--red);border-radius:12px;padding:26px;max-width:620px;margin:0 auto;text-align:center}.urg-card h3{font-family:'Sora',Arial,sans-serif;font-size:clamp(26px,4.6vw,34px);color:var(--red);text-transform:uppercase;line-height:1.08;margin-bottom:10px}.urg-card p{font-size:17.5px}.stockbar{background:#e7e0cd;border-radius:12px;height:22px;overflow:hidden;margin:18px 0 8px;position:relative}.stockbar .fill{background:linear-gradient(90deg,var(--orange),var(--red));height:100%;width:62%;border-radius:12px;transition:width 1.2s ease}.stocklabel{display:flex;justify-content:space-between;font-size:13.5px;font-weight:800;color:var(--navy-2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:18px}#stockPct{color:var(--red)}.expect{background:var(--cream-2)}.tl{margin-top:28px;position:relative;padding-left:26px}.tl:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:4px;border-radius:12px;background:linear-gradient(180deg,var(--orange),var(--red))}.tl-item{position:relative;margin-bottom:22px;background:#fff;border:1px solid #e7e0cd;border-radius:12px;padding:18px 20px}.tl-item:before{content:"";position:absolute;left:-24px;top:24px;width:16px;height:16px;border-radius:50%;background:var(--red);border:3px solid var(--cream-2)}.tl-item h4{font-family:'Sora',Arial,sans-serif;font-size:24px;color:var(--navy);text-transform:uppercase;margin-bottom:8px}.tl-item li{list-style:none;display:flex;gap:9px;padding:5px 0;font-size:16.5px}.tl-item li .d{color:var(--green);flex:0 0 auto;font-weight:900}.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}@media(max-width:640px){.who-grid{grid-template-columns:1fr}}.who-card{border-radius:12px;padding:22px}.who-card.yes{background:#EDF6EF;border:1px solid #bcd9c4}.who-card.no{background:#FBEDEF;border:1px solid #ecc3cb}.who-card h3{font-family:'Sora',Arial,sans-serif;font-size:26px;text-transform:uppercase;margin-bottom:12px}.who-card.yes h3{color:var(--green)}.who-card.no h3{color:var(--red)}.who-card li{list-style:none;display:flex;gap:10px;padding:8px 0;font-size:17px}.who-card .ic{flex:0 0 auto;font-weight:900}.who-card.yes .ic{color:var(--green)}.who-card.no .ic{color:var(--red)}.compare{background:#fff;border-top:1px solid #e7e0cd;border-bottom:1px solid #e7e0cd}.wrap-wide2{max-width:1000px;margin:0 auto;padding:0 20px}.cmp2{margin-top:30px;position:relative}.cmp2-head,.cmp2-row{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;align-items:center}.cmp2-head{align-items:end}.ch{text-align:center;padding:0 6px 14px}.ch.cl{padding:0}.ch-prod{height:120px;width:auto;object-fit:contain;display:block;margin:0 auto 6px}.ch-ic{display:flex;align-items:center;justify-content:center;height:120px}.ch-ic svg{width:76px;height:76px}.ch-nm{display:block;font-weight:800;font-size:15.5px;color:var(--navy);line-height:1.2}.ch.ours .ch-nm{color:#fff}.cmp2 .ours{position:relative}.cmp2 .ours:before{content:"";position:absolute;left:8px;right:8px;top:0;bottom:0;background:#4F8465;z-index:0}.cmp2-head .ours{padding-top:14px}.cmp2-head .ours:before{top:8px;border-radius:12px 3px 0 0}.cmp2-row .ours{align-self:stretch;display:flex;align-items:center;justify-content:center}.cmp2-row .ours:before{top:-1px;bottom:0}.cmp2-row:last-child .ours:before{border-radius:0 0 3px 3px}.cmp2 .ours>*{position:relative;z-index:1}.cmp2-row{border-top:none}.cmp2-row .cl,.cmp2-row .cc:not(.ours){border-top:1px solid #e2dbc8}.cmp2-row .cl{text-align:left;font-weight:700;font-size:17px;color:var(--ink);padding:18px 14px 18px 0}.cc{text-align:center;padding:14px 6px}.cbg{width:46px;height:46px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;line-height:1}.cbg.yes{background:var(--orange)}.cbg.no{background:var(--navy)}.cbg.mid{background:#9E8790}.cmp-legend{margin-top:22px;display:flex;flex-wrap:wrap;justify-content:center;gap:14px 30px}.cmp-legend .lg{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;color:var(--ink)}.cmp-legend .lg .cbg{width:30px;height:30px;font-size:16px}@media(max-width:640px){.cmp-legend{gap:8px 18px}.cmp-legend .lg{font-size:12.5px;gap:6px}.cmp-legend .lg .cbg{width:24px;height:24px;font-size:13px}.wrap-wide2{padding:0 10px}.cmp2-head,.cmp2-row{grid-template-columns:1.35fr .88fr .88fr .88fr}.ch-prod{height:64px}.ch-ic{height:64px}.ch-ic svg{width:44px;height:44px}.ch-nm{font-size:11px}.cmp2-row .cl{font-size:13.5px;padding:14px 6px 14px 0}.cbg{width:34px;height:34px;font-size:18px}.cmp2 .ours:before{left:3px;right:3px}}table.cmp{width:100%;border-collapse:collapse;margin-top:26px;font-size:16px}.cmp th,.cmp td{padding:13px 10px;text-align:center;border-bottom:1px solid #eee6d4}.cmp th{font-size:14.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--navy)}.cmp td:first-child,.cmp th:first-child{text-align:left;font-weight:700;color:var(--ink)}.cmp .col-slim{background:var(--cream);border-left:2px solid var(--orange);border-right:2px solid var(--orange);font-size:19px}.cmp-x{width:26px;height:26px;object-fit:contain;display:inline-block;vertical-align:middle}.cmp-bottle{height:46px;width:auto;object-fit:contain;display:inline-block;vertical-align:middle}.cmp thead .col-slim{font-family:'Sora',Arial,sans-serif;font-size:21px;color:var(--red)}.nostrip{margin-top:22px;text-align:center;font-weight:800;color:var(--navy);font-size:15.5px;letter-spacing:.5px;background:var(--cream);border-radius:12px;padding:12px}</style>
+<style>.dobra3{background:var(--navy);color:#fff;padding:48px 0}.dobra3 h2{color:#fff;text-align:center;margin-bottom:22px}.dobra3 .checkcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.2)}.dobra3 .checkcard li{color:#fff;border-bottom:1px solid rgba(255,255,255,.12)}.offer{background:var(--cream)}.offer-card{background:#fff;border:1px solid #e7e0cd;border-radius:12px;box-shadow:0 4px 12px rgba(44,40,96,.14);padding:30px 26px;max-width:620px;margin:0 auto;text-align:center}.offer-card .ph{margin:0 auto 20px;max-width:320px}.offer-name{font-family:'Sora',Arial,sans-serif;font-size:34px;color:var(--navy);text-transform:uppercase;line-height:1}.offer-tag{color:var(--navy-2);font-weight:600;font-size:16.5px;margin:6px 0 18px}.price-line{display:flex;align-items:baseline;justify-content:center;gap:12px;margin:10px 0 4px}.price-now{font-family:'Sora',Arial,sans-serif;font-size:64px;color:var(--red);line-height:1}.price-label{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--navy-2);margin-bottom:16px}.offer .official{margin-top:18px;font-size:14.5px;font-weight:700;color:var(--navy-2)}.offer .official b{color:var(--navy)}.pay-ph{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}.guarantee{padding:0}.g-top{background:var(--orange)}.g-top .wrap{display:flex;align-items:center;justify-content:space-between;gap:22px;padding-top:16px;padding-bottom:16px}.g-head{color:#fff;margin:0;font-size:clamp(30px,5vw,44px);line-height:.9;letter-spacing:.5px}.g-seal{width:110px;height:auto;flex:none;filter:drop-shadow(0 4px 10px rgba(0,0,0,.28))}.g-bot{background:var(--navy)}.g-bot .wrap{padding-top:30px;padding-bottom:30px}.g-copy{color:#fff;margin:0 0 24px;font-size:clamp(18px,2.3vw,22px);line-height:1.5;font-weight:600}.g-cta{display:block;text-align:center;width:100%;box-sizing:border-box;background:var(--orange);color:#fff;text-decoration:none;font-family:'Manrope',Arial,sans-serif;font-weight:800;text-transform:none;letter-spacing:.3px;font-size:clamp(24px,4.2vw,36px);line-height:1.05;padding:16px 22px;border-radius:12px;transition:filter .2s}.g-cta span{font-family:inherit;margin-left:6px}.g-cta:hover{filter:brightness(1.07)}.g-reassure{display:flex;align-items:center;justify-content:center;gap:8px;color:#c9d2e2;font-weight:700;font-size:15px;margin-top:16px;text-align:center}@media(max-width:640px){.g-top .wrap{gap:12px;padding-top:12px;padding-bottom:12px}.g-seal{width:66px}.g-bot .wrap{padding-top:22px;padding-bottom:22px}.g-copy{font-size:16.5px;margin-bottom:20px}.g-cta{font-size:26px;padding:14px 12px;letter-spacing:.5px}.g-reassure{font-size:13px}}.testi{background:var(--cream-2)}.testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}@media(max-width:640px){.testi-grid{grid-template-columns:1fr}}.t-card{background:#fff;border:1px solid #e7e0cd;border-radius:12px;padding:14px}.t-card .ph{margin-bottom:10px}.t-card .stars{font-size:15px}.t-card p{font-size:15px;color:var(--navy-2);font-weight:600;margin:6px 0 0}.faq{background:#fff;border-top:1px solid #e7e0cd}.faq-group{font-family:'Sora',Arial,sans-serif;font-size:26px;color:var(--red);text-transform:uppercase;margin:30px 0 10px;letter-spacing:1px}details.qa{background:var(--cream-2);border:1px solid #e7e0cd;border-radius:12px;margin-bottom:10px;overflow:hidden}details.qa summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:14px;align-items:center;padding:16px 18px;font-weight:800;font-size:18px;color:var(--navy)}details.qa summary::-webkit-details-marker{display:none}details.qa summary:after{content:"+";font-size:26px;color:var(--orange);flex:0 0 auto;font-weight:400}details.qa[open] summary:after{content:"–"}details.qa .a{padding:0 18px 18px;font-size:17px;color:var(--ink)}footer{background:var(--navy);color:#9fb0cc;padding:44px 0 120px;font-size:13.5px;text-align:center}footer .logo{color:#fff;margin-bottom:14px}footer p{margin:0 0 12px;line-height:1.6}.sticky{position:fixed;left:0;right:0;bottom:0;background:var(--navy);z-index:50;box-shadow:0 -6px 18px rgba(0,0,0,.25);transform:translateY(110%);transition:transform .35s ease}.sticky.show{transform:translateY(0)}.sticky .in{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 18px}.sticky .t{color:var(--orange-2);font-weight:800;font-size:16px;line-height:1.2}.sticky .t small{display:block;color:#c9d2e2;font-weight:600;font-size:12.5px}.sticky a{flex:0 0 auto;background:var(--red);color:#fff;text-decoration:none;font-weight:800;padding:12px 22px;border-radius:12px;font-size:16.5px;box-shadow:0 3px 0 var(--red-2)}html.js .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}html.js .rv.on{opacity:1;transform:none}img,svg{max-width:100%;height:auto}.cmp-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:26px}.cmp-wrap table.cmp{margin-top:0;min-width:540px}@media(max-width:640px){body{font-size:17px;line-height:1.5}section{padding:30px 0}.wrap{padding:0 14px}.topbar{font-size:11.5px;padding:7px 10px}header.site{padding:14px 0}.logo-img{height:38px}.hdr-rate{display:flex;flex-direction:column;align-items:flex-end;gap:1px;line-height:1.1}.hdr-txt{font-weight:700;color:var(--navy-2);text-transform:uppercase;letter-spacing:1px;font-size:11.5px}.hdr-rate .stars{font-size:15px}.hdr-txt{font-size:10px;letter-spacing:.8px}.hero{padding:24px 0 32px}h1.display{font-size:34px}h2.display{font-size:27px}.hl-h3{font-size:24px}.hero{padding:22px 0 32px}.hero .sub-em{font-size:18px}.hero .sub-strong{font-size:17.5px}.checkcard{padding:16px}.checkcard li{font-size:15.5px;gap:9px;padding:8px 0}.checkcard .ck{font-size:17px}.sec-sub{font-size:16.5px}.kicker{font-size:12px}.btn{font-size:18px;padding:17px 18px;border-radius:12px}.under-btn{font-size:13.5px}.ph-md{min-height:180px}.ph-lg{min-height:230px}.caption-card{font-size:15px}.xlist li,.arrlist li,.dotlist li{font-size:16px;padding:8px 0}.quotebig{font-size:18px}.force{font-size:16px;padding:13px 14px}.split{gap:14px;margin:20px 0}.born{padding:36px 0}.born .sub{font-size:17px}.born-list li{font-size:15px}.ing-card{padding:16px}.ing-name{font-size:23px}.ing-desc{font-size:15.5px}.ing-card li{font-size:14.5px}.step{padding:15px}.step p{font-size:15.5px}.steps .close{font-size:17.5px}.duel-card{padding:16px}.problem{font-size:15.5px}.tarja .in{flex-direction:column;align-items:stretch;text-align:center}.tarja a{text-align:center}.tarja .t{font-size:16.5px}.calc-card{padding:18px 14px}.calc-field input{font-size:17px;padding:13px}#calcHeadline{font-size:17.5px}.day-card{padding:16px}.day-card li{font-size:15.5px}.day .close{font-size:17px}.urg-card{padding:20px 16px}.urg-card p{font-size:15.5px}.tl{padding-left:22px}.tl-item{padding:15px 16px}.tl-item li{font-size:15.5px}.who-card{padding:18px}.who-card li{font-size:15.5px}.cmp th,.cmp td{padding:10px 8px;font-size:13.5px}.cmp .col-slim{font-size:16px}.cmp thead .col-slim{font-size:17px}.nostrip{font-size:13px}.offer-card{padding:22px 16px}.price-now{font-size:54px}.g-badge{width:120px;height:120px;border-width:5px}.g-badge .n{font-size:42px}.g-badge .t{font-size:13px}.g-grid p{font-size:16px}.t-card p{font-size:14px}details.qa summary{font-size:16px;padding:14px}details.qa .a{font-size:15.5px;padding:0 14px 14px}footer{padding:34px 0 104px;font-size:12.5px}.sticky .in{padding:10px 14px}.sticky .t{font-size:14px}.sticky .t small{font-size:11.5px}.sticky a{padding:11px 16px;font-size:15px}}.split>div,.calc-cols>div,.ing-grid>div,.rw-grid>div,.steps-grid>div,.whoq-grid>div,.testi-grid>div,.res-grid>div,.g-grid>div,.dt-item>div,.born-grid>*,.urg-grid>*{min-width:0}.pj-flex,.sl-top{flex-wrap:wrap}.traj svg,#calcChart{max-width:100%}@media(max-width:360px){.hl-h3{font-size:21px}.marker{padding:2px 3px}.maya-title{font-size:42px}.sticky .in{padding:8px 10px;gap:8px}.sticky .t{font-size:12.5px}.sticky .t small{font-size:10.5px}.sticky a{padding:10px 12px;font-size:13.5px}h1.display{font-size:30px}h2.display{font-size:24px}}</style>
+<style>.hdr-in{display:flex;align-items:center;justify-content:center;gap:14px}.logo-img{height:46px;display:block}.hdr-rate{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;text-align:right}.hdr-rate .stars{color:#F5A623;font-size:17px;letter-spacing:2px;white-space:nowrap}.hdr-txt{color:var(--navy-2);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:1.2px}.logo-foot{height:46px;filter:brightness(0) invert(1);opacity:.9;margin-bottom:10px}.real{width:100%;display:block;border-radius:12px;object-fit:cover}.real-bottle{max-height:300px;width:auto;margin:0 auto;object-fit:contain;filter:drop-shadow(0 10px 24px rgba(0,0,0,.35))}.story-img{width:100%;border-radius:12px;border:1px solid #e7e0cd}.story-img-flow{margin:22px 0}.imgpair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}.imgpair img{height:100%;object-fit:cover}@media(max-width:640px){.imgpair{grid-template-columns:1fr;gap:10px}}@media(min-width:641px){.bullets-split{align-items:center}.bullets-split .xlist{margin:0}.bullets-split .xlist li{font-size:19px}}@media(min-width:641px){.split-fill{align-items:stretch}.split-fill .img{display:flex}.split-fill .img .story-img{width:100%;height:100%;object-fit:cover;object-position:center;min-height:300px;border-radius:12px}}.sec-img{width:100%;max-width:760px;margin:22px auto 0;display:block;border-radius:12px}.cta-solves{position:relative;width:100vw;margin:26px 0 0;margin-left:calc(50% - 50vw);background:#232152;padding:0;line-height:0}.cta-solves .cs-desktop{display:block}.cta-solves .cs-mobile{display:none}.cta-solves img{width:100%;display:block;border-radius:0}.cs-btn2{position:absolute;left:6%;top:76%;transform:translateY(-50%);background:var(--orange);color:#fff;text-decoration:none;font-family:'Manrope',Arial,sans-serif;font-weight:800;font-size:clamp(13px,1.45vw,22px);letter-spacing:.3px;padding:.6em 1.15em;border-radius:999px;box-shadow:0 4px 10px rgba(160,110,28,.42);white-space:nowrap}.cs-btn2 span{margin-left:.25em}.cs-mbtn{display:none}@media(max-width:768px){.cta-solves{background:#EFEBFA;padding:22px 0}.cta-solves .cs-desktop{display:none}.cta-solves .cs-mobile{display:block;max-width:560px;margin:0 auto;padding:0 18px;box-sizing:border-box}.cs-btn2{display:none}.cs-mbtn{display:block;max-width:320px;margin:14px auto 0;background:var(--orange);color:#fff;text-align:center;text-decoration:none;font-family:'Manrope',Arial,sans-serif;font-weight:800;font-size:18px;letter-spacing:.3px;padding:13px 22px;border-radius:999px;box-shadow:0 6px 14px rgba(232,149,47,.4)}.cs-mbtn span{margin-left:.25em}}.cta-solves .cs-mobile{display:none}.cs-btn{position:absolute;top:60%;left:72%;transform:translate(-50%,-50%) scale(1);background:var(--orange);color:#fff;text-decoration:none;font-family:'Manrope',Arial,sans-serif;font-weight:800;letter-spacing:.5px;font-size:clamp(15px,1.5vw,22px);padding:.7em 1.3em;border-radius:12px;white-space:nowrap;box-shadow:0 6px 18px rgba(232,149,47,.4);animation:ctaPulse 1.7s ease-in-out infinite;z-index:2;line-height:1.1}.cs-btn span{display:inline-block;margin-left:.3em}.cs-btn:hover{animation-play-state:paused;background:#e06e1e}@keyframes ctaPulse{0%,100%{transform:translate(-50%,-50%) scale(1);box-shadow:0 6px 18px rgba(232,149,47,.4)}50%{transform:translate(-50%,-50%) scale(1.07);box-shadow:0 8px 26px rgba(232,149,47,.6)}}@media(max-width:768px){.cta-solves .cs-desktop{display:none}.cta-solves .cs-mobile{display:block}.cs-btn{left:72%;top:55%;font-size:clamp(13px,3.6vw,18px);padding:.65em 1.1em}}@media(prefers-reduced-motion:reduce){.cs-btn{animation:none}}.born-img{width:100%;height:auto;border-radius:12px;object-fit:contain}.highd-img{width:100%;border-radius:12px;object-fit:cover}.urgency{background:var(--cream-2)}.hd-cta{position:relative;display:block;max-width:1000px;margin:0 auto;line-height:0;border-radius:12px;overflow:hidden;box-shadow:0 3px 10px rgba(44,40,96,.14);container-type:inline-size}.hd-cta img{width:100%;display:block}.hd-btn{position:absolute;top:71%;left:52%;transform:translateY(-50%) scale(1);transform-origin:left center;display:inline-flex;align-items:center;gap:.4em;background:var(--orange);color:#fff;font-family:'Sora',Arial,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.8px;white-space:nowrap;font-size:3.6cqw;line-height:1;text-align:left;padding:.42em .9em;border-radius:12px;box-shadow:0 6px 18px rgba(232,149,47,.5);animation:hdPulse 1.7s ease-in-out infinite;z-index:2}.hd-btn .a{display:inline-block;margin-left:.25em}.hd-cta:hover .hd-btn{animation-play-state:paused;background:#e06e1e}@keyframes hdPulse{0%,100%{transform:translateY(-50%) scale(1);box-shadow:0 6px 18px rgba(232,149,47,.45)}50%{transform:translateY(-50%) scale(1.05);box-shadow:0 9px 26px rgba(232,149,47,.65)}}@media(prefers-reduced-motion:reduce){.hd-btn{animation:none}}@media(max-width:640px){.hd-btn{top:66%;left:52.5%;width:40%;padding:.55em .4em;border-radius:12px}}.real-bottle-sm{max-height:170px;width:auto;margin:0 auto;object-fit:contain}.asom{background:var(--navy);padding:20px 0 22px;overflow:hidden}.asom .lbl{text-align:center;color:#9fb0cc;font-weight:800;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px}.marquee{display:flex;justify-content:center}.marquee .track{display:flex;flex:1;justify-content:center;align-items:center;flex-wrap:wrap;gap:16px 40px;padding:0 16px}@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-100%)}}.brand{color:#fff;white-space:nowrap;opacity:.92}.brand.serif{font-family:'Sora',Arial,sans-serif;font-weight:700;letter-spacing:4px;font-size:23px}.blogo{width:auto;filter:brightness(0) invert(1);opacity:.95;object-fit:contain;flex:0 0 auto}.l-vogue{height:30px}.l-forbes{height:30px}.l-womens{height:26px}.l-vanity{height:26px}.l-bazaar{height:30px}.brand.sans{font-family:'Manrope',Arial,sans-serif;font-weight:800;letter-spacing:1px;font-size:20px;text-transform:uppercase}.maya-hero{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:center;margin:6px 0 10px}.maya-photo{position:relative;line-height:0;width:280px;aspect-ratio:1/1;overflow:hidden;border-radius:12px}.maya-photo img{width:100%;height:100%;object-fit:cover;border-radius:12px;border:2px solid var(--navy);display:block;box-sizing:border-box}@media(max-width:640px){.maya-photo{width:100%}}.maya-cap{position:absolute;left:14px;bottom:14px;background:#fff;border:2px solid var(--navy);color:var(--navy);font-family:'Manrope',Arial,sans-serif;font-weight:800;font-size:19px;letter-spacing:.5px;padding:6px 14px;box-shadow:4px 4px 0 rgba(44,40,96,.9)}.maya-txt .maya-title{font-size:clamp(34px,5vw,52px);line-height:1;white-space:nowrap;margin:0 0 16px}.maya-txt p{margin:0 0 14px}@media(max-width:640px){.maya-hero{grid-template-columns:1fr;gap:16px}.maya-photo{max-width:420px;margin:0 auto;width:100%}.maya-cap{font-size:19px;left:10px;bottom:10px}.maya-txt .maya-title{font-size:clamp(40px,11vw,60px);white-space:normal}}.maya-title{font-family:'Sora',Arial,sans-serif;font-weight:400;font-size:clamp(48px,8vw,76px);line-height:.98;text-transform:uppercase;color:var(--navy);margin:0 0 18px;letter-spacing:1px}.maya-title span{color:var(--red)}.interstitial{text-align:center;font-size:clamp(24px,4vw,32px);font-weight:800;color:var(--navy);margin:36px 0 22px}.wrap-wide-ing{max-width:1220px;margin:0 auto;padding:0 18px}.ing-grid{grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;margin-top:40px}@media(max-width:999px){.ing-grid{grid-template-columns:1fr 1fr}}@media(max-width:640px){.ing-grid{grid-template-columns:1fr}}.ing-card{padding:0;border:1.5px solid var(--navy);border-radius:12px;overflow:visible}.ing-head{background:var(--navy);color:#fff;border-radius:12px 3px 0 0;padding:14px 78px 12px 16px;position:relative;min-height:66px}.ing-head .nm{display:block;font-family:'Sora',Arial,sans-serif;font-weight:800;font-size:24px;letter-spacing:.5px;line-height:1;color:#fff}.ing-head .role{display:block;color:var(--orange-2);font-weight:700;font-size:11.5px;letter-spacing:1.2px;text-transform:uppercase;margin-top:5px}.ing-png{position:absolute;top:-22px;right:8px;width:84px;height:84px;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,.28))}.ing-bd{padding:16px 16px 14px;display:flex;flex-direction:column;flex:1}.ing-bd ul{margin:0 0 14px}.ing-card .ing-bd li{border-bottom:1px solid #f0ecdf;padding:7px 0}.ing-card .ing-bd li:last-child{border-bottom:none}.ing-foot{background:var(--hl);border-radius:12px;padding:10px 12px;text-align:center;margin-top:auto}.ing-foot .r{display:block;font-weight:800;font-size:13.5px;color:var(--navy)}.ing-foot .ar{display:block;color:var(--red);font-weight:900;line-height:1.1}.ing-foot .t{display:block;font-size:13.5px;font-weight:700;color:var(--navy)}.step-ic{width:58px;height:58px;border-radius:50%;background:var(--cream);border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;margin:0 auto 12px}.step{text-align:center}.step h4{text-align:center}.maya-intro{max-width:640px}.step-ic svg{width:28px;height:28px;stroke:var(--red);fill:none;stroke-width:2}.calc-card{padding:0;overflow:hidden;max-width:960px}.calc-band{background:var(--orange);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 18px;flex-wrap:wrap}.calc-band .tt{font-weight:800;letter-spacing:2px;font-size:14px;text-transform:uppercase}.unit-tog{background:rgba(255,255,255,.28);border-radius:12px;padding:3px;display:flex;gap:2px}.unit-tog button{border:none;background:transparent;color:#fff;font-family:inherit;font-weight:800;font-size:13px;padding:6px 13px;border-radius:12px;cursor:pointer}.unit-tog button.on{background:var(--navy)}.calc-cols{display:grid;grid-template-columns:1fr 1.1fr}@media(max-width:820px){.calc-cols{grid-template-columns:1fr}}.calc-left{padding:22px;border-right:1px solid #eee6d4}@media(max-width:820px){.calc-left{border-right:none;border-bottom:1px solid #eee6d4}}.calc-right{padding:22px;background:#FCF7F4}.sl-row{margin-bottom:18px}.sl-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}.sl-top label{font-weight:700;font-size:15px;color:var(--navy-2)}.sl-val{font-weight:800;font-size:25px;color:var(--navy);white-space:nowrap}.sl-val small{font-size:13px;color:var(--navy-2);font-weight:700}input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:4px;border-radius:12px;background:#e2dbc8;outline:none;margin:14px 0 6px}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--navy);cursor:pointer;border:none;box-shadow:0 2px 6px rgba(0,0,0,.3)}input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--navy);cursor:pointer;border:none}.sl-mm{display:flex;justify-content:space-between;font-size:12px;color:#8a8471}.diff-note{font-size:14.5px;color:var(--navy-2);margin:4px 0 0}.pj-lbl{font-size:12px;letter-spacing:2px;font-weight:800;color:#8a8471;text-transform:uppercase;margin-bottom:10px}.pj-flex{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.pj-goal{font-size:12.5px;font-weight:800;letter-spacing:1px;color:var(--navy-2);text-transform:uppercase;margin-bottom:4px}.pj-big{font-family:'Sora',Arial,sans-serif;font-size:58px;color:var(--red);line-height:1}.pj-big small{font-size:22px;color:var(--navy-2)}.pj-in{font-size:16px;font-weight:700;color:var(--navy)}.bmi-box{border:2px solid var(--orange);border-radius:12px;padding:8px 14px;text-align:center;background:#fff;flex:0 0 auto}.bmi-box .v{font-weight:800;font-size:24px;color:var(--navy);line-height:1.1}.bmi-box .l{font-size:10px;letter-spacing:1.5px;font-weight:800;color:#8a8471}.bmi-box .c{font-size:11.5px;font-weight:800;color:var(--orange)}.traj{background:#fff;border:1px solid #eee6d4;border-radius:12px;padding:12px;margin-top:16px}.traj .th{display:flex;justify-content:space-between;gap:8px;font-size:10.5px;letter-spacing:1.2px;font-weight:800;color:#8a8471;text-transform:uppercase;margin-bottom:6px}.traj svg{width:100%;height:auto}.calc-foot{font-size:11.5px;color:#8a8471;padding:10px 18px;border-top:1px solid #eee6d4;background:#fff}@media(max-width:640px){.pj-big{font-size:48px}.sl-val{font-size:22px}.calc-left,.calc-right{padding:16px}}.day-wide{max-width:1220px;margin:0 auto;padding:0 24px}.day-tl{position:relative;max-width:1180px;margin:44px auto 0}.day-tl:before{content:"";position:absolute;left:50%;top:10px;bottom:10px;width:4px;background:var(--orange);transform:translateX(-50%);border-radius:12px}.dt-item{display:grid;grid-template-columns:1fr 64px 1fr;align-items:center;margin-bottom:30px}.dt-item:last-child{margin-bottom:0}.dt-node{grid-column:2;grid-row:1;width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;margin:0 auto;border:5px solid var(--cream);position:relative;z-index:2}.dt-label{display:flex;align-items:center;gap:16px;font-family:'Sora',Arial,sans-serif;font-size:44px;color:var(--navy);text-transform:uppercase;letter-spacing:1px;line-height:1}.dt-label .em{font-size:40px}.dt-item .dt-label{grid-column:1;grid-row:1;justify-content:flex-end;padding-right:34px}.dt-item .dt-card{grid-column:3;grid-row:1;margin-left:34px;position:relative}.dt-item .dt-card:before{content:"";position:absolute;left:-11px;top:28px;border:11px solid transparent;border-right-color:var(--navy)}.dt-item .dt-card:after{content:"";position:absolute;left:-8px;top:29px;border:10px solid transparent;border-right-color:#fff}.dt-item.flip .dt-label{grid-column:3;justify-content:flex-start;padding-left:34px;padding-right:0}.dt-item.flip .dt-card{grid-column:1;margin-left:0;margin-right:34px}.dt-item.flip .dt-card:before{left:auto;right:-11px;border-right-color:transparent;border-left-color:var(--navy)}.dt-item.flip .dt-card:after{left:auto;right:-8px;border-right-color:transparent;border-left-color:#fff}.dt-card{background:#fff;border:1.5px solid var(--navy);border-radius:12px;padding:18px 22px;box-shadow:6px 6px 0 rgba(44,40,96,.08)}.dt-card ul{margin:0}.dt-card li{list-style:none;display:flex;gap:10px;padding:6px 0;font-size:17px}.dt-card li .d{color:var(--orange);flex:0 0 auto;font-weight:900}@media(max-width:820px){.day-tl{max-width:560px}.dt-label{font-size:34px}.dt-item .dt-card:before,.dt-item .dt-card:after,.dt-item.flip .dt-card:before,.dt-item.flip .dt-card:after{display:none}.day-tl:before{left:17px;transform:none}.dt-item{grid-template-columns:44px 1fr;margin-bottom:26px;align-items:start}.dt-node{grid-column:1;width:32px;height:32px;border-width:3px;margin:0 0 0 1px;font-size:16px}.dt-item .dt-label,.dt-item.flip .dt-label{grid-column:2;grid-row:1;justify-content:flex-start;padding:0 0 8px 8px;font-size:28px}.dt-item .dt-card,.dt-item.flip .dt-card{grid-column:2;grid-row:2;margin:0 0 0 8px}}.urg-grid{display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:center;text-align:left;margin-bottom:6px}.urg-grid .ph{min-height:150px}@media(max-width:640px){.urg-grid{grid-template-columns:1fr;text-align:center}.urg-grid .ph{min-height:120px}}.whosec{padding:44px 0}.who-wide{max-width:1180px;margin:0 auto;padding:0 24px}.whoq{text-align:center}.whoq-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:34px}.whoq-grid.n2{grid-template-columns:repeat(2,1fr);max-width:760px;margin:34px auto 0}@media(min-width:1000px){.whoq-grid.n4{grid-template-columns:repeat(4,1fr)}}@media(max-width:999px) and (min-width:761px){.whoq-grid.n4{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.whoq-grid.n4{grid-template-columns:1fr}}.whoq-col{padding:8px 30px;position:relative;text-align:center}.whoq-col+.whoq-col:before{content:"";position:absolute;left:0;top:20px;bottom:20px;width:1px;background:#e2dbc8}.whoq-ic{width:150px;height:150px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-size:64px}.whoq-ic img{width:100%;height:100%;object-fit:contain}.whoq-name{font-weight:800;font-size:21px;color:var(--navy);margin-bottom:10px;line-height:1.25}.whoq-desc{font-size:17px;color:var(--ink);margin:0;line-height:1.55}.whoq-xwrap{position:relative;display:inline-block;padding:6px 10px 8px}.whoq-not .whoq-name{position:relative;z-index:2}.whoq-x{position:absolute;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%);height:150%;width:auto;pointer-events:none}.whoq-not .whoq-desc{margin-top:8px}@media(max-width:760px){.who-wide{padding:0 18px}.whoq-grid,.whoq-grid.n2{grid-template-columns:1fr;gap:6px;max-width:540px;margin-left:auto;margin-right:auto}.whoq-col{display:grid;grid-template-columns:96px 1fr;column-gap:16px;row-gap:2px;align-items:center;text-align:left;padding:16px 4px}.whoq-col+.whoq-col:before{left:0;right:0;top:0;bottom:auto;width:auto;height:1px}.whoq-ic{grid-column:1;grid-row:1/3;width:88px;height:88px;margin:0;font-size:42px}.whoq-name{grid-column:2;grid-row:1;align-self:end;margin:0 0 4px}.whoq-desc{grid-column:2;grid-row:2;align-self:start}.whoq-not{grid-template-columns:1fr;text-align:center;justify-items:center}.whoq-not .whoq-name,.whoq-not .whoq-desc,.whoq-not .whoq-xwrap{grid-column:1}.whoq-x{height:140%}}.offer-wrap{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:1020px;margin:0 auto;align-items:start;padding:0 18px}@media(max-width:899px){.offer-wrap{grid-template-columns:1fr;max-width:560px;gap:18px}}.offer-top{max-width:1020px;margin:0 auto 22px;padding:0 18px}.warn-card{display:flex;align-items:center;justify-content:center;gap:16px 26px;flex-wrap:wrap;background:#fff;border:1.5px solid #eee6d4;border-radius:12px;padding:18px 24px;text-align:center;box-shadow:0 2px 7px rgba(44,40,96,.10);margin:0}.warn-card .wi{font-size:30px;line-height:1;flex:0 0 auto}.warn-card .wt{font-family:'Sora',Arial,sans-serif;letter-spacing:1px;font-size:26px;color:var(--red);text-transform:uppercase;line-height:1}.warn-card .wc{font-weight:800;font-size:18px;color:var(--ink)}.warn-card .wc b{color:var(--red);font-size:22px}@media(max-width:640px){.warn-card{gap:8px 16px;padding:14px 16px}.warn-card .wt{font-size:20px}.warn-card .wc{font-size:15.5px}.warn-card .wc b{font-size:18px}}.offer-wrap{align-items:start}.offer-left{display:flex;flex-direction:column;justify-content:flex-start;background:#fff;border:1px solid #eee6d4;border-radius:12px;padding:20px;box-shadow:0 2px 7px rgba(44,40,96,.10)}.offer-left .gal-main{border:none;box-shadow:none;padding:0;background:transparent}.offer-right{display:flex;flex-direction:column;justify-content:flex-start}.gal-main{background:#fff;border:1.5px solid #eee6d4;border-radius:12px;padding:10px}.gal-main img{width:100%;display:block;border-radius:12px}.gal-thumbs{display:flex;gap:8px;margin-top:10px;justify-content:center;flex-wrap:wrap}.gal-thumbs button{border:2px solid #ddd5c2;background:#fff;border-radius:12px;padding:4px;cursor:pointer;width:62px;height:62px;flex:0 0 auto}.gal-thumbs button.on{border-color:var(--orange)}.gal-thumbs img{width:100%;height:100%;object-fit:contain;display:block}.offer-rate{text-align:center;margin-top:14px;font-weight:800;color:var(--navy);font-size:15px}.gold-banner{background:transparent;border:none;border-radius:0;text-align:left;padding:0 0 2px;color:var(--ink);margin-bottom:20px;box-shadow:none}.gold-banner .g1{font-family:'Sora',Arial,sans-serif;font-size:27px;letter-spacing:1px;line-height:1.05}.gold-banner .g2{font-weight:700;font-size:16.5px;margin-top:6px}.gold-banner .g2 b{font-size:19px}.ltd-card{background:#fff;border:1px solid #e8e4da;border-radius:14px;padding:22px 20px 12px;position:relative;margin-bottom:18px;box-shadow:0 3px 14px rgba(46,42,68,.07)}.ltd-pill{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--orange-2);color:var(--navy);font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:6px 18px;border-radius:12px;white-space:nowrap;box-shadow:0 3px 8px rgba(0,0,0,.15)}.ltd-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0 12px;border-bottom:1px solid #cfe3d4;flex-wrap:wrap}.ltd-name{font-weight:800;font-size:18.5px;color:var(--ink)}.ltd-price .old{color:#8a8471;text-decoration:line-through;font-weight:700;font-size:17px;margin-right:8px}.ltd-price .new{color:var(--red);font-weight:800;font-size:27px}.ltd-perk{display:flex;gap:12px;align-items:center;padding:12px 0;font-weight:700;font-size:16.5px;border-bottom:1px solid #cfe3d4;color:var(--ink)}.ltd-perk:last-child{border-bottom:none}.ltd-perk .pi{font-size:27px;flex:0 0 auto}.ltd-perk img{width:42px;height:42px;object-fit:contain;flex:0 0 auto}.ship-note{text-align:center;font-weight:700;margin:12px 0 0;color:var(--navy)}.pay-strip{display:block;width:100%;max-width:300px;margin:14px auto 0}.offer-right .official{margin-top:16px;text-align:center}.seal-img{width:160px;height:auto;margin:0 auto;display:block;filter:drop-shadow(0 6px 14px rgba(0,0,0,.35))}.maya-title,.dt-label,.tl-item h4,.duel-card h4,.faq-group,.warn-card .wt,.offer-name,.urg-card h3{font-family:'Bebas Neue',Arial,sans-serif;font-weight:400;letter-spacing:1.5px}@media(max-width:640px){.warn-card .t1{font-size:16.5px}.warn-card .t2{font-size:16px}.gold-banner .g1{font-size:23px}.ltd-name{font-size:16.5px}.ltd-price .new{font-size:24px}}.gold-banner .off-badge{display:inline-block;background:linear-gradient(135deg,#F6D98A,#E2A72E 45%,#F3CE6B);color:#3a2c07;border:1px solid #c9962f;font-family:'Sora',Arial,sans-serif;font-weight:800;font-size:20px;letter-spacing:1px;padding:6px 22px;border-radius:30px;box-shadow:0 2px 6px rgba(201,150,47,.25)}.gold-banner .off-headline{font-weight:800;font-size:25px;line-height:1.25;margin:0 0 8px;color:var(--ink);text-align:left}.offer-benefits{list-style:none;padding:0;margin:14px 0 0;text-align:left}.offer-benefits li{display:flex;gap:10px;align-items:flex-start;font-weight:700;font-size:17px;color:var(--ink);margin:10px 0;line-height:1.35}.offer-benefits .ob-ck{flex:0 0 auto;color:var(--green);font-size:20px;line-height:1.25}.batch-head{font-family:'Sora',Arial,sans-serif;font-weight:800;font-size:18px;letter-spacing:.5px;color:var(--ink);text-transform:uppercase}.batch-sub{margin:4px 0 14px;font-size:15px;color:#4e7a5c;font-weight:600}.batch-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 14px;border-radius:10px;margin-bottom:10px;font-weight:700;font-size:16px;background:#fff;position:relative;overflow:hidden}.batch-row:last-child{margin-bottom:4px}.batch-row .bd{display:flex;align-items:center;gap:9px}.batch-row .bi{font-size:18px;line-height:1}.batch-row.is-soldout{background:#fadbd5;color:#5b544d;border-right:5px solid #d92c20}.batch-row.is-soldout .tag{color:#d92c20;font-weight:800}.batch-row.is-almost{background:#fdece8;color:var(--ink)}.batch-row.is-almost .fill{position:absolute;left:0;top:0;bottom:0;width:96%;background:#f8cfc7;z-index:0}.batch-row.is-almost .bd,.batch-row.is-almost .tag{position:relative;z-index:1}.batch-row.is-almost .tag{font-weight:800}.batch-row.is-next{background:#f0efec;color:var(--ink)}.batch-row.is-next .tag{color:var(--ink);font-weight:800}.offer-right .btn{border-radius:40px;white-space:nowrap;font-size:17px;padding:18px 16px}@media(max-width:600px){.offer-right .btn{font-size:14px;padding:16px 10px}}.offer-right .btn:hover{transform:translateY(-1px)}.stock-note{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;color:var(--ink);margin:14px 0 0;font-size:15.5px;text-align:center}.stock-note .dot{width:9px;height:9px;border-radius:50%;background:#2fa84f;display:inline-block;flex:0 0 auto}.mbg-note{text-align:center;font-weight:700;color:#1d7a3e;margin:10px 0 0;font-size:15px}.pay-cards{display:flex;justify-content:center;gap:10px;margin:14px 0 4px}.pay-cards .pc{display:inline-flex;align-items:center;justify-content:center;width:64px;height:40px;border-radius:6px;border:1px solid #d8d8d8;background:#fff;position:relative}.pay-cards .pc svg{display:block}@media(max-width:640px){.gold-banner .off-badge{font-size:18px}.offer-benefits li{font-size:15px;margin:7px 0}.batch-row{font-size:14.5px;padding:12px 10px}.batch-head{font-size:16.5px}}</style>
+<style>@media(min-width:768px){.born{padding:44px 0}.born .wrap.born-cols{max-width:1040px;display:grid;grid-template-columns:1.05fr 1fr;grid-template-areas:"h img" "sub img" "btn img" "ub img";column-gap:44px;align-items:center;align-content:center}.born .wrap.born-cols>h2{grid-area:h;text-align:left}.born .wrap.born-cols>.sub{grid-area:sub;text-align:left;margin:14px 0 0;max-width:none}.born .wrap.born-cols>.born-grid.one{grid-area:img;max-width:420px;margin:0 auto;align-self:center}.born .wrap.born-cols>.btn{grid-area:btn;font-size:19px;padding:16px 20px;max-width:420px;margin:26px 0 0}.born .wrap.born-cols>.under-btn{grid-area:ub;justify-content:flex-start;margin-top:14px}}.gal-main img{aspect-ratio:1/1;object-fit:cover}.gal-thumbs img{object-fit:cover;border-radius:8px}</style>
+<style>:root{--navy:#2C2860;--navy-2:#5E5794;--cream:#EFEDF9;--cream-2:#FAF9FD;--orange:#E8952F;--orange-2:#F3B968;--red:#6D5BC7;--red-2:#57489F;--hl:#E3DCF7;--green:#6FA07E;--ink:#2E2A44;--ph-bg:#EAE6F2;--ph-line:#BBB2CE;--maxw:720px;--purple:var(--red);--purple-2:#B9AEEE;--lav:var(--cream);--lav-2:var(--hl);--white:#FFFFFF;--body:#4A4571;--check:var(--green)}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}html,body{overflow-x:hidden;max-width:100%;background:var(--white)}body{font-family:'Manrope',Arial,sans-serif;color:var(--body);background:var(--white);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}h1,h2,h3,h4{overflow-wrap:break-word;font-family:'Sora','Manrope',Arial,sans-serif;font-weight:700;letter-spacing:-.01em}img,svg{max-width:100%;height:auto}p{margin:0 0 15px}strong,b{font-weight:800}a{color:inherit}.ph{background:repeating-linear-gradient(45deg,var(--ph-bg),var(--ph-bg) 14px,#F6F4FC 14px,#F6F4FC 28px);border:2px dashed var(--ph-line);border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;color:#6D67A0;font-family:'Manrope',Arial,sans-serif;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:1.2px;line-height:1.45;padding:14px}.ph-sm{min-height:110px}.ph-md{min-height:220px}.ph-lg{min-height:330px}.ph>span{display:block}.ph small{display:block;font-weight:600;font-size:11px;letter-spacing:.6px;text-transform:none;opacity:.8;margin-top:5px}.on-dark .ph{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.34);color:rgba(255,255,255,.72)}.btn-r{display:inline-flex;align-items:center;gap:.75em;text-decoration:none;font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:clamp(14px,1.35vw,18px);letter-spacing:.2px;line-height:1.2;padding:17px 32px;border-radius:10px;background:linear-gradient(180deg,#F2A84A 0%,#E8952F 100%);color:#FFF;box-shadow:0 8px 22px rgba(232,149,47,.36);transition:transform .12s ease,filter .2s}.btn-r em{font-style:normal;font-weight:400;opacity:.95}.btn-r .arr{display:inline-block;transition:transform .15s}.btn-r:hover{transform:translateY(-2px);filter:brightness(1.05)}.btn-r:hover .arr{transform:translateX(4px)}.rsn-sup{display:flex;align-items:center;gap:9px;margin:14px 0 0;font-size:14.5px;color:var(--navy-2);font-weight:600}.on-dark .rsn-sup{color:rgba(255,255,255,.9)}.rsn-sup .ck{width:18px;height:18px;border-radius:50%;background:var(--green);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}.rsn-sup .ck svg{width:10px;height:10px;fill:none;stroke:#fff;stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round}.lnav{background:var(--navy);padding:13px 0}.lnav-in{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}.lnav-logo{font-family:'Sora',Arial,sans-serif;font-weight:800;font-size:26px;letter-spacing:3px;color:#fff;line-height:1;text-decoration:none}.lnav-logo sup{font-size:11px;letter-spacing:0;vertical-align:super;color:var(--purple-2)}.lnav-cta{background:var(--orange);color:#fff;text-decoration:none;font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:14px;line-height:1;padding:12px 20px;border-radius:8px;white-space:nowrap}.lnav-cta:hover{filter:brightness(1.07)}.lhero{padding:0;position:relative;overflow:hidden;background:#B7BCCB url('assets/img/hero-bg-desktop.webp') center/cover no-repeat}.lhero:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.80) 0%,rgba(255,255,255,.66) 34%,rgba(255,255,255,.20) 54%,rgba(255,255,255,0) 66%)}.lhero-in{position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:0 24px;display:block;min-height:430px}.lhero-txt{padding:46px 0;max-width:620px}.lhero-eyebrow{display:inline-block;font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:var(--navy);background:rgba(255,255,255,.72);border:1px solid var(--red);border-radius:999px;padding:6px 14px;margin:0 0 16px}.lhero-h1{font-size:clamp(27px,3.5vw,44px);line-height:1.16;color:var(--navy);margin:0 0 16px;font-weight:800}.lhero-h1 em{font-style:normal;color:var(--red-2)}.lhero-p{font-size:15.5px;line-height:1.6;color:#3B3663;margin:0 0 13px;max-width:560px}.lhero-p b{color:var(--navy)}.lhero-kick{font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:clamp(15px,1.5vw,18px);line-height:1.4;color:var(--navy);margin:18px 0 0;border-left:3px solid var(--orange);padding-left:14px}.mq{background:var(--navy);overflow:hidden;padding:11px 0}.mq-track{display:flex;width:max-content;animation:mqScroll 40s linear infinite;will-change:transform}.mq:hover .mq-track{animation-play-state:paused}.mq-set{display:flex;align-items:center;flex:0 0 auto}.mq-i{display:inline-flex;align-items:center;font-family:'Sora',Arial,sans-serif;font-weight:600;font-size:14px;color:#fff;white-space:nowrap;padding-left:26px}.mq-i:after{content:"●";color:var(--orange);margin-left:26px;font-size:8px;line-height:1;position:relative;top:-2px}@keyframes mqScroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}@media(prefers-reduced-motion:reduce){.mq-track{animation:none}}.rsn{padding:56px 0;background:var(--white)}.rsn.alt{background:var(--lav)}.rsn.dark{background-color:#2C2860;background-image:linear-gradient(rgba(36,31,78,.62),rgba(36,31,78,.74)),url('assets/img/section-bg-dark-1.webp');background-position:center;background-size:cover;background-repeat:no-repeat}.rsn-in{max-width:1320px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:stretch}.rsn-med{position:relative;min-height:520px}.rsn.rev .rsn-med{order:-1}.rsn-med .ph{position:absolute;inset:0;min-height:420px}.rsn-num{display:inline-block;font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:clamp(13px,1.3vw,15px);letter-spacing:2.6px;text-transform:uppercase;line-height:1;color:var(--navy);background:var(--orange-2);border-radius:4px;padding:8px 12px;margin:0 0 16px}.rsn.dark .rsn-num{color:#fff;background:rgba(185,174,238,.22);box-shadow:inset 0 0 0 1px rgba(185,174,238,.45)}.rsn-h{font-size:clamp(22px,2.5vw,31px);line-height:1.24;color:var(--navy);margin:0 0 16px;font-weight:800}.rsn.dark .rsn-h{color:#fff}.rsn-txt p{font-size:15.5px;line-height:1.64;color:var(--body);margin:0 0 15px}.rsn.dark .rsn-txt p{color:rgba(255,255,255,.85)}.rsn-txt p b{color:var(--navy)}.rsn.dark .rsn-txt p b{color:#fff}.rsn-pull{font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:16.5px !important;line-height:1.4;color:var(--navy) !important;border-left:3px solid var(--orange);padding-left:14px;margin:0 0 22px !important}.rsn.dark .rsn-pull{color:#fff !important;border-left-color:var(--purple-2)}.rsnb{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:14px}.rsnb li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:11px;align-items:start}.rsnb-ck{width:20px;height:20px;margin-top:3px;border-radius:50%;background:var(--green);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}.rsnb-ck svg{width:11px;height:11px;fill:none;stroke:#fff;stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round}.rsnb div b{display:block;font-family:'Sora',Arial,sans-serif;font-size:15px;line-height:1.4;color:var(--navy);margin-bottom:2px}.rsnb div span{display:block;font-size:14.5px;line-height:1.55;color:var(--body)}.rsnb.tight{gap:11px}.rsn.dark .rsnb-ck{background:var(--purple)}.rsn.dark .rsnb div b{color:#fff}.rsn.dark .rsnb div span{color:rgba(255,255,255,.85)}.steps-list{max-width:620px;margin:22px 0 24px}.stp{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr);gap:16px;padding-bottom:26px}.stp:last-child{padding-bottom:0}.stp:not(:last-child):before{content:"";position:absolute;left:25px;top:56px;bottom:6px;width:0;border-left:3px dotted rgba(185,174,238,.55)}.stp-ic{position:relative;z-index:1;width:52px;height:52px;border-radius:50%;background:linear-gradient(180deg,#8171DA,#6D5BC7);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(109,91,199,.4)}.stp-ic svg{width:25px;height:25px;stroke:#fff;fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}.stp-bd{min-width:0}.stp-hd{display:flex;align-items:center;flex-wrap:wrap;gap:10px;min-height:52px;margin-bottom:5px}.stp-nm{font-family:'Sora',Arial,sans-serif;font-weight:800;font-size:21px;line-height:1.1;color:#fff}.stp-tag{display:inline-flex;align-items:center;font-family:'Manrope',Arial,sans-serif;font-weight:800;font-size:11.5px;letter-spacing:.7px;text-transform:uppercase;line-height:1;color:var(--purple-2);background:rgba(185,174,238,.14);border:1px solid rgba(185,174,238,.42);border-radius:999px;padding:6px 12px}.stp p{margin:0;font-size:15px;line-height:1.55;color:rgba(255,255,255,.85)}.icg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}.icg-i{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:16px 14px;text-align:center;min-width:0}.icg-ic{display:block;margin:0 auto 11px;width:100%;max-width:78px}.icg-ic img{width:100%;height:auto;display:block;filter:brightness(0) invert(1)}.fdarow{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;margin:0 0 20px}.fda-b{display:inline-flex;align-items:center;gap:10px;font-family:'Sora',Arial,sans-serif;font-weight:600;font-size:13px;line-height:1.25;color:#fff}.fda-b img{width:58px;height:58px;flex:0 0 auto;object-fit:contain;filter:brightness(0) invert(1)}.icg-ic .ph{min-height:62px;border-radius:10px;font-size:8.5px;letter-spacing:.6px;padding:6px}.icg-t{display:block;font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:14px;line-height:1.3;color:#fff;margin-bottom:5px}.icg-d{display:block;font-size:13px;line-height:1.5;color:rgba(255,255,255,.78)}.btl{background:var(--white);padding:0 0 56px}.btl-in{max-width:1320px;margin:0 auto;padding:0 24px}.btl-hr{border:none;border-top:2px dashed #C7C1E6;margin:0 0 34px}.btl h3{font-size:clamp(21px,2.3vw,28px);color:var(--navy);margin:0 0 16px;font-weight:800}.btl p{font-size:15.5px;line-height:1.64;color:var(--body);margin:0 0 13px;max-width:900px}.btl p:last-child{margin:0}.btl b{color:var(--navy)}.sp2{background:var(--lav);padding:52px 0}.sp2-in{max-width:1180px;margin:0 auto;padding:0 24px}.sp2-rate{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px;color:var(--navy);margin-bottom:10px;font-weight:600}.sp2-rate .stars{color:var(--orange);letter-spacing:2px;font-size:16px}.sp2-h{font-size:clamp(25px,3.2vw,37px);line-height:1.18;color:var(--navy);margin:0 0 6px;font-weight:800}.sp2-sub{font-size:16px;color:var(--navy-2);margin:0 0 26px;max-width:640px}.sp2-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.sp2-card{background:#fff;border-radius:14px;padding:22px 22px 20px;box-shadow:0 2px 12px rgba(44,40,96,.07);display:flex;flex-direction:column}.sp2-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}.sp2-nnum{font-weight:800;font-size:14px;color:var(--navy)}.sp2-sq{display:inline-flex;gap:2px}.sp2-sq i{width:15px;height:15px;background:var(--orange);border-radius:2px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-style:normal;line-height:1}.sp2-t{font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:16px;line-height:1.35;color:var(--navy);margin:0 0 10px}.sp2-q{font-size:14.5px;line-height:1.58;color:var(--body);margin:0 0 16px}.sp2-who{display:flex;align-items:center;gap:10px;margin-top:auto}.sp2-av{width:38px;height:38px;border-radius:50%;flex:0 0 auto;min-height:0;font-size:7px;letter-spacing:.3px;padding:2px}.sp2-nm{display:block;font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--navy);line-height:1.3}.sp2-vb{display:flex;align-items:center;gap:5px;font-size:11.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--green);font-weight:800}.sp2-vb svg{width:11px;height:11px;fill:none;stroke:var(--green);stroke-width:2.4}.sp2-cta{text-align:center;margin-top:32px}.sp2-cta .rsn-sup{justify-content:center;margin-top:14px}.st4{background-color:#2C2860;background-image:linear-gradient(rgba(36,31,78,.62),rgba(36,31,78,.74)),url('assets/img/section-bg-dark-1.webp');background-position:center;background-size:cover;background-repeat:no-repeat;padding:56px 0}.st4-in{max-width:1180px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:center}.st4-h{font-size:clamp(23px,2.7vw,34px);line-height:1.2;color:#fff;margin:0 0 12px;font-weight:800}.st4-lead{font-size:14px;line-height:1.6;color:rgba(255,255,255,.72);margin:0 0 28px}.st4-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 22px;margin-bottom:30px}.st4-n{display:block;font-family:'Sora',Arial,sans-serif;font-weight:800;font-size:clamp(30px,3.4vw,42px);line-height:1;color:var(--orange-2)}.st4-l{display:block;font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:clamp(15px,1.6vw,18px);line-height:1.25;color:#fff;margin:8px 0 7px}.st4-d{font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.8);margin:0}.st4-med{position:relative;min-height:400px}.st4-med .ph{position:absolute;inset:0}.faq2{background:linear-gradient(180deg,var(--lav),var(--lav-2));padding:52px 0}.faq2-in{max-width:1180px;margin:0 auto;padding:0 24px}.faq2-k{font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:var(--purple);margin:0 0 8px}.faq2-h{font-size:clamp(25px,3.2vw,37px);color:var(--navy);margin:0 0 26px;font-weight:800}.faq2-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 22px;align-items:start}.faq2 details{background:#fff;border-radius:10px;box-shadow:0 1px 6px rgba(44,40,96,.07);overflow:hidden}.faq2 summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:17px 18px;font-family:'Sora',Arial,sans-serif;font-weight:600;font-size:15px;line-height:1.35;color:var(--navy)}.faq2 summary::-webkit-details-marker{display:none}.faq2 summary:after{content:"+";flex:0 0 auto;width:28px;height:28px;border-radius:6px;background:var(--navy);color:#fff;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;line-height:1}.faq2 details[open] summary:after{content:"–"}.faq2 .a{padding:0 18px 17px;font-size:14.5px;line-height:1.62;color:var(--body)}.faq2 .a p{margin:0 0 10px}.faq2 .a p:last-child{margin:0}.faq2-cta{text-align:center;margin-top:32px}.faq2-cta .rsn-sup{justify-content:center;margin-top:14px}.fcta{background-color:#2C2860;background-image:linear-gradient(rgba(36,31,78,.62),rgba(36,31,78,.74)),url('assets/img/section-bg-dark-1.webp');background-position:center;background-size:cover;background-repeat:no-repeat;padding:60px 0;text-align:center}.fcta-in{max-width:820px;margin:0 auto;padding:0 24px}.fcta h2{font-size:clamp(26px,3.4vw,40px);line-height:1.16;color:#fff;margin:0 0 10px;font-weight:800}.fcta-sub{font-family:'Sora',Arial,sans-serif;font-weight:600;font-size:clamp(16px,1.8vw,21px);color:var(--orange-2);margin:0 0 18px}.fcta p{font-size:15.5px;line-height:1.62;color:rgba(255,255,255,.85);margin:0 0 22px}.fcta-no{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 12px;margin:0 0 28px}.fcta-no span{font-family:'Sora',Arial,sans-serif;font-weight:600;font-size:13.5px;color:#fff;border:1px solid rgba(185,174,238,.4);background:rgba(185,174,238,.12);border-radius:999px;padding:9px 16px}.fcta .rsn-sup{justify-content:center}.ft2{background:var(--navy);color:#C9C4E4;padding:44px 0 26px}.ft2-wrap{max-width:1180px;margin:0 auto;padding:0 24px}.ft2-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr);gap:0}.ft2-c{padding:0 30px}.ft2-c+.ft2-c{border-left:1px solid rgba(255,255,255,.16)}.ft2-logo{font-family:'Sora',Arial,sans-serif;font-weight:800;font-size:24px;letter-spacing:3px;color:#fff;line-height:1}.ft2-logo sup{font-size:10px;letter-spacing:0;vertical-align:super;color:var(--purple-2)}.ft2-tag{font-size:13px;color:rgba(201,196,228,.85);margin:10px 0 0}.ft2-h{font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:16px;color:#fff;margin:0 0 8px}.ft2-s{font-size:14px;color:rgba(201,196,228,.9);margin:0 0 16px}.ft2-form{display:flex;background:#fff;border-radius:6px;overflow:hidden;max-width:330px}.ft2-form input{flex:1 1 auto;min-width:0;border:none;padding:12px 14px;font-family:inherit;font-size:14px;color:var(--navy)}.ft2-form input:focus{outline:2px solid var(--orange);outline-offset:-2px}.ft2-form button{border:none;cursor:pointer;background:#fff;border-left:1px solid #E4E1F2;color:var(--navy);font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:14px;padding:12px 20px}.ft2-links{list-style:none;margin:0;padding:0}.ft2-links li{margin:0 0 11px}.ft2-links a{color:#C9C4E4;text-decoration:none;font-size:14.5px}.ft2-links a:hover{color:#fff;text-decoration:underline}.ft2-dis{margin:32px 0 0;font-size:11.5px;line-height:1.75;color:rgba(201,196,228,.7)}.ft2-dis p{margin:0}.ft2-cur{text-align:center;margin:22px 0 0}.ft2-cur select{background:transparent;color:#C9C4E4;border:none;font-family:inherit;font-size:14px;cursor:pointer}.ft2-cur select option{color:var(--navy)}.ft2-cp{text-align:center;margin:16px 0 0;font-size:13px;color:rgba(201,196,228,.85)}html.js .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}html.js .rv.on{opacity:1;transform:none}@media(prefers-reduced-motion:reduce){html.js .rv{opacity:1;transform:none;transition:none}}@media(max-width:1000px){.lhero{background-color:#939AAC;background-image:url('assets/img/hero-bg-mobile.webp');background-position:center bottom;background-size:100% auto}.lhero:before{background:linear-gradient(180deg,rgba(255,255,255,.86) 0%,rgba(255,255,255,.80) 46%,rgba(255,255,255,.38) 58%,rgba(255,255,255,0) 66%)}.lhero-in{min-height:0;padding-bottom:calc(81vw + 44px)}.lhero-txt{padding:30px 0 0;max-width:none}}@media(max-width:900px){.rsn-in,.st4-in{grid-template-columns:1fr;gap:26px}.rsn.rev .rsn-med{order:0}.rsn-med,.st4-med{min-height:0}.rsn-med .ph,.st4-med .ph{position:static;inset:auto;min-height:0;aspect-ratio:4/5}.st4-med .ph{aspect-ratio:1/1}.sp2-cards{grid-template-columns:1fr;max-width:520px}.faq2-grid{grid-template-columns:1fr}.ft2-top{grid-template-columns:1fr;gap:26px}.ft2-c{padding:0}.ft2-c+.ft2-c{border-left:none;border-top:1px solid rgba(255,255,255,.16);padding-top:22px}}@media(max-width:640px){body{font-size:16px}.rsn,.sp2,.st4,.faq2,.fcta{padding:38px 0}.lnav-in,.lhero-in,.rsn-in,.st4-in,.btl-in,.sp2-in,.faq2-in,.fcta-in,.ft2-wrap{padding-left:18px;padding-right:18px}.lnav-logo{font-size:21px;letter-spacing:2px}.lnav-cta{font-size:12.5px;padding:10px 14px}.lhero-h1{font-size:26px}.btn-r{display:flex;justify-content:center;text-align:center;padding:16px 18px;width:100%}.icg{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.icg-i{padding:14px 10px}.st4-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}.stp{grid-template-columns:44px minmax(0,1fr);gap:13px;padding-bottom:22px}.stp:not(:last-child):before{left:21px;top:48px}.stp-ic{width:44px;height:44px}.stp-ic svg{width:21px;height:21px}.stp-hd{min-height:44px;gap:8px}.stp-nm{font-size:19px}.ft2{padding:34px 0 22px}}@media(max-width:380px){.icg{grid-template-columns:1fr}.st4-grid{grid-template-columns:1fr}}</style>
+</head>
+<body>
+<nav class="lnav">
+  <div class="lnav-in">
+    <a class="lnav-logo" href="#top">SONNUS<sup>&reg;</sup></a>
+    
+  </div>
+</nav>
+<section class="lhero" id="top">
+  <div class="lhero-in">
+    <div class="lhero-txt">
+      <span class="lhero-eyebrow">Sleep Support</span>
+      <h1 class="lhero-h1"><em>5 Reasons</em> Sonnus&reg; Is The Only Sleep Gummy That Actually Helps You <em>Stay</em> Asleep</h1>
+      <p class="lhero-p">Most sleep gummies fail because they rely on oversized doses of melatonin that make you feel drowsy without fixing what keeps pulling you back awake.</p>
+      <p class="lhero-p"><b>Sonnus&reg;</b> starts with <b>Magnesium Bisglycinate</b> and combines it with nine complementary sleep-support ingredients designed to recharge your natural sleep signals, quiet your racing mind, and support deep, continuous rest.</p>
+      <p class="lhero-kick">No prescriptions. No harsh knockout. No next-day fog.</p>
+    </div>
+  </div>
+</section>
+<div class="mq">
+  <div class="mq-track">
+    <div class="mq-set"><span class="mq-i">Recharges Your Natural Sleep Pressure</span><span class="mq-i">Quiets The Racing 3 A.M. Mind</span><span class="mq-i">Precision 0.9 mg Melatonin Signal</span><span class="mq-i">Recharges Your Natural Sleep Pressure</span><span class="mq-i">Quiets The Racing 3 A.M. Mind</span><span class="mq-i">Precision 0.9 mg Melatonin Signal</span><span class="mq-i">Recharges Your Natural Sleep Pressure</span><span class="mq-i">Quiets The Racing 3 A.M. Mind</span><span class="mq-i">Precision 0.9 mg Melatonin Signal</span></div>
+    <div class="mq-set" aria-hidden="true"><span class="mq-i">Recharges Your Natural Sleep Pressure</span><span class="mq-i">Quiets The Racing 3 A.M. Mind</span><span class="mq-i">Precision 0.9 mg Melatonin Signal</span><span class="mq-i">Recharges Your Natural Sleep Pressure</span><span class="mq-i">Quiets The Racing 3 A.M. Mind</span><span class="mq-i">Precision 0.9 mg Melatonin Signal</span><span class="mq-i">Recharges Your Natural Sleep Pressure</span><span class="mq-i">Quiets The Racing 3 A.M. Mind</span><span class="mq-i">Precision 0.9 mg Melatonin Signal</span></div>
+  </div>
+</div>
+</div>
+<section class="rsn rv">
+  <div class="rsn-in">
+    <div class="rsn-txt">
+      <span class="rsn-num">Reason 1</span>
+      <h2 class="rsn-h">It Starts With Magnesium Bisglycinate<br>&mdash; Not Another Melatonin Megadose</h2>
+      <p>Most sleep gummies begin and end with melatonin. They may make your eyelids feel heavy, but they do very little for the deeper problem: the natural sleep system that is supposed to build pressure throughout the day and keep you asleep throughout the night.</p>
+      <p><b>Sonnus&reg; takes a different approach.</b> Its formula begins with <b>Magnesium Bisglycinate</b>, the Sleep-Pressure Primer at the foundation of the Sonnus system.</p>
+      <p><b>Here's why:</b><br>Your brain has a natural system that helps sleep feel automatic. As the day goes on, your body is supposed to build enough natural sleep pressure to help you drift off, remain asleep, and move through the restorative stages of rest.</p>
+      <p>But stress, overstimulation, caffeine, screens, changing routines, and age can interfere with those nighttime signals. That is how you can feel completely exhausted physically while your mind remains wide awake.</p>
+      <p><b>Why does this matter to you?</b><br>Magnesium Bisglycinate gives the Sonnus&reg; formula a foundation designed to support the pathways behind calm, relaxation, and natural nighttime signaling. Instead of simply forcing your body into temporary drowsiness, Sonnus&reg; supports the system that should already be helping you sleep.</p>
+      <ul class="rsnb">
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><b>Supports Natural Sleep Signals</b><span>Helps reinforce the biological pathways involved in your nighttime routine.</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><b>Helps Release Physical Tension</b><span>Supports a more relaxed body when it is time to wind down.</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><b>Supports A Calmer Nervous System</b><span>Helps your body move out of the tense, wired state that can follow you into bed.</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><b>Makes Drifting Off Feel Easier</b><span>Supports a smoother transition from wakefulness into rest.</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><b>Supports More Continuous Sleep</b><span>Helps you remain asleep instead of repeatedly surfacing throughout the night.</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><b>Promotes Clearer Mornings</b><span>Supports restorative rest without building the entire formula around heavy sedation.</span></div></li>
+      </ul>
+      <p>Melatonin only tells your brain that it is dark. Magnesium Bisglycinate helps provide a stronger foundation for the complete nighttime system Sonnus&reg; was designed to support.</p>
+      <p class="rsn-pull">You do not need a bigger hammer. You need a better foundation.</p>
+      <a class="btn-r" href="https://cc.usesonnus.com/checkout.php?hid=b2lkPW9mZl80MjQwNDIwJmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfOTA2Njg4MA%3D%3D&affid=aff_4023731">Try Sonnus&reg; <em>Risk-Free For 90 Days - only $19.99 each</em> <span class="arr">&rarr;</span></a>
+      <p class="rsn-sup"><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span>Supports natural sleep pressure and nighttime relaxation</p>
+    </div>
+    <div class="rsn-med med-45">
+      <div class="ph filled"><img src="assets/img/reason-img-5.webp" alt="Magnesium-rich foods: salmon, lentils, nuts and leafy greens" width="640" height="800" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+<section class="rsn dark rev on-dark rv">
+  <div class="rsn-in">
+    <div class="rsn-txt">
+      <span class="rsn-num">Reason 2</span>
+      <h2 class="rsn-h">Ten Ingredients Cover The Whole Sleep Cycle<br>&mdash; Not Just The First 20 Minutes</h2>
+      <p>Sleep is not a single switch. You need to calm the mental noise, release the tension held in your body, recognize that bedtime has arrived, and remain asleep long enough to experience restorative rest. Miss one stage, and sleep may still feel incomplete.</p>
+      <p>That is why Sonnus&reg; does not depend on one trendy ingredient. It combines <b>ten complementary sleep-support ingredients</b> into one complete nightly system.</p>
+      <p><b>The Sonnus&reg; 4-Step Reset</b></p>
+      <div class="steps-list">
+        <div class="stp">
+          <div class="stp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6"/></svg></div>
+          <div class="stp-bd">
+            <div class="stp-hd"><span class="stp-nm">1. Recharge</span><span class="stp-tag">Magnesium Bisglycinate + 5-HTP + B Vitamins</span></div>
+            <p>Supports the raw materials and cofactors involved in natural nighttime signaling.</p>
+          </div>
+        </div>
+        <div class="stp">
+          <div class="stp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg></div>
+          <div class="stp-bd">
+            <div class="stp-hd"><span class="stp-nm">2. Quiet</span><span class="stp-tag">L-Theanine + GABA + Apigenin</span></div>
+            <p>Helps calm mental noise and ease the brain out of alert mode.</p>
+          </div>
+        </div>
+        <div class="stp">
+          <div class="stp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3 4 6 6.5 6 10a6 6 0 1 1-12 0c0-3.5 3-6 6-10z"/></svg></div>
+          <div class="stp-bd">
+            <div class="stp-hd"><span class="stp-nm">3. Release</span><span class="stp-tag">Magnesium Glycinate + Lemon Balm</span></div>
+            <p>Supports physical relaxation and helps the body release the tension associated with nighttime stress.</p>
+          </div>
+        </div>
+        <div class="stp">
+          <div class="stp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></div>
+          <div class="stp-bd">
+            <div class="stp-hd"><span class="stp-nm">4. Restore</span><span class="stp-tag">Precision Melatonin + Full-System Support</span></div>
+            <p>Provides a gentle bedtime signal while the rest of the formula supports deeper, more continuous sleep.</p>
+          </div>
+        </div>
+      </div>
+      <p>Most basic sleep gummies only address Step 4. They give you melatonin, make you temporarily drowsy, and leave the rest of the sleep cycle unsupported. That is why you may fall asleep at 10:30 p.m. only to snap awake at 3:14 a.m. with your mind already running tomorrow's schedule.</p>
+      <p>Sonnus&reg; supports all four stages together.</p>
+      <p class="rsn-pull">Recharge. Quiet. Release. Restore. Because getting sleepy is only the beginning.</p>
+      <a class="btn-r" href="https://cc.usesonnus.com/checkout.php?hid=b2lkPW9mZl80MjQwNDIwJmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfOTA2Njg4MA%3D%3D&affid=aff_4023731">Try Sonnus&reg; <em>Risk-Free For 90 Days & only $19.99 Each</em> <span class="arr">&rarr;</span></a>
+      <p class="rsn-sup"><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span>Ten complementary ingredients working as one complete system</p>
+    </div>
+    <div class="rsn-med med-45">
+      <div class="ph filled"><img src="assets/img/reason-img-6.webp" alt="Sonnus&reg; Sleep Gummy bottle" width="640" height="800" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+<section class="rsn alt rv">
+  <div class="rsn-in">
+    <div class="rsn-txt">
+      <span class="rsn-num">Reason 3</span>
+      <h2 class="rsn-h">Just 0.9 mg Of Melatonin<br>&mdash; A Whisper, Not A Sledgehammer</h2>
+      <p>More melatonin does not automatically mean better sleep. Many common gummies contain 5, 10, or even 12 mg in a single serving. That may make you feel heavily drowsy at bedtime, but it can also leave you waking up feeling slow, foggy, and desperate for coffee.</p>
+      <p>Sonnus&reg; uses a more precise approach. Its formula contains only <b>0.9 mg of Precision Melatonin</b>.</p>
+      <p><b>Here's why:</b><br>Melatonin is primarily a timing signal. It tells your brain that nighttime has arrived. Think of it like turning off the lights inside your house. But turning off the lights does not silence every television, appliance, alarm, or racing thought still running in the background.</p>
+      <p>That is why Sonnus&reg; does not ask melatonin to do the entire job. The 0.9 mg dose provides a gentle nighttime signal while the other ingredients help support calm, relaxation, sleep pressure, and continuity.</p>
+      <p><b>The result is a more complete approach:</b></p>
+      <ul class="rsnb tight">
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><span>A quieter mind before bed</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><span>Less reliance on a hormone megadose</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><span>Support for deeper, more continuous sleep</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><span>Clearer mornings instead of a melatonin hangover</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><span>A formula designed around the entire sleep system</span></div></li>
+      </ul>
+      <p>High-dose melatonin tries to overpower your night. Sonnus&reg; uses melatonin as one carefully measured piece of a ten-ingredient system.</p>
+      <p class="rsn-pull">A signal &mdash; not the whole solution.</p>
+      <a class="btn-r" href="https://cc.usesonnus.com/checkout.php?hid=b2lkPW9mZl80MjQwNDIwJmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfOTA2Njg4MA%3D%3D&affid=aff_4023731">Try Sonnus&reg; <em>Risk-Free For 90 Days & only $19.99 Each</em> <span class="arr">&rarr;</span></a>
+      <p class="rsn-sup"><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span>Precision nighttime support without the high-dose approach</p>
+    </div>
+    <div class="rsn-med med-45">
+      <div class="ph filled"><img src="assets/img/reason-img-7.webp" alt="A hand tipping high-dose melatonin pills out of a prescription bottle" width="640" height="800" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+<section class="rsn dark rev on-dark rv">
+  <div class="rsn-in">
+    <div class="rsn-txt">
+      <span class="rsn-num">Reason 4</span>
+      
+      <h2 class="rsn-h">Every Batch Is Third-Party Tested &mdash; Because You Deserve To Know What You Take Before Bed</h2>
+      <p>A nightly supplement becomes part of your most personal routine. You should not have to wonder whether the formula contains the ingredients listed on the label or whether the product was produced under proper quality standards.</p>
+      <p>Sonnus&reg; is made in the USA in an FDA-registered facility, and each batch is third-party tested for purity before it ships.</p>
+      <div class="fdarow">
+        <span class="fda-b"><img src="assets/img/icon-fda-8.svg" alt="" width="128" height="128" loading="lazy" decoding="async"> FDA-Registered Facility</span>
+        <span class="fda-b"><img src="assets/img/icon-fda-9.svg" alt="" width="512" height="512" loading="lazy" decoding="async"> Made in the USA</span>
+      </div>
+      <p><b>The formula is also made without:</b></p>
+      <div class="icg">
+        <div class="icg-i"><span class="icg-ic"><img src="assets/img/icon-benefit-10.svg" alt="" width="128" height="128" loading="lazy" decoding="async"></span><span class="icg-t">No Sugar</span><span class="icg-d">A simple wild-berry gummy without adding sugar to your nighttime routine.</span></div>
+        <div class="icg-i"><span class="icg-ic"><img src="assets/img/icon-benefit-11.svg" alt="" width="64" height="64" loading="lazy" decoding="async"></span><span class="icg-t">No Stimulants</span><span class="icg-d">Nothing designed to push your nervous system in the opposite direction.</span></div>
+        <div class="icg-i"><span class="icg-ic"><img src="assets/img/icon-benefit-12.svg" alt="" width="512" height="512" loading="lazy" decoding="async"></span><span class="icg-t">No Caffeine</span><span class="icg-d">No hidden ingredient working against the reason you are taking it.</span></div>
+        <div class="icg-i"><span class="icg-ic"><img src="assets/img/icon-benefit-13.svg" alt="" width="64" height="64" loading="lazy" decoding="async"></span><span class="icg-t">No Artificial Dyes</span><span class="icg-d">A cleaner approach to nightly sleep support.</span></div>
+        <div class="icg-i"><span class="icg-ic"><img src="assets/img/icon-benefit-14.svg" alt="" width="100" height="100" loading="lazy" decoding="async"></span><span class="icg-t">No Gluten</span><span class="icg-d">Designed to fit more easily into a variety of routines.</span></div>
+        <div class="icg-i"><span class="icg-ic"><img src="assets/img/icon-benefit-15.svg" alt="" width="512" height="512" loading="lazy" decoding="async"></span><span class="icg-t">Third-Party Tested</span><span class="icg-d">Every batch is checked for quality and purity before reaching customers.</span></div>
+      </div>
+      <p>Sonnus&reg; was created to become the easiest part of your nighttime routine &mdash; not another product that creates more questions than answers.</p>
+      <p class="rsn-pull">Two wild-berry gummies. Ten targeted ingredients. One consistent nightly ritual.</p>
+      <a class="btn-r" href="https://cc.usesonnus.com/checkout.php?hid=b2lkPW9mZl80MjQwNDIwJmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfOTA2Njg4MA%3D%3D&affid=aff_4023731">Try Sonnus&reg; <em>Risk-Free For 90 Days & only $19.99 Each</em> <span class="arr">&rarr;</span></a>
+      <p class="rsn-sup"><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span>Made in an FDA-registered facility and third-party tested</p>
+    </div>
+    <div class="rsn-med med-45">
+      <div class="ph filled"><img src="assets/img/reason-img-16.webp" alt="Third-party lab testing" width="640" height="800" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+<section class="rsn rv">
+  <div class="rsn-in">
+    <div class="rsn-txt">
+      <span class="rsn-num">Reason 5</span>
+      <h2 class="rsn-h">It Helps You Stay Asleep<br>&mdash; Instead Of Only Making You Drowsy</h2>
+      <p>Falling asleep is not the whole problem. Many people can drift off reasonably well, only to jolt awake a few hours later with their mind suddenly switched back on.</p>
+      <p>The room is quiet. Your body is exhausted. But now you are staring at the clock, calculating how little sleep remains before morning.</p>
+      <p><b>That is the 3 a.m. trap.</b> And it is one of the biggest differences between a basic melatonin gummy and the full Sonnus&reg; system.</p>
+      <p>Basic sleep aids are usually built around one objective: <b>make you feel sleepy enough to fall asleep.</b> Sonnus&reg; is designed to support the entire night:</p>
+      <ul class="rsnb tight">
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><span>Quiet the racing thoughts that begin when your head touches the pillow</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><span>Help your body release physical tension</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><span>Support your natural sleep-pressure signals</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><span>Promote deeper and more continuous sleep</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><span>Help you fall back asleep if you briefly stir</span></div></li>
+        <li><span class="rsnb-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span><div><span>Support a clearer, more refreshed morning</span></div></li>
+      </ul>
+      <p>It is the difference between being temporarily knocked out and experiencing a complete night of restorative rest.</p>
+      <p><b>Two gummies. About 30 minutes before bed.</b><br>No bitter powders. No large pills. No complicated routine. Just chew two wild-berry gummies and let the four-stage system support your night.</p>
+      <p class="rsn-pull">Real sleep support should not end the moment you close your eyes. It should still be working when 3 a.m. arrives.</p>
+      <a class="btn-r" href="https://cc.usesonnus.com/checkout.php?hid=b2lkPW9mZl80MjQwNDIwJmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfOTA2Njg4MA%3D%3D&affid=aff_4023731">Try Sonnus&reg; <em>Risk-Free For 90 Days & only $19.99 Each</em> <span class="arr">&rarr;</span></a>
+      <p class="rsn-sup"><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span>Drift off. Stay asleep. Wake restored.</p>
+    </div>
+    <div class="rsn-med med-11">
+      <div class="ph filled"><img src="assets/img/proof-img.webp" alt="Awake at 3:14 a.m. versus sleeping through the morning" width="900" height="900" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+<section class="btl">
+  <div class="btl-in">
+    <hr class="btl-hr">
+    <h3>The Bottom Line:</h3>
+    <p>This is why so many sleep gummies "stop working." They rely almost entirely on melatonin. They may make you feel drowsy, but they do not support the mental noise, physical tension, disrupted sleep pressure, and middle-of-the-night stress that can keep pulling you awake.</p>
+    <p><b>Sonnus&reg; was designed to address every one of those gaps.</b> It begins with Magnesium Bisglycinate. It combines ten complementary ingredients. It supports all four stages of the nighttime cycle. It uses only 0.9 mg of melatonin as a precise signal. And it is specifically designed to support both falling asleep <b>and staying asleep</b>.</p>
+    <p>So you do not merely lose consciousness for a few hours. You finally get the kind of night that helps you wake up feeling like yourself again.</p>
+  </div>
+</section>
+<section class="sp2">
+  <div class="sp2-in">
+    <div class="sp2-rate"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> Rated Excellent By Sonnus&reg; Customers</div>
+    <h2 class="sp2-h">What Happens When You Finally<br>Support The Whole Sleep System</h2>
+    <p class="sp2-sub">Real customers, after using Sonnus&reg; consistently as part of their nightly routine.</p>
+    <div class="sp2-cards">
+      <div class="sp2-card">
+        <div class="sp2-top"><span class="sp2-nnum">5.0</span><span class="sp2-sq"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span></div>
+        <p class="sp2-t">"I finally stopped watching the clock every night."</p>
+        <p class="sp2-q">I used to wake up at almost the same time every night. The second I saw 3 a.m. on the clock, I knew I would be lying there for hours. After adding Sonnus to my routine, my nights started feeling much calmer. Now I often wake up and realize I never checked the clock once.</p>
+        <div class="sp2-who">
+          
+          <div><span class="sp2-nm">Linda M.</span><span class="sp2-vb"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5 5-5"/></svg>Verified Customer</span></div>
+        </div>
+      </div>
+      <div class="sp2-card">
+        <div class="sp2-top"><span class="sp2-nnum">5.0</span><span class="sp2-sq"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span></div>
+        <p class="sp2-t">"My mind finally understands that bedtime means bedtime."</p>
+        <p class="sp2-q">My body was exhausted, but my thoughts would immediately start sprinting when my head touched the pillow. Sonnus has made winding down feel completely different. I feel calmer, fall asleep more naturally, and wake up without that heavy feeling.</p>
+        <div class="sp2-who">
+          
+          <div><span class="sp2-nm">Carol R.</span><span class="sp2-vb"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5 5-5"/></svg>Verified Customer</span></div>
+        </div>
+      </div>
+      <div class="sp2-card">
+        <div class="sp2-top"><span class="sp2-nnum">5.0</span><span class="sp2-sq"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span></div>
+        <p class="sp2-t">"The biggest change is how I feel in the morning."</p>
+        <p class="sp2-q">I had almost forgotten what a clear morning felt like. I was relying on coffee just to feel functional. After using Sonnus consistently, I began sleeping for longer stretches and waking up feeling much more present.</p>
+        <div class="sp2-who">
+          
+          <div><span class="sp2-nm">Michael T.</span><span class="sp2-vb"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5 5-5"/></svg>Verified Customer</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="sp2-cta">
+      <a class="btn-r" href="https://cc.usesonnus.com/checkout.php?hid=b2lkPW9mZl80MjQwNDIwJmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfOTA2Njg4MA%3D%3D&affid=aff_4023731">Try Sonnus&reg; <em>Risk-Free For 90 Days & only $19.99 Each</em> <span class="arr">&rarr;</span></a>
+      <p class="rsn-sup"><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span>Sleep better, or get your money back</p>
+    </div>
+  </div>
+</section>
+<section class="st4 on-dark">
+  <div class="st4-in">
+    <div>
+      <h2 class="st4-h">Clinically Credible.<br>Statistically Clear.</h2>
+      <p class="st4-lead">Self-reported survey results from Sonnus&reg; customers after consistent use. Individual results may vary.</p>
+      <div class="st4-grid">
+        <div><span class="st4-n">87%</span><span class="st4-l">Fell Asleep Faster</span><p class="st4-d">Reported falling asleep faster and with less effort at bedtime.</p></div>
+        <div><span class="st4-n">81%</span><span class="st4-l">Fewer Nighttime Wake-Ups</span><p class="st4-d">Reported fewer middle-of-the-night wake-ups after consistent use.</p></div>
+        <div><span class="st4-n">78%</span><span class="st4-l">Clearer Mornings</span><p class="st4-d">Said their mornings felt clearer, without grogginess or fog.</p></div>
+        <div><span class="st4-n">92%</span><span class="st4-l">Would Recommend Sonnus&reg;</span><p class="st4-d">Said they would recommend Sonnus to a friend who struggles with sleep.</p></div>
+      </div>
+      <a class="btn-r" href="https://cc.usesonnus.com/checkout.php?hid=b2lkPW9mZl80MjQwNDIwJmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfOTA2Njg4MA%3D%3D&affid=aff_4023731">Try Sonnus&reg; <em>Risk-Free For 90 Days</em> <span class="arr">&rarr;</span></a>
+      <p class="rsn-sup"><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span>Ten-ingredient, full-system nighttime support</p>
+    </div>
+    <div class="st4-med">
+      <div class="ph filled"><img src="assets/img/lab-img.webp" alt="Hand holding a Sonnus&reg; Sleep Gummy bottle" width="700" height="700" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+<section class="day">
+  <div class="wrap">
+    <h2 class="display sec-head">What a Night Looks Like <span class="accent">With Sonnus®</span></h2>
+  </div>
+  <style>.dayx{display:grid;grid-template-columns:1.18fr 1fr;gap:44px;align-items:center;max-width:1180px;margin:26px auto 0;padding:0 24px}.dayx-img img{width:100%;margin:0 auto;display:block}.dx-item{position:relative;display:grid;grid-template-columns:42px 1fr;column-gap:18px;padding-bottom:30px}.dx-item:last-child{padding-bottom:0}.dx-item:not(:last-child):after{content:"";position:absolute;left:20px;top:46px;bottom:4px;border-left:2px dashed var(--navy-2);opacity:.45}.dx-ic{grid-column:1;grid-row:1;width:40px;height:40px;border-radius:50%;border:2.5px solid var(--navy);background:#fff;display:flex;align-items:center;justify-content:center}.dx-ic svg{width:20px;height:20px;stroke:var(--navy);fill:none;stroke-width:2.2;stroke-linecap:round}.dx-time{grid-column:2;grid-row:1;align-self:center;justify-self:start;background:#fff;border:1px solid #e4dff2;box-shadow:0 2px 6px rgba(44,40,96,.10);border-radius:10px;padding:7px 18px;font-family:'Sora',Arial,sans-serif;font-weight:700;font-size:19px;color:var(--navy)}.dx-txt{grid-column:2;margin:10px 0 0;font-size:17.5px;line-height:1.55}@media(max-width:820px){.dayx{grid-template-columns:1fr;gap:10px;padding:0 18px}.dayx-img{max-width:440px;margin:0 auto}.dx-time{font-size:17px;padding:6px 14px}.dx-txt{font-size:15.5px}}</style>
+  <div class="day-wide">
+    <div class="dayx">
+      <div class="dayx-img rv"><img src="assets/img/day-night-img.webp" alt="A full night with Sonnus" width="880" height="834" loading="lazy" decoding="async"></div>
+      <div class="dayx-tl">
+        <div class="dx-item rv">
+          <div class="dx-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <span class="dx-time">9:30 PM</span>
+          <p class="dx-txt">You chew two wild-berry gummies about 30 minutes before bed. The ritual begins — magnesium bisglycinate and 5-HTP start feeding your natural sleep signals. No pills, no powders, no bitter tea.</p>
+        </div>
+        <div class="dx-item rv">
+          <div class="dx-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l-3 2"/></svg></div>
+          <span class="dx-time">10:00 PM</span>
+          <p class="dx-txt">L-Theanine and GABA ease your brain off the gas — the mental to-do list goes quiet, and your body sinks heavy into the mattress. Drifting off stops feeling like a fight.</p>
+        </div>
+        <div class="dx-item rv">
+          <div class="dx-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l2-4"/></svg></div>
+          <span class="dx-time">3:00 AM</span>
+          <p class="dx-txt">The hour that used to own you… passes in silence. If you stir, you roll over — and you're gone again. No clock-watching, no ceiling-staring, no math on the hours left.</p>
+        </div>
+        <div class="dx-item rv">
+          <div class="dx-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 1"/></svg></div>
+          <span class="dx-time">6:30 AM</span>
+          <p class="dx-txt">You wake before the alarm, clear-headed instead of foggy. No melatonin hangover, no fog to claw out of — just steady energy that lasts the whole day.</p>
+        </div>
+      </div>
+    </div>
+    <div class="noline">
+      <div class="nox"><span class="nox-t">No knockout pills.</span><img class="nox-x" src="assets/img/nox-x-20.webp" alt="" width="218" height="220" loading="lazy" decoding="async"></div>
+      <div class="nox"><span class="nox-t">No morning fog.</span><img class="nox-x" src="assets/img/nox-x-20.webp" alt="" width="218" height="220" loading="lazy" decoding="async"></div>
+      <div class="nox"><span class="nox-t">No dependency.</span><img class="nox-x" src="assets/img/nox-x-20.webp" alt="" width="218" height="220" loading="lazy" decoding="async"></div>
+    </div>
+    <p class="close">And when nights like this start stacking… something powerful happens.<br><b>Your body remembers how to sleep on its own. The dread of bedtime disappears. Your days change — because your nights did.</b></p>
+  </div>
+</section>
+<section class="whosec">
+  <div class="who-wide">
+    <div class="whoq">
+      <h2 class="display sec-head">Who Sonnus® <span class="accent">Is For</span></h2>
+      <div class="whoq-grid n4 rv">
+        <div class="whoq-col">
+          <div class="whoq-ic"><img src="assets/img/whoq-ic-23.webp" alt="" width="240" height="240" loading="lazy" decoding="async"></div>
+          <div class="whoq-name">3 a.m. Wakers</div>
+          <p class="whoq-desc">— fall asleep fine, then jolt awake hours later, mind fully on.</p>
+        </div>
+        <div class="whoq-col">
+          <div class="whoq-ic"><img src="assets/img/whoq-ic-24.webp" alt="" width="240" height="240" loading="lazy" decoding="async"></div>
+          <div class="whoq-name">Racing-Mind Sleepers</div>
+          <p class="whoq-desc">— body exhausted, thoughts still sprinting.</p>
+        </div>
+        <div class="whoq-col">
+          <div class="whoq-ic"><img src="assets/img/whoq-ic-25.webp" alt="" style="border-radius:50%;object-fit:cover" width="240" height="240" loading="lazy" decoding="async"></div>
+          <div class="whoq-name">Stress-Loaded Professionals &amp; Parents</div>
+          <p class="whoq-desc">— carrying work, family and money into bed every night.</p>
+        </div>
+        <div class="whoq-col">
+          <div class="whoq-ic"><img src="assets/img/whoq-ic-26.webp" alt="" width="239" height="240" loading="lazy" decoding="async"></div>
+          <div class="whoq-name">Natural-First Sleepers</div>
+          <p class="whoq-desc">— who want real support without starting on a prescription sedative.</p>
+        </div>
+      </div>
+      <h2 class="display sec-head" style="margin-top:44px">Who Sonnus® Is <span class="accent">NOT For</span></h2>
+      <div class="whoq-grid n2 rv">
+        <div class="whoq-col whoq-not">
+          <div class="whoq-xwrap"><span class="whoq-name">People Wanting a Harsh Knockout</span><img class="whoq-x" src="assets/img/whoq-x-27.webp" alt="" width="218" height="220" loading="lazy" decoding="async"></div>
+          <p class="whoq-desc">— this supports natural sleep; it's not built to sedate you.</p>
+        </div>
+        <div class="whoq-col whoq-not">
+          <div class="whoq-xwrap"><span class="whoq-name">“Take It Once &amp; Forget It” Users</span><img class="whoq-x" src="assets/img/whoq-x-27.webp" alt="" width="218" height="220" loading="lazy" decoding="async"></div>
+          <p class="whoq-desc">— the results come from a consistent nightly ritual. Not for anyone under 18, or pregnant/nursing without medical approval.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="compare">
+  <div class="wrap-wide2">
+    <h2 class="display sec-head">Sonnus® Vs <span class="accent">The Alternatives</span></h2>
+    <div class="cmp2">
+      <div class="cmp2-head">
+        <div class="ch cl"></div>
+        <div class="ch ours"><img class="ch-prod" src="assets/img/chart-product.webp" alt="Sonnus" width="218" height="260" loading="lazy" decoding="async"><span class="ch-nm">Sonnus®</span></div>
+        <div class="ch"><span class="ch-ic"><svg viewBox="0 0 48 48" fill="none" stroke="#9a92ae" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="6" width="20" height="6" rx="2"/><rect x="12" y="12" width="24" height="30" rx="4"/><path d="M12 22h24"/></svg></span><span class="ch-nm">Melatonin Pills</span></div>
+        <div class="ch"><span class="ch-ic"><svg viewBox="0 0 48 48" fill="none" stroke="#9a92ae" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="10" width="28" height="28" rx="9"/><path d="M18 24h12M24 18v12"/></svg></span><span class="ch-nm">Other Gummies</span></div>
+      </div>
+      <div class="cmp2-row">
+        <div class="cl">Supports your brain's own sleep pressure</div>
+        <div class="cc ours"><span class="cbg yes">✓</span></div>
+        <div class="cc"><span class="cbg no">✕</span></div>
+        <div class="cc"><span class="cbg no">✕</span></div>
+      </div>
+      <div class="cmp2-row">
+        <div class="cl">Quiets a racing mind before bed</div>
+        <div class="cc ours"><span class="cbg yes">✓</span></div>
+        <div class="cc"><span class="cbg mid">–</span></div>
+        <div class="cc"><span class="cbg no">✕</span></div>
+      </div>
+      <div class="cmp2-row">
+        <div class="cl">Helps you stay asleep all night long</div>
+        <div class="cc ours"><span class="cbg yes">✓</span></div>
+        <div class="cc"><span class="cbg no">✕</span></div>
+        <div class="cc"><span class="cbg no">✕</span></div>
+      </div>
+      <div class="cmp2-row">
+        <div class="cl">No groggy hangovers</div>
+        <div class="cc ours"><span class="cbg yes">✓</span></div>
+        <div class="cc"><span class="cbg no">✕</span></div>
+        <div class="cc"><span class="cbg no">✕</span></div>
+      </div>
+      <div class="cmp2-row">
+        <div class="cl">Third-party lab tested</div>
+        <div class="cc ours"><span class="cbg yes">✓</span></div>
+        <div class="cc"><span class="cbg no">✕</span></div>
+        <div class="cc"><span class="cbg no">✕</span></div>
+      </div>
+      <div class="cmp2-row">
+        <div class="cl">All-natural, premium ingredients</div>
+        <div class="cc ours"><span class="cbg yes">✓</span></div>
+        <div class="cc"><span class="cbg no">✕</span></div>
+        <div class="cc"><span class="cbg no">✕</span></div>
+      </div>
+    </div>
+    <div class="cmp-legend">
+      <span class="lg"><span class="cbg yes">✓</span>Full support</span>
+      <span class="lg"><span class="cbg mid">–</span>Partial / indirect</span>
+      <span class="lg"><span class="cbg no">✕</span>Not designed for this</span>
+    </div>
+    <div class="nostrip">No Dependency · No Prescription · No Stimulants · No Sugar · No Artificial Fillers · No Synthetic Dyes</div>
+  </div>
+</section>
+<section class="expect">
+  <div class="wrap">
+    <span class="kicker">What to Expect</span>
+    <h2 class="display sec-head">Your Nights' Sleep, <span class="accent">Week by Week</span></h2>
+    <p class="sec-sub">Here's what most people feel — so you know it's working.</p>
+    <div class="tl">
+      <div class="tl-item rv">
+        <h4>First Few Nights</h4>
+        <ul>
+          <li><span class="d">✔</span>The mental marathon slows — your body feels heavy in the good way</li>
+          <li><span class="d">✔</span>You stop rehearsing tomorrow the second your head hits the pillow</li>
+          <li><span class="d">✔</span>Drifting off stops feeling like a fight</li>
+          <li><span class="d">✔</span>You fall asleep calmer than you have in months</li>
+        </ul>
+      </div>
+      <div class="tl-item rv">
+        <h4>Week 1</h4>
+        <ul>
+          <li><span class="d">✔</span>The 3 a.m. wake-up loses its grip — you stir, roll over, and you're gone again</li>
+          <li><span class="d">✔</span>You wake up and realize you never checked the clock once</li>
+          <li><span class="d">✔</span>That first morning you don't reach for coffee just to function</li>
+          <li><span class="d">✔</span>Racing thoughts start losing their power over your night</li>
+        </ul>
+      </div>
+      <div class="tl-item rv">
+        <h4>Weeks 2–4</h4>
+        <ul>
+          <li><span class="d">✔</span>Full nights, back to back — it's a pattern now, not a fluke</li>
+          <li><span class="d">✔</span>You wake before the alarm, clear-headed instead of foggy</li>
+          <li><span class="d">✔</span>Actually rested for the first time in longer than you can remember</li>
+          <li><span class="d">✔</span>People start saying you seem lighter — more patient, more present</li>
+        </ul>
+      </div>
+      <div class="tl-item rv">
+        <h4>Months 2–3</h4>
+        <ul>
+          <li><span class="d">✔</span>The ritual runs on autopilot and the deep sleep goes deep</li>
+          <li><span class="d">✔</span>Steady, all-day energy you'd forgotten was possible</li>
+          <li><span class="d">✔</span>The afternoon crash disappears</li>
+          <li><span class="d">✔</span>You stop bracing for a bad night — because they stopped happening</li>
+        </ul>
+      </div>
+      <div class="tl-item rv">
+        <h4>Month 4+</h4>
+        <ul>
+          <li><span class="d">✔</span>This is just how you sleep now — not chased, not dreaded</li>
+          <li><span class="d">✔</span>Your body does it on its own, night after night</li>
+          <li><span class="d">✔</span>The exhausting nights feel like a chapter you closed</li>
+          <li><span class="d">✔</span>And you never want to go back</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="offer" id="offer">
+  <div class="wrap">
+    <span class="kicker">Official Offer</span>
+    <h2 class="display sec-head">Claim Your <span class="accent">Sonnus®</span> Today</h2>
+  </div>
+  <div class="offer-top">
+    <div class="warn-card rv">
+      <span class="wi">⚠️</span>
+      <span class="wt"><b>WARNING:</b> High Risk of Selling Out This Month</span>
+      <span class="wc"><b id="buyCount">527</b> Purchases Made Today</span>
+    </div>
+  </div>
+  <div class="offer-wrap">
+    <div class="offer-left">
+<div class="gal-main"><img id="galMain" src="assets/img/gallery-1.webp" alt="Sonnus offer" width="700" height="700" loading="lazy" decoding="async"></div>
+      <div class="gal-thumbs">
+        <button type="button" class="on" data-src="assets/img/gallery-1.webp"><img src="assets/img/gallery-thumb-1.webp" alt="" width="124" height="124" loading="lazy" decoding="async"></button>
+        <button type="button" data-src="assets/img/gallery-2.webp"><img src="assets/img/gallery-thumb-2.webp" alt="" width="124" height="124" loading="lazy" decoding="async"></button>
+        <button type="button" data-src="assets/img/gallery-3.webp"><img src="assets/img/gallery-thumb-3.webp" alt="" width="124" height="124" loading="lazy" decoding="async"></button>
+        <button type="button" data-src="assets/img/gallery-4.webp"><img src="assets/img/gallery-thumb-4.webp" alt="" width="124" height="124" loading="lazy" decoding="async"></button>
+        <button type="button" data-src="assets/img/gallery-5.webp"><img src="assets/img/gallery-thumb-5.webp" alt="" width="124" height="124" loading="lazy" decoding="async"></button>
+      </div>
+      <div class="offer-rate"><span class="stars">★★★★★</span>&nbsp; Rated 4.8/5 by 12,000+ customers</div>
+    </div>
+    <div class="offer-right">
+      <div class="gold-banner rv">
+        <div class="off-headline">5 Reasons Sonnus® Is The Only Sleep Gummy That Actually Helps You Stay Asleep</div>
+      <ul class="offer-benefits">
+        <li><span class="ob-ck">✓</span>Recharges Your Natural Sleep Pressure</li>
+        <li><span class="ob-ck">✓</span>Quiets The Racing 3 A.M. Mind</li>
+        <li><span class="ob-ck">✓</span>Deep, Continuous Rest — All Night</li>
+        <li><span class="ob-ck">✓</span>No Prescription. No Next-Day Fog</li>
+        <li><span class="ob-ck">✓</span>Third-Party Lab Tested &amp; All-Natural</li>
+      </ul>
+      </div>
+      <div class="ltd-card rv">
+        <div class="batch-head">Next Batch Ships In:</div>
+        <p class="batch-sub">Reserve your Sonnus® before we sell out again!</p>
+        <div class="batch-row is-soldout"><span class="bd"><span class="bi">📅</span>Ships on <b class="batch-date" data-batch="0"></b></span><span class="tag">Sold Out</span></div>
+        <div class="batch-row is-almost"><span class="fill"></span><span class="bd"><span class="bi">📅</span>Ships on <b class="batch-date" data-batch="1"></b></span><span class="tag">96% Sold</span></div>
+        <div class="batch-row is-next"><span class="bd"><span class="bi">📅</span>Ships on <b class="batch-date" data-batch="2"></b></span><span class="tag">Next Batch</span></div>
+      </div>
+      <a class="btn" href="https://cc.usesonnus.com/checkout.php?hid=b2lkPW9mZl80MjQwNDIwJmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfOTA2Njg4MA%3D%3D&affid=aff_4023731">GET SONNUS WITH 70% DISCOUNT TODAY <span class="arr">→</span></a>
+      <p class="stock-note"><span class="dot"></span> In Stock: Ships in 24 Hrs From U.S. Warehouse 🇺🇸</p>
+      <p class="mbg-note">🛡️ Backed By 90-Day Money Back Guarantee</p>
+      <div class="pay-cards"><span class="pc"><svg viewBox="0 8 24 8" width="42" height="14" aria-label="Visa" role="img"><path fill="#1A1F71" d="M9.112 8.262L5.97 15.758H3.92L2.374 9.775c-.094-.368-.175-.503-.461-.658C1.447 8.864.677 8.627 0 8.479l.046-.217h3.3a.904.904 0 01.894.764l.817 4.338 2.018-5.102zm8.033 5.049c.008-1.979-2.736-2.088-2.717-2.972.006-.269.262-.555.822-.628a3.66 3.66 0 011.913.336l.34-1.59a5.207 5.207 0 00-1.814-.333c-1.917 0-3.266 1.02-3.278 2.479-.012 1.079.963 1.68 1.698 2.04.756.367 1.01.603 1.006.931-.005.504-.602.725-1.16.734-.975.015-1.54-.263-1.992-.473l-.351 1.642c.453.208 1.289.39 2.156.398 2.037 0 3.37-1.006 3.377-2.564m5.061 2.447H24l-1.565-7.496h-1.656a.883.883 0 00-.826.55l-2.909 6.946h2.036l.405-1.12h2.488zm-2.163-2.656l1.02-2.815.588 2.815zm-8.16-4.84l-1.603 7.496H8.34l1.605-7.496z"/></svg></span><span class="pc"><svg viewBox="0 0 48 30" width="44" height="28" aria-label="Mastercard" role="img"><circle cx="19" cy="15" r="12" fill="#EB001B"/><circle cx="29" cy="15" r="12" fill="#F79E1B"/><path d="M24 4.09A12 12 0 0 1 24 25.91A12 12 0 0 1 24 4.09Z" fill="#FF5F00"/></svg></span></div>
+      <p class="official">⚠️ <b>This official website is the only place you can buy Sonnus®.</b> It is not sold in stores or on any other site.</p>
+    </div>
+  </div>
+</section>
+<section class="guarantee">
+  <div class="g-top"><div class="wrap">
+    <h2 class="g-head display">Try Sonnus® Risk-Free<br>For 90 Days.</h2>
+      <img class="g-seal" src="assets/img/guarantee-seal.webp" alt="90-Day Money Back Guarantee" width="280" height="280" loading="lazy" decoding="async">
+  </div></div>
+  <div class="g-bot"><div class="wrap">
+    <p class="g-copy">Take Sonnus® for a full 2 months. If your mind doesn't quiet down, if you're still snapping awake at 3 a.m., if you don't wake up clearer — if you're not happy for any reason at all — return the bottles, even empty, for a full refund. No questions asked.</p>
+    <a class="g-cta" href="https://cc.usesonnus.com/checkout.php?hid=b2lkPW9mZl80MjQwNDIwJmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfOTA2Njg4MA%3D%3D&affid=aff_4023731">Reclaim Your Deep Sleep Now <span>→</span></a>
+    <div class="g-reassure"><span class="shield">🛡️</span> Try it for 90 days. Sleep better, or your money back.</div>
+  </div></div>
+</section>
+
+<style>.sproof{padding:0}.sp-strip{display:grid;grid-template-columns:repeat(12,1fr);gap:0;line-height:0}.sp-strip img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}.sp-bar{background:var(--navy);color:#fff}.sp-bar .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 30px;padding-top:13px;padding-bottom:13px;max-width:1000px}.sp-b{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:.2px}.sp-b svg{width:21px;height:21px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}.rvw{background:#fff;padding:0}.rvw-in{max-width:1000px;margin:0 auto;padding:40px 20px 48px}.rvw-top{display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center;padding-bottom:22px}.rvw-score{text-align:center}.rs-num{font-size:52px;font-weight:800;color:var(--ink);line-height:1}.rs-stars{color:#f5b301;font-size:22px;letter-spacing:2px;margin-top:2px}.rs-sub{color:#666;font-size:13.5px;margin-top:6px}.rvw-bars{max-width:320px;width:100%}.bar-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;margin:2px 0}.bstars{color:#c9ccd1;font-size:12px;letter-spacing:1px;white-space:nowrap}.btrack{height:9px;background:#ececec;border-radius:2px;overflow:hidden}.bfill{display:block;height:100%;background:#f5b301}.bcount{color:#888;font-size:12.5px;min-width:30px;text-align:right}.rvw-photos{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;width:330px}.rvw-photos img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:2px;display:block}.rvw-tabs{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e4e4e4;margin-bottom:6px}.rt-active{font-weight:700;color:var(--ink);padding:12px 2px;border-bottom:3px solid var(--navy);margin-bottom:-1px}.rt-active b{font-weight:700;margin-left:6px}.rt-sort{border:1px solid #d5d5d5;border-radius:12px;padding:8px 12px;font-size:13.5px;color:#444}.rev{border-bottom:1px solid #ededed;padding:24px 0}.rev-head{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start}.av{position:relative;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#3a4658;background:#e2e6ea}.av1{background:#e5e0f0}.av2{background:#dfe9e2}.av3{background:#f0e6da}.av4{background:#dde6ef}.av-ck{position:absolute;right:-2px;bottom:-2px;width:18px;height:18px;border-radius:50%;background:#2c9c5d;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;border:2px solid #fff}.rev-name{font-weight:700;color:var(--ink);font-size:15.5px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.vb{color:#2c9c5d;font-weight:600;font-size:13px}.vshop{color:#777;font-weight:500;font-size:12.5px;background:#f2f2f2;padding:2px 7px;border-radius:12px}.vshop b{color:#444}.rev-loc{display:flex;align-items:center;gap:6px;color:#666;font-size:13px;margin-top:4px}.flag{width:19px;height:13px;border:1px solid #ddd;border-radius:1px;display:block}.rev-date{color:#9a9a9a;font-size:13px;white-space:nowrap}.rev-stars{color:#f5b301;font-size:17px;letter-spacing:1px;margin:14px 0 6px}.rev-title{font-weight:700;color:var(--ink);font-size:15.5px;margin-bottom:5px}.rev-body{color:#333;font-size:15px;line-height:1.55}.rev-img{width:120px;height:120px;object-fit:cover;border-radius:12px;margin-top:12px;display:block}.rev-share{display:inline-flex;align-items:center;gap:6px;color:#666;font-size:13px;text-decoration:none;margin-top:14px}.rev-share .sh-ic{font-size:14px}@media(max-width:640px){.sp-strip{grid-template-columns:repeat(6,1fr)}.sp-bar .wrap{gap:8px 16px;padding:11px 14px}.sp-b{font-size:12.5px;gap:7px}.sp-b svg{width:17px;height:17px}.rvw-in{padding:28px 14px 34px}.rvw-top{grid-template-columns:1fr;gap:18px;text-align:center}.rvw-score{display:flex;align-items:center;justify-content:center;gap:14px}.rs-sub{margin-top:0}.rvw-bars{max-width:none;margin:0 auto}.rvw-photos{width:100%;grid-template-columns:repeat(5,1fr)}.rev-head{grid-template-columns:auto 1fr;gap:12px}.rev-date{grid-column:2;order:3;margin-top:2px}.rev-name{font-size:14.5px}}.ph.filled{background:none;border:0;padding:0;overflow:hidden;color:transparent}.ph.filled>img{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit}.ph.filled.fit{background:#100F2B}.ph.filled.fit>img{object-fit:contain}.rsn-med.med-45 .ph{position:absolute;top:50%;left:0;right:0;bottom:auto;height:auto;min-height:0;aspect-ratio:4/5;transform:translateY(-50%)}@media(max-width:900px){.rsn-med.med-45 .ph{position:static;transform:none;top:auto}}.rsn-med.med-11{display:flex;align-items:center}.rsn-med.med-11 .ph{position:static;inset:auto;transform:none;width:100%;height:auto;min-height:0;aspect-ratio:1/1}@media(min-width:901px){.st4-med .ph{position:absolute;top:50%;left:0;right:0;bottom:auto;height:auto;min-height:0;aspect-ratio:1/1;transform:translateY(-50%)}}</style>
+<section class="sproof">
+  <div class="sp-strip">
+      <img src="assets/img/ugc-42.webp" alt="Sonnus customer" width="219" height="219" loading="lazy" decoding="async">
+      <img src="assets/img/ugc-43.webp" alt="Sonnus customer" width="219" height="219" loading="lazy" decoding="async">
+      <img src="assets/img/ugc-44.webp" alt="Sonnus customer" width="219" height="219" loading="lazy" decoding="async">
+      <img src="assets/img/ugc-45.webp" alt="Sonnus customer" width="219" height="219" loading="lazy" decoding="async">
+      <img src="assets/img/ugc-46.webp" alt="Sonnus customer" width="219" height="219" loading="lazy" decoding="async">
+      <img src="assets/img/ugc-47.webp" alt="Sonnus customer" width="219" height="219" loading="lazy" decoding="async">
+      <img src="assets/img/ugc-48.webp" alt="Sonnus customer" width="219" height="219" loading="lazy" decoding="async">
+      <img src="assets/img/ugc-49.webp" alt="Sonnus customer" width="219" height="219" loading="lazy" decoding="async">
+      <img src="assets/img/ugc-50.webp" alt="Sonnus customer" width="219" height="219" loading="lazy" decoding="async">
+      <img src="assets/img/ugc-51.webp" alt="Sonnus customer" width="219" height="219" loading="lazy" decoding="async">
+      <img src="assets/img/ugc-52.webp" alt="Sonnus customer" width="219" height="219" loading="lazy" decoding="async">
+      <img src="assets/img/ugc-53.webp" alt="Sonnus customer" width="219" height="219" loading="lazy" decoding="async">
+  </div>
+  <div class="sp-bar"><div class="wrap">
+    <span class="sp-b"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="5.6" y1="5.6" x2="18.4" y2="18.4"/></svg>A Quiet Mind</span>
+    <span class="sp-b"><svg viewBox="0 0 24 24"><path d="M6 9v6h3l5 4V5L9 9H6z"/><line x1="3" y1="3" x2="21" y2="21"/></svg>3 AM Wake-ups Gone</span>
+    <span class="sp-b"><svg viewBox="0 0 24 24"><path d="M21 14.5A8.5 8.5 0 0 1 9.5 3a8.5 8.5 0 1 0 11.5 11.5z" stroke-linejoin="round"/></svg>Deep Sleep Switched On</span>
+    <span class="sp-b"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" stroke-linejoin="round"/></svg>Clear Mornings</span>
+  </div></div>
+</section>
+<section class="rvw" id="reviews">
+  <div class="rvw-in">
+    <div class="rvw-top">
+      <div class="rvw-score">
+        <div class="rs-num">4.8</div>
+        <div class="rs-stars">★★★★★</div>
+        <div class="rs-sub">Based on 193 Reviews</div>
+      </div>
+      <div class="rvw-bars">
+        <div class="bar-row"><span class="bstars">★★★★★</span><span class="btrack"><span class="bfill" style="width:86.5%"></span></span><span class="bcount">(167)</span></div><div class="bar-row"><span class="bstars">★★★★☆</span><span class="btrack"><span class="bfill" style="width:5.2%"></span></span><span class="bcount">(10)</span></div><div class="bar-row"><span class="bstars">★★★☆☆</span><span class="btrack"><span class="bfill" style="width:3.6%"></span></span><span class="bcount">(7)</span></div><div class="bar-row"><span class="bstars">★★☆☆☆</span><span class="btrack"><span class="bfill" style="width:2.1%"></span></span><span class="bcount">(4)</span></div><div class="bar-row"><span class="bstars">★☆☆☆☆</span><span class="btrack"><span class="bfill" style="width:2.6%"></span></span><span class="bcount">(5)</span></div>
+      </div>
+      </div>
+    <div class="rvw-tabs">
+      <span class="rt-active">Reviews <b>193</b></span>
+      <span class="rt-sort">Highest Rating ▾</span>
+    </div>
+    <div class="rvw-list">
+    <article class="rev">
+      <div class="rev-head">
+        <div class="av av1">AD<span class="av-ck">✓</span></div>
+        <div class="rev-id">
+          <div class="rev-name">Aubrey D. <span class="vb">Verified Buyer</span></div>
+          <div class="rev-loc"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#fff"/><g fill="#b22234"><rect width="24" height="1.23" y="0"/><rect width="24" height="1.23" y="2.46"/><rect width="24" height="1.23" y="4.92"/><rect width="24" height="1.23" y="7.38"/><rect width="24" height="1.23" y="9.84"/><rect width="24" height="1.23" y="12.3"/><rect width="24" height="1.23" y="14.76"/></g><rect width="10" height="8.6" fill="#3c3b6e"/></svg><span>United States</span></div>
+        </div>
+        <div class="rev-date">07/17/2026</div>
+      </div>
+      <div class="rev-stars">★★★★★</div>
+      <div class="rev-title">Love this stuff!</div>
+      <div class="rev-body">I fall asleep within 20 minutes now and the 3 a.m. wake-ups are basically gone. So glad I bit the bullet and tried it!</div>
+      
+      <a class="rev-share" href="#reviews"><span class="sh-ic">↗</span> Share</a>
+    </article>
+    <article class="rev">
+      <div class="rev-head">
+        <div class="av av2">LS<span class="av-ck">✓</span></div>
+        <div class="rev-id">
+          <div class="rev-name">Lesley S. <span class="vb">Verified Buyer</span></div>
+          <div class="rev-loc"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#fff"/><g fill="#b22234"><rect width="24" height="1.23" y="0"/><rect width="24" height="1.23" y="2.46"/><rect width="24" height="1.23" y="4.92"/><rect width="24" height="1.23" y="7.38"/><rect width="24" height="1.23" y="9.84"/><rect width="24" height="1.23" y="12.3"/><rect width="24" height="1.23" y="14.76"/></g><rect width="10" height="8.6" fill="#3c3b6e"/></svg><span>United States</span></div>
+        </div>
+        <div class="rev-date">07/16/2026</div>
+      </div>
+      <div class="rev-stars">★★★★★</div>
+      <div class="rev-title">Two weeks in</div>
+      <div class="rev-body">Two weeks in and I'm sleeping through most nights now. Still get the occasional restless night, but the mornings are so much clearer. The wild berry flavor is actually really good too.</div>
+      <a class="rev-share" href="#reviews"><span class="sh-ic">↗</span> Share</a>
+    </article>
+    <article class="rev">
+      <div class="rev-head">
+        <div class="av av3">A<span class="av-ck">✓</span></div>
+        <div class="rev-id">
+          <div class="rev-name">Anjanette <span class="vshop">Verified by <b>shop</b></span></div>
+          <div class="rev-loc"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#fff"/><g fill="#b22234"><rect width="24" height="1.23" y="0"/><rect width="24" height="1.23" y="2.46"/><rect width="24" height="1.23" y="4.92"/><rect width="24" height="1.23" y="7.38"/><rect width="24" height="1.23" y="9.84"/><rect width="24" height="1.23" y="12.3"/><rect width="24" height="1.23" y="14.76"/></g><rect width="10" height="8.6" fill="#3c3b6e"/></svg><span>United States</span></div>
+        </div>
+        <div class="rev-date">07/15/2026</div>
+      </div>
+      <div class="rev-stars">★★★★★</div>
+      
+      <div class="rev-body">Took almost three weeks before I really noticed a difference, so be patient with it. I chew them about 30 minutes before bed like it says. Honestly sleeping better now than I ever did on my old 10 mg melatonin — and no groggy mornings.</div>
+      
+      <a class="rev-share" href="#reviews"><span class="sh-ic">↗</span> Share</a>
+    </article>
+    <article class="rev">
+      <div class="rev-head">
+        <div class="av av4">T<span class="av-ck">✓</span></div>
+        <div class="rev-id">
+          <div class="rev-name">Todd <span class="vshop">Verified by <b>shop</b></span></div>
+          <div class="rev-loc"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#fff"/><g fill="#b22234"><rect width="24" height="1.23" y="0"/><rect width="24" height="1.23" y="2.46"/><rect width="24" height="1.23" y="4.92"/><rect width="24" height="1.23" y="7.38"/><rect width="24" height="1.23" y="9.84"/><rect width="24" height="1.23" y="12.3"/><rect width="24" height="1.23" y="14.76"/></g><rect width="10" height="8.6" fill="#3c3b6e"/></svg><span>United States</span></div>
+        </div>
+        <div class="rev-date">07/15/2026</div>
+      </div>
+      <div class="rev-stars">★★★★★</div>
+      
+      <div class="rev-body">Love that i dont dread bedtime anymore. I wake up actually rested and my wife says im less grumpy.</div>
+      
+      <a class="rev-share" href="#reviews"><span class="sh-ic">↗</span> Share</a>
+    </article>
+    </div>
+  </div>
+</section>
+<section class="faq2">
+  <div class="faq2-in">
+    <p class="faq2-k">FAQs</p>
+    <h2 class="faq2-h">Frequently Asked Questions</h2>
+    <div class="faq2-grid">
+      <details>
+        <summary>How long does it take to notice results?</summary>
+        <div class="a"><p>Some people describe feeling calmer during the first few nights.</p><p>With consistent use, improvements in sleep continuity and a reduction in 3 a.m. wake-ups typically build over the following two to four weeks.</p><p>Individual experiences vary, which is why consistency is important.</p></div>
+      </details>
+      <details>
+        <summary>What makes Sonnus&reg; different from regular melatonin gummies?</summary>
+        <div class="a"><p>Most regular sleep gummies rely primarily on a high dose of melatonin.</p><p>Sonnus&reg; contains a precise 0.9 mg melatonin signal combined with Magnesium Bisglycinate, L-Theanine, 5-HTP, B vitamins, GABA, Magnesium Glycinate, Apigenin, Lemon Balm, and complementary nighttime support.</p><p>Instead of using melatonin as the entire solution, Sonnus&reg; supports the four stages behind a calmer, deeper, more continuous night.</p></div>
+      </details>
+      <details>
+        <summary>Why is Magnesium Bisglycinate the foundation of the formula?</summary>
+        <div class="a"><p>Magnesium Bisglycinate is the Sonnus&reg; Sleep-Pressure Primer.</p><p>It provides the foundation for supporting relaxation and the natural pathways involved in nighttime signaling.</p><p>It does not work alone. It is combined with nine complementary ingredients because sleep requires more than a single pathway.</p></div>
+      </details>
+      <details>
+        <summary>How do I take Sonnus&reg;?</summary>
+        <div class="a"><p>Chew two gummies about 30 minutes before bed.</p><p>Consistent nightly use is recommended for the best experience. Always follow the final directions shown on the approved product label.</p></div>
+      </details>
+      <details>
+        <summary>Will Sonnus&reg; leave me groggy in the morning?</summary>
+        <div class="a"><p>Sonnus&reg; was formulated around a low-dose melatonin approach rather than a high-dose megadose.</p><p>The goal is to support restful, continuous sleep and clearer mornings without relying on heavy sedation. Individual responses can vary.</p></div>
+      </details>
+      <details>
+        <summary>Can I take Sonnus&reg; with my other supplements?</summary>
+        <div class="a"><p>Sonnus&reg; is designed to fit alongside many common supplement routines.</p><p>However, speak with your healthcare professional before adding it if you take prescription medication &mdash; particularly sleep aids, sedatives, antidepressants, or additional melatonin.</p></div>
+      </details>
+      <details>
+        <summary>Is Sonnus&reg; a knockout sleep medication?</summary>
+        <div class="a"><p>No.</p><p>Sonnus&reg; is not designed to harshly sedate or immediately knock you unconscious. It supports the biological pathways associated with relaxation, sleep timing, sleep pressure, and sleep continuity.</p></div>
+      </details>
+      <details>
+        <summary>Do I need to take it every night?</summary>
+        <div class="a"><p>Sonnus&reg; is designed as a consistent nightly ritual.</p><p>The formula is not a "take it once and forget it" product. Consistency gives the complete system time to support healthier nighttime patterns.</p></div>
+      </details>
+      <details>
+        <summary>Is Sonnus&reg; suitable for everyone?</summary>
+        <div class="a"><p>Sonnus&reg; is intended for adults.</p><p>Anyone under 18, pregnant, nursing, managing a medical condition, or taking prescription medication should consult a qualified healthcare professional before use.</p></div>
+      </details>
+      <details>
+        <summary>Do you offer a guarantee?</summary>
+        <div class="a"><p>Yes. Every Sonnus&reg; order is protected by a <b>90-day money-back guarantee</b>.</p><p>Try the product consistently and see how your nights and mornings respond. If you are not satisfied, contact customer support within the guarantee period according to the official refund terms.</p></div>
+      </details>
+    </div>
+    <div class="faq2-cta">
+      <a class="btn-r" href="https://cc.usesonnus.com/checkout.php?hid=b2lkPW9mZl80MjQwNDIwJmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfOTA2Njg4MA%3D%3D&affid=aff_4023731">Try Sonnus&reg; <em>Risk-Free For 90 Days</em> <span class="arr">&rarr;</span></a>
+      <p class="rsn-sup"><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span>Backed by a 90-day money-back guarantee</p>
+    </div>
+  </div>
+</section>
+<section class="fcta on-dark" id="cta">
+  <div class="fcta-in">
+    <h2>Reclaim Your Nights With Sonnus&reg;</h2>
+    <p class="fcta-sub">Fall Asleep Calmer. Stay Asleep Longer. Wake Up Clearer.</p>
+    <p>Two wild-berry gummies combine Magnesium Bisglycinate with nine complementary nighttime ingredients to support your complete sleep system.</p>
+    <div class="fcta-no">
+      <span>No prescriptions</span>
+      <span>No hormone megadose</span>
+      <span>No complicated nighttime routine</span>
+    </div>
+    
+    <a class="btn-r" href="https://cc.usesonnus.com/checkout.php?hid=b2lkPW9mZl80MjQwNDIwJmFpZD1hZmZfNDAyMzczMSZ1aWQ9YmxfOTA2Njg4MA%3D%3D&affid=aff_4023731">Try Sonnus&reg; <em>Risk-Free For 90 Days</em> <span class="arr">&rarr;</span></a>
+    <p class="rsn-sup"><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg></span>Sleep better, or get your money back.</p>
+  </div>
+</section>
+<footer class="ft2">
+  <div class="ft2-wrap">
+    <div class="ft2-top">
+      <div class="ft2-c">
+        <span class="ft2-logo">SONNUS<sup>&reg;</sup></span>
+        <p class="ft2-tag">Drift off. Stay asleep. Wake restored.</p>
+      </div>
+      <div class="ft2-c">
+        <p class="ft2-h">Stay In The Know</p>
+        <p class="ft2-s">Sleep tips, new drops and subscriber-only offers.</p>
+        
+        <form class="ft2-form" onsubmit="return false">
+          <input type="email" placeholder="Your Email" aria-label="Your Email">
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="ft2-c">
+        <ul class="ft2-links">
+          <li><a href="https://cc.usesonnus.com/lgl/contact-us.php" target="_blank" rel="noopener">Support</a></li>
+          <li><a href="https://cc.usesonnus.com/lgl/contact-us.php" target="_blank" rel="noopener">Contact us</a></li>
+          <li><a href="https://cc.usesonnus.com/track-order.php" target="_blank" rel="noopener">Track your order</a></li>
+          <li><a href="https://cc.usesonnus.com/lgl/shipping-policy.php" target="_blank" rel="noopener">Shipping &amp; delivery</a></li>
+          <li><a href="https://cc.usesonnus.com/lgl/refund-policy.php" target="_blank" rel="noopener">Returns policy</a></li>
+          <li><a href="https://cc.usesonnus.com/lgl/privacy-policy.php" target="_blank" rel="noopener">Privacy policy</a></li>
+          <li><a href="https://cc.usesonnus.com/lgl/terms-of-service.php" target="_blank" rel="noopener">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft2-dis">
+      <p>* These statements have not been evaluated by the Food and Drug Administration. Sonnus&reg; is not intended to diagnose, treat, cure, or prevent any disease.</p>
+      <p>* Individual results may vary. Testimonials reflect individual experiences and do not guarantee identical outcomes.</p>
+      <p>* Consult your healthcare provider before starting any supplement, especially if you are pregnant, nursing, taking medication, or managing a medical condition.</p>
+    </div>
+    <div class="ft2-cur">
+      <select aria-label="Country and currency">
+        <option>United States (USD)</option>
+        <option>United Kingdom (GBP &pound;)</option>
+        <option>Canada (CAD)</option>
+      </select>
+    </div>
+    <p class="ft2-cp">&copy; 2026 Sonnus&reg; | All Rights Reserved</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ===== reveal on scroll — puramente cosmético; sem JS tudo já está visível ===== */
+  try{
+    if(!('IntersectionObserver' in window)) throw 0;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+    },{threshold:.12});
+    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+    setTimeout(function(){
+      document.querySelectorAll('.rv:not(.on)').forEach(function(el){
+        if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add('on');
+      });
+    }, 1200);
+  }catch(e){ document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('on'); }); }
+
+  /* ===== galeria da oferta (copiada de sonnus-dtc-v2.html) =====
+     Sem JS o card continua mostrando a imagem principal + as miniaturas. */
+  var galMain=document.getElementById('galMain');
+  if(galMain){
+    document.querySelectorAll('.gal-thumbs button').forEach(function(b){
+      b.addEventListener('click',function(){
+        galMain.src=b.getAttribute('data-src');
+        document.querySelectorAll('.gal-thumbs button').forEach(function(o){o.classList.remove('on');});
+        b.classList.add('on');
+      });
+    });
+  }
+})();
+</script>
+<script>
+/* Dynamic shipping-batch dates: sold-out batch = yesterday, 96% sold = +1 day, next batch = +5 days */
+(function(){
+  var offsets=[-1,1,5];
+  var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  function ord(n){var s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
+  var els=document.querySelectorAll('.batch-date');
+  for(var i=0;i<els.length;i++){
+    var d=new Date();
+    d.setDate(d.getDate()+offsets[parseInt(els[i].getAttribute('data-batch'),10)]);
+    els[i].textContent=months[d.getMonth()]+' '+ord(d.getDate());
+  }
+})();
+</script>
+</body>
+</html>
