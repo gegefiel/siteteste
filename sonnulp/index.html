@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +8,9 @@
 <meta name="description" content="What if your body could recharge its own deep sleep? Discover the Sonnus® 4-Step Reset — no melatonin hangover, no prescriptions, no dependency.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;600;700;800&family=Manrope:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;600;700;800&family=Manrope:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&display=swap" fetchpriority="high">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;600;700;800&family=Manrope:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&display=swap" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;600;700;800&family=Manrope:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&display=swap"></noscript>
 <meta name="theme-color" content="#2C2860">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sonnus® — Recharge Your Deep Sleep With a 30-Second Nightly Ritual">
@@ -678,9 +678,9 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 /* rede de segurança: garante tudo visível mesmo se o observer falhar */
 setTimeout(function(){
 document.querySelectorAll('.rv:not(.on)').forEach(function(el){
-if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add('on');
+el.classList.add('on');
 });
-}, 1200);
+}, 2500);
 }catch(e){ document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('on'); }); }
 /* ===== barra de estoque dinâmica (enche com o tempo na página) ===== */
 var fill = document.getElementById('stockFill');
