@@ -1,9 +1,91 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>document.documentElement.className+=" js";</script>  
+<script>document.documentElement.className+=" js";</script>
+
+<!-- ===== PRE-TRACKER SONNUS (roda no 1o byte, independe do GTM) ===== -->
+<script id="sns-pre-tracker">
+(function () {
+  var DAYS = 90;
+  var DOMAIN = '.tipss-for-women.com';
+  var CHECKOUT_RX = /usesonnus\.com/i;
+
+  function ck(n) {
+    var m = document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]*)');
+    return m ? decodeURIComponent(m.pop()) : '';
+  }
+  function set(n, v) {
+    if (!v) return;
+    var d = new Date(Date.now() + DAYS * 864e5);
+    document.cookie = n + '=' + encodeURIComponent(v) + ';expires=' + d.toUTCString() +
+      ';path=/;domain=' + DOMAIN + ';SameSite=Lax';
+  }
+  function qp(n) {
+    try { return new URLSearchParams(location.search).get(n) || ''; } catch (e) { return ''; }
+  }
+
+  var fbclid = qp('fbclid');
+  if (fbclid && !ck('_fbc')) set('_fbc', 'fb.1.' + Date.now() + '.' + fbclid);
+  if (!ck('_fbp')) set('_fbp', 'fb.1.' + Date.now() + '.' + Math.floor(Math.random() * 1e10));
+  if (!ck('_xid')) set('_xid', 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2, 12));
+
+  function stamp(a) {
+    try {
+      var u = new URL(a.href, location.href);
+      u.searchParams.set('s1', ck('_fbp'));
+      u.searchParams.set('s2', ck('_fbc'));
+      u.searchParams.set('s3', ck('_xid'));
+      var c = qp('utm_campaign') || qp('campaign_id');
+      if (c) u.searchParams.set('s5', c);
+      a.href = u.toString();
+    } catch (e) {}
+  }
+  function stampAll() {
+    var l = document.querySelectorAll('a[href]');
+    for (var i = 0; i < l.length; i++) if (CHECKOUT_RX.test(l[i].href)) stamp(l[i]);
+  }
+  if (document.readyState !== 'loading') stampAll();
+  else document.addEventListener('DOMContentLoaded', stampAll);
+  setTimeout(stampAll, 2000);
+
+  document.addEventListener('pointerdown', function (ev) {
+    var t = ev.target; if (!t || !t.closest) return;
+    var a = t.closest('a[href]');
+    if (a && CHECKOUT_RX.test(a.href)) stamp(a);
+  }, true);
+})();
+</script>
+<!-- ===== End Pre-Tracker ===== -->
+
+<!-- Google Tag Manager (carregado sob demanda) -->
+<script id="lf-tag-loader">
+(function(){
+  window.dataLayer = window.dataLayer || [];
+  var fired=false;
+  function boot(){
+    if(fired) return; fired=true;
+    clean();
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PRQ9J45J');
+  }
+  var EV=['pointerdown','touchstart','mousemove','keydown','wheel','scroll'];
+  function clean(){ EV.forEach(function(e){ window.removeEventListener(e,boot,{passive:true,capture:true}); }); document.removeEventListener('visibilitychange',onHide); }
+  function onHide(){ if(document.visibilityState==='hidden') boot(); }
+  EV.forEach(function(e){ window.addEventListener(e,boot,{passive:true,capture:true}); });
+  document.addEventListener('visibilitychange',onHide);
+  if(document.readyState==='complete') setTimeout(boot,300);
+  else window.addEventListener('load',function(){ setTimeout(boot,300); });
+  setTimeout(boot,1500);
+})();
+</script>
+<!-- End Google Tag Manager -->
+  
 
 <title>Sonnus® — Recharge Your Deep Sleep With a 30-Second Nightly Ritual</title>
 <meta name="description" content="What if your body could recharge its own deep sleep? Discover the Sonnus® 4-Step Reset — no melatonin hangover, no prescriptions, no dependency.">
