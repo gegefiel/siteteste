@@ -1,4 +1,10 @@
-if (host === "tipss-for-women.com") {
+const url = new URL(request.url);
+const host = url.hostname;
+const pathname = url.pathname;
+
+let sitemapXML = null;
+
+if (host === "tipss-for-women.com" && pathname === "/sonnulp/sitemap.xml") {
   sitemapXML = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
@@ -27,4 +33,11 @@ if (host === "tipss-for-women.com") {
   </url>
 
 </urlset>`;
+
+  return new Response(sitemapXML, {
+    status: 200,
+    headers: {
+      "Content-Type": "application/xml; charset=UTF-8"
+    }
+  });
 }
