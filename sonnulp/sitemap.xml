@@ -1,0 +1,22 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<url>
+<loc>https://tipss-for-women.com/</loc>
+<lastmod>2026-09-23</lastmod>
+<image:image>
+<image:loc>https://tipss-for-women.com/assets/img/02-sonnus-deep-restful-sleep.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://tipss-for-women.com/assets/img/37-sonnus-offer.webp</image:loc>
+</image:image>
+</url>
+</urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://${host}/sonnulp</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://${host}/hometipss-for-women</loc>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+</urlset>
