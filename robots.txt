@@ -4,3 +4,22 @@ Allow: /
 Sitemap: https://rigorrevview.site/sitemap.xml
 Sitemap: https://get-bryocoffee.com/sitemap.xml
 Sitemap: https://arthryon-heatreliefcream.com/sitemap.xml
+Sitemap: https://tipss-for-women.com/sitemap.xml
+Sitemap: https://tips-for-women.com/sitemap.xml
+
+User-agent: *
+Allow: /
+
+# Robôs do Google Ads — nunca bloquear
+User-agent: AdsBot-Google
+Allow: /
+User-agent: AdsBot-Google-Mobile
+Allow: /
+User-agent: Mediapartners-Google
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+
