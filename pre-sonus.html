@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,15 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Cannoli Pro (mesma posicao e config da LP: ANTES do pre-tracker) -->
 
-
-<!-- ===================================================================
-     PRE-SONUS — bloco de tracking (colar no <head>, logo apos o viewport)
-     1) Passa gclid + TODAS as UTMs da pressel para a /sonnulp/
-     2) Cria _fbc / _fbp / _xid (mantem o Meta vivo p/ remarketing)
-     3) Carrega o GTM (PRQ9J45J), que traz a Tag do Google AW-16536078339
-     =================================================================== -->
 <script id="sns-pre-tracker">
 (function () {
   var DAYS = 90;
@@ -25,7 +18,7 @@
   function ck(n){var m=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]*)');return m?decodeURIComponent(m.pop()):'';}
   function set(n,v){if(!v)return;var d=new Date(Date.now()+DAYS*864e5);
     document.cookie=n+'='+encodeURIComponent(v)+';expires='+d.toUTCString()+';path=/;domain='+DOMAIN+';SameSite=Lax';}
-  /* snapshot da query ANTES de qualquer script mexer na URL */
+  /* snapshot da query original, antes de qualquer script mexer na URL */
   var RAW = location.search;
   function qs(){try{return new URLSearchParams(RAW);}catch(e){return new URLSearchParams('');}}
   function qp(n){return qs().get(n)||'';}
@@ -45,7 +38,7 @@
     try{
       var src = qs();
       var u = new URL(a.href, location.href);
-      src.forEach(function(v,k){ if(v) u.searchParams.set(k,v); });   /* RAW: sem reprocessamento */
+      src.forEach(function(v,k){ if(v) u.searchParams.set(k,v); });
       if(!u.searchParams.get('gclid') && ck('_sns_gclid')) u.searchParams.set('gclid', ck('_sns_gclid'));
       a.href = u.toString();
     }catch(e){}
@@ -83,19 +76,6 @@
 })();
 </script>
 <!-- End Pre-Tracker -->
-
-<!-- Cannoli Pro: DEPOIS do pre-tracker, para nao reprocessar as UTMs -->
-<script>
-  window.cnl = {
-    map: {
-      "click_id": ["gclid"],
-      "utm_source": ["utm_source"],
-      "utm_campaign": ["utm_medium", "utm_campaign", "utm_content", "utm_term"]
-    }
-  };
-</script>
-<script src="https://cdn.jsdelivr.net/gh/opadim/assets/base.js"></script>
-
 
 <!-- Google Tag Manager (inalterado) -->
 <script id="lf-tag-loader">
